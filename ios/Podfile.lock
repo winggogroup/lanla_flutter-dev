@@ -555,7 +555,7 @@ SPEC CHECKSUMS:
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_sound: c60effa2a350fb977885f0db2fbc4c1ad5160900
   flutter_sound_core: 26c10e5832e76aaacfae252d8925232281c486ae
-  fluttertoast: fafc4fa4d01a6a9e4f772ecd190ffa525e9e2d9c
+  fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
   Google-Mobile-Ads-SDK: 4fe6304b771f8467d29978cb790ec1e56e646946
@@ -601,4 +601,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 86e1bfbfaa61e61555853503386199b35be6f274
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.2
