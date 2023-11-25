@@ -1,0 +1,120 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:lanla_flutter/common/controller/UserLogic.dart';
+import 'package:lanla_flutter/services/user.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+
+import '../../../common/function.dart';
+import '../../../ulits/aliyun_oss/client.dart';
+import '../../../ulits/compress.dart';
+import '../../../ulits/toast.dart';
+
+
+class IntroductionmodificationWidget extends StatefulWidget {
+  @override
+  createState() => IntroductionmodificationState();
+}
+class IntroductionmodificationState extends State<IntroductionmodificationWidget> {
+  final userLogic = Get.find<UserLogic>();
+  final userProvider = Get.put<UserProvider>(UserProvider());
+  String introduction = '';
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = new TextEditingController(text: userLogic.slogan);
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          '修改简介'.tr,
+          style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
+        ),
+        actions: [
+          GestureDetector(child:  Container(
+              margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[Text('保存'.tr,style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
+                ),)],
+              )
+          ),onTap: () async {
+            FocusScope.of(context).unfocus();
+            var isSuccess =  userProvider.setUserInfo(userLogic.userName, introduction, userLogic.userAvatar, userLogic.Sex,userLogic.birthday) ;
+            if(await isSuccess){
+              ToastInfo('更新成功'.tr);
+              userLogic.getUserInfo();
+              Get.back();
+            }else{
+              ToastErr('更新失败'.tr);
+            }
+          },)
+        ],
+
+      ),
+      body: Column(
+        children: [
+          SizedBox(height: 23,),
+          Container(
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child:TextField(
+              maxLines: 5,
+              maxLength: 70,
+              controller: _controller,
+              //keyboardType: TextInputType.number,
+              // cursorColor: Color(0xffffffff),
+              decoration: InputDecoration(
+
+                contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                hintText: "请输入你简介".tr,
+                hintStyle: TextStyle(color: Color(0xff666666)),
+                border: InputBorder.none, // 隐藏边框
+                fillColor: Colors.white,
+
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                  /*边角*/
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20), //边角为5
+                  ),
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                    width: 0.5,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                    width: 0.5,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+              ),
+
+              onChanged: (text) {
+                if (text == '') {
+                  ToastInfo('简介不能为空'.tr);
+                  return;
+                }
+                introduction=text;
+              },
+            ),
+          )
+
+        ],
+      ),
+    );
+  }
+}

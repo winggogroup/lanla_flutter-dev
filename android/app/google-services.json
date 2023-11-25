@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "587246692184",
+    "project_id": "lanlamap",
+    "storage_bucket": "lanlamap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587246692184:android:5996e69ca10a9fd533a72d",
+        "android_client_info": {
+          "package_name": "lanla.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587246692184-14an64gn1sckpv0o8c493fuk2eic1scq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lanla.app",
+            "certificate_hash": "6d8acf735d047c07756be5151bfb170c625e3f5d"
+          }
+        },
+        {
+          "client_id": "587246692184-am0nl2kp94gjen0idhl1bevl9lgo2nbo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lanla.app",
+            "certificate_hash": "2985408caaa50916b77d3520b730cac7cba94fb0"
+          }
+        },
+        {
+          "client_id": "587246692184-tq4u1sielhor61s4ibdar0bo9heenplo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt82g6mkRI8Ub7IOpKo6phRhbke3OC2mQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587246692184-tq4u1sielhor61s4ibdar0bo9heenplo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "587246692184-vj9qu34f5vn9kvl6jvq8tnl0b138skse.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "lanla.app",
+                "app_store_id": "6443484359"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
