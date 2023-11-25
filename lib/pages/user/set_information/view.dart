@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
@@ -25,7 +24,7 @@ class SetInformationPage extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       body:
         Container(
-            padding: EdgeInsets.fromLTRB(20, 88, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 88, 20, 0),
             child:
             KeyboardActions(
                 autoScroll:false,
@@ -49,7 +48,7 @@ class SetInformationPage extends StatelessWidget {
                       Row(
                         //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('欢迎你的到来'.tr,textAlign:TextAlign.center,style: TextStyle(
+                          Text('欢迎你的到来'.tr,textAlign:TextAlign.center,style: const TextStyle(
                               fontSize:30,
                               fontWeight: FontWeight.w700
                           )),
@@ -57,12 +56,12 @@ class SetInformationPage extends StatelessWidget {
                         ],
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                         child: Row(
                           //mainAxisAlignment: MainAxisAlignment.center,
 
                           children: [
-                            Text('填写信息个性化你的内容'.tr,textAlign:TextAlign.center,style: TextStyle(
+                            Text('填写信息个性化你的内容'.tr,textAlign:TextAlign.center,style: const TextStyle(
                               fontSize:14,
                             ))
                             //
@@ -71,12 +70,12 @@ class SetInformationPage extends StatelessWidget {
                       ),
                       Container(
                         alignment: Alignment.centerRight,
-                        margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                        child: Text('性别'.tr,style: TextStyle(fontWeight: FontWeight.w700),),
+                        margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                        child: Text('性别'.tr,style: const TextStyle(fontWeight: FontWeight.w700),),
                       ),
                       //选择性别模块
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
 
                         // height: 100,
                         child: Row(
@@ -84,12 +83,12 @@ class SetInformationPage extends StatelessWidget {
                           children: [
                             Obx(
                                   () => Container(
-                                padding: EdgeInsets.fromLTRB(40, 25, 40, 25),
+                                padding: const EdgeInsets.fromLTRB(40, 25, 40, 25),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                                  color: Color(0xffffffff),
+                                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                  color: const Color(0xffffffff),
                                   border: Border.all(width: 2,color: state.OvertCovertwoMan.value?Colors.transparent:Colors.black),
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Color(0x19000000),
                                       offset: Offset(0, 2),
@@ -106,7 +105,7 @@ class SetInformationPage extends StatelessWidget {
                                       Container(
                                           width: 80.0,
                                           height: 89.0,
-                                          margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
+                                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 9),
                                           child: GestureDetector(
                                             child: Image.asset('assets/images/woman.png',
                                                 // width: 80.0,
@@ -121,7 +120,7 @@ class SetInformationPage extends StatelessWidget {
                                           )),
                                     if (!state.OvertCovertwoMan.value)
                                       Container(
-                                        margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
+                                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 9),
                                         child: GestureDetector(
                                           child: Image.asset('assets/images/xuanwoman.png',
                                               // width: 80.0,
@@ -139,7 +138,7 @@ class SetInformationPage extends StatelessWidget {
                                       ),
                                     Text('女'.tr,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 14,
                                         ))
                                   ],
@@ -148,12 +147,12 @@ class SetInformationPage extends StatelessWidget {
                             ),
                             Obx(
                                   () => Container(
-                                padding: EdgeInsets.fromLTRB(40, 25, 40, 25),
+                                padding: const EdgeInsets.fromLTRB(40, 25, 40, 25),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                                  color: Color(0xffffffff),
+                                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                  color: const Color(0xffffffff),
                                   border: Border.all(width: 2,color: state.OvertCovertMan.value?Colors.transparent:Colors.black),
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Color(0x19000000),
                                       offset: Offset(0, 2),
@@ -168,7 +167,7 @@ class SetInformationPage extends StatelessWidget {
                                       Container(
                                           width: 80.0,
                                           height: 89.0,
-                                          margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
+                                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 9),
                                           child: GestureDetector(
                                             child: Image.asset('assets/images/man.png',
                                                 // width: 80.0,
@@ -181,7 +180,7 @@ class SetInformationPage extends StatelessWidget {
                                           )),
                                     if (!state.OvertCovertMan.value)
                                       Container(
-                                          margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
+                                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 9),
                                           // width: 80.0,
                                           // height: 80.0,
                                           child: GestureDetector(
@@ -198,7 +197,7 @@ class SetInformationPage extends StatelessWidget {
                                           )),
                                     Text('男'.tr,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 14,
                                         ))
                                   ],
@@ -211,20 +210,20 @@ class SetInformationPage extends StatelessWidget {
                       ),
                       Container(
                         alignment: Alignment.centerRight,
-                        margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                        child: Text('年龄'.tr,style: TextStyle(fontWeight: FontWeight.w700),),
+                        margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                        child: Text('年龄'.tr,style: const TextStyle(fontWeight: FontWeight.w700),),
                       ),
                       //生日模块
                       GestureDetector(
                         child:  Container(
-                          margin: EdgeInsets.fromLTRB(0, 20, 0, 8),
-                          padding: EdgeInsets.all(20),
+                          margin: const EdgeInsets.fromLTRB(0, 20, 0, 8),
+                          padding: const EdgeInsets.all(20),
                           width: double.infinity,
                           decoration: BoxDecoration(
                             border: Border.all(width: 2,color: Colors.black),
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            boxShadow: [
+                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            boxShadow: const [
                               BoxShadow(
                                 color: Color(0x3347B000),
                                 offset: Offset(0, 2),
@@ -234,13 +233,13 @@ class SetInformationPage extends StatelessWidget {
                             ],
                           ),
                           // decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
-                          child:Obx(()=>state.birthday.value==''?Text('选择你的生日'.tr,style:TextStyle(fontSize: 15,
+                          child:Obx(()=>state.birthday.value==''?Text('选择你的生日'.tr,style:const TextStyle(fontSize: 15,
                             color: Color(0xff999999),
-                          )):Text(state.birthday.value ,style:TextStyle(fontSize: 15,fontWeight: FontWeight.w700
+                          )):Text(state.birthday.value ,style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w700
                           ))) ,
                         ),
                         onTap: (){
-                          DateTime today = new DateTime.now();
+                          DateTime today = DateTime.now();
                           // String dateSlug ="${today.year.toString()}-${today.month.toString().padLeft(2,'0')}-${today.day.toString().padLeft(2,'0')}";
                           print(int.parse(today.year.toString())-10);
                           DatePicker.showDatePicker(context,
@@ -357,13 +356,13 @@ class SetInformationPage extends StatelessWidget {
                       //Divider(height: 1.0,indent: 0,color: Color(0xffF1F1F1),),
                       //按钮
                       Container(
-                          margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                          margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                           height: 46,
                           width: double.infinity,
                           // decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
                           child:Obx(() =>(!state.OvertCovertwoMan.value||!state.OvertCovertMan.value)&&state.birthday.value!=''?  ElevatedButton(
                             style: ButtonStyle(
-                              backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                              backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                               foregroundColor: MaterialStateProperty.all(Colors.white),
                               // elevation: MaterialStateProperty.all(20),
                               shadowColor: MaterialStateProperty.all(Colors.black),
@@ -399,7 +398,7 @@ class SetInformationPage extends StatelessWidget {
                           ):ElevatedButton(
                             style: ButtonStyle(
 
-                              backgroundColor:MaterialStateProperty.all(Color(0xffF9F9F9)),
+                              backgroundColor:MaterialStateProperty.all(const Color(0xffF9F9F9)),
                               foregroundColor: MaterialStateProperty.all(Colors.white),
                               elevation: MaterialStateProperty.all(5),
                               shape: MaterialStateProperty.all(
@@ -408,7 +407,7 @@ class SetInformationPage extends StatelessWidget {
                               ),
                             ),
 
-                            child: Text('请完善信息'.tr,style: TextStyle(color: Color(0xff999999),
+                            child: Text('请完善信息'.tr,style: const TextStyle(color: Color(0xff999999),
                             ),),
                             onPressed: () {
                               // Get.to(ChooseTopicPage());
@@ -416,8 +415,8 @@ class SetInformationPage extends StatelessWidget {
                             },
                           ),)
                       ),
-                      SizedBox(height: 20,),
-                      GestureDetector(child: Container(alignment: Alignment.center,margin: EdgeInsets.only(bottom: 20),child:Text('跳过'.tr,style: TextStyle(
+                      const SizedBox(height: 20,),
+                      GestureDetector(child: Container(alignment: Alignment.center,margin: const EdgeInsets.only(bottom: 20),child:Text('跳过'.tr,style: const TextStyle(
                         color: Color(0xff666666),
 
                       ),) ,),onTap: (){

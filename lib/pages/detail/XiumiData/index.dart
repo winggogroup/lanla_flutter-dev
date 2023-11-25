@@ -17,7 +17,7 @@ class xiumidataState extends State<xiumidataPage> {
   int nowUserId = 0;
   var dataSource;
   var newdataSource;
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
 
   @override
   void initState() {

@@ -1340,7 +1340,7 @@ class CellPhoneState extends State<CellPhonePage> {
     for(var i=0;i<countrycodelist.length;i++){
       if(countrycodelist[i]["country_code"]==st.countryCode){
         widget.state.Areacode.value = countrycodelist[i]["phone_code"]!;
-        widget.state.favorite.value = st.countryCode!;
+        widget.state.favorite.value = st.countryCode;
       }
 
     }
@@ -1366,7 +1366,7 @@ class CellPhoneState extends State<CellPhonePage> {
           backgroundColor: Colors.white,//设置背景颜色为白色
           leading: IconButton(
               color: Colors.black,
-              icon: Icon(Icons.arrow_back_ios),
+              icon: const Icon(Icons.arrow_back_ios),
               tooltip: "Search",
               onPressed: () {
                 //print('menu Pressed');
@@ -1375,13 +1375,13 @@ class CellPhoneState extends State<CellPhonePage> {
         ),
         body:  Container(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+          decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
           child: ListView(
             //crossAxisAlignment:CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 60),
-              Text(type==1?'现手机号验证'.tr:'绑定新手机号'.tr,style: TextStyle(fontSize: 30,),),
-              SizedBox(height: 50),
+              const SizedBox(height: 60),
+              Text(type==1?'现手机号验证'.tr:'绑定新手机号'.tr,style: const TextStyle(fontSize: 30,),),
+              const SizedBox(height: 50),
               Row(
                   children: [
                     Container(
@@ -1391,12 +1391,12 @@ class CellPhoneState extends State<CellPhonePage> {
                         child: GestureDetector(child:
                         Row(
                           children: [
-                            Obx(()=>Text('+'+widget.state.Areacode.value,textAlign:TextAlign.center,)
+                            Obx(()=>Text('+${widget.state.Areacode.value}',textAlign:TextAlign.center,)
                               ,),
 
                             Container(
-                                margin: EdgeInsets.fromLTRB(0, 20,0, 20),
-                                child:Icon(Icons.arrow_drop_down)
+                                margin: const EdgeInsets.fromLTRB(0, 20,0, 20),
+                                child:const Icon(Icons.arrow_drop_down)
                               // Image.asset(
                               //   'assets/images/Downarrow.png',
                               //   width: 15.0,
@@ -1414,7 +1414,7 @@ class CellPhoneState extends State<CellPhonePage> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             )
 
@@ -1434,7 +1434,7 @@ class CellPhoneState extends State<CellPhonePage> {
                             // Optional. Sets the theme for the country list picker.
                             countryListTheme: CountryListThemeData(
                               // Optional. Sets the border radius for the bottomsheet.
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 topRight: Radius.circular(10.0),
                               ),
@@ -1465,8 +1465,8 @@ class CellPhoneState extends State<CellPhonePage> {
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       ],
-                      scrollPadding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                      cursorColor: Color(0xFF999999),
+                      scrollPadding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                         // focusedBorder: OutlineInputBorder(
                         //   // borderSide: BorderSide(color: Colors.blue)
@@ -1474,7 +1474,7 @@ class CellPhoneState extends State<CellPhonePage> {
                           border: InputBorder.none,
                           hintText: "请输入手机号码".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         widget.state.phonenumber = text;
                       },
@@ -1485,7 +1485,7 @@ class CellPhoneState extends State<CellPhonePage> {
               // Divider(height: 1.0,color: Color(0xFF000000),),
               Container(
                 height: 1,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Color(0xFF000000),
                     boxShadow: [
                       BoxShadow(
@@ -1508,8 +1508,8 @@ class CellPhoneState extends State<CellPhonePage> {
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       ],
-                      scrollPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      cursorColor: Color(0xFF999999),
+                      scrollPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                         // focusedBorder: OutlineInputBorder(
                         //   borderSide: BorderSide(color: Colors.blue)
@@ -1518,7 +1518,7 @@ class CellPhoneState extends State<CellPhonePage> {
                           border: InputBorder.none,
                           hintText: "请输入验证码".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         widget.state.Verification = text;
                         // print(state.Verification);
@@ -1530,11 +1530,11 @@ class CellPhoneState extends State<CellPhonePage> {
                       // height: 50,
 
                       //decoration: BoxDecoration(border: Border.all(color: Colors.red)),
-                        margin: EdgeInsets.fromLTRB(0, 25, 20, 25),
+                        margin: const EdgeInsets.fromLTRB(0, 25, 20, 25),
                         child: GestureDetector(
                           child:
-                          Obx(() => Text(widget.state.VerificationCode.value==0? '获取验证码'.tr:'重新发送'.tr+'（${widget.state.VerificationCode}）',
-                              style: TextStyle(
+                          Obx(() => Text(widget.state.VerificationCode.value==0? '获取验证码'.tr:'${'重新发送'.tr}（${widget.state.VerificationCode}）',
+                              style: const TextStyle(
                                 fontSize: 15.0,
                                 //color: state.VerificationCode.value==0?Colors.black:Color(0xff999999),
                               ))),
@@ -1554,7 +1554,7 @@ class CellPhoneState extends State<CellPhonePage> {
               ),
               Container(
                 height: 1,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Color(0xFF000000),
                     boxShadow: [
                       BoxShadow(
@@ -1566,14 +1566,14 @@ class CellPhoneState extends State<CellPhonePage> {
                     ]
                 ),
               ),
-              SizedBox(height: 82),
+              const SizedBox(height: 82),
               // Expanded(
               //   child:
               Container(
                 height: 46,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                    backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                     // elevation: MaterialStateProperty.all(20),
                     shape: MaterialStateProperty.all(
@@ -1582,7 +1582,7 @@ class CellPhoneState extends State<CellPhonePage> {
                     ),
                   ),
 
-                  child: Text('确定'.tr,style: TextStyle(
+                  child: Text('确定'.tr,style: const TextStyle(
                     fontWeight: FontWeight.w600,
                   ),),
                   onPressed: () async {
@@ -1601,21 +1601,15 @@ class CellPhoneState extends State<CellPhonePage> {
                           if(widget.state.Verification!=''&&widget.state.phonenumber!=''&&type==1){
                             User? user = sha.user;
                             String? idToken = await user!.getIdToken();
-                            if (idToken != null) {
-                              // 将idToken发送给后端进行验证和处理
-                              print('手机号${idToken}');
-                              widget.logic.verification(context,idToken);
-                            }
+                            print('手机号$idToken');
+                            widget.logic.verification(context,idToken);
 
                           }
                           if(widget.state.Verification!=''&&widget.state.phonenumber!=''&&type==2){
                             User? user = sha.user;
                             String? idToken = await user!.getIdToken();
-                            if (idToken != null) {
-                              // 将idToken发送给后端进行验证和处理
-                              print('手机号${idToken}');
-                              widget.logic.Authentication(context,idToken);
-                            }
+                            print('手机号$idToken');
+                            widget.logic.Authentication(context,idToken);
                           }
                         } else {
                           Toast.toast(context, msg: "验证失败".tr, position: ToastPostion.center);

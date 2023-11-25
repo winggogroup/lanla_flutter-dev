@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -15,7 +14,7 @@ Widget StartDetailLoading() {
 Widget _loadingWidget(bool right) {
   return Expanded(
       child: Container(
-    padding: EdgeInsets.only(top: 80),
+    padding: const EdgeInsets.only(top: 80),
     child: SpinKitChasingDots(
       itemBuilder: (BuildContext context, int index) {
         return Container(

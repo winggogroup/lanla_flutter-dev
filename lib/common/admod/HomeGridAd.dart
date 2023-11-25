@@ -56,7 +56,7 @@ class _HomeGridAd extends State<HomeGridAd>{
           : 'ca-app-pub-3760009728541770/1476894622',
       // size: AdSize(width: (context.width / 2 - 6).toInt(),height: ((context.width / 2 - 6)*1.5).toInt()),
       size: AdSize.largeBanner,
-      request: AdRequest(),
+      request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
           print('$ad loaded: ${ad.responseInfo}');

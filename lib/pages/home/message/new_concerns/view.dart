@@ -22,7 +22,7 @@ class NewConcerns extends State<NewConcernsPage> {
   final state = Get.find<NewConcernsLogic>().state;
   final logictwo = Get.find<MessageLogic>();
   NewConcernStatus status = NewConcernStatus.init;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   /// 请求数据
 
   @override
@@ -49,7 +49,7 @@ class NewConcerns extends State<NewConcernsPage> {
     var result = await  widget.provider.Messageinterface(4,state.page);
 
     // 延迟1秒请求，防止速率过快
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       status = NewConcernStatus.normal;
     });
     setState(() {
@@ -93,13 +93,13 @@ class NewConcerns extends State<NewConcernsPage> {
               height: 22,
             ),
           ),
-          title: Text('新增关注'.tr, style: TextStyle(
+          title: Text('新增关注'.tr, style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
           ),),
         ),
         body: Container(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: const BoxDecoration(color: Colors.white),
           child: Column(
             children: [
               Divider(height: 1.0, color: Colors.grey.shade200,),
@@ -113,9 +113,9 @@ class NewConcerns extends State<NewConcernsPage> {
                             controller: _scrollController,
                             itemBuilder: (context, i) {
                               return Container(
-                                padding: EdgeInsets.fromLTRB(0, 25, 0, 25),
-                                margin: EdgeInsets.only(left: 15,right: 15),
-                                decoration: BoxDecoration(border: Border(
+                                padding: const EdgeInsets.fromLTRB(0, 25, 0, 25),
+                                margin: const EdgeInsets.only(left: 15,right: 15),
+                                decoration: const BoxDecoration(border: Border(
                                     bottom: BorderSide(
                                         width: 1, color: Color(0xffF1F1F1)))),
                                 child: Row(
@@ -135,28 +135,28 @@ class NewConcerns extends State<NewConcernsPage> {
                                       Get.toNamed('/public/user',
                                           arguments: state.Newconcernslist[i].userId);
                                     },),
-                                    SizedBox(width: 15,),
+                                    const SizedBox(width: 15,),
                                     Expanded(
                                       flex: 1,
                                       child: Column(
                                         children: [
                                           Row(
                                             children: [
-                                              Text(state.Newconcernslist[i].userName, style: TextStyle(
+                                              Text(state.Newconcernslist[i].userName, style: const TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600,
                                               ),),
                                             ],
                                           ),
-                                          SizedBox(height: 12,),
+                                          const SizedBox(height: 12,),
                                           Row(
                                             children: [
-                                              Text(state.Newconcernslist[i].message, style: TextStyle(
+                                              Text(state.Newconcernslist[i].message, style: const TextStyle(
                                                   fontSize: 12,
                                                   color: Color(0xff999999),
                                               ),),
-                                              SizedBox(width: 15,),
-                                              Text(state.Newconcernslist[i].createdAt, style: TextStyle(
+                                              const SizedBox(width: 15,),
+                                              Text(state.Newconcernslist[i].createdAt, style: const TextStyle(
                                                   fontSize: 12,
                                                   color: Color(0xff999999),
                                               ),),
@@ -165,16 +165,16 @@ class NewConcerns extends State<NewConcernsPage> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(width: 15,),
+                                    const SizedBox(width: 15,),
                                     !userController.getFollow(state.Newconcernslist[i].userId)?
                                     GestureDetector(child: Container(
-                                      padding: EdgeInsets.fromLTRB(
+                                      padding: const EdgeInsets.fromLTRB(
                                           20, 6, 20, 6),
-                                      child: Text('关注'.tr, style: TextStyle(
+                                      child: Text('关注'.tr, style: const TextStyle(
                                           color: Colors.black, fontSize: 13,fontWeight: FontWeight.w400),),
                                       decoration: BoxDecoration(
                                         //     //设置四周圆角 角度
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(30.0)),
                                         border: Border.all(
                                             color: HexColor('#000000'),
@@ -188,14 +188,14 @@ class NewConcerns extends State<NewConcernsPage> {
                                       logic.update();
                                     },) :
                                     GestureDetector(child: Container(
-                                      padding: EdgeInsets.fromLTRB(
+                                      padding: const EdgeInsets.fromLTRB(
                                           20, 6, 20, 6),
                                       child: Text('已关注'.tr, style: TextStyle(
                                           color: HexColor('#999999'),
                                           fontSize: 13,fontWeight: FontWeight.w400),),
                                       decoration: BoxDecoration(
                                         //     //设置四周圆角 角度
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(30.0)),
                                         border: Border.all(
                                             color: HexColor('#F1F1F1'),
@@ -215,10 +215,10 @@ class NewConcerns extends State<NewConcernsPage> {
                           // decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red),),
                           child:Column(
                             children: [
-                              SizedBox(height: 120,),
+                              const SizedBox(height: 120,),
                               Image.asset('assets/images/nobeijing.png',width: 200,height: 200,),
-                              SizedBox(height: 40,),
-                              Text('暂无内容'.tr,style: TextStyle(
+                              const SizedBox(height: 40,),
+                              Text('暂无内容'.tr,style: const TextStyle(
                                   fontSize: 16,
                                   color: Color(0xff999999)
                               ),),
@@ -234,7 +234,7 @@ class NewConcerns extends State<NewConcernsPage> {
   }
 
   Future<void> _onRefresh() async {
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(const Duration(seconds: 1), () {
     widget.logic.NewConcerns();
     });
   }

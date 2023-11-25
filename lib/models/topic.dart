@@ -58,7 +58,7 @@ class TopicModel {
     status: json["status"],
     createdAt: json["createdAt"],
     updatedAt: json["updatedAt"],
-    isCollect: json["isCollect"]== null ? true: json["isCollect"],
+    isCollect: json["isCollect"] ?? true,
   );
 
   Map<String, dynamic> toJson() => {
@@ -74,6 +74,6 @@ class TopicModel {
     "status": status,
     "createdAt": createdAt,
     "updatedAt": updatedAt,
-    "isCollect": isCollect== null ? true: isCollect,
+    "isCollect": isCollect ?? true,
   };
 }

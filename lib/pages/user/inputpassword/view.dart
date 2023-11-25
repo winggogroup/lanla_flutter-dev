@@ -2,7 +2,6 @@ import 'package:adjust_sdk/adjust.dart';
 import 'package:adjust_sdk/adjust_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/common/controller/publicmethodes.dart';
@@ -24,10 +23,10 @@ class InputpasswordState extends State<InputpasswordPage> {
   final logic = Get.put(InputpasswordLogic());
   final state = Get.find<InputpasswordLogic>().state;
   ContentProvider provider = ContentProvider();
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   Publicmethodes Publicmethods = Get.put(Publicmethodes());
-  FocusNode _focusNode = FocusNode();
-  FocusNode _focusNodetwo = FocusNode();
+  final FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNodetwo = FocusNode();
   String szpassword='';
   String newpassword='';
   String phone='';
@@ -125,15 +124,15 @@ class InputpasswordState extends State<InputpasswordPage> {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+        decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
         child: ListView(
           //crossAxisAlignment:CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 60),
-            Text('设置账号密码'.tr,style: TextStyle(fontSize: 25,fontWeight: FontWeight.w600),),
-            SizedBox(height: 10,),
-            Text('由与lanla的功能升级，以后可用账号密码进行登录'.tr,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
+            Text('设置账号密码'.tr,style: const TextStyle(fontSize: 25,fontWeight: FontWeight.w600),),
+            const SizedBox(height: 10,),
+            Text('由与lanla的功能升级，以后可用账号密码进行登录'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400),),
+            const SizedBox(height: 60),
             Row(
                 children: [
                   Expanded(flex: 1,child:
@@ -145,13 +144,13 @@ class InputpasswordState extends State<InputpasswordPage> {
                       // inputFormatters: [
                       //   FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       // ],
-                      scrollPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      cursorColor: Color(0xFF999999),
+                      scrollPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "请设置5位数及以上的密码".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         szpassword=text;
 
@@ -162,11 +161,11 @@ class InputpasswordState extends State<InputpasswordPage> {
                 ]
             ),
             ///分割线
-            Container( decoration: BoxDecoration(
+            Container( decoration: const BoxDecoration(
               color: Colors.white,
               border: Border(bottom: BorderSide(width: 1, color: Colors.black)),
               // borderRadius:BorderRadius.circular((10)),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(68, 207, 5, 0.2),
                   offset: Offset(0, 2),
@@ -175,9 +174,9 @@ class InputpasswordState extends State<InputpasswordPage> {
                 ),
               ],
             ),),
-            if(prompt)SizedBox(height: 15,),
-            if(prompt)Text('您的密码少于5位，请重新输入'.tr,style: TextStyle(fontSize: 12,color: Color.fromRGBO(255, 0, 0, 1)),),
-            SizedBox(height: 50),
+            if(prompt)const SizedBox(height: 15,),
+            if(prompt)Text('您的密码少于5位，请重新输入'.tr,style: const TextStyle(fontSize: 12,color: Color.fromRGBO(255, 0, 0, 1)),),
+            const SizedBox(height: 50),
             Row(
                 children: [
                   Expanded(flex: 1,child:
@@ -189,13 +188,13 @@ class InputpasswordState extends State<InputpasswordPage> {
                       // inputFormatters: [
                       //   FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       // ],
-                      scrollPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      cursorColor: Color(0xFF999999),
+                      scrollPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "请再次输入密码".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         newpassword=text;
                         setState(() {});
@@ -205,11 +204,11 @@ class InputpasswordState extends State<InputpasswordPage> {
                 ]
             ),
             ///分割线
-            Container( decoration: BoxDecoration(
+            Container( decoration: const BoxDecoration(
               color: Colors.white,
               border: Border(bottom: BorderSide(width: 1, color: Colors.black)),
               // borderRadius:BorderRadius.circular((10)),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(68, 207, 5, 0.2),
                   offset: Offset(0, 2),
@@ -218,16 +217,16 @@ class InputpasswordState extends State<InputpasswordPage> {
                 ),
               ],
             ),),
-            if(promptwo)SizedBox(height: 15,),
-            if(promptwo)Text('您的密码错误，请重新输入'.tr,style: TextStyle(fontSize: 12,color: Color.fromRGBO(255, 0, 0, 1)),),
-            SizedBox(height: 51),
+            if(promptwo)const SizedBox(height: 15,),
+            if(promptwo)Text('您的密码错误，请重新输入'.tr,style: const TextStyle(fontSize: 12,color: Color.fromRGBO(255, 0, 0, 1)),),
+            const SizedBox(height: 51),
             // Expanded(
             //   child:
               Container(
                 height: 46,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                    backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                     // elevation: MaterialStateProperty.all(20),
                     shape: MaterialStateProperty.all(
@@ -264,7 +263,7 @@ class InputpasswordState extends State<InputpasswordPage> {
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               Get.offAll(HomePage());

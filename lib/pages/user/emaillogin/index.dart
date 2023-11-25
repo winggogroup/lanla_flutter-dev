@@ -7,7 +7,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/common/controller/publicmethodes.dart';
@@ -33,7 +32,7 @@ class emailoginState extends State<emailoginPage>{
   bool antishake=true;
   bool fsok=false;
   late StreamSubscription _dynamicLinkSubscription;
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   @override
   void initState() {
     shenlinkjt();
@@ -71,7 +70,7 @@ class emailoginState extends State<emailoginPage>{
         Toast.toast(context, msg: "填写成功".tr, position: ToastPostion.bottom);
       }
 
-      Timer.periodic(Duration(milliseconds: 1000),(timer){
+      Timer.periodic(const Duration(milliseconds: 1000),(timer){
         antishake=true;
         timer.cancel();//取消定时器
       });
@@ -86,85 +85,83 @@ class emailoginState extends State<emailoginPage>{
       _dynamicLinkSubscription =FirebaseDynamicLinks.instance.onLink.listen(
             (pendingDynamicLinkData) async {
           // Set up the `onLink` event listener next as it may be received here
-          if (pendingDynamicLinkData != null) {
-            Publicmethods.loades(context,'');
-            final Uri deepLinkes = pendingDynamicLinkData.link;
-            // Example of using the dynamic link to push the user to a different screen
-            if (deepLinkes != null) {
-              print('邀请码链接${deepLinkes}');
-              if(deepLinkes.queryParameters['apiKey']!=null && email!=''){
-                if (FirebaseAuth.instance.isSignInWithEmailLink(deepLinkes.toString())) {
-                  try {
-                    // The client SDK will parse the code from the link for you.
-                    final userCredential = await FirebaseAuth.instance
-                        .signInWithEmailLink(email: email, emailLink: deepLinkes.toString());
+          Publicmethods.loades(context,'');
+          final Uri deepLinkes = pendingDynamicLinkData.link;
+          // Example of using the dynamic link to push the user to a different screen
+          if (deepLinkes != null) {
+            print('邀请码链接$deepLinkes');
+            if(deepLinkes.queryParameters['apiKey']!=null && email!=''){
+              if (FirebaseAuth.instance.isSignInWithEmailLink(deepLinkes.toString())) {
+                try {
+                  // The client SDK will parse the code from the link for you.
+                  final userCredential = await FirebaseAuth.instance
+                      .signInWithEmailLink(email: email, emailLink: deepLinkes.toString());
 
-                    // You can access the new user via userCredential.user.
+                  // You can access the new user via userCredential.user.
 
-                    final user = userCredential.user;
-                    if(user!=null){
-                      String? idToken = await user.getIdToken();
-                      // 将idToken发送给后端进行验证和处理
-                      print('邮箱email${idToken}');
-                      var result = await provider.emailLogin(userCredential.user?.email,userLogic.sourcePlatform,idToken);
+                  final user = userCredential.user;
+                  if(user!=null){
+                    String? idToken = await user.getIdToken();
+                    // 将idToken发送给后端进行验证和处理
+                    print('邮箱email$idToken');
+                    var result = await provider.emailLogin(userCredential.user?.email,userLogic.sourcePlatform,idToken);
 
-                      Map<String, dynamic> responseData = jsonDecode(result?.bodyString.toString() ??'');
-                      FirebaseAnalytics.instance.logEvent(
-                        name: "login_email_user",
-                        parameters: {
-                          "statusCode":result.statusCode,
-                          'body':result.bodyString,
-                          "userId":responseData["userId"],
-                          "userStatus":responseData["userStatus"],
-                        },
-                      );
-                      if(result.statusCode==200){
-                        var sp = await SharedPreferences.getInstance();
-                        sp.setString("token", responseData["token"]["refreshToken"]);
-                        sp.setInt("userId", responseData["userId"]);
-                        sp.setString("userAvatar", responseData["userAvatar"]);
-                        sp.setString("userName", responseData["userName"]);
-                        userLogic.modify(responseData["token"]["refreshToken"],responseData["userId"],responseData["userAvatar"],responseData["userName"]);
-                        if(responseData["userStatus"]=='2'){
-                          FirebaseAnalytics.instance.logEvent(
-                            name: "adjust_token",
-                            parameters: {
-                              "userId": responseData["userId"],
-                              "sourcePlatform":userLogic.sourcePlatform,
-                              "deviceId":userLogic.deviceId,
-                            },
-                          );
-                          AdjustEvent myAdjustEvent = AdjustEvent('6ykn6j');
-                          myAdjustEvent.addCallbackParameter('userId',responseData["userId"].toString());
-                          Adjust.trackEvent(myAdjustEvent);
-                          // Get.to(SetInformationPage());
-                          if(userLogic.Invitationcodes!=''){
-                            Fillinvitationcode(userLogic.Invitationcodes,context);
-                          }
-                          Get.offAll(ReferencePage());
-                          return ;
-                        }else if(responseData["userStatus"]=='1'){
-                          Get.offAll(HomePage());
-                          return ;
+                    Map<String, dynamic> responseData = jsonDecode(result?.bodyString.toString() ??'');
+                    FirebaseAnalytics.instance.logEvent(
+                      name: "login_email_user",
+                      parameters: {
+                        "statusCode":result.statusCode,
+                        'body':result.bodyString,
+                        "userId":responseData["userId"],
+                        "userStatus":responseData["userStatus"],
+                      },
+                    );
+                    if(result.statusCode==200){
+                      var sp = await SharedPreferences.getInstance();
+                      sp.setString("token", responseData["token"]["refreshToken"]);
+                      sp.setInt("userId", responseData["userId"]);
+                      sp.setString("userAvatar", responseData["userAvatar"]);
+                      sp.setString("userName", responseData["userName"]);
+                      userLogic.modify(responseData["token"]["refreshToken"],responseData["userId"],responseData["userAvatar"],responseData["userName"]);
+                      if(responseData["userStatus"]=='2'){
+                        FirebaseAnalytics.instance.logEvent(
+                          name: "adjust_token",
+                          parameters: {
+                            "userId": responseData["userId"],
+                            "sourcePlatform":userLogic.sourcePlatform,
+                            "deviceId":userLogic.deviceId,
+                          },
+                        );
+                        AdjustEvent myAdjustEvent = AdjustEvent('6ykn6j');
+                        myAdjustEvent.addCallbackParameter('userId',responseData["userId"].toString());
+                        Adjust.trackEvent(myAdjustEvent);
+                        // Get.to(SetInformationPage());
+                        if(userLogic.Invitationcodes!=''){
+                          Fillinvitationcode(userLogic.Invitationcodes,context);
                         }
-                        // var bean={'phone':Get.arguments["phone"],'area_code':Get.arguments["area_code"]};
+                        Get.offAll(ReferencePage());
+                        return ;
+                      }else if(responseData["userStatus"]=='1'){
+                        Get.offAll(HomePage());
+                        return ;
                       }
+                      // var bean={'phone':Get.arguments["phone"],'area_code':Get.arguments["area_code"]};
                     }
-                    Navigator.pop(context);
-                  } catch (error) {
-                    Navigator.pop(context);
-                    print('Error signing in with email link.${error}');
                   }
-                }else{
-                  ToastInfo('邮箱验证失败'.tr);
+                  Navigator.pop(context);
+                } catch (error) {
+                  Navigator.pop(context);
+                  print('Error signing in with email link.$error');
                 }
               }else{
                 ToastInfo('邮箱验证失败'.tr);
               }
             }else{
               ToastInfo('邮箱验证失败'.tr);
-              Navigator.pop(context);
             }
+          }else{
+            ToastInfo('邮箱验证失败'.tr);
+            Navigator.pop(context);
           }
         },
       );
@@ -183,13 +180,13 @@ class emailoginState extends State<emailoginPage>{
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+        decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
         child: ListView(
           //crossAxisAlignment:CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 60),
             Text('欢迎你的到来'.tr,style:const TextStyle(fontSize: 30,fontWeight: FontWeight.w600),),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             if(fsok)Text('我们将发送一个链接到你的邮箱，点击链接即可登录注册'.tr,style:const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,height: 1.5),),
             const SizedBox(height: 80),
             Container(
@@ -216,8 +213,8 @@ class emailoginState extends State<emailoginPage>{
                       // inputFormatters: [
                       //   FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       // ],
-                      scrollPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      cursorColor: Color(0xFF999999),
+                      scrollPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                         // focusedBorder: OutlineInputBorder(
                         //   // borderSide: BorderSide(color: Colors.blue)
@@ -225,7 +222,7 @@ class emailoginState extends State<emailoginPage>{
                           border: InputBorder.none,
                           hintText: "请输入邮箱号".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         email=text;
                         setState(() {
@@ -237,7 +234,7 @@ class emailoginState extends State<emailoginPage>{
                   ]
               ),
             ),
-            Divider(height: 1.0,color: Color(0xFFf1f1f1),),
+            const Divider(height: 1.0,color: Color(0xFFf1f1f1),),
             const SizedBox(height: 120),
             // Expanded(
             //   child:
@@ -245,7 +242,7 @@ class emailoginState extends State<emailoginPage>{
               height: 56,
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                  backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                   // elevation: MaterialStateProperty.all(20),
                   shadowColor: MaterialStateProperty.all(Colors.black),
@@ -292,7 +289,7 @@ class emailoginState extends State<emailoginPage>{
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');

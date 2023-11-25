@@ -1,8 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/common/controller/publicmethodes.dart';
 import 'package:lanla_flutter/models/HomeDetails.dart';
@@ -62,7 +60,7 @@ class _VideoListViewState extends State<VideoListView>
   _pageControllerListener() {
     if (nowPage != _controller.page?.toInt()) {
       nowPage = _controller.page?.toInt() ?? 0;
-      print("当前视频页:${nowPage}");
+      print("当前视频页:$nowPage");
       widget.setUseridCallback(dataList[nowPage].userId);
       if(dataList.length - nowPage < 5){
         _fetch();
@@ -79,7 +77,7 @@ class _VideoListViewState extends State<VideoListView>
     if(isFetch){
       return ;
     }
-    print('请求视频数据:${page}');
+    print('请求视频数据:$page');
     isFetch = true;
     dataList.addAll(await provider.GetVideoList(page,widget.defalutData.channel));
     page++;
@@ -93,7 +91,7 @@ class _VideoListViewState extends State<VideoListView>
         child: Container(
           height: MediaQuery.of(context).size.height,
           width:MediaQuery.of(context).size.width,
-          padding: EdgeInsets.only(bottom: 70),
+          padding: const EdgeInsets.only(bottom: 70),
           child: Image.network(
           widget.defalutData.thumbnail,
           fit: widget.defalutData.attaImageScale!=null&&widget.defalutData.attaImageScale > 1
@@ -121,7 +119,7 @@ class _VideoListViewState extends State<VideoListView>
                   child: Center(
                     child: Text(
                       '内容已经被删除'.tr,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ))
               : SafeArea(
@@ -171,7 +169,7 @@ class _VideoListViewState extends State<VideoListView>
 
   updateCommentTotal(index) async {
     print('重新拉取评论数');
-    Future.delayed(Duration(seconds: 1),() async {
+    Future.delayed(const Duration(seconds: 1),() async {
       HomeDetails? newData = await contentProvider.Detail(dataList[index].id);
       setState(() {
         dataList[index].comments = newData!.comments;

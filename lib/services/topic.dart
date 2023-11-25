@@ -45,7 +45,7 @@ class TopicProvider extends BaseProvider{
 
   // 获取最热的内容
   Future<List<HomeItem>> GetTopicContent(String type,id,page) async {
-    var res = await post('topics/recommend${type}',{'page':page,'topicId':id});
+    var res = await post('topics/recommend$type',{'page':page,'topicId':id});
 
     if(res.statusCode == 200 && res.bodyString != null){
       return homeItemFromJson(res.bodyString!);

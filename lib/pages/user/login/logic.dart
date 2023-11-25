@@ -1332,9 +1332,6 @@ class LoginLogic extends GetxController {
       "phone_code":"263"
     }
   ];
-  void onInit(){
-    super.onInit();
-  }
   void onReady() async{
     var sp = await SharedPreferences.getInstance();
     String? countrycode = sp.getString("countrycode");
@@ -1351,7 +1348,7 @@ class LoginLogic extends GetxController {
     for(var i=0;i<countrycodelist.length;i++){
       if(countrycodelist[i]["country_code"]==st.countryCode){
         state.Areacode.value = countrycodelist[i]["phone_code"]!;
-        state.favorite.value = st.countryCode!;
+        state.favorite.value = st.countryCode;
       }
     }
   }
@@ -1371,7 +1368,7 @@ class LoginLogic extends GetxController {
     //     print('${st.data?.uid}');
     //     if(st.data?.uid!=''){
        var bean={'phone':phone,'area_code':area_code,'verificationId':verificationId};
-       print('我想要的数据${bean}');
+       print('我想要的数据$bean');
           Get.to(PhoneVerificationPage(), arguments: bean);
         // }else{
         //   print('112233');
@@ -1481,7 +1478,7 @@ class LoginLogic extends GetxController {
             msg: "填写成功".tr, position: ToastPostion.bottom);
       }
 
-      Timer.periodic(Duration(milliseconds: 1000),(timer){
+      Timer.periodic(const Duration(milliseconds: 1000),(timer){
         antishake=true;
         timer.cancel();//取消定时器
       }

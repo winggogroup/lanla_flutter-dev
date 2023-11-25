@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/common/widgets/report.dart';
 import 'package:lanla_flutter/common/widgets/topic_format.dart';
@@ -35,7 +33,7 @@ class CommentWidget extends StatelessWidget {
     logic.goodsList=goodsList;
     // print('sadasdsad');
     print(logic.goodsList);
-    print("初始化评论view${id},${logic.contentId}");
+    print("初始化评论view$id,${logic.contentId}");
     logic.Interfacerequest();
     // logic.init();
     //}
@@ -49,25 +47,25 @@ class CommentWidget extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(), //禁止滚动
         children: [
         if(logic.text!='')Container(
-          padding: EdgeInsets.only(left: 0,right: 0),
+          padding: const EdgeInsets.only(left: 0,right: 0),
           child: Column(
             crossAxisAlignment:CrossAxisAlignment.start,
             children: [
               Container(
-                  padding: EdgeInsets.only(left: 0,right: 20),
-                  child: Text(logic.text,style: TextStyle(color: Color(0XFF666666),fontSize: 15),),
+                  padding: const EdgeInsets.only(left: 0,right: 20),
+                  child: Text(logic.text,style: const TextStyle(color: Color(0XFF666666),fontSize: 15),),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               TopicFormat(logic.topics),
-              if(logic.goodsList.length>0)SizedBox(height: 15,),
-              if(logic.goodsList.length>0)Container(height: 60,width: double.infinity,
+              if(logic.goodsList.isNotEmpty)const SizedBox(height: 15,),
+              if(logic.goodsList.isNotEmpty)Container(height: 60,width: double.infinity,
                 child: ListView(
                     shrinkWrap: true,
                     primary:false,
                     scrollDirection: Axis.horizontal,
                     children:[
                       for(var i=0;i<logic.goodsList.length;i++)
-                        GestureDetector(child:Container(margin: EdgeInsets.only(left: 10),height: 60,padding: EdgeInsets.all(10),decoration: BoxDecoration(
+                        GestureDetector(child:Container(margin: const EdgeInsets.only(left: 10),height: 60,padding: const EdgeInsets.all(10),decoration: const BoxDecoration(
                           color: Color(0xffFAFAFA),
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                         ),child: Row(children: [
@@ -79,7 +77,7 @@ class CommentWidget extends StatelessWidget {
                             //padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              border: Border.all(width: 0.5,color: Color(0xfff5f5f5))
+                              border: Border.all(width: 0.5,color: const Color(0xfff5f5f5))
                             ),
                             child: Image.network(
                               logic.goodsList[i].thumbnail,
@@ -88,12 +86,12 @@ class CommentWidget extends StatelessWidget {
                               height: 40,
                             ),
                           ),
-                          SizedBox(width: 8,),
+                          const SizedBox(width: 8,),
                           Column(crossAxisAlignment:CrossAxisAlignment.start,mainAxisAlignment:MainAxisAlignment.center,children: [
-                            Container(constraints: BoxConstraints(maxWidth: 250,),child:
+                            Container(constraints: const BoxConstraints(maxWidth: 250,),child:
                             Text(logic.goodsList[i].title,overflow: TextOverflow.ellipsis,
-                              maxLines: 1,style: TextStyle(fontSize: 14),),),
-                            SizedBox(height: 5,),
+                              maxLines: 1,style: const TextStyle(fontSize: 14),),),
+                            const SizedBox(height: 5,),
                             XMStartRatingtwo(rating: double.parse(logic.goodsList[i].score) ,showtext:true)
                           ],)
                         ],),),onTap: (){
@@ -101,16 +99,16 @@ class CommentWidget extends StatelessWidget {
                         },)
                     ]),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               // Divider(
               //   color: Colors.black12,
               // ),
               Container(
-                padding: EdgeInsets.only(right: 0),
+                padding: const EdgeInsets.only(right: 0),
                 child: Container(
                   height: 0.1,
                   color: Colors.black38,
-                  margin: EdgeInsets.symmetric(vertical: 10),
+                  margin: const EdgeInsets.symmetric(vertical: 10),
                 ),
               ),
             ],
@@ -136,20 +134,20 @@ class CommentWidget extends StatelessWidget {
   _more() {
     if (logic.isLoding) {
       return Container(
-          margin: EdgeInsets.only(bottom: 30),
-          padding: EdgeInsets.all(15),
-          child: Center(child: Text('Loading')));
+          margin: const EdgeInsets.only(bottom: 30),
+          padding: const EdgeInsets.all(15),
+          child: const Center(child: Text('Loading')));
     }
     if (logic.isEmpyt && logic.parentDataSource.isEmpty) {
       return Container(
-          margin: EdgeInsets.only(bottom: 30),
-          padding: EdgeInsets.all(15),
+          margin: const EdgeInsets.only(bottom: 30),
+          padding: const EdgeInsets.all(15),
           child: Center(child: Text('还没有评论哟'.tr)));
     }
 
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
-      padding: EdgeInsets.all(20),
+      margin: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.all(20),
       child: Center(
         child: logic.isMore
             ? GestureDetector(
@@ -161,18 +159,18 @@ class CommentWidget extends StatelessWidget {
                 },
                 child: Text(
                   '加载更多评论'.tr,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.blueGrey, fontWeight: FontWeight.w600),
                 ),
               )
-            : Text(
+            : const Text(
                 '',
                 //    '没有更多评论啦'.tr,
                 style: TextStyle(color: Colors.black26),
               ),
       ),
     );
-    return Text('加载更多');
+    return const Text('加载更多');
   }
 
   /**
@@ -180,7 +178,7 @@ class CommentWidget extends StatelessWidget {
    */
   Widget _parentWrapper(int contentId, CommentParent data, int index,context) {
     return Container(
-        margin: EdgeInsets.only(left: 15, right: 15),
+        margin: const EdgeInsets.only(left: 15, right: 15),
         child: (Column(children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,7 +191,7 @@ class CommentWidget extends StatelessWidget {
                 child: Container(
                   width: 32,
                   height: 32,
-                  margin: EdgeInsets.only(top: 5),
+                  margin: const EdgeInsets.only(top: 5),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(32),
                     color: Colors.black12,
@@ -206,13 +204,13 @@ class CommentWidget extends StatelessWidget {
               // 内容部分
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(right: 10, left: 15),
+                  padding: const EdgeInsets.only(right: 10, left: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         data.userName,
-                        style: TextStyle(fontSize: 12, color: Colors.black26),
+                        style: const TextStyle(fontSize: 12, color: Colors.black26),
                       ),
                       GestureDetector(
                         /// 回复主评论
@@ -248,15 +246,13 @@ class CommentWidget extends StatelessWidget {
                           }
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5),
                             child: Text.rich(TextSpan(children: [
                               // + "  " 间距
-                              TextSpan(text: data.text + "  "),
+                              TextSpan(text: "${data.text}  "),
                               TextSpan(
-                                text: data.createdAt.month.toString() +
-                                    '-' +
-                                    data.createdAt.day.toString(),
-                                style: TextStyle(color: Colors.black12),
+                                text: '${data.createdAt.month}-${data.createdAt.day}',
+                                style: const TextStyle(color: Colors.black12),
                               ),
                             ]))),
                       ),
@@ -277,7 +273,7 @@ class CommentWidget extends StatelessWidget {
                   logic.update();
                 },
                 child: Container(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(left: 15),
                   width: 30,
                   child: Column(
                     children: [
@@ -297,7 +293,7 @@ class CommentWidget extends StatelessWidget {
                       ),
                       Text(
                         data.likes.toString(),
-                        style: TextStyle(fontSize: 12, color: Colors.black45),
+                        style: const TextStyle(fontSize: 12, color: Colors.black45),
                       ),
                     ],
                   ),
@@ -315,11 +311,11 @@ class CommentWidget extends StatelessWidget {
           //   color: Colors.black12,
           // )
           Container(
-            padding: EdgeInsets.only(right: 40),
+            padding: const EdgeInsets.only(right: 40),
             child: Container(
                height: 0.1,
                color: Colors.black38,
-               margin: EdgeInsets.symmetric(vertical: 10),
+               margin: const EdgeInsets.symmetric(vertical: 10),
              ),
           ),
         ])));

@@ -36,7 +36,7 @@ class AommentViewState extends State<AommentandPage> {
       .find<AommentLogic>()
       .state;
   AommentStatus status = AommentStatus.init;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -64,7 +64,7 @@ class AommentViewState extends State<AommentandPage> {
     var result = await widget.provider.Messageinterface(5, state.page);
 
     // 延迟1秒请求，防止速率过快
-    Future.delayed(Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 1000), () {
       status = AommentStatus.normal;
     });
     setState(() {
@@ -114,14 +114,14 @@ class AommentViewState extends State<AommentandPage> {
               height: 22,
             ),
           ),
-          title: Text('评论和@'.tr, style: TextStyle(
+          title: Text('评论和@'.tr, style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
             //fontFamily: ' PingFang SC-Semibold, PingFang SC',
           ),),
         ),
         body: Container(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: const BoxDecoration(color: Colors.white),
           child: Column(
             children: [
               Divider(height: 1.0, color: Colors.grey.shade200,),
@@ -137,8 +137,8 @@ class AommentViewState extends State<AommentandPage> {
                             controller: _scrollController,
                             itemBuilder: (context, i) {
                               return Container(
-                                padding: EdgeInsets.fromLTRB(20, 25, 20, 25),
-                                decoration: BoxDecoration(border: Border(
+                                padding: const EdgeInsets.fromLTRB(20, 25, 20, 25),
+                                decoration: const BoxDecoration(border: Border(
                                     bottom: BorderSide(
                                         width: 1, color: Color(0xffF1F1F1)))),
                                 child: Row(
@@ -160,7 +160,7 @@ class AommentViewState extends State<AommentandPage> {
                                       Get.toNamed('/public/user',
                                           arguments: state.zanandai[i].userId);
                                     },),
-                                    SizedBox(width: 15,),
+                                    const SizedBox(width: 15,),
                                     Expanded(
                                       flex: 1,
                                       child: Column(
@@ -170,7 +170,7 @@ class AommentViewState extends State<AommentandPage> {
                                           Row(
                                             children: [
                                               Text(state.zanandai[i]
-                                                  .userName, style: TextStyle(
+                                                  .userName, style: const TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600,
                                                   //fontFamily: 'PingFang SC-Semibold, PingFang SC'
@@ -182,18 +182,18 @@ class AommentViewState extends State<AommentandPage> {
                                               // ),),
                                             ],
                                           ),
-                                          SizedBox(height: 12,),
+                                          const SizedBox(height: 12,),
                                           Row(
                                             children: [
                                               Text(state.zanandai[i].message,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 12,
                                                     color: Color(0xff999999),
                                                     //fontFamily: 'PingFang SC-Semibold, PingFang SC'
                                                 ),),
-                                              SizedBox(width: 15,),
+                                              const SizedBox(width: 15,),
                                               Text(state.zanandai[i].createdAt,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 12,
                                                     color: Color(0xff999999),
                                                     //fontFamily: 'PingFang SC-Semibold, PingFang SC'
@@ -202,24 +202,24 @@ class AommentViewState extends State<AommentandPage> {
                                           ),
 
                                           ///评论
-                                          SizedBox(height: 12,),
+                                          const SizedBox(height: 12,),
                                           if(state.zanandai[i].commentContent != '')Row(
                                             children: [
                                               Text(state.zanandai[i]
                                                   .commentContent,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 14,
                                                     //fontFamily: 'PingFang SC-Semibold, PingFang SC'
                                                 ),),
                                             ],
                                           ),
                                           ///回复评论
-                                          SizedBox(height: 12,),
+                                          const SizedBox(height: 12,),
 
-                                          GestureDetector(child: Container(padding: EdgeInsets.fromLTRB(13, 8, 13, 8),decoration: BoxDecoration(
+                                          GestureDetector(child: Container(padding: const EdgeInsets.fromLTRB(13, 8, 13, 8),decoration: const BoxDecoration(
                                               color: Color(0xfff5f5f5),
                                               borderRadius: BorderRadius.all(Radius.circular(20))
-                                          ),child: Text('回复评论'.tr,style: TextStyle(fontSize: 12,height: 1),),),onTap: (){
+                                          ),child: Text('回复评论'.tr,style: const TextStyle(fontSize: 12,height: 1),),),onTap: (){
                                             print(state.zanandai[i].contentUserId);
                                             CommentDiolog(state.zanandai[i].contentId,
                                                 parentUid:state.zanandai[i].contentUserId,
@@ -231,12 +231,12 @@ class AommentViewState extends State<AommentandPage> {
                                           },),
 
                                           ///子评论
-                                          if(state.zanandai[i].commentChildContent!='')SizedBox(height: 12,),
+                                          if(state.zanandai[i].commentChildContent!='')const SizedBox(height: 12,),
                                           if(state.zanandai[i].commentChildContent!='')Row(
                                             children: [
-                                              Container(width: 2,height: 12,color: Color(0xffE4E4E4),),
-                                              SizedBox(width: 8,),
-                                              Text(state.zanandai[i].commentChildContent,style: TextStyle(
+                                              Container(width: 2,height: 12,color: const Color(0xffE4E4E4),),
+                                              const SizedBox(width: 8,),
+                                              Text(state.zanandai[i].commentChildContent,style: const TextStyle(
                                                   fontSize: 12,
                                                   color: Color(0xff999999),
                                                   fontFamily: 'PingFang SC-Semibold, PingFang SC'
@@ -246,7 +246,7 @@ class AommentViewState extends State<AommentandPage> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(width: 15,),
+                                    const SizedBox(width: 15,),
                                     Container(
                                         width: 40,
                                         height: 40,
@@ -269,10 +269,10 @@ class AommentViewState extends State<AommentandPage> {
                           // decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red),),
                           child:Column(
                             children: [
-                              SizedBox(height: 120,),
+                              const SizedBox(height: 120,),
                               Image.asset('assets/images/nobeijing.png',width: 200,height: 200,),
-                              SizedBox(height: 40,),
-                              Text('暂无内容'.tr,style: TextStyle(
+                              const SizedBox(height: 40,),
+                              Text('暂无内容'.tr,style: const TextStyle(
                                   fontSize: 16,
                                   color: Color(0xff999999)
                               ),),
@@ -288,7 +288,7 @@ class AommentViewState extends State<AommentandPage> {
   }
 
   Future<void> _onRefresh() async {
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(const Duration(seconds: 1), () {
       widget.logic.Aommentandai();
     });
   }

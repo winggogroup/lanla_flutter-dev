@@ -9,7 +9,7 @@ Future<File> CompressImageFile(File file) async {
   Directory dir = await getTemporaryDirectory();
   print(fileLast);
   var result = await FlutterImageCompress.compressAndGetFile(
-    file.absolute.path, dir.path +"/"+"yasuo."+fileLast,
+    file.absolute.path, "${dir.path}/yasuo.$fileLast",
     format: fileLast == 'png' ? CompressFormat.png : CompressFormat.jpeg,
     minHeight: 1000,
     minWidth: 800,

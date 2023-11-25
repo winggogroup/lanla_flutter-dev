@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:dio/dio.dart' as dio2;
 import 'package:flustars/flustars.dart';
@@ -222,9 +221,7 @@ class PublishLogic extends GetxController {
       if (data[i].type == AssetType.image) {
         newData.add(item);
         File? file = await item.file;
-        if (File != null) {
-          newDataFile.add(file!);
-        }
+        newDataFile.add(file!);
       }
     }
     state.dataList = newData;
@@ -243,13 +240,13 @@ class PublishLogic extends GetxController {
         Directory dir = await getTemporaryDirectory();
         var thumbnailPath = await VideoThumbnail.thumbnailFile(
           video: file!.path,
-          thumbnailPath: dir.path + "/" + getUUid() + ".png",
+          thumbnailPath: "${"${dir.path}/" + getUUid()}.png",
           imageFormat: ImageFormat.PNG,
           maxWidth: 300,
           quality: 25,
         );
         state.type = PublishType.video;
-        state.videoPath = file!.path;
+        state.videoPath = file.path;
         state.thumbnailPath = thumbnailPath;
         state.dataList = [dataSource[i]];
         state.selectThumbnail = false;
@@ -300,7 +297,7 @@ class PublishLogic extends GetxController {
     final List<AssetEntity>? result = await AssetPicker.pickAssets(
       context,
       pickerConfig:
-      AssetPickerConfig(requestType: RequestType.image, maxAssets: 1),
+      const AssetPickerConfig(requestType: RequestType.image, maxAssets: 1),
     );
 
     if (result != null && result.isNotEmpty) {
@@ -361,7 +358,7 @@ class PublishLogic extends GetxController {
     }
     //Get.back();
      Get.offAll(HomePage());
-    Timer.periodic(Duration(milliseconds: 500), (timer) {
+    Timer.periodic(const Duration(milliseconds: 500), (timer) {
       homeLogic.setNowPage(3);
       timer.cancel(); //取消定时器
     });
@@ -478,7 +475,7 @@ class PublishLogic extends GetxController {
     chucundata['${userLogic.userId}']=bendidata;
 
     // return;
-    sp.setString("holduptank", jsonEncode(chucundata)!);
+    sp.setString("holduptank", jsonEncode(chucundata));
     //
     Get.back();
     Get.back();
@@ -510,7 +507,7 @@ class PublishLogic extends GetxController {
     //     .putObject(imageObj.path!, 'thumb', _getFileName());
 
     ///谷歌上传缩略图
-    final spaceRef =  storageRef.child("user/img/v"+_getFileName()+".png");
+    final spaceRef =  storageRef.child("user/img/v${_getFileName()}.png");
     final uploadTask = spaceRef.putFile(File(imageObj.path));
     uploadTask.snapshotEvents.listen((taskSnapshot) {
       switch (taskSnapshot.state) {
@@ -662,7 +659,7 @@ class PublishLogic extends GetxController {
         topics:state.selectTopic.map((e) => e["id"]).toList(),
         videoPath: newVideoPath,
         attaImageScale: await __getImageScale(state.thumbnailPath!),
-        placeId:state.positioninformation['placeId']==null?'':state.positioninformation['placeId']
+        placeId:state.positioninformation['placeId'] ?? ''
     );
 
     if (publiDataLogic.contentId == 0) {
@@ -716,13 +713,13 @@ class PublishLogic extends GetxController {
         state.dataListFile.length + 2, thumbnailPath);
     // ---任务1-上传缩略图--
     // print('publish:开始压缩缩略图');
-    File imageObj = await CompressImageFile(File(thumbnailPath!));
+    File imageObj = await CompressImageFile(File(thumbnailPath));
     // print('publish:开始上传缩略图');
     // String newThumbnailPath = await AliOssClient()
     //     .putObject(imageObj.path, 'thumb', _getFileName());
     //String newThumbnailPath='';
     ///谷歌上传缩略图
-    final spaceRef =  storageRef.child('user/img/p'+_getFileName()+'.png');
+    final spaceRef =  storageRef.child('user/img/p${_getFileName()}.png');
     final uploadTask = spaceRef.putFile(File(imageObj.path));
     uploadTask.snapshotEvents.listen((taskSnapshot) {
       switch (taskSnapshot.state) {
@@ -763,7 +760,7 @@ class PublishLogic extends GetxController {
       File imageObj = await CompressImageFile(state.dataListFile[i]);
       // String newThumbnailPath =
       // await AliOssClient().putObject(imageObj.path, 'thumb', _getFileName());
-      final pictureName =  storageRef.child("user/img/"+_getFileName()+".png");
+      final pictureName =  storageRef.child("user/img/${_getFileName()}.png");
       final pictureUpload = pictureName.putFile(File(imageObj.path));
       pictureUpload.snapshotEvents.listen((taskSnapshot) {
         switch (taskSnapshot.state) {
@@ -820,7 +817,7 @@ class PublishLogic extends GetxController {
         recordingTime:state.formData['recordingtime'],
         recordingPath:state.formData['ossrecorderpath'],
         attaImageScale: await __getImageScale(thumbnailPath),
-        placeId:state.positioninformation['placeId']==null?'':state.positioninformation['placeId']
+        placeId:state.positioninformation['placeId'] ?? ''
     );
     if (publiDataLogic.contentId == 0) {
       publiDataLogic.fail("操作失败".tr, "发布失败，请检查您的网络后重新上传".tr);

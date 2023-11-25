@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 //Toast 显示位置控制
@@ -50,7 +49,6 @@ class Toast {
         //文字垂直方向的内边距
         double pdVertical = 10.0,
       }) async {
-    assert(msg != null);
     _msg = msg;
     _startedTime = DateTime.now();
     _showTime = showTime;
@@ -74,12 +72,12 @@ class Toast {
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
                   child: AnimatedOpacity(
                     opacity: _showing ? 1.0 : 0.0, //目标透明度
                     duration: _showing
-                        ? Duration(milliseconds: 100)
-                        : Duration(milliseconds: 400),
+                        ? const Duration(milliseconds: 100)
+                        : const Duration(milliseconds: 400),
                     child: _buildToastWidget(),
                   ),
                 )),
@@ -96,7 +94,7 @@ class Toast {
     if (DateTime.now().difference(_startedTime!).inMilliseconds >= _showTime!) {
       _showing = false;
       _overlayEntry?.markNeedsBuild();
-      await Future.delayed(Duration(milliseconds: 400));
+      await Future.delayed(const Duration(milliseconds: 400));
       _overlayEntry?.remove();
       _overlayEntry = null;
     }
@@ -108,7 +106,7 @@ class Toast {
       child: Card(
         color: _bgColor,
         //圆角
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),),
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -129,7 +127,7 @@ class Toast {
 
 // 设置toast位置
   static buildToastPosition(context) {
-    var backResult;
+    double backResult;
     if (_toastPosition == ToastPostion.top) {
       backResult = MediaQuery.of(context).size.height * 1 / 4;
     } else if (_toastPosition == ToastPostion.center) {

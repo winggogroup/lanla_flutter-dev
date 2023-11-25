@@ -73,7 +73,7 @@ class positioninformation extends BaseProvider{
   //
   // 获取最热的内容
   Future<List<HomeItem>> MapGetTopicContent(String type,id,page) async {
-    var res = await post('map/recommend${type}',{'page':page,'placeId':id});
+    var res = await post('map/recommend$type',{'page':page,'placeId':id});
 
     if(res.statusCode == 200 && res.bodyString != null){
       return homeItemFromJson(res.bodyString!);

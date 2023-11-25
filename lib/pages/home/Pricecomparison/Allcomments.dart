@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lanla_flutter/models/ProductDetails.dart';
@@ -31,7 +30,7 @@ class allcommentsState extends State<allcommentsPage>{
   spdetail() async{
     var res=await Pricemodules.parityRatiodetail(Get.arguments,10,page);
     if(res.statusCode==200){
-      if(spDetailsFromJson(res.bodyString!).commentList.length>0){
+      if(spDetailsFromJson(res.bodyString!).commentList.isNotEmpty){
         commentslist.addAll(spDetailsFromJson(res.bodyString!).commentList);
         page++;
       }
@@ -43,7 +42,7 @@ class allcommentsState extends State<allcommentsPage>{
   Future<void> _onRefresh() async {
     var res=await Pricemodules.parityRatiodetail(Get.arguments,10,page);
     if(res.statusCode==200){
-      if(spDetailsFromJson(res.bodyString!).commentList.length>0){
+      if(spDetailsFromJson(res.bodyString!).commentList.isNotEmpty){
         commentslist=spDetailsFromJson(res.bodyString!).commentList;
         page++;
       }
@@ -63,23 +62,23 @@ class allcommentsState extends State<allcommentsPage>{
           centerTitle: true,
           leading: IconButton(
               color: Colors.black,
-              icon: Icon(Icons.arrow_back_ios),
+              icon: const Icon(Icons.arrow_back_ios),
               tooltip: "Search",
               onPressed: () {
                 //print('menu Pressed');
                 Navigator.of(context).pop();
               }),
-          title: Text('用户评测'.tr, style: TextStyle(
+          title: Text('用户评测'.tr, style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
             //fontFamily: ' PingFang SC-Semibold, PingFang SC',
           ),),
         ),
         body: !oneData ? StartDetailLoading():Container(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: const BoxDecoration(color: Colors.white),
           child:
          Stack(children: [
-           commentslist.length>0?Column(
+           commentslist.isNotEmpty?Column(
               children: [
                 Divider(height: 1.0, color: Colors.grey.shade200,),
                 ///
@@ -87,8 +86,8 @@ class allcommentsState extends State<allcommentsPage>{
                     onRefresh: _onRefresh,
                     displacement: 10.0,
                     child: ListView.builder(shrinkWrap: true,primary:false,controller:  _controller,padding:EdgeInsets.zero,itemCount: commentslist.length,itemBuilder: (context, i) {
-                  return  Container(padding: EdgeInsets.fromLTRB(20, 0, 20, 0),child:Column(children: [
-                    SizedBox(height: 10,),
+                  return  Container(padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),child:Column(children: [
+                    const SizedBox(height: 10,),
                     Row(children: [
                       ///头像
                       GestureDetector(child:Container(
@@ -104,28 +103,28 @@ class allcommentsState extends State<allcommentsPage>{
                       ),onTap: (){
 
                       },),
-                      SizedBox(width: 10,),
-                      Column(crossAxisAlignment:CrossAxisAlignment.start,mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(commentslist[i].username,style: TextStyle(fontSize: 15),),SizedBox(height: 8,),Row(children: [Text(commentslist[i].score,style: TextStyle(color: Color(0xff9BE400),fontSize: 12,fontWeight: FontWeight.w600),),SizedBox(width: 10,),Text(commentslist[i].createdAt,style: TextStyle(fontSize: 12,color: Color(0XFF999999)),)],)],),
+                      const SizedBox(width: 10,),
+                      Column(crossAxisAlignment:CrossAxisAlignment.start,mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(commentslist[i].username,style: const TextStyle(fontSize: 15),),const SizedBox(height: 8,),Row(children: [Text(commentslist[i].score,style: const TextStyle(color: Color(0xff9BE400),fontSize: 12,fontWeight: FontWeight.w600),),const SizedBox(width: 10,),Text(commentslist[i].createdAt,style: const TextStyle(fontSize: 12,color: Color(0XFF999999)),)],)],),
                     ],),
-                    SizedBox(height: 5,),
+                    const SizedBox(height: 5,),
                     ///评论
-                    Container(width: double.infinity,margin: EdgeInsets.only(right: 50),child: Text(commentslist[i].text, overflow: TextOverflow.ellipsis, //长度溢出后显示省略号
+                    Container(width: double.infinity,margin: const EdgeInsets.only(right: 50),child: Text(commentslist[i].text, overflow: TextOverflow.ellipsis, //长度溢出后显示省略号
                       maxLines: 8,
                       style: const TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 13,color: Color(0XFF666666),height: 1.3),
                     ),),
-                    SizedBox(height: 10,),
-                    if( commentslist[i].images!='')Container(margin: EdgeInsets.only(right: 50),width: double.infinity,child: Row(children: [
+                    const SizedBox(height: 10,),
+                    if( commentslist[i].images!='')Container(margin: const EdgeInsets.only(right: 50),width: double.infinity,child: Row(children: [
                       for(var r=0;r<commentslist[i].images.split(',').length;r++)
-                        if(r<3)Container(margin: EdgeInsets.only(left: 15),width: 85,height: 85,decoration: BoxDecoration(
-                          color: Color(0xffd9d9d9),borderRadius: BorderRadius.all(Radius.circular(5)),image: DecorationImage(
+                        if(r<3)Container(margin: const EdgeInsets.only(left: 15),width: 85,height: 85,decoration: BoxDecoration(
+                          color: const Color(0xffd9d9d9),borderRadius: const BorderRadius.all(Radius.circular(5)),image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(commentslist[i].images.split(',')[r]),
                         ),),),
                     ],),),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     ///分割线
-                    Container(height: 1.0, decoration: BoxDecoration(color: Color(0xfff1f1f1), boxShadow: [BoxShadow(color: Color(0x0c00000), offset: Offset(0, 2), blurRadius: 5, spreadRadius: 0,),],
+                    Container(height: 1.0, decoration: const BoxDecoration(color: Color(0xfff1f1f1), boxShadow: [BoxShadow(color: Color(0x0c00000), offset: Offset(0, 2), blurRadius: 5, spreadRadius: 0,),],
                     ),),
                   ],),)
                   ;
@@ -143,7 +142,7 @@ class allcommentsState extends State<allcommentsPage>{
                        child: Column(
                          // mainAxisAlignment:MainAxisAlignment.center,
                          children: [
-                           SizedBox(
+                           const SizedBox(
                              height: 100,
                            ),
                            Image.asset(
@@ -151,12 +150,12 @@ class allcommentsState extends State<allcommentsPage>{
                              width: 200,
                              height: 200,
                            ),
-                           SizedBox(
+                           const SizedBox(
                              height: 40,
                            ),
                            Text(
                              '还没有用户评价'.tr,
-                             style: TextStyle(
+                             style: const TextStyle(
                                fontSize: 16,
                                //fontFamily: 'PingFang SC-Regular, PingFang SC'
                              ),
@@ -170,7 +169,7 @@ class allcommentsState extends State<allcommentsPage>{
                 width: 60, height: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage('assets/images/pinglfc.png'),
                   ),

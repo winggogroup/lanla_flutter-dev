@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lanla_flutter/common/controller/publicmethodes.dart';
 import 'package:lanla_flutter/common/toast/view.dart';
@@ -53,76 +52,74 @@ class bindingemailoginState extends State<bindingemailoginPage>{
       _dynamicLinkSubscription= FirebaseDynamicLinks.instance.onLink.listen(
             (pendingDynamicLinkData) async {
           // Set up the `onLink` event listener next as it may be received here
-          if (pendingDynamicLinkData != null) {
-            Publicmethods.loades(context,'');
-            final Uri deepLinkes = pendingDynamicLinkData.link;
-            // Example of using the dynamic link to push the user to a different screen
-            if (deepLinkes != null) {
-              if(deepLinkes.queryParameters['apiKey']!=null && email!=''){
-                if (FirebaseAuth.instance.isSignInWithEmailLink(deepLinkes.toString())) {
-                  try {
-                    final userCredential = await FirebaseAuth.instance.signInWithEmailLink(email: email, emailLink: deepLinkes.toString());
-                    final user = userCredential.user;
-                    print('换绑${deepLinkes}');
-                    if(user!=null){
-                      String? idToken = await user.getIdToken();
-                      
-                      var isbdemail=await SetUprovider.isAllowEmailBind(idToken,user.email);
-                      if (isbdemail.statusCode == 200) {
-                        print('出发借口啦');
-                        if(isbdemail.body['allow_bind_email']&&isbdemail.body['have_email_user_info']!=null){
-                          print('出发借口啦123');
-                          Navigator.pop(context);
-                           // Get.to(ForcedrebindingPage(),arguments: {'data':isbdemail.body,'idToken':idToken,email:user.email});
-                          Get.to(()=>ForcedrebindingPage(),arguments: {...isbdemail.body,'idToken':idToken,"email":user.email})?.then((value) {
-                            if (value != null) {
-                              Get.back(result: true);
-                              //此处可以获取从第二个页面返回携带的参数
-                            }
-                          });
-                          return;
-                        }else if(isbdemail.body['allow_bind_email']&&isbdemail.body['have_email_user_info']==null){
-                          var BindingResults = await SetUprovider.bindEmailAccount( idToken,user.email,);
-                          print('请求接口');
-                          print(BindingResults.statusCode);
-                          print(BindingResults.bodyString);
-                          if (BindingResults.statusCode == 200) {
-                            Navigator.pop(context);
-                            Toast.toast(
-                                context, msg: "绑定成功".tr, position: ToastPostion.center);
-                            Get.back(result: true);
-                          }else{
-                            Navigator.pop(context);
-                          }
-                        }else if(!isbdemail.body['allow_bind_email']){
-                          Toast.toast(context, msg: "绑定失败".tr, position: ToastPostion.center);
-                        }
-                        // if(isemailbindingFromJson(isbdemail.bodyString!))
-                      }else{
+          Publicmethods.loades(context,'');
+          final Uri deepLinkes = pendingDynamicLinkData.link;
+          // Example of using the dynamic link to push the user to a different screen
+          if (deepLinkes != null) {
+            if(deepLinkes.queryParameters['apiKey']!=null && email!=''){
+              if (FirebaseAuth.instance.isSignInWithEmailLink(deepLinkes.toString())) {
+                try {
+                  final userCredential = await FirebaseAuth.instance.signInWithEmailLink(email: email, emailLink: deepLinkes.toString());
+                  final user = userCredential.user;
+                  print('换绑$deepLinkes');
+                  if(user!=null){
+                    String? idToken = await user.getIdToken();
+                    
+                    var isbdemail=await SetUprovider.isAllowEmailBind(idToken,user.email);
+                    if (isbdemail.statusCode == 200) {
+                      print('出发借口啦');
+                      if(isbdemail.body['allow_bind_email']&&isbdemail.body['have_email_user_info']!=null){
+                        print('出发借口啦123');
                         Navigator.pop(context);
+                         // Get.to(ForcedrebindingPage(),arguments: {'data':isbdemail.body,'idToken':idToken,email:user.email});
+                        Get.to(()=>ForcedrebindingPage(),arguments: {...isbdemail.body,'idToken':idToken,"email":user.email})?.then((value) {
+                          if (value != null) {
+                            Get.back(result: true);
+                            //此处可以获取从第二个页面返回携带的参数
+                          }
+                        });
+                        return;
+                      }else if(isbdemail.body['allow_bind_email']&&isbdemail.body['have_email_user_info']==null){
+                        var BindingResults = await SetUprovider.bindEmailAccount( idToken,user.email,);
+                        print('请求接口');
+                        print(BindingResults.statusCode);
+                        print(BindingResults.bodyString);
+                        if (BindingResults.statusCode == 200) {
+                          Navigator.pop(context);
+                          Toast.toast(
+                              context, msg: "绑定成功".tr, position: ToastPostion.center);
+                          Get.back(result: true);
+                        }else{
+                          Navigator.pop(context);
+                        }
+                      }else if(!isbdemail.body['allow_bind_email']){
+                        Toast.toast(context, msg: "绑定失败".tr, position: ToastPostion.center);
                       }
+                      // if(isemailbindingFromJson(isbdemail.bodyString!))
                     }else{
                       Navigator.pop(context);
                     }
-                    // Navigator.pop(context);
-                  } catch (error) {
-                    Toast.toast(context, msg: "绑定失败".tr, position: ToastPostion.center);
+                  }else{
                     Navigator.pop(context);
-                    print('Error signing in with email link.${error}');
                   }
-                }else{
+                  // Navigator.pop(context);
+                } catch (error) {
+                  Toast.toast(context, msg: "绑定失败".tr, position: ToastPostion.center);
                   Navigator.pop(context);
-                  ToastInfo('邮箱验证失败'.tr);
+                  print('Error signing in with email link.$error');
                 }
               }else{
                 Navigator.pop(context);
                 ToastInfo('邮箱验证失败'.tr);
               }
-
             }else{
-              ToastInfo('邮箱验证失败'.tr);
               Navigator.pop(context);
+              ToastInfo('邮箱验证失败'.tr);
             }
+
+          }else{
+            ToastInfo('邮箱验证失败'.tr);
+            Navigator.pop(context);
           }
         },
       );
@@ -146,16 +143,16 @@ class bindingemailoginState extends State<bindingemailoginPage>{
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+        decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
         child: ListView(
           //crossAxisAlignment:CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 60),
-            Text('绑定邮箱号'.tr,style: TextStyle(fontSize: 30,),),
+            Text('绑定邮箱号'.tr,style: const TextStyle(fontSize: 30,),),
             const SizedBox(height: 100),
             Container(
               // padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 // border: Border(bottom: BorderSide(width: 1, color: Colors.black)),
                 // // borderRadius:BorderRadius.circular((10)),
@@ -177,7 +174,7 @@ class bindingemailoginState extends State<bindingemailoginPage>{
                       //   FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       // ],
                       // scrollPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      cursorColor: Color(0xFF999999),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                         // focusedBorder: OutlineInputBorder(
                         //   // borderSide: BorderSide(color: Colors.blue)
@@ -185,7 +182,7 @@ class bindingemailoginState extends State<bindingemailoginPage>{
                           border: InputBorder.none,
                           hintText: "请输入邮箱号".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         email=text;
                         setState(() {
@@ -197,11 +194,11 @@ class bindingemailoginState extends State<bindingemailoginPage>{
                   ]
               ),
             ),
-            Container( decoration: BoxDecoration(
+            Container( decoration: const BoxDecoration(
               color: Colors.white,
               border: Border(bottom: BorderSide(width: 1, color: Colors.black)),
               // borderRadius:BorderRadius.circular((10)),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                   color: Color.fromRGBO(68, 207, 5, 0.2),
                   offset: Offset(0, 2),
@@ -218,7 +215,7 @@ class bindingemailoginState extends State<bindingemailoginPage>{
               height: 56,
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                  backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                   // elevation: MaterialStateProperty.all(20),
                   shadowColor: MaterialStateProperty.all(Colors.black),
@@ -261,7 +258,7 @@ class bindingemailoginState extends State<bindingemailoginPage>{
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');

@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -88,7 +86,7 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
   }
   _getData() async {
     var result = await Pricemodules.Relatedworks(ParentData!=null?ParentData.id:Get.arguments,page);
-    if(result.length>0){
+    if(result.isNotEmpty){
       contentList.addAll(result);
       page++;
     }
@@ -99,7 +97,7 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return
-      ParentData!=null || Productdetails!=null?Container(color: Color(0xffF5F5F5),child: SingleChildScrollView(physics: BouncingScrollPhysics(),controller: _controller,child:
+      ParentData!=null || Productdetails!=null?Container(color: const Color(0xffF5F5F5),child: SingleChildScrollView(physics: const BouncingScrollPhysics(),controller: _controller,child:
       Column(children: [
         Stack(children: [
           Container(color: Colors.white,child: Productdetails==null||Productdetails.images==''? _swiper(context,ParentData.images.split('|'),0.3):_swiper(context,Productdetails.images.split('|'),0.3),),
@@ -121,22 +119,22 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
           },),)
 
         ],),
-        Container(width: double.infinity,height: 2,color: Color(0xffD1FF34),),
-        Container(width: double.infinity,padding: EdgeInsets.fromLTRB(10, 10, 10, 10),child:
+        Container(width: double.infinity,height: 2,color: const Color(0xffD1FF34),),
+        Container(width: double.infinity,padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),child:
         Column(children: [
           ///商品名称
-          Container(width: double.infinity,padding: EdgeInsets.fromLTRB(15, 10, 15, 10),decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(5))),child: Text(
-            Productdetails==null?ParentData.title:Productdetails.title,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),maxLines: 4,overflow: TextOverflow.ellipsis,
+          Container(width: double.infinity,padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),decoration: const BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(5))),child: Text(
+            Productdetails==null?ParentData.title:Productdetails.title,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600),maxLines: 4,overflow: TextOverflow.ellipsis,
           ),),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           ///比价部分
-          Productdetails!=null?Container(padding: EdgeInsets.all(15),decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(5))),
+          Productdetails!=null?Container(padding: const EdgeInsets.all(15),decoration: const BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(5))),
             child: Column(children: [
-              Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text('lanla全网比价'.tr,style: TextStyle(fontSize: 14),)],),
-              SizedBox(height: 10,),
+              Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text('lanla全网比价'.tr,style: const TextStyle(fontSize: 14),)],),
+              const SizedBox(height: 10,),
               ///商品选择
               Container(height: 110,alignment: Alignment.centerRight,
-                padding: EdgeInsets.fromLTRB(0, 10, 0,0),
+                padding: const EdgeInsets.fromLTRB(0, 10, 0,0),
                 child: ListView(
                     shrinkWrap: true,
                     primary:false,
@@ -144,24 +142,24 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                     children:[
                       for(var i=0;i<jsonDecode(Productdetails.priceOther).length;i++)
                         GestureDetector(child: Column(children: [
-                          Container(margin:EdgeInsets.only(left: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width:1,color: Color((0xffF5F5F5))),
-                              color: Color(0xfff5f5f5),
-                              borderRadius: BorderRadius.all(Radius.circular(5))
+                          Container(margin:const EdgeInsets.only(left: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width:1,color: const Color((0xffF5F5F5))),
+                              color: const Color(0xfff5f5f5),
+                              borderRadius: const BorderRadius.all(Radius.circular(5))
                           ),child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
                             Row(mainAxisAlignment:MainAxisAlignment.center,children: [
                               // Text("SAR",style: TextStyle(fontSize: 12,height: 1.1),),
                               // SizedBox(width: 2,),
-                              Text(jsonDecode(Productdetails.priceOther)[i]['price'].split(' ')[0],style: TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
-                              SizedBox(width: 4,),
-                              Text(jsonDecode(Productdetails.priceOther)[i]['price'].split(' ')[1],style: TextStyle(height: 1.3,fontSize: 12),)
+                              Text(jsonDecode(Productdetails.priceOther)[i]['price'].split(' ')[0],style: const TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
+                              const SizedBox(width: 4,),
+                              Text(jsonDecode(Productdetails.priceOther)[i]['price'].split(' ')[1],style: const TextStyle(height: 1.3,fontSize: 12),)
                             ],),
-                            Text(jsonDecode(Productdetails.priceOther)[i]['platform'],style: TextStyle(fontSize: 12,color: Color(0xff999999)),)
+                            Text(jsonDecode(Productdetails.priceOther)[i]['platform'],style: const TextStyle(fontSize: 12,color: Color(0xff999999)),)
                           ],),),
-                          SizedBox(height: 5,),
-                          Container(alignment: Alignment.center,margin:EdgeInsets.only(left: 10),width: 110,height: 35,decoration: BoxDecoration(border: Border.all(width: 0.5,color: Color((0xffE1E1E1))),
+                          const SizedBox(height: 5,),
+                          Container(alignment: Alignment.center,margin:const EdgeInsets.only(left: 10),width: 110,height: 35,decoration: BoxDecoration(border: Border.all(width: 0.5,color: const Color((0xffE1E1E1))),
 
-                              borderRadius: BorderRadius.all(Radius.circular(5))
-                          ),child: Text('跳转购买'.tr,style: TextStyle(fontSize: 13),),),
+                              borderRadius: const BorderRadius.all(Radius.circular(5))
+                          ),child: Text('跳转购买'.tr,style: const TextStyle(fontSize: 13),),),
                         ],),onTap: () async {
                           ///跳转购买
                           await launchUrl(Uri.parse(jsonDecode(Productdetails.priceOther)[i]['detailPath']), mode: LaunchMode.externalApplication,);
@@ -169,10 +167,10 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
 
                     ]),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               ///折线图
               if(Productdetails!=null)Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                GestureDetector(child: Column(children: [Text('7天'.tr,style: TextStyle(fontWeight:Dataday==1? FontWeight.w600:FontWeight.w400),),SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==1?Colors.black:Colors.white,)],),onTap: (){
+                GestureDetector(child: Column(children: [Text('7天'.tr,style: TextStyle(fontWeight:Dataday==1? FontWeight.w600:FontWeight.w400),),const SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==1?Colors.black:Colors.white,)],),onTap: (){
                   Linechartday=[];
                   for(var i=0;i<7;i++){
                     if(jsonDecode(Productdetails.historyPrice).length>i){
@@ -195,9 +193,9 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                   setState(() {
                     // Linechartday=30;
                   });
-                },child: Column(children: [Text('30天'.tr,style: TextStyle(fontWeight:Dataday==2? FontWeight.w600:FontWeight.w400),),SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==2?Colors.black:Colors.white,)],),),
+                },child: Column(children: [Text('30天'.tr,style: TextStyle(fontWeight:Dataday==2? FontWeight.w600:FontWeight.w400),),const SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==2?Colors.black:Colors.white,)],),),
 
-                GestureDetector(child: Column(children: [Text('60天'.tr,style: TextStyle(fontWeight: Dataday==3?FontWeight.w600:FontWeight.w400),),SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==3?Colors.black:Colors.white,)],),onTap: (){
+                GestureDetector(child: Column(children: [Text('60天'.tr,style: TextStyle(fontWeight: Dataday==3?FontWeight.w600:FontWeight.w400),),const SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==3?Colors.black:Colors.white,)],),onTap: (){
                   Linechartday=[];
                   for(var i=0;i<60;i++){
                     if(jsonDecode(Productdetails.historyPrice).length>i){
@@ -209,7 +207,7 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                     //Linechartday=60;
                   });
                 },),
-                GestureDetector(child:Column(children: [Text('180天'.tr,style: TextStyle(fontWeight: Dataday==4?FontWeight.w600:FontWeight.w400),),SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==4?Colors.black:Colors.white,)],),
+                GestureDetector(child:Column(children: [Text('180天'.tr,style: TextStyle(fontWeight: Dataday==4?FontWeight.w600:FontWeight.w400),),const SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==4?Colors.black:Colors.white,)],),
                   onTap: (){
                     Linechartday=[];
                     for(var i=0;i<180;i++){
@@ -241,25 +239,25 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                           //markerSettings: MarkerSettings(isVisible: true),
                             dataSource: Linechartday,
 
-                            gradient: LinearGradient(begin:Alignment.bottomCenter,end:Alignment.topCenter,colors: [Color(0x0070FF00),Color(0x33DEFF99)], stops: [0.0,1]),
+                            gradient: const LinearGradient(begin:Alignment.bottomCenter,end:Alignment.topCenter,colors: [Color(0x0070FF00),Color(0x33DEFF99)], stops: [0.0,1]),
                             //borderMode: AreaBorderMode.excludeBottom,
-                            borderColor: Color(0xff9BE400),
+                            borderColor: const Color(0xff9BE400),
                             borderWidth: 2,
                             xValueMapper: (data, _) => data.x,
                             yValueMapper: (ChartData data, _) => data.y,
                             //name: 'Gold',
-                            color: Color(0x009BE400)
+                            color: const Color(0x009BE400)
                         )
                       ])
               ),
             ],),
-          ):Container(padding: EdgeInsets.all(15),decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(5))),
+          ):Container(padding: const EdgeInsets.all(15),decoration: const BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(5))),
             child: Column(children: [
-              Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text('lanla全网比价'.tr,style: TextStyle(fontSize: 14),)],),
-              SizedBox(height: 10,),
+              Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text('lanla全网比价'.tr,style: const TextStyle(fontSize: 14),)],),
+              const SizedBox(height: 10,),
               ///商品选择
               Container(height: 110,alignment: Alignment.centerRight,
-                padding: EdgeInsets.fromLTRB(0, 10, 0,0),
+                padding: const EdgeInsets.fromLTRB(0, 10, 0,0),
                 child: ListView(
                     shrinkWrap: true,
                     primary:false,
@@ -267,24 +265,24 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                     children:[
                       for(var i=0;i<jsonDecode(ParentData.priceOther).length;i++)
                         GestureDetector(child: Column(children: [
-                          Container(margin:EdgeInsets.only(left: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width:1,color: Color((0xffF5F5F5))),
-                              color: Color(0xfff5f5f5),
-                              borderRadius: BorderRadius.all(Radius.circular(5))
+                          Container(margin:const EdgeInsets.only(left: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width:1,color: const Color((0xffF5F5F5))),
+                              color: const Color(0xfff5f5f5),
+                              borderRadius: const BorderRadius.all(Radius.circular(5))
                           ),child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
                             Row(mainAxisAlignment:MainAxisAlignment.center,children: [
                               // Text("SAR",style: TextStyle(fontSize: 12,height: 1.1),),
                               // SizedBox(width: 2,),
-                              Text(jsonDecode(ParentData.priceOther)[i]['price'].split(' ')[0],style: TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
-                              SizedBox(width: 4,),
-                              Text(jsonDecode(ParentData.priceOther)[i]['price'].split(' ')[1],style: TextStyle(height: 1.3,fontSize: 12),)
+                              Text(jsonDecode(ParentData.priceOther)[i]['price'].split(' ')[0],style: const TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
+                              const SizedBox(width: 4,),
+                              Text(jsonDecode(ParentData.priceOther)[i]['price'].split(' ')[1],style: const TextStyle(height: 1.3,fontSize: 12),)
                             ],),
-                            Text(jsonDecode(ParentData.priceOther)[i]['platform'],style: TextStyle(fontSize: 12,color: Color(0xff999999)),)
+                            Text(jsonDecode(ParentData.priceOther)[i]['platform'],style: const TextStyle(fontSize: 12,color: Color(0xff999999)),)
                           ],),),
-                          SizedBox(height: 5,),
-                          Container(alignment: Alignment.center,margin:EdgeInsets.only(left: 10),width: 110,height: 35,decoration: BoxDecoration(border: Border.all(width: 0.5,color: Color((0xffE1E1E1))),
+                          const SizedBox(height: 5,),
+                          Container(alignment: Alignment.center,margin:const EdgeInsets.only(left: 10),width: 110,height: 35,decoration: BoxDecoration(border: Border.all(width: 0.5,color: const Color((0xffE1E1E1))),
 
-                              borderRadius: BorderRadius.all(Radius.circular(5))
-                          ),child: Text('跳转购买'.tr,style: TextStyle(fontSize: 13),),),
+                              borderRadius: const BorderRadius.all(Radius.circular(5))
+                          ),child: Text('跳转购买'.tr,style: const TextStyle(fontSize: 13),),),
                         ],),onTap: () async {
                           ///跳转购买
                           await launchUrl(Uri.parse(jsonDecode(ParentData.priceOther)[i]['detailPath']), mode: LaunchMode.externalApplication,);
@@ -292,10 +290,10 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
 
                     ]),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               ///折线图
               if(ParentData!=null)Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                GestureDetector(child: Column(children: [Text('7天'.tr,style: TextStyle(fontWeight:Dataday==1? FontWeight.w600:FontWeight.w400),),SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==1?Colors.black:Colors.white,)],),onTap: (){
+                GestureDetector(child: Column(children: [Text('7天'.tr,style: TextStyle(fontWeight:Dataday==1? FontWeight.w600:FontWeight.w400),),const SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==1?Colors.black:Colors.white,)],),onTap: (){
                   Linechartday=[];
                   for(var i=0;i<7;i++){
                     if(jsonDecode(ParentData.historyPrice).length>i){
@@ -318,9 +316,9 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                   setState(() {
                     // Linechartday=30;
                   });
-                },child: Column(children: [Text('30天'.tr,style: TextStyle(fontWeight:Dataday==2? FontWeight.w600:FontWeight.w400),),SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==2?Colors.black:Colors.white,)],),),
+                },child: Column(children: [Text('30天'.tr,style: TextStyle(fontWeight:Dataday==2? FontWeight.w600:FontWeight.w400),),const SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==2?Colors.black:Colors.white,)],),),
 
-                GestureDetector(child: Column(children: [Text('60天'.tr,style: TextStyle(fontWeight: Dataday==3?FontWeight.w600:FontWeight.w400),),SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==3?Colors.black:Colors.white,)],),onTap: (){
+                GestureDetector(child: Column(children: [Text('60天'.tr,style: TextStyle(fontWeight: Dataday==3?FontWeight.w600:FontWeight.w400),),const SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==3?Colors.black:Colors.white,)],),onTap: (){
                   Linechartday=[];
                   for(var i=0;i<60;i++){
                     if(jsonDecode(ParentData.historyPrice).length>i){
@@ -332,7 +330,7 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                     //Linechartday=60;
                   });
                 },),
-                GestureDetector(child:Column(children: [Text('180天'.tr,style: TextStyle(fontWeight: Dataday==4?FontWeight.w600:FontWeight.w400),),SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==4?Colors.black:Colors.white,)],),
+                GestureDetector(child:Column(children: [Text('180天'.tr,style: TextStyle(fontWeight: Dataday==4?FontWeight.w600:FontWeight.w400),),const SizedBox(height: 2,),Container(height: 2,width: 12,color: Dataday==4?Colors.black:Colors.white,)],),
                   onTap: (){
                     Linechartday=[];
                     for(var i=0;i<180;i++){
@@ -364,24 +362,24 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                           //markerSettings: MarkerSettings(isVisible: true),
                             dataSource: Linechartday,
 
-                            gradient: LinearGradient(begin:Alignment.bottomCenter,end:Alignment.topCenter,colors: [Color(0x0070FF00),Color(0x33DEFF99)], stops: [0.0,1]),
+                            gradient: const LinearGradient(begin:Alignment.bottomCenter,end:Alignment.topCenter,colors: [Color(0x0070FF00),Color(0x33DEFF99)], stops: [0.0,1]),
                             //borderMode: AreaBorderMode.excludeBottom,
-                            borderColor: Color(0xff9BE400),
+                            borderColor: const Color(0xff9BE400),
                             borderWidth: 2,
                             xValueMapper: (data, _) => data.x,
                             yValueMapper: (ChartData data, _) => data.y,
                             //name: 'Gold',
-                            color: Color(0x009BE400)
+                            color: const Color(0x009BE400)
                         )
                       ])
               ),
             ],),
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           ///评价
-          if(Productdetails!=null)Container(padding: EdgeInsets.fromLTRB(15, 15, 15, 15),width: double.infinity,decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(5))),
+          if(Productdetails!=null)Container(padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),width: double.infinity,decoration: const BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(5))),
             child: Column(children: [
-              Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text('用户评测'.tr,style: TextStyle(fontSize: 16)),
+              Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text('用户评测'.tr,style: const TextStyle(fontSize: 16)),
                 GestureDetector(onTap: (){
                   ///跳转全部评论
                   Get.to(allcommentsPage(),arguments:Productdetails.id )?.then((value) async {
@@ -392,87 +390,87 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                       setState(() {});
                     }
                   });
-                },child:Container(padding: EdgeInsets.fromLTRB(10, 8, 10, 8),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xff000000)),child: Text('我也要评测'.tr,style: TextStyle(color: Colors.white,fontSize: 12,height: 1),),) ,)],),
-              SizedBox(height: 20,),
+                },child:Container(padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xff000000)),child: Text('我也要评测'.tr,style: const TextStyle(color: Colors.white,fontSize: 12,height: 1),),) ,)],),
+              const SizedBox(height: 20,),
               Container(child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                Container(height:90,child: Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(Productdetails.score,style: TextStyle(color: Color(0xff9BE400),fontSize: 35,fontWeight: FontWeight.w600,height: 1),),XMStartRating(rating: 9,showtext:false),SizedBox(height: 10,),Text('已评分'.tr+' (${Productdetails.commentNum})'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),)],),),
+                Container(height:90,child: Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(Productdetails.score,style: const TextStyle(color: Color(0xff9BE400),fontSize: 35,fontWeight: FontWeight.w600,height: 1),),XMStartRating(rating: 9,showtext:false),const SizedBox(height: 10,),Text('已评分'.tr+' (${Productdetails.commentNum})'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),)],),),
                 Container(child: Column(crossAxisAlignment:CrossAxisAlignment.end,children: [
                   ///5星
                   Row(children: [
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    SizedBox(width: 10,),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const SizedBox(width: 10,),
                     ///进度条
                     CustomProgressBar(value: (Productdetails.fiveStarNum)/100,
-                      backgroundColor: Color(0xffF5F5F5),
-                      color: Color(0xff9BE400),borderRadius: 10,),
-                    SizedBox(width: 10,),
-                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.fiveStarNum}%',style: TextStyle(fontSize: 10,color: Color(0xff999999)),),)
+                      backgroundColor: const Color(0xffF5F5F5),
+                      color: const Color(0xff9BE400),borderRadius: 10,),
+                    const SizedBox(width: 10,),
+                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.fiveStarNum}%',style: const TextStyle(fontSize: 10,color: Color(0xff999999)),),)
                   ],),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   ///4星
                   Row(children: [
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    SizedBox(width: 10,),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const SizedBox(width: 10,),
                     ///进度条
                     CustomProgressBar(value: (Productdetails.fourStarNum)/100,
-                      backgroundColor: Color(0xffF5F5F5),
-                      color: Color(0xff9BE400),borderRadius: 10,),
-                    SizedBox(width: 10,),
-                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.fourStarNum}%',style: TextStyle(fontSize: 10,color: Color(0xff999999)),),)
+                      backgroundColor: const Color(0xffF5F5F5),
+                      color: const Color(0xff9BE400),borderRadius: 10,),
+                    const SizedBox(width: 10,),
+                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.fourStarNum}%',style: const TextStyle(fontSize: 10,color: Color(0xff999999)),),)
                   ],),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   ///3星
                   Row(children: [
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    SizedBox(width: 10,),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const SizedBox(width: 10,),
                     ///进度条
                     CustomProgressBar(value: (Productdetails.threeStarNum)/100,
-                      backgroundColor: Color(0xffF5F5F5),
-                      color: Color(0xff9BE400),borderRadius: 10,),
-                    SizedBox(width: 10,),
-                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.threeStarNum}%',style: TextStyle(fontSize: 10,color: Color(0xff999999)),),)
+                      backgroundColor: const Color(0xffF5F5F5),
+                      color: const Color(0xff9BE400),borderRadius: 10,),
+                    const SizedBox(width: 10,),
+                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.threeStarNum}%',style: const TextStyle(fontSize: 10,color: Color(0xff999999)),),)
                   ],),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   ///2星
                   Row(children: [
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    SizedBox(width: 10,),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const SizedBox(width: 10,),
                     ///进度条
-                    CustomProgressBar(value: (Productdetails.twoStarNum)/100, backgroundColor: Color(0xffF5F5F5), color: Color(0xff9BE400),borderRadius: 10,),
-                    SizedBox(width: 10,),
-                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.twoStarNum}%',style: TextStyle(fontSize: 10,color: Color(0xff999999)),),)
+                    CustomProgressBar(value: (Productdetails.twoStarNum)/100, backgroundColor: const Color(0xffF5F5F5), color: const Color(0xff9BE400),borderRadius: 10,),
+                    const SizedBox(width: 10,),
+                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.twoStarNum}%',style: const TextStyle(fontSize: 10,color: Color(0xff999999)),),)
 
                   ],),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   ///1星
                   Row(children: [
-                    Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
-                    SizedBox(width: 10,),
+                    const Icon(Icons.star, size: 12, color: Color(0xFF9BE400),),
+                    const SizedBox(width: 10,),
                     ///进度条
-                    CustomProgressBar(value: (Productdetails.oneStarNum)/100, backgroundColor: Color(0xffF5F5F5), color: Color(0xff9BE400),borderRadius: 10,),
-                    SizedBox(width: 10,),
-                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.oneStarNum}%',style: TextStyle(fontSize: 10,color: Color(0xff999999)),),)
+                    CustomProgressBar(value: (Productdetails.oneStarNum)/100, backgroundColor: const Color(0xffF5F5F5), color: const Color(0xff9BE400),borderRadius: 10,),
+                    const SizedBox(width: 10,),
+                    Container(alignment: Alignment.centerRight,width: 30,child: Text('${Productdetails.oneStarNum}%',style: const TextStyle(fontSize: 10,color: Color(0xff999999)),),)
 
                   ],)
                 ],),)
               ],),),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               for(var i=0;i<Productdetails.commentList.length;i++)
                 Column(children: [
                   ///分割线
-                  Container(height: 1.0, decoration: BoxDecoration(color: Color(0xfff1f1f1), boxShadow: [BoxShadow(color: Color(0x0c00000), offset: Offset(0, 2), blurRadius: 5, spreadRadius: 0,),],
+                  Container(height: 1.0, decoration: const BoxDecoration(color: Color(0xfff1f1f1), boxShadow: [BoxShadow(color: Color(0x0c00000), offset: Offset(0, 2), blurRadius: 5, spreadRadius: 0,),],
                   ),),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Row(children: [
                     ///头像
                     GestureDetector(child:Container(
@@ -490,32 +488,32 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                         Get.toNamed('/public/user', arguments: Productdetails.commentList[i].userId);
                       }
                     },),
-                    SizedBox(width: 10,),
-                    Column(crossAxisAlignment:CrossAxisAlignment.start,mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(Productdetails.commentList[i].username,style: TextStyle(),),SizedBox(height: 8,),Row(children: [Text(Productdetails.commentList[i].score,style: TextStyle(color: Color(0xff9BE400),fontSize: 12,fontWeight: FontWeight.w600),),SizedBox(width: 10,),Text(Productdetails.commentList[i].createdAt,style: TextStyle(fontSize: 12,color: Color(0XFF999999)),)],)],),
+                    const SizedBox(width: 10,),
+                    Column(crossAxisAlignment:CrossAxisAlignment.start,mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(Productdetails.commentList[i].username,style: const TextStyle(),),const SizedBox(height: 8,),Row(children: [Text(Productdetails.commentList[i].score,style: const TextStyle(color: Color(0xff9BE400),fontSize: 12,fontWeight: FontWeight.w600),),const SizedBox(width: 10,),Text(Productdetails.commentList[i].createdAt,style: const TextStyle(fontSize: 12,color: Color(0XFF999999)),)],)],),
                   ],),
-                  if(Productdetails.commentList[i].text!='')SizedBox(height: 5,),
+                  if(Productdetails.commentList[i].text!='')const SizedBox(height: 5,),
                   ///评论
-                  if(Productdetails.commentList[i].text!='')Container(width: double.infinity,margin: EdgeInsets.only(right: 50),child: Text(Productdetails.commentList[i].text, overflow: TextOverflow.ellipsis, //长度溢出后显示省略号
+                  if(Productdetails.commentList[i].text!='')Container(width: double.infinity,margin: const EdgeInsets.only(right: 50),child: Text(Productdetails.commentList[i].text, overflow: TextOverflow.ellipsis, //长度溢出后显示省略号
                     maxLines: 8,
                     style: const TextStyle(
                         fontWeight: FontWeight.w500, fontSize: 13,color: Color(0XFF666666),height: 1.3),
                   ),),
-                  SizedBox(height: 10,),
-                  if( Productdetails.commentList[i].images!='')Container(margin: EdgeInsets.only(right: 50),width: double.infinity,child: Row(children: [
+                  const SizedBox(height: 10,),
+                  if( Productdetails.commentList[i].images!='')Container(margin: const EdgeInsets.only(right: 50),width: double.infinity,child: Row(children: [
                     for(var r=0;r<Productdetails.commentList[i].images.split(',').length;r++)
-                      if(r<5)Container(margin: EdgeInsets.only(left: 10),width: 45,height: 45,decoration: BoxDecoration(
-                        color: Color(0xffd9d9d9),borderRadius: BorderRadius.all(Radius.circular(5)),image: DecorationImage(
+                      if(r<5)Container(margin: const EdgeInsets.only(left: 10),width: 45,height: 45,decoration: BoxDecoration(
+                        color: const Color(0xffd9d9d9),borderRadius: const BorderRadius.all(Radius.circular(5)),image: DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(Productdetails.commentList[i].images.split(',')[r]),
                       ),),),
                   ],),)
                 ],),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               ///分割线
-              Container(height: 1.0, decoration: BoxDecoration(color: Color(0xfff1f1f1), boxShadow: [BoxShadow(color: Color(0x0c00000), offset: Offset(0, 2), blurRadius: 5, spreadRadius: 0,),],
+              Container(height: 1.0, decoration: const BoxDecoration(color: Color(0xfff1f1f1), boxShadow: [BoxShadow(color: Color(0x0c00000), offset: Offset(0, 2), blurRadius: 5, spreadRadius: 0,),],
               ),),
-              SizedBox(height: 15,),
-              GestureDetector(child: Text('查看全部评论'.tr,style: TextStyle(color: Color(0xff999999)),),onTap: (){
+              const SizedBox(height: 15,),
+              GestureDetector(child: Text('查看全部评论'.tr,style: const TextStyle(color: Color(0xff999999)),),onTap: (){
                 ///跳转全部评论
                 Get.to(allcommentsPage(),arguments:Productdetails.id )?.then((value) async {
                   print('数据');
@@ -529,13 +527,13 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
             ],),
           ),
         ],),),
-        if(contentList.length>0)Container(padding: EdgeInsets.only(right: 10,top: 10),width: double.infinity,color: Colors.white,child: Column(children: [
+        if(contentList.isNotEmpty)Container(padding: const EdgeInsets.only(right: 10,top: 10),width: double.infinity,color: Colors.white,child: Column(children: [
           Row(children: [
             Image.asset('assets/images/zhongcao.png',width: 25,height: 25,),
-            SizedBox(width: 5,),
-            Text('种草'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15),),
+            const SizedBox(width: 5,),
+            Text('种草'.tr,style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 15),),
           ],),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           // Row(children: [
           //   GestureDetector(child:Column(children: [Text('精选'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 14)),SizedBox(height: 3,),Container(height: 3,width: 30,color:pageType==1? Colors.black:Colors.white,)],),onTap: (){
           //     setState(() {
@@ -550,8 +548,8 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
           //   },)
           // ],),
         ],),),
-        if(Productdetails!=null&& contentList.length>0)
-          Container(padding: EdgeInsets.only(bottom: 20),color: Colors.white,child: MasonryGridView.count(
+        if(Productdetails!=null&& contentList.isNotEmpty)
+          Container(padding: const EdgeInsets.only(bottom: 20),color: Colors.white,child: MasonryGridView.count(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(), //禁止滚动
             crossAxisCount: 2,
@@ -606,7 +604,7 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                 Container(
                   width:  MediaQuery.of(context).size.width,
                   height: defultHeight,
-                  child: Center(
+                  child: const Center(
                     child: CircularProgressIndicator(
                       color: Color(0xffD1FF34),
                       strokeWidth: 4,
@@ -622,7 +620,7 @@ class EvaluationdetailState extends State<EvaluationdetailsPage>{
                   child: Container(
 
                       child:Stack(children: [
-                        Positioned(child: Container(decoration: BoxDecoration(color: Color(0x66000000), borderRadius: BorderRadius.circular(30)),padding: EdgeInsets.fromLTRB(10, 6, 10, 4),child: Text(
+                        Positioned(child: Container(decoration: BoxDecoration(color: const Color(0x66000000), borderRadius: BorderRadius.circular(30)),padding: const EdgeInsets.fromLTRB(10, 6, 10, 4),child: Text(
                           '${config.activeIndex + 1}/${config.itemCount}',
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color: Colors.white,height: 1),

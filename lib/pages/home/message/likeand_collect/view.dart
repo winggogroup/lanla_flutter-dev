@@ -22,7 +22,7 @@ class likeshouViewState extends State<LikeandCollectPage> {
   final state = Get.find<LikeandCollectLogic>().state;
   final logictwo = Get.find<MessageLogic>();
   LikeandCollect status = LikeandCollect.init;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
@@ -47,7 +47,7 @@ class likeshouViewState extends State<LikeandCollectPage> {
     var result = await  widget.provider.Messageinterface(2,state.page);
 
     // 延迟1秒请求，防止速率过快
-    Future.delayed(Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 1000), () {
       status = LikeandCollect.normal;
     });
     setState(() {
@@ -88,13 +88,13 @@ class likeshouViewState extends State<LikeandCollectPage> {
               height: 22,
             ),
           ),
-          title: Text('赞和收藏'.tr, style: TextStyle(
+          title: Text('赞和收藏'.tr, style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
           ),),
         ),
         body: Container(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: const BoxDecoration(color: Colors.white),
           child: Column(
             children: [
               Divider(height: 1.0, color: Colors.grey.shade200,),
@@ -110,9 +110,9 @@ class likeshouViewState extends State<LikeandCollectPage> {
                             itemCount: state.zanandshou.length,
                             itemBuilder: (context, i) {
                               return Container(
-                                padding: EdgeInsets.fromLTRB(0, 25, 0, 25),
-                                margin: EdgeInsets.only(left: 15,right: 15),
-                                decoration: BoxDecoration(border: Border(
+                                padding: const EdgeInsets.fromLTRB(0, 25, 0, 25),
+                                margin: const EdgeInsets.only(left: 15,right: 15),
+                                decoration: const BoxDecoration(border: Border(
                                     bottom: BorderSide(
                                         width: 1, color: Color(0xffF1F1F1)))),
                                 child: GestureDetector(child: Row(
@@ -135,7 +135,7 @@ class likeshouViewState extends State<LikeandCollectPage> {
                                       Get.toNamed('/public/user',
                                           arguments: state.zanandshou[i].userId);
                                     },) ,
-                                    SizedBox(width: 15,),
+                                    const SizedBox(width: 15,),
                                     Expanded(
                                       flex: 1,
                                       child: Column(
@@ -148,21 +148,21 @@ class likeshouViewState extends State<LikeandCollectPage> {
                                                   children: [
                                                     Text(state.zanandshou[i]
                                                         .userName,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontSize: 15,
                                                           fontWeight: FontWeight
                                                               .w600,
                                                       ),),
-                                                    SizedBox(width: 10,),
+                                                    const SizedBox(width: 10,),
                                                     if(state.zanandshou[i]
                                                         .follows)
                                                       Container(
                                                         alignment: Alignment.center,
-                                                        padding: EdgeInsets
+                                                        padding: const EdgeInsets
                                                             .fromLTRB(8, 5, 8, 5),
                                                         decoration: BoxDecoration(
                                                           border: Border.all(
-                                                              color: Color(
+                                                              color: const Color(
                                                                   0xffE4E4E4),
                                                               width: 0.5),
                                                           borderRadius: BorderRadius
@@ -170,7 +170,7 @@ class likeshouViewState extends State<LikeandCollectPage> {
                                                         ),
                                                         child: Text('你的好友'.tr,
                                                           textAlign: TextAlign.center,
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                               fontSize: 10,
                                                               color: Color(
                                                                   0xff999999),
@@ -185,31 +185,31 @@ class likeshouViewState extends State<LikeandCollectPage> {
                                               // ),),
                                             ],
                                           ),
-                                          SizedBox(height: 12,),
+                                          const SizedBox(height: 12,),
                                           Row(
                                             children: [
-                                              Text(state.zanandshou[i].message, style: TextStyle(
+                                              Text(state.zanandshou[i].message, style: const TextStyle(
                                                   fontSize: 12,
                                                   color: Color(0xff999999),
                                               ),),
-                                              SizedBox(width: 15,),
+                                              const SizedBox(width: 15,),
                                               Text(
                                                 state.zanandshou[i].createdAt,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 12,
                                                     color: Color(0xff999999),
                                                 ),),
                                             ],
                                           ),
-                                          SizedBox(height: 12,),
+                                          const SizedBox(height: 12,),
                                           if(state.zanandshou[i].commentContent!='')Row(
                                             children: [
                                               Container(width: 2,
                                                 height: 12,
-                                                color: Color(0xffE4E4E4),),
-                                              SizedBox(width: 8,),
+                                                color: const Color(0xffE4E4E4),),
+                                              const SizedBox(width: 8,),
                                               Text(
-                                                state.zanandshou[i].commentContent, style: TextStyle(
+                                                state.zanandshou[i].commentContent, style: const TextStyle(
                                                   fontSize: 12,
                                                   color: Color(0xff999999),
                                               ),),
@@ -218,7 +218,7 @@ class likeshouViewState extends State<LikeandCollectPage> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(width: 15,),
+                                    const SizedBox(width: 15,),
                                     Container(
                                         width: 40,
                                         height: 40,
@@ -252,10 +252,10 @@ class likeshouViewState extends State<LikeandCollectPage> {
                       // decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red),),
                       child:Column(
                         children: [
-                          SizedBox(height: 120,),
+                          const SizedBox(height: 120,),
                           Image.asset('assets/images/nobeijing.png',width: 200,height: 200,),
-                          SizedBox(height: 40,),
-                          Text('暂无内容'.tr,style: TextStyle(
+                          const SizedBox(height: 40,),
+                          Text('暂无内容'.tr,style: const TextStyle(
                               fontSize: 16,
                               color: Color(0xff999999)
                           ),),
@@ -273,7 +273,7 @@ class likeshouViewState extends State<LikeandCollectPage> {
   Future<void> _onRefresh() async {
     print('88999');
 
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(const Duration(seconds: 1), () {
       widget.logic.ZanheCollection();
     });
   }

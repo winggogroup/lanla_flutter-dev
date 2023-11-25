@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget blackButton(String text, Function callback, {String type = "blank"}) {
@@ -24,7 +23,7 @@ Widget TopicButton(String text,Function remove,{hideIcon = false}) {
   return Stack(children: [
     Positioned(
       child: Container(
-        padding: EdgeInsets.fromLTRB(10, 4, 10, 4),
+        padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
         margin: EdgeInsets.only(left:12,top:hideIcon ? 0 : 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular((20)),

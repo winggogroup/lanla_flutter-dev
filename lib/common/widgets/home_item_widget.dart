@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lanla_flutter/models/HomeItem.dart';
 /// 允许滑动的瀑布流内容

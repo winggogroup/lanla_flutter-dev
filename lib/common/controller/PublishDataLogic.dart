@@ -88,7 +88,7 @@ class PublishDataLogic extends GetxController {
     //sleep(Duration(milliseconds: 200));
     contentFinishTotal++;
     // progress = contentFinishTotal/contentTotal;
-    print('完成一个任务,当前任务：${contentFinishTotal}/$contentTotal');
+    print('完成一个任务,当前任务：$contentFinishTotal/$contentTotal');
     // 完成发布
     if (contentFinishTotal > contentTotal - 1) {
       contentTotal = 0;

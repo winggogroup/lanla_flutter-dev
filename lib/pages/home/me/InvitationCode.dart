@@ -1,10 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/services/user.dart';
@@ -38,13 +36,13 @@ class _SecondWidgetState extends State<InvitationCodePage> {
       appBar: AppBar(
         title: Text(
           '填写邀请码'.tr,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
       ),
       body:
       Column(
         children: [
-          SizedBox(height: 23,),
+          const SizedBox(height: 23,),
 
           KeyboardActions(
               autoScroll:false,
@@ -62,21 +60,21 @@ class _SecondWidgetState extends State<InvitationCodePage> {
 
                   ]),
               child:Container(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 height: 56,
                 child:TextField(
                   focusNode: _nodeText1,
                   keyboardType: TextInputType.number,
-                  cursorColor: Color(0xff666666),
+                  cursorColor: const Color(0xff666666),
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                    contentPadding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                     hintText: "请输入你的邀请码".tr,
-                    hintStyle: TextStyle(color: Color(0xff666666)),
-                    border:OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
+                    hintStyle: const TextStyle(color: Color(0xff666666)),
+                    border:const OutlineInputBorder(),
+                    enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xff666666)),
                     ),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xff666666)),
                     ),
                   ),
@@ -98,10 +96,10 @@ class _SecondWidgetState extends State<InvitationCodePage> {
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(50),
+        padding: const EdgeInsets.all(50),
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Color(0xff000000)),
+            backgroundColor: MaterialStateProperty.all(const Color(0xff000000)),
           ),
           onPressed: () async {
             if(code!=''){
@@ -114,7 +112,7 @@ class _SecondWidgetState extends State<InvitationCodePage> {
             }
 
           },
-          child: Text('确定'.tr,style: TextStyle(
+          child: Text('确定'.tr,style: const TextStyle(
             fontSize: 17,
             color: Colors.white,
           ),textAlign: TextAlign.center,),

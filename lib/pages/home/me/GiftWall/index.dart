@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -21,7 +20,7 @@ class GiftWallState extends State<GiftWallPage>with SingleTickerProviderStateMix
   final userLogic = Get.find<UserLogic>();
   late TabController channelTabController;
   NewesProvider provider =  Get.put(NewesProvider());
-  ScrollController _scrollController = ScrollController(); //listview 的控制器
+  final ScrollController _scrollController = ScrollController(); //listview 的控制器
   var NoContent=false;
   var giftlist=[];
   var oneData=false;
@@ -57,7 +56,7 @@ class GiftWallState extends State<GiftWallPage>with SingleTickerProviderStateMix
     if(res.statusCode==200){
       var st =(userGiftDetailFromJson(res?.bodyString ?? ""));
       print('请求接口123${st.length}');
-      if(st.length>0){
+      if(st.isNotEmpty){
         giftlist=st;
       }else{
         NoContent=true;
@@ -75,7 +74,7 @@ class GiftWallState extends State<GiftWallPage>with SingleTickerProviderStateMix
     if(res.statusCode==200){
       var st =(userGiftDetailFromJson(res?.bodyString ?? ""));
       print('请求接口123${st.length}');
-      if(st.length>0){
+      if(st.isNotEmpty){
         giftlist.addAll(st);
       }else{
         scpage--;
@@ -96,7 +95,7 @@ class GiftWallState extends State<GiftWallPage>with SingleTickerProviderStateMix
           backgroundColor: Colors.white,
           title: Text(
             '礼物墙'.tr,
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
           ),
         ),
         body: Column(children: [
@@ -122,9 +121,9 @@ class GiftWallState extends State<GiftWallPage>with SingleTickerProviderStateMix
                         //   borderSide: BorderSide(width: 4,  color: HexColor('#000000')), // 设置指示器的宽度和颜色
                         // ),
                         indicatorPadding: const EdgeInsets.only(left: 20,right: 20,bottom: 0),
-                        dividerColor: Color(0xffF1F1F1),
+                        dividerColor: const Color(0xffF1F1F1),
                         // labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'DroidArabicKufi',
@@ -179,15 +178,15 @@ class GiftWallState extends State<GiftWallPage>with SingleTickerProviderStateMix
               ],
             ),
           ),
-          !oneData ? StartDetailLoading():giftlist.length>0?Expanded(
+          !oneData ? StartDetailLoading():giftlist.isNotEmpty?Expanded(
             child: TabBarView(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               controller: channelTabController,
               children: [
                 Container(child: Column(
                   //mainAxisAlignment:MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 35,),
+                    const SizedBox(height: 35,),
 
                   //   Wrap(
                   //     spacing: 30.0, // 子组件之间的水平间距
@@ -206,7 +205,7 @@ class GiftWallState extends State<GiftWallPage>with SingleTickerProviderStateMix
                   // ),
                     MasonryGridView.count(
                       shrinkWrap: true,
-                      physics: new NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       // controller:
                       // widget.type == ApiType.myPublish ? null : _controller,
                       //key: PageStorageKey(item.id),
@@ -225,9 +224,9 @@ class GiftWallState extends State<GiftWallPage>with SingleTickerProviderStateMix
                         return Container(
                               width: 85,
                               child: Column(children: [
-                                Container(alignment: Alignment.center,width: 85,height: 85,decoration: BoxDecoration(color: Color(0xffF9F9F9),borderRadius: BorderRadius.all(Radius.circular(50))),child: Image.network(giftlist[index].imagePath,width: 60,height: 60,),),
-                                SizedBox(height: 10,),
-                                Text('x '+giftlist[index].giftCount,style: TextStyle(fontWeight: FontWeight.w600),)
+                                Container(alignment: Alignment.center,width: 85,height: 85,decoration: const BoxDecoration(color: Color(0xffF9F9F9),borderRadius: BorderRadius.all(Radius.circular(50))),child: Image.network(giftlist[index].imagePath,width: 60,height: 60,),),
+                                const SizedBox(height: 10,),
+                                Text('x '+giftlist[index].giftCount,style: const TextStyle(fontWeight: FontWeight.w600),)
                               ],),
 
                             );
@@ -235,24 +234,24 @@ class GiftWallState extends State<GiftWallPage>with SingleTickerProviderStateMix
                     )
                   ],
                 ),),
-                Container(padding: EdgeInsets.only(left: 20,right: 20),child: ListView(physics: BouncingScrollPhysics(),controller: _scrollController,children: [
+                Container(padding: const EdgeInsets.only(left: 20,right: 20),child: ListView(physics: const BouncingScrollPhysics(),controller: _scrollController,children: [
                   for(var i=0;i<giftlist.length;i++)
-                  Container(padding: EdgeInsets.only(top: 20,bottom: 20,),
-                    decoration: BoxDecoration(border: Border(top: BorderSide(width: 1, color: Color(0xffF1F1F1)))),
+                  Container(padding: const EdgeInsets.only(top: 20,bottom: 20,),
+                    decoration: const BoxDecoration(border: Border(top: BorderSide(width: 1, color: Color(0xffF1F1F1)))),
                     child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
                       Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                        Text(giftlist[i].nickname,style: TextStyle(fontSize: 14),),
-                        Row(children: [Text(giftlist[i].giftCount, strutStyle: StrutStyle(
+                        Text(giftlist[i].nickname,style: const TextStyle(fontSize: 14),),
+                        Row(children: [Text(giftlist[i].giftCount, strutStyle: const StrutStyle(
                           forceStrutHeight: true,
                           leading: 0.5,
-                        ),),SizedBox(width: 5,),Text('x',strutStyle: StrutStyle(
+                        ),),const SizedBox(width: 5,),const Text('x',strutStyle: StrutStyle(
                           forceStrutHeight: true,
                           leading: 0.5,
-                        ),),SizedBox(width: 5,),Image.network(giftlist[i].imagePath,width: 20,height: 20,)],)
+                        ),),const SizedBox(width: 5,),Image.network(giftlist[i].imagePath,width: 20,height: 20,)],)
                         
                       ],),
-                      SizedBox(height: 8,),
-                      Text(giftlist[i].createdAt,style: TextStyle(fontSize: 12,color: Color(0xff999999)),)
+                      const SizedBox(height: 8,),
+                      Text(giftlist[i].createdAt,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),)
                     ],),
                   ),
                 ],),),

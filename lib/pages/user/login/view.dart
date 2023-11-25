@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+        decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
         child: ListView(
           //crossAxisAlignment:CrossAxisAlignment.start,
           children: [
@@ -56,7 +56,7 @@ class LoginPage extends StatelessWidget {
                         child: GestureDetector(child:
                         Row(
                           children: [
-                            Obx(()=>Text('+'+state.Areacode.value,textAlign:TextAlign.center,)
+                            Obx(()=>Text('+${state.Areacode.value}',textAlign:TextAlign.center,)
                               ,),
 
                             Container(
@@ -81,7 +81,7 @@ class LoginPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             )
 
@@ -101,7 +101,7 @@ class LoginPage extends StatelessWidget {
                             // Optional. Sets the theme for the country list picker.
                             countryListTheme: CountryListThemeData(
                               // Optional. Sets the border radius for the bottomsheet.
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 topRight: Radius.circular(10.0),
                               ),
@@ -137,8 +137,8 @@ class LoginPage extends StatelessWidget {
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       ],
-                      scrollPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      cursorColor: Color(0xFF999999),
+                      scrollPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                         // focusedBorder: OutlineInputBorder(
                         //   // borderSide: BorderSide(color: Colors.blue)
@@ -146,7 +146,7 @@ class LoginPage extends StatelessWidget {
                           border: InputBorder.none,
                           hintText: "请输入手机号码".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         logic.phonenumber = text;
                       },
@@ -155,7 +155,7 @@ class LoginPage extends StatelessWidget {
                   ]
               ),
             ),
-            Divider(height: 1.0,color: Color(0xFFf1f1f1),),
+            const Divider(height: 1.0,color: Color(0xFFf1f1f1),),
             const SizedBox(height: 164),
             // Expanded(
             //   child:
@@ -163,7 +163,7 @@ class LoginPage extends StatelessWidget {
               height: 56,
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                  backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                   // elevation: MaterialStateProperty.all(20),
                   shadowColor: MaterialStateProperty.all(Colors.black),
@@ -208,12 +208,9 @@ class LoginPage extends StatelessWidget {
                           if(sha.user?.uid!=''&&sha.user?.uid!=null){
                             User? user = sha.user;
                             String? idToken = await user!.getIdToken();
-                            if (idToken != null) {
-                              // 将idToken发送给后端进行验证和处理
-                              print('手机号${idToken}');
-                              print(user.providerData);
-                              logic.firebaseverification(context,logic.phonenumber, state.Areacode.value,idToken);
-                            }
+                            print('手机号$idToken');
+                            print(user.providerData);
+                            logic.firebaseverification(context,logic.phonenumber, state.Areacode.value,idToken);
                           }else{
                             AppLog('firebase_login_callback',event: "error",data:'+${state.Areacode.value}__${logic.phonenumber}');
                             FirebaseAnalytics.instance.logEvent(
@@ -292,9 +289,9 @@ class LoginPage extends StatelessWidget {
                         );
                       },
                     );
-                    const timeout = const Duration(seconds: 40);
+                    const timeout = Duration(seconds: 40);
                     Timer(timeout, () {
-                      print('时间结束${close}');
+                      print('时间结束$close');
                       if(close==false){
                         FirebaseAnalytics.instance.logEvent(
                           name: "login_phone_code_noresponse",
@@ -376,7 +373,7 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');
@@ -396,7 +393,7 @@ class LoginPage extends StatelessWidget {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return new LoadingDialog(text: '',
+          return LoadingDialog(text: '',
           );
         });
   }

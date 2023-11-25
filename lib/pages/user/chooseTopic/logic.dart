@@ -43,7 +43,7 @@ class ChooseTopicLogic extends GetxController {
       await gengxlb.initChannelData();
       Get.offAll(HomePage());
     }
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       monitor = true;
     });
   }

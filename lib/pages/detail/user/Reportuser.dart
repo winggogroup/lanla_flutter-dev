@@ -3,7 +3,6 @@ import 'dart:core';
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -25,7 +24,6 @@ import 'package:lanla_flutter/ulits/aliyun_oss/client.dart';
 import 'package:lanla_flutter/ulits/base_provider.dart';
 import 'package:lanla_flutter/ulits/compress.dart';
 import 'package:lanla_flutter/ulits/hex_color.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -54,7 +52,7 @@ class _ReportuserState extends State<ReportuserPage>  {
   @override
   void initState() {
     super.initState();
-    _controller = new TextEditingController(text: '提供更多信息有助于举报被快速处理');
+    _controller = TextEditingController(text: '提供更多信息有助于举报被快速处理');
     //print(Get.put<ContentProvider>(ContentProvider()).reportTip().);
     reportTiplist();
   }
@@ -62,7 +60,7 @@ class _ReportuserState extends State<ReportuserPage>  {
   reportTiplist() async {
     var result = await ContentProviders.reportTip();
     if (result.statusCode == 200) {
-      if (ReportypeFromJson(result.bodyString!).length > 0) {
+      if (ReportypeFromJson(result.bodyString!).isNotEmpty) {
         setState(() {
           Reporttypelist=ReportypeFromJson(result.bodyString!);
         });
@@ -73,42 +71,42 @@ class _ReportuserState extends State<ReportuserPage>  {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(color:Color(0xffffffff)),
+        decoration: const BoxDecoration(color:Color(0xffffffff)),
         child: Column(
           children: [
             Expanded(child: ListView(children: [
-              Divider(height: 1.0,color: Color(0x1A000000),),
-              SizedBox(height: 25,),
-              Container(padding:EdgeInsets.fromLTRB(20, 0, 20, 0),child: Column(
+              const Divider(height: 1.0,color: Color(0x1A000000),),
+              const SizedBox(height: 25,),
+              Container(padding:const EdgeInsets.fromLTRB(20, 0, 20, 0),child: Column(
                 children: [
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         '*',
                         style: TextStyle(color: Color(0xffE33535)),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Text(
                         '请选择你想要举报的类型'.tr,
-                        style: TextStyle(fontWeight: FontWeight.w600),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
                       )
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   for(var item in Reporttypelist)
                   Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         border: Border(
                             bottom: BorderSide(color: Color(0xffF1F1F1)))),
-                    padding: EdgeInsets.only(bottom: 20,top: 20),
+                    padding: const EdgeInsets.only(bottom: 20,top: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           item.text,
-                          style: TextStyle(fontSize: 14),
+                          style: const TextStyle(fontSize: 14),
                         ),
                         item.id==type?Container(
                           width: 25,
@@ -196,18 +194,18 @@ class _ReportuserState extends State<ReportuserPage>  {
                   //     ],
                   //   ),
                   // ),
-                  SizedBox(height: 50,),
+                  const SizedBox(height: 50,),
                   Container(
                     child:Row(
                       children: [
 
-                        Text('*',style: TextStyle(color: Colors.red,fontSize: 16),textAlign: TextAlign.center,),
-                        SizedBox(width: 10,),
-                        Text('反馈与建议'.tr,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),),
+                        const Text('*',style: TextStyle(color: Colors.red,fontSize: 16),textAlign: TextAlign.center,),
+                        const SizedBox(width: 10,),
+                        Text('反馈与建议'.tr,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),),
 
                       ],
                     ) ,),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   Container(
                     child:TextField(
                       maxLines: 7,
@@ -215,13 +213,13 @@ class _ReportuserState extends State<ReportuserPage>  {
                       // controller: _controller,
                       // cursorColor: Color(0xffffffff),
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                        contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                         hintText: "提供更多信息有助于举报被快速处理".tr,
-                        hintStyle: TextStyle(color: Color(0xff666666)),
+                        hintStyle: const TextStyle(color: Color(0xff666666)),
                         border: InputBorder.none, // 隐藏边框
-                        fillColor: Color(0xffF9F9F9),
+                        fillColor: const Color(0xffF9F9F9),
                         filled: true,
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: const OutlineInputBorder(
                           /*边角*/
                           borderRadius: BorderRadius.all(
                             Radius.circular(20), //边角为5
@@ -231,7 +229,7 @@ class _ReportuserState extends State<ReportuserPage>  {
                             width: 0.5,
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Colors.white,
                             width: 0.5,
@@ -250,21 +248,21 @@ class _ReportuserState extends State<ReportuserPage>  {
                       },
                     ),
                   ),
-                  SizedBox(height: 50,),
+                  const SizedBox(height: 50,),
                   Container(
                     // padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child:Row(
                       mainAxisAlignment:MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('图片描述'.tr,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),),
-                        Text('最多三张'.tr,style: TextStyle(color: Color(0xff999999),fontSize: 12),textAlign: TextAlign.center,),
+                        Text('图片描述'.tr,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),),
+                        Text('最多三张'.tr,style: const TextStyle(color: Color(0xff999999),fontSize: 12),textAlign: TextAlign.center,),
                       ],
                     ) ,),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   Container(
-                    margin: EdgeInsets.only(left: 20,right: 20),
-                    padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                    decoration: BoxDecoration(
+                    margin: const EdgeInsets.only(left: 20,right: 20),
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(
                         Radius.circular(10), //边角为5
@@ -277,7 +275,7 @@ class _ReportuserState extends State<ReportuserPage>  {
                         },),
                         for(var i=0;i<imageListFile.length;i++)
                           Container(
-                            margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                            margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                             key: ValueKey(imageListFile[i]),
                             width: 70,height: 70,
                             child: GestureDetector(
@@ -311,7 +309,7 @@ class _ReportuserState extends State<ReportuserPage>  {
                                     )),
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black12),
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                                 ),
                               ),
                             ),
@@ -323,7 +321,7 @@ class _ReportuserState extends State<ReportuserPage>  {
                   ),
                 ],
               )),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
             ],))
 
           ],
@@ -332,10 +330,10 @@ class _ReportuserState extends State<ReportuserPage>  {
       bottomNavigationBar:
       Container(
         //color: Color(0xffF5F5F5),
-        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
         child: type!=0?ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Color(0xff000000)),
+            backgroundColor: MaterialStateProperty.all(const Color(0xff000000)),
           ),
           onPressed: () async {
             EasyLoading.show(status: 'loading...',maskType: EasyLoadingMaskType.black);
@@ -356,7 +354,7 @@ class _ReportuserState extends State<ReportuserPage>  {
               // String newThumbnailPath =
               // await AliOssClient().putObject(imageObj.path, 'thumb', _getFileName());
 
-              final pictureName =  storageRef.child('user/img/'+_getFileName()+'.png');
+              final pictureName =  storageRef.child('user/img/${_getFileName()}.png');
               final pictureUpload = pictureName.putFile(File(imageObj.path));
               await pictureUpload.whenComplete(() {});
               String newThumbnailPath =  await pictureName.getDownloadURL();
@@ -370,7 +368,7 @@ class _ReportuserState extends State<ReportuserPage>  {
 
             ToastInfo('感谢您的举报,我们核实后会此内容处理!'.tr);
 
-            Get.put<ContentProvider>(ContentProvider()).Report(Get.arguments['id'], Get.arguments['type'],type,opiniontext!=''?opiniontext:'',imagesPath.length>0? imagesPath.join(','):'');
+            Get.put<ContentProvider>(ContentProvider()).Report(Get.arguments['id'], Get.arguments['type'],type,opiniontext!=''?opiniontext:'',imagesPath.isNotEmpty? imagesPath.join(','):'');
             EasyLoading.dismiss();
             Get.back();
             //var result = await widget.Feedbackjkprovider.Feedbackjk(opiniontext,imageListFile.length>0?imageListFile.join(','):'');
@@ -379,19 +377,19 @@ class _ReportuserState extends State<ReportuserPage>  {
             //   Get.back();
             // }
           },
-          child: Text('提交反馈'.tr,style: TextStyle(
+          child: Text('提交反馈'.tr,style: const TextStyle(
             fontSize: 17,
             color: Colors.white,
           ),textAlign: TextAlign.center,),
         ):ElevatedButton(
           style: ButtonStyle(
             splashFactory: NoSplash.splashFactory,
-            backgroundColor: MaterialStateProperty.all(Color(0xffffffff)),
+            backgroundColor: MaterialStateProperty.all(const Color(0xffffffff)),
           ),
           onPressed: () async {
             null;
           },
-          child: Text('提交反馈'.tr,style: TextStyle(
+          child: Text('提交反馈'.tr,style: const TextStyle(
             fontSize: 17,
             color: Color(0xff666666),
           ),textAlign: TextAlign.center,),
@@ -399,11 +397,11 @@ class _ReportuserState extends State<ReportuserPage>  {
       ),
       appBar: AppBar(
         elevation: 0, //消除阴影
-        title: Text('举报'.tr,style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600),),
+        title: Text('举报'.tr,style: const TextStyle(fontSize: 17,fontWeight: FontWeight.w600),),
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');
@@ -475,9 +473,7 @@ class _ReportuserState extends State<ReportuserPage>  {
       if (data[i].type == AssetType.image) {
         newData.add(item);
         File? file = await item.file;
-        if (File != null) {
-          newDataFile.add(file!);
-        }
+        newDataFile.add(file!);
       }
     }
     setState(() {

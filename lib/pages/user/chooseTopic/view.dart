@@ -22,7 +22,7 @@ class ChooseTopicPage extends StatelessWidget {
           flex: 1,
           child: Container(
             width: double.infinity,
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
             alignment: Alignment.topLeft,
             child:true? Image.asset('assets/images/weixuan.png',width: 15.0,
                 height: 15.0):
@@ -35,10 +35,10 @@ class ChooseTopicPage extends StatelessWidget {
               flex: 1,
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                 alignment: Alignment.bottomRight,
                 // decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
-                child:Text("123",style:TextStyle(
+                child:const Text("123",style:TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                 )),
@@ -59,24 +59,24 @@ class ChooseTopicPage extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB(20, 88, 20, 0),
+        padding: const EdgeInsets.fromLTRB(20, 88, 20, 0),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('选择感兴趣的内容'.tr,textAlign:TextAlign.center,style: TextStyle(
+                Text('选择感兴趣的内容'.tr,textAlign:TextAlign.center,style: const TextStyle(
                   fontSize:30,
                 )),
                 //
               ],
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+              margin: const EdgeInsets.fromLTRB(0, 15, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('根据兴趣生成你的内容'.tr,textAlign:TextAlign.center,style: TextStyle(
+                  Text('根据兴趣生成你的内容'.tr,textAlign:TextAlign.center,style: const TextStyle(
                     fontSize:14,
                   ))
                   //
@@ -89,11 +89,11 @@ class ChooseTopicPage extends StatelessWidget {
           flex:1, child: Container(
           width: double.infinity,
           // height: 500,
-          margin: EdgeInsets.fromLTRB(0, 36, 0, 0),
+          margin: const EdgeInsets.fromLTRB(0, 36, 0, 0),
 
           // decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
           child: Obx(() =>GridView.count(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
             crossAxisSpacing: 15.0, //水平子 Widget 之间间距
             mainAxisSpacing: 15.0, //垂直子 Widget 之间间距
             // padding: const EdgeInsets.all(10),
@@ -104,9 +104,9 @@ class ChooseTopicPage extends StatelessWidget {
                 child: Container(
                 // width: 106,
                 // height: 106,
-                  decoration: new ShapeDecoration(
-                        image: new DecorationImage(
-                          image: new NetworkImage(state.topiclist.value[i].picture),
+                  decoration: ShapeDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(state.topiclist.value[i].picture),
                           fit: BoxFit.fill,
                         ),
                     shape:RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(10)),
@@ -117,7 +117,7 @@ class ChooseTopicPage extends StatelessWidget {
                         flex: 1,
                         child: Container(
                               width: double.infinity,
-                              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                               alignment: Alignment.topLeft,
                               child:!state.xztopiclist.value.contains(state.topiclist.value[i].id)? Image.asset('assets/images/weixuan.png',width: 15.0, height: 15.0): Image.asset('assets/images/xuanzhong.png',width: 20.0,
                                   height: 20.0)
@@ -128,10 +128,10 @@ class ChooseTopicPage extends StatelessWidget {
                         flex: 1,
                         child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                           alignment: Alignment.bottomRight,
                           // decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
-                          child:Text(state.topiclist.value[i].name,style:TextStyle(
+                          child:Text(state.topiclist.value[i].name,style:const TextStyle(
                               color: Colors.white,
                               fontSize: 15,
                           )),
@@ -158,11 +158,11 @@ class ChooseTopicPage extends StatelessWidget {
 
               width: double.infinity,
               height: 46,
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
               //decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                  backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                   shadowColor: MaterialStateProperty.all(Colors.black),
                   elevation: MaterialStateProperty.all(5),
@@ -175,7 +175,7 @@ class ChooseTopicPage extends StatelessWidget {
 
                 child: Text('完成'.tr,),
                 onPressed: () {
-                  if(state.xztopiclist.length>0){
+                  if(state.xztopiclist.isNotEmpty){
                     logic.complete();
                   }else{
                     Toast.toast(context,msg: "最少选择1个".tr,position: ToastPostion.bottom);

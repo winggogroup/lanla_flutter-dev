@@ -2,12 +2,9 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/services/user.dart';
 import 'package:lanla_flutter/ulits/base_provider.dart';
@@ -42,7 +39,7 @@ class UserUpdateInfoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           '修改资料'.tr,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
       ),
       body: GetBuilder<UserLogic>(builder: (logic) {
@@ -57,13 +54,13 @@ class UserUpdateInfoPage extends StatelessWidget {
                 final List<AssetEntity>? result = await AssetPicker.pickAssets(
                   context,
                   pickerConfig:
-                  AssetPickerConfig(
+                  const AssetPickerConfig(
                       requestType: RequestType.image, maxAssets: 1),
                 );
 
                 if (result != null && result.isNotEmpty) {
                   ToastInfo('Uploading...');
-                  File? file = (await result[0].file) as File?;
+                  File? file = (await result[0].file);
                   if (file != null) {
                     // 设置oss
                     // AliOssClient.init(
@@ -76,7 +73,7 @@ class UserUpdateInfoPage extends StatelessWidget {
                     final storageRef   = FirebaseStorage.instanceFor(bucket: "gs://lanla").ref();
                     File imageObj = await CompressImageFile(file);
 
-                    final pictureName =  storageRef.child('user/img/head'+_getFileName()+'.png');
+                    final pictureName =  storageRef.child('user/img/head${_getFileName()}.png');
                     final pictureUpload = pictureName.putFile(File(imageObj.path));
                     await pictureUpload.whenComplete(() {});
                     String newThumbnailPath =  await pictureName.getDownloadURL();
@@ -191,7 +188,7 @@ class UserUpdateInfoPage extends StatelessWidget {
             //   ),
             // ),
             GestureDetector(child: Container(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -199,7 +196,7 @@ class UserUpdateInfoPage extends StatelessWidget {
                   Row(
                     children: [
                       Text(userLogic.userName),
-                      Icon(Icons.chevron_right,)
+                      const Icon(Icons.chevron_right,)
                     ],
                   )
 
@@ -208,12 +205,12 @@ class UserUpdateInfoPage extends StatelessWidget {
             ), onTap: () {
               Get.to(ModifynicknameWidget());
             },),
-            Divider(height: 1.0,
+            const Divider(height: 1.0,
                 color: Color(0xffF1F1F1),
                 indent: 20,
                 endIndent: 20),
             GestureDetector(child: Container(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -223,7 +220,7 @@ class UserUpdateInfoPage extends StatelessWidget {
                       if(userLogic.Sex == 0)Text('保密'.tr),
                       if(userLogic.Sex == 1)Text('男'.tr),
                       if(userLogic.Sex == 2)Text('女'.tr),
-                      Icon(Icons.chevron_right,)
+                      const Icon(Icons.chevron_right,)
                     ],
                   )
 
@@ -233,12 +230,12 @@ class UserUpdateInfoPage extends StatelessWidget {
               //print(userLogic.userInfo?.sex);
               Get.to(ModifyGenderWidget(), arguments: userLogic.Sex);
             },),
-            Divider(height: 1.0,
+            const Divider(height: 1.0,
                 color: Color(0xffF1F1F1),
                 indent: 20,
                 endIndent: 20),
             GestureDetector(child: Container(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -246,14 +243,14 @@ class UserUpdateInfoPage extends StatelessWidget {
                   Row(
                     children: [
                       Text(userLogic.birthday),
-                      Icon(Icons.chevron_right,)
+                      const Icon(Icons.chevron_right,)
                     ],
                   )
 
                 ],
               ),
             ), onTap: () {
-              DateTime today = new DateTime.now();
+              DateTime today = DateTime.now();
               // String dateSlug ="${today.year.toString()}-${today.month.toString().padLeft(2,'0')}-${today.day.toString().padLeft(2,'0')}";
               print(int.parse(today.year.toString()) - 10);
               DatePicker.showDatePicker(context,
@@ -282,12 +279,12 @@ class UserUpdateInfoPage extends StatelessWidget {
                       int.parse(today.year.toString()) - 10, 1, 1),
                   locale: LocaleType.ar);
             },),
-            Divider(height: 1.0,
+            const Divider(height: 1.0,
                 color: Color(0xffF1F1F1),
                 indent: 20,
                 endIndent: 20),
             GestureDetector(child: Container(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -295,7 +292,7 @@ class UserUpdateInfoPage extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 200, // 最大宽度
                         ),
                         child:
@@ -309,7 +306,7 @@ class UserUpdateInfoPage extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Icon(Icons.chevron_right,)
+                      const Icon(Icons.chevron_right,)
                     ],
                   )
 
@@ -318,7 +315,7 @@ class UserUpdateInfoPage extends StatelessWidget {
             ), onTap: () {
               Get.to(IntroductionmodificationWidget());
             },),
-            Divider(height: 1.0,
+            const Divider(height: 1.0,
                 color: Color(0xffF1F1F1),
                 indent: 20,
                 endIndent: 20),

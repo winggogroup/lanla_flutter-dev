@@ -10,7 +10,7 @@ class DottedLineDivider extends StatelessWidget {
   final double indent;
   final double endIndent;
 
-  DottedLineDivider({
+  const DottedLineDivider({
     this.height = 1.0,
     this.color = Colors.black,
     this.indent = 0.0,
@@ -49,8 +49,8 @@ class DottedLinePainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
-    final dashWidth = 4.0;
-    final dashSpace = 4.0;
+    const dashWidth = 4.0;
+    const dashSpace = 4.0;
     var startX = 0.0;
 
     while (startX < size.width) {

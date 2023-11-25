@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/models/comment_child.dart';
 import 'package:lanla_flutter/services/comment.dart';
 import 'package:lanla_flutter/ulits/toast.dart';
@@ -51,7 +49,7 @@ void CommentDiolog(contentId,
 
                 ///设置内容内边距
                 contentPadding:
-                    EdgeInsets.only(top: 0, bottom: 0, left: 20, right: 20),
+                    const EdgeInsets.only(top: 0, bottom: 0, left: 20, right: 20),
               ),
               autofocus: true,
             ),

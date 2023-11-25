@@ -4,7 +4,7 @@ class TransparentOverlay extends StatelessWidget {
   final bool visible;
   final VoidCallback onClose;
 
-  TransparentOverlay({
+  const TransparentOverlay({
     required this.visible,
     required this.onClose,
   });

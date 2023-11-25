@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -41,7 +40,7 @@ class _WebViePageState extends State<WebViewPage> {
         centerTitle: true,
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');
@@ -52,7 +51,7 @@ class _WebViePageState extends State<WebViewPage> {
                 Navigator.of(context).pop();
               }
             }),
-        title: Text('邀请奖励'.tr, style: TextStyle(
+        title: Text('邀请奖励'.tr, style: const TextStyle(
           fontSize: 17,
           fontWeight: FontWeight.w600,
           //fontFamily: ' PingFang SC-Semibold, PingFang SC',
@@ -74,7 +73,7 @@ class _WebViePageState extends State<WebViewPage> {
         },
         navigationDelegate: (NavigationRequest request) {
           // 拦截WebView的跳转事件
-          var url=BASE_DOMAIN+"share/invite/Sharingpage?InvitationCode="+userLogic.userId.toString();
+          var url="${BASE_DOMAIN}share/invite/Sharingpage?InvitationCode=${userLogic.userId}";
           ///whatsapp
           if (request.url.startsWith('https://api.whatsapp.com/')) {
             // 执行你的逻辑

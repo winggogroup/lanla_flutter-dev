@@ -36,7 +36,7 @@ class CommentLogic extends GetxController {
 
   Interfacerequest(){
     print("1111");
-    print('初始化评论${contentId}');
+    print('初始化评论$contentId');
     parentDataSource = [];
     isMore = false;
     isEmpyt = false;
@@ -60,7 +60,7 @@ class CommentLogic extends GetxController {
         return;
       }
       List<CommentParent> res = commentParentFromJson(result.bodyString!);
-      if (parentDataSource.length == 0 && res.length == 0) {
+      if (parentDataSource.isEmpty && res.isEmpty) {
         isEmpyt = true;
       }
       isMore = !(res.length < 10);

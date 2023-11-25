@@ -11,6 +11,6 @@ class PlayViewContainerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Center(child: Text('${video_logic.state.nowViewPage}',style: TextStyle(color: Colors.white),),),);
+    return Container(child: Center(child: Text('${video_logic.state.nowViewPage}',style: const TextStyle(color: Colors.white),),),);
   }
 }

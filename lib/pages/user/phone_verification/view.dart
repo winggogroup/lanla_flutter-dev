@@ -37,7 +37,7 @@ class PhoneVerificationStates extends State<PhoneVerificationPage> {
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');
@@ -46,7 +46,7 @@ class PhoneVerificationStates extends State<PhoneVerificationPage> {
       ),
       body:  Container(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+        decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
         child: ListView(
           //crossAxisAlignment:CrossAxisAlignment.start,
           children: [
@@ -55,7 +55,7 @@ class PhoneVerificationStates extends State<PhoneVerificationPage> {
             const SizedBox(height: 105),
             Container(
               height: 55,
-              padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+              padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: Colors.black,width: 2),
@@ -77,8 +77,8 @@ class PhoneVerificationStates extends State<PhoneVerificationPage> {
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       ],
-                      scrollPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      cursorColor: Color(0xFF999999),
+                      scrollPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                         // focusedBorder: OutlineInputBorder(
                         //   borderSide: BorderSide(color: Colors.blue)
@@ -87,7 +87,7 @@ class PhoneVerificationStates extends State<PhoneVerificationPage> {
                           border: InputBorder.none,
                           hintText: "请输入验证码".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         state.Verification = text;
                         print(state.Verification);
@@ -99,13 +99,13 @@ class PhoneVerificationStates extends State<PhoneVerificationPage> {
                       // height: 50,
 
                       // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
-                        margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                         child: GestureDetector(
-                          child: Obx(() => Text(state.VerificationCode.value==0? '获取验证码'.tr:'重新发送'.tr+'（${state.VerificationCode}）',
+                          child: Obx(() => Text(state.VerificationCode.value==0? '获取验证码'.tr:'${'重新发送'.tr}（${state.VerificationCode}）',
                               style: TextStyle(
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.w700,
-                                color: state.VerificationCode.value==0?Colors.black:Color(0xff999999),
+                                color: state.VerificationCode.value==0?Colors.black:const Color(0xff999999),
                               ))),
                           onTap: () {
                             AppLog('tap',event:'verification_code',data:"${Get.arguments["phone"]}___${Get.arguments["area_code"]}");
@@ -137,7 +137,7 @@ class PhoneVerificationStates extends State<PhoneVerificationPage> {
                   ]
               ),
             ),
-            Divider(height: 1.0,color: Color(0xFFf1f1f1),),
+            const Divider(height: 1.0,color: Color(0xFFf1f1f1),),
             const SizedBox(height: 164),
             // Expanded(
             //   child:
@@ -145,7 +145,7 @@ class PhoneVerificationStates extends State<PhoneVerificationPage> {
                 height: 56,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                    backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                     // elevation: MaterialStateProperty.all(20),
                     shadowColor: MaterialStateProperty.all(Colors.black),
@@ -173,12 +173,12 @@ class PhoneVerificationStates extends State<PhoneVerificationPage> {
                         FirebaseAuth auth = FirebaseAuth.instance;
                           PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: state.verificationId==''?Get.arguments["verificationId"]:state.verificationId, smsCode: state.Verification);
                              await FirebaseAuth.instance.signInWithCredential(credential).then((userCredential) async {
-                               print('shadddddd${userCredential}');
+                               print('shadddddd$userCredential');
                                User? user = userCredential.user;
                                  String? idToken = await user?.getIdToken();
                                if (idToken != null) {
                                  // 将idToken发送给后端进行验证和处理
-                                 print('手机号${idToken}');
+                                 print('手机号$idToken');
                                  logic.firebaseverification(context,idToken);
                                }else{
                                  EasyLoading.dismiss();

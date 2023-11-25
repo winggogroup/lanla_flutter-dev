@@ -34,7 +34,7 @@ class PasswordmodificationState extends State<PasswordmodificationPage>{
   String passwordnum='';
 
 
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -52,13 +52,13 @@ class PasswordmodificationState extends State<PasswordmodificationPage>{
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+        decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
         child: ListView(
           //crossAxisAlignment:CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 60),
             Text('密码登录'.tr,style:const TextStyle(fontSize: 25,fontWeight: FontWeight.w600),),
-            SizedBox(height: 100),
+            const SizedBox(height: 100),
             Container(
               padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
               decoration: BoxDecoration(
@@ -84,8 +84,8 @@ class PasswordmodificationState extends State<PasswordmodificationPage>{
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       ],
-                      scrollPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      cursorColor: Color(0xFF999999),
+                      scrollPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                         // focusedBorder: OutlineInputBorder(
                         //   // borderSide: BorderSide(color: Colors.blue)
@@ -93,7 +93,7 @@ class PasswordmodificationState extends State<PasswordmodificationPage>{
                           border: InputBorder.none,
                           hintText: "请设置5位数及以上的密码".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         passwordnum=text;
                         setState(() {
@@ -105,19 +105,19 @@ class PasswordmodificationState extends State<PasswordmodificationPage>{
                   ]
               ),
             ),
-            Divider(height: 1.0,color: Color(0xFFf1f1f1),),
-            SizedBox(height: 25),
+            const Divider(height: 1.0,color: Color(0xFFf1f1f1),),
+            const SizedBox(height: 25),
             Text('您的密码错误，请重新输入'.tr,style:const TextStyle(fontSize: 12,color: Color.fromRGBO(255, 0, 0, 1)),),
             const SizedBox(height: 120),
-            GestureDetector(child: Container(alignment: Alignment.center,child: Text('忘记密码'.tr,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: Color.fromRGBO(168, 246, 0, 1)),),),onTap: (){
+            GestureDetector(child: Container(alignment: Alignment.center,child: Text('忘记密码'.tr,style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: Color.fromRGBO(168, 246, 0, 1)),),),onTap: (){
 
             },),
-            SizedBox(height: 25,),
+            const SizedBox(height: 25,),
             Container(
               height: 56,
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                  backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                   // elevation: MaterialStateProperty.all(20),
                   shadowColor: MaterialStateProperty.all(Colors.black),
@@ -142,7 +142,7 @@ class PasswordmodificationState extends State<PasswordmodificationPage>{
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,11 +47,11 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
   late TabController channelTabController = TabController(length: 4, initialIndex: state.Initialselection,vsync: this);
   FriendStateus status = FriendStateus.init; // 正在加载
   bool oneData = false; // 是否首次请求过-用于展示等待页面
-  ScrollController _scrollController = ScrollController(); //listview 的控制器
+  final ScrollController _scrollController = ScrollController(); //listview 的控制器
   @override
   void initState() {
     // 延迟1秒请求接口，防止渲染太多 引起卡顿
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       _fetch();
     });
     _scrollController.addListener(() {
@@ -80,7 +79,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
     var result = await widget.provider.followlist(state.page.toString());
 
     // 延迟1秒请求，防止速率过快
-    Future.delayed(Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 1000), () {
       status = FriendStateus.normal;
     });
     if(result?.bodyString!='[]'){
@@ -109,7 +108,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
 
   // 更新当前图片评论数
   updateCommentTotal(data) async {
-    Future.delayed(Duration(seconds: 1), () async {
+    Future.delayed(const Duration(seconds: 1), () async {
       HomeDetails? newData = await widget.provider.Detail(data!.id);
       setState(() {
         data!.comments = newData!.comments;
@@ -130,7 +129,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                 onTap: () {
                   //关闭登录验证
                   if (userLogic.token != '') {
-                    Get.to(ConnectionStartPage());
+                    Get.to(const ConnectionStartPage());
                   } else {
                     Get.to(LoginmethodPage(), transition: Transition.downToUp);
                   }
@@ -141,7 +140,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                     'assets/icons/fuji.svg', width: 22, height: 22,),
                 )
             ),
-            SizedBox(width: 15,),
+            const SizedBox(width: 15,),
             Expanded(child:
             Container(child: TabBar(
               ///取消指示器
@@ -190,7 +189,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                 indicatorPadding: const EdgeInsets.only(bottom: 8),
                 dividerColor: Colors.transparent,
                 // labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'DroidArabicKufi',
@@ -217,16 +216,16 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                 tabs:[
                   // for(var i=0;i<4;i++)
                   //   i==0?Tab(child: Row(children: [Text('进行中'.tr),SizedBox(width: 10,),],),):
-                  Tab(child: Row(children: [Text('关注'.tr),SizedBox(width: 10,),],),),
-                  Tab(child: Row(children: [Container(height: 14,width: 2,color: Color(0x7Fffffff)),SizedBox(width: 10,),Text('话题'.tr),SizedBox(width: 10,),],),),
-                  Tab(child: Row(children: [Container(height: 14,width: 2,color: Color(0x7Fffffff)),SizedBox(width: 10,),Text('内容专区'.tr),SizedBox(width: 10,),],),),
-                  Tab(child: Row(children: [Container(height: 14,width: 2,color: Color(0x7Fffffff)),SizedBox(width: 10,),Text('活动专区'.tr),SizedBox(width: 10,),],),),
+                  Tab(child: Row(children: [Text('关注'.tr),const SizedBox(width: 10,),],),),
+                  Tab(child: Row(children: [Container(height: 14,width: 2,color: const Color(0x7Fffffff)),const SizedBox(width: 10,),Text('话题'.tr),const SizedBox(width: 10,),],),),
+                  Tab(child: Row(children: [Container(height: 14,width: 2,color: const Color(0x7Fffffff)),const SizedBox(width: 10,),Text('内容专区'.tr),const SizedBox(width: 10,),],),),
+                  Tab(child: Row(children: [Container(height: 14,width: 2,color: const Color(0x7Fffffff)),const SizedBox(width: 10,),Text('活动专区'.tr),const SizedBox(width: 10,),],),),
                   // Tab(child: Row(children: [Container(height: 14,width: 2,color: Color(0x7Fffffff)),SizedBox(width: 10,),Text('活动专区'.tr),SizedBox(width: 10,),],),),
 
                 ]
             ),)
             ),
-            SizedBox(width: 15,),
+            const SizedBox(width: 15,),
             GestureDetector(
                 onTap: () {
                   //Get.to(SearchPage());
@@ -250,7 +249,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                           right: -22 / 2,
                           child: Container(
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                     Radius.circular(50)),
                                 color: Colors.red
@@ -258,7 +257,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                             width: 16,
                             height: 16,
                             child: Text(userLogic.NumberMessages+userLogic.Chatrelated['${userLogic.userId}']['Unreadmessagezs']>99?'99':'${userLogic.NumberMessages+userLogic.Chatrelated['${userLogic.userId}']['Unreadmessagezs']}',
-                              style: TextStyle(color: Colors.white,
+                              style: const TextStyle(color: Colors.white,
                                   fontSize: 8,
                                   height: 1.0),),
                           ),
@@ -269,7 +268,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                           right: -22 / 2,
                           child: Container(
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                     Radius.circular(50)),
                                 color: Colors.red
@@ -277,7 +276,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                             width: 16,
                             height: 16,
                             child: Text(userLogic.NumberMessages.toString(),
-                              style: TextStyle(color: Colors.white,
+                              style: const TextStyle(color: Colors.white,
                                   fontSize: 8,
                                   height: 1.0),),
                           ),
@@ -384,7 +383,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                     onRefresh: _onRefresh,
                     displacement: 10.0,
                     child:
-                    state.followlist.length > 0
+                    state.followlist.isNotEmpty
                         ?  ListView.builder(
                         controller: _scrollController,
                         itemCount: state.followlist.length,
@@ -392,7 +391,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                           return Container(
                             child: Column(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Row(
@@ -402,7 +401,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                     Container(
                                       child: Row(
                                         children: [
-                                          SizedBox(width: 20),
+                                          const SizedBox(width: 20),
                                           GestureDetector(
                                             child: Container(
                                                 width: 40,
@@ -434,21 +433,21 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                                   arguments: state.followlist[i].userId);
                                             },
                                           ),
-                                          SizedBox(width: 10),
-                                          Container(constraints: BoxConstraints(maxWidth: 150,),child: Text(
+                                          const SizedBox(width: 10),
+                                          Container(constraints: const BoxConstraints(maxWidth: 150,),child: Text(
                                             state.followlist[i]
                                                 .userName,
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 1,
 
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontWeight:
                                               FontWeight.w600,
                                               fontSize: 13,
                                               //fontFamily: "PingFang SC",
                                             ),
                                           ),),
-                                          SizedBox(width: 12),
+                                          const SizedBox(width: 12),
                                           Text(
                                             state.followlist[i].createdAt,
                                             style: const TextStyle(
@@ -489,7 +488,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                         ))
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Stack(children: [
@@ -505,8 +504,8 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) => Container(
                                       width: MediaQuery.of(context).size.width,
-                                      constraints: BoxConstraints(minHeight: 100),
-                                      child: Center(
+                                      constraints: const BoxConstraints(minHeight: 100),
+                                      child: const Center(
                                         child: CircularProgressIndicator(
                                           color: Color(0xffD1FF34),
                                           strokeWidth: 4,
@@ -528,7 +527,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                 Offstage(
                                   offstage:
                                   state.followlist[i].type == 2,
-                                  child: SizedBox(
+                                  child: const SizedBox(
                                     height: 15,
                                   ),
                                 ),
@@ -564,17 +563,17 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                               logic.likeoperation(state.followlist[i].id, i);
                                             },
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 5,
                                           ),
                                           Text(
                                             state.followlist[i].likes.toString(),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 12,
                                               //fontFamily: "PingFang SC-Regular",
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           //收藏
@@ -601,19 +600,19 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                               logic.Collectionoperation(state.followlist[i].id, i);
                                             },
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 5,
                                           ),
                                           Text(
                                             state.followlist[i]
                                                 .collects
                                                 .toString(),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 12,
                                               //fontFamily: "PingFang SC-Regular",
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           GestureDetector(
@@ -635,14 +634,14 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                               height: 21,
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 5,
                                           ),
                                           Text(
                                             state.followlist[i]
                                                 .comments
                                                 .toString(),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 12,
                                             ),
                                           ),
@@ -661,19 +660,17 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                       ),
                                       onTap: () {
                                         Share.share(
-                                            'HI https://api.lanla.app/share?c=' +
-                                                state.followlist[i].id
-                                                    .toString());
+                                            'HI https://api.lanla.app/share?c=${state.followlist[i].id}');
                                       },
                                     )
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Row(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 20,
                                     ),
                                     Expanded(
@@ -684,18 +681,18 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                         overflow:
                                         TextOverflow.ellipsis,
                                         maxLines: 1,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 15,
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     GestureDetector(child: Container(
                                       child: Text(
                                         '查看全文'.tr,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 14,
                                           color: Color(0xff00366B),
                                           fontWeight: FontWeight.w400,
@@ -714,12 +711,12 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                             count: 0);
                                       }
                                     },),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 20,
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 30,
                                 ),
                               ],
@@ -734,7 +731,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                             child: Column(
                               // mainAxisAlignment:MainAxisAlignment.center,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 100,
                                 ),
                                 Image.asset(
@@ -742,22 +739,22 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
                                   width: 200,
                                   height: 200,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 40,
                                 ),
                                 Text(
-                                  userLogic.follows.length>0?'你关注的人还没有发布内容哟'.tr:'还没有关注的人'.tr,
-                                  style: TextStyle(
+                                  userLogic.follows.isNotEmpty?'你关注的人还没有发布内容哟'.tr:'还没有关注的人'.tr,
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     //fontFamily: 'PingFang SC-Regular, PingFang SC'
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
-                                if(userLogic.follows.length==0)Text(
+                                if(userLogic.follows.isEmpty)Text(
                                   '关注后，可以在这里查看对方的最新动态'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 12,
                                       //fontFamily: 'PingFang SC-Regular, PingFang SC',
                                       color: Color(0xff999999)),
@@ -815,7 +812,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
 
 
   Future<void> _onRefresh() async {
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(const Duration(seconds: 1), () {
       logic.FocusInterfaces();
     });
   }
@@ -835,7 +832,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
       child: isOne
           ? Container(
         child: ImageCacheWidget(imgs[0],defultHeight + (isOne ? 0 : 32)),
-        margin: EdgeInsets.only(bottom: 15),
+        margin: const EdgeInsets.only(bottom: 15),
       )
           : Swiper(
         outer: true,
@@ -843,7 +840,7 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
           return ImageCacheWidget(imgs[i],defultHeight + (isOne ? 0 : 32));
           // Image.network(imgs[i]);
         },
-        pagination: SwiperPagination(
+        pagination: const SwiperPagination(
             margin: EdgeInsets.all(10),
             builder: DotSwiperPaginationBuilder(
               color: Colors.black12,
@@ -862,11 +859,11 @@ class _ListViewRefreshState extends State<FriendPage>with SingleTickerProviderSt
   Widget _getMoreWidget() {
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
+          children: const <Widget>[
             Text(
               '加载中...',
               style: TextStyle(fontSize: 16.0),

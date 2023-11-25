@@ -31,7 +31,7 @@ class _VideoPageState extends State<VideoPage> {
   var dataSource;
   var dataSourceold;
   final PageController _controller = PageController();
-  bool _isOverscroll = false;
+  final bool _isOverscroll = false;
   final userLogic = Get.find<UserLogic>();
   @override
   void initState() {
@@ -122,7 +122,7 @@ class _VideoPageState extends State<VideoPage> {
               child: Container(
                 height: 50,
                 width: 50,
-                child: Center(
+                child: const Center(
                   child: Icon(
                     Icons.arrow_back_ios,
                     color: Colors.white70,
@@ -148,7 +148,7 @@ class _VideoPageState extends State<VideoPage> {
                 children: [
 
                   if(dataSource!=null)_userInfoBar(),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   _bottomBar(),
                 ],
               ),
@@ -199,7 +199,7 @@ class _VideoPageState extends State<VideoPage> {
     return Container(
       height: 70,
       color: Colors.black,
-      padding: EdgeInsets.fromLTRB(20, 0, 15, 0),
+      padding: const EdgeInsets.fromLTRB(20, 0, 15, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -208,12 +208,12 @@ class _VideoPageState extends State<VideoPage> {
             child: GestureDetector(
               child:
               Container(
-                padding: EdgeInsets.fromLTRB(25, 3, 5, 3),
+                padding: const EdgeInsets.fromLTRB(25, 3, 5, 3),
                 child:
                 Container(
                   height: 44,
-                  padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.fromLTRB(15, 3, 15, 3),
+                  decoration: const BoxDecoration(
                     // color: HexColor('#efefef'),
                     color: Color(0x4cffffff),
                     //设置四周圆角 角度
@@ -222,9 +222,9 @@ class _VideoPageState extends State<VideoPage> {
                   child: Row(
                     children: [
                       SvgPicture.asset('assets/svg/bi_drak.svg',width: 18,height: 18,),
-                      SizedBox(width: 8,),
+                      const SizedBox(width: 8,),
                       Text(
-                        '说点什么'.tr + '...',
+                        '${'说点什么'.tr}...',
 
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
@@ -241,14 +241,14 @@ class _VideoPageState extends State<VideoPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(right: 0),
+            margin: const EdgeInsets.only(right: 0),
             // padding: EdgeInsets.only(left: 10),
             alignment: Alignment.centerRight,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  child:Container(color: Colors.transparent,margin:EdgeInsets.only(left: 20),child:Column(
+                  child:Container(color: Colors.transparent,margin:const EdgeInsets.only(left: 20),child:Column(
                     mainAxisAlignment:MainAxisAlignment.center,
                     children: [
                       Container(
@@ -259,9 +259,9 @@ class _VideoPageState extends State<VideoPage> {
                         ),
                       ),
                       const SizedBox(height: 5,),//pym_
-                      Text(
+                      const Text(
                         '0',
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 12,
                             color: Colors.white),
                       ),
@@ -271,7 +271,7 @@ class _VideoPageState extends State<VideoPage> {
                 Row(
                   children: [
                     GestureDetector(
-                      child: Container(color: Colors.transparent,margin:EdgeInsets.only(left: 20),child:Column(
+                      child: Container(color: Colors.transparent,margin:const EdgeInsets.only(left: 20),child:Column(
                         mainAxisAlignment:MainAxisAlignment.center,
                         children: [
                            Container(
@@ -282,10 +282,10 @@ class _VideoPageState extends State<VideoPage> {
                             ),
                           ),
                           const SizedBox(height: 5,),//pym_
-                          Text(
+                          const Text(
                             '0',
                             //userLogic.getLike(widget.dataSource.id),
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.white),
                           ),
@@ -297,7 +297,7 @@ class _VideoPageState extends State<VideoPage> {
                 ///消息
                 GestureDetector(
 
-                  child: Container(color: Colors.transparent,margin:EdgeInsets.only(left: 20),child:Column(
+                  child: Container(color: Colors.transparent,margin:const EdgeInsets.only(left: 20),child:Column(
                     mainAxisAlignment:MainAxisAlignment.center,
                     children: [
                       Container(
@@ -308,9 +308,9 @@ class _VideoPageState extends State<VideoPage> {
                         ),
                       ),
                       const SizedBox(height: 5,),//pym_
-                      Text(
+                      const Text(
                         '0',
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 12,
                             color: Colors.white),
                       ),
@@ -332,7 +332,7 @@ class _VideoPageState extends State<VideoPage> {
                           width: 24,
                           height: 24,
                         ),
-                        SizedBox(height: 0,),
+                        const SizedBox(height: 0,),
                         Text(
                           '礼物'.tr,
                           style: const TextStyle(
@@ -401,13 +401,13 @@ class _VideoPageState extends State<VideoPage> {
             ),
             Container(
               alignment: Alignment.bottomRight,
-              margin: EdgeInsets.only(bottom: 5),
+              margin: const EdgeInsets.only(bottom: 5),
               child: Text(
                 dataSourceold.title,
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                style: const TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
             dataSourceold.text == ''
@@ -420,7 +420,7 @@ class _VideoPageState extends State<VideoPage> {
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 4,
-                style: TextStyle(color: Colors.white, fontSize: 14),
+                style: const TextStyle(color: Colors.white, fontSize: 14),
               ),
             ),
             // TopicFormat(dataSourceold!.topics,isVideo:true)

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -40,30 +39,30 @@ class sommoditysearchState extends State<sommoditysearchPage> {
   Widget build(context){
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: BoxDecoration(color: Colors.white),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+        decoration: const BoxDecoration(color: Colors.white),
         child: Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Container(
               height: 36,
               // decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(child: Icon(Icons.arrow_back_ios, size: 22,),onTap: (){
+                  GestureDetector(child: const Icon(Icons.arrow_back_ios, size: 22,),onTap: (){
                     Navigator.of(context).pop();
                   },),
-                  SizedBox(width: 15,),
+                  const SizedBox(width: 15,),
                   Expanded(flex: 1, child:
                   TextField(
                       decoration: InputDecoration(
-                          hintStyle: TextStyle(color: Color(0xff999999)),
-                          contentPadding: EdgeInsets.only(top: 0, bottom: 0),
+                          hintStyle: const TextStyle(color: Color(0xff999999)),
+                          contentPadding: const EdgeInsets.only(top: 0, bottom: 0),
                           border: InputBorder.none,
                           hintText: '输入搜索内容'.tr,
-                          fillColor: Color(0xFFF9f9f9),
-                          enabledBorder: OutlineInputBorder(
+                          fillColor: const Color(0xFFF9f9f9),
+                          enabledBorder: const OutlineInputBorder(
                             /*边角*/
                             borderRadius: BorderRadius.all(
                               Radius.circular(20), //边角为5
@@ -73,7 +72,7 @@ class sommoditysearchState extends State<sommoditysearchPage> {
                               width: 0, //边线宽度为2
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             /*边角*/
                             borderRadius: BorderRadius.all(
                               Radius.circular(20), //边角为5
@@ -86,8 +85,8 @@ class sommoditysearchState extends State<sommoditysearchPage> {
                           ),
                           filled: true,
                           prefixIcon:Padding(
-                            padding: EdgeInsets.only(top: 10,bottom: 10,right: 5),
-                            child:SvgPicture.asset('assets/icons/sousuo.svg',color: Color(0xff999999),),
+                            padding: const EdgeInsets.only(top: 10,bottom: 10,right: 5),
+                            child:SvgPicture.asset('assets/icons/sousuo.svg',color: const Color(0xff999999),),
                           )
                         // SvgPicture.asset('assets/icons/sousuo.svg',width: 5,height: 5,color: Color(0xffe4e4e4),),
                       ),
@@ -121,9 +120,9 @@ class sommoditysearchState extends State<sommoditysearchPage> {
                   )
 
                     ,),
-                  SizedBox(width: 15,),
+                  const SizedBox(width: 15,),
                   GestureDetector(
-                    child: Text('搜索'.tr, style: TextStyle(
+                    child: Text('搜索'.tr, style: const TextStyle(
                         color: Color(0xff666666), fontSize: 15),
 
                     ),
@@ -135,7 +134,7 @@ class sommoditysearchState extends State<sommoditysearchPage> {
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Expanded(flex: 1,
               child:
               // Container(decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),)
@@ -147,7 +146,7 @@ class sommoditysearchState extends State<sommoditysearchPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('历史记录'.tr, style: TextStyle(fontSize: 16,
+                        Text('历史记录'.tr, style: const TextStyle(fontSize: 16,
                             color: Color(0xff666666),
                             fontWeight: FontWeight.w600),),
                         GestureDetector(child: Image.asset(
@@ -166,7 +165,7 @@ class sommoditysearchState extends State<sommoditysearchPage> {
                       ],
                     ),
                   ),
-                  if(SpsearchHistory['${userLogic.userId}']!=null&&SpsearchHistory['${userLogic.userId}'].length>0)SizedBox(height: 20,),
+                  if(SpsearchHistory['${userLogic.userId}']!=null&&SpsearchHistory['${userLogic.userId}'].length>0)const SizedBox(height: 20,),
                   if(SpsearchHistory['${userLogic.userId}']!=null&&SpsearchHistory['${userLogic.userId}'].length>0)Container(
                     width: double.infinity,
                     child: Wrap(
@@ -177,12 +176,12 @@ class sommoditysearchState extends State<sommoditysearchPage> {
                       children: [
                         for(var i = 0; i < SpsearchHistory['${userLogic.userId}'].length; i++)
                           GestureDetector(child:Container(
-                            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                            padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                             decoration: BoxDecoration(
-                              color: Color(0xffF9F9F9),
+                              color: const Color(0xffF9F9F9),
                               borderRadius: BorderRadius.circular((20)),
                             ),
-                            child: Text(SpsearchHistory['${userLogic.userId}'][i], style: TextStyle(
+                            child: Text(SpsearchHistory['${userLogic.userId}'][i], style: const TextStyle(
                                 color: Color(0xff999999),
                                 fontSize: 15),),
                           ) ,onTap: (){
@@ -191,7 +190,7 @@ class sommoditysearchState extends State<sommoditysearchPage> {
                       ],
                     ),
                   ),
-                  if(SpsearchHistory['${userLogic.userId}']!=null&&SpsearchHistory['${userLogic.userId}'].length>0)SizedBox(height: 50,),
+                  if(SpsearchHistory['${userLogic.userId}']!=null&&SpsearchHistory['${userLogic.userId}'].length>0)const SizedBox(height: 50,),
                   // Container(
                   //   //decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
                   //   child: Row(

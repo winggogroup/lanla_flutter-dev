@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:reorderables/reorderables.dart';
@@ -30,7 +29,7 @@ class _WrapExampleState extends State<WrapExample> {
   @override
   Widget build(BuildContext context) {
     void _onReorder(int oldIndex, int newIndex) {
-      print('新旧顺序${oldIndex},${newIndex}');
+      print('新旧顺序$oldIndex,$newIndex');
       setState(() {
         Widget row = _tiles.removeAt(oldIndex);
         _tiles.insert(newIndex, row);

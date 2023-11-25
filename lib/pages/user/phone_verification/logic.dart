@@ -81,16 +81,16 @@ class PhoneVerificationLogic extends GetxController {
       FirebaseAuth auth = FirebaseAuth.instance;
       print(auth.verifyPhoneNumber);
       load(context);
-      AppLog('firebase_login_success',data:'+${area_code}__${phone}');
+      AppLog('firebase_login_success',data:'+${area_code}__$phone');
       await auth.verifyPhoneNumber(
-        phoneNumber: '+${area_code}${phone}',
+        phoneNumber: '+$area_code$phone',
         verificationCompleted: (PhoneAuthCredential credential) async {
-          AppLog('firebase_login_callback',event: "verificationCompleted",data:'+${area_code}__${phone}');
+          AppLog('firebase_login_callback',event: "verificationCompleted",data:'+${area_code}__$phone');
           Navigator.pop(context);
           // await auth.signInWithCredential(credential);
           await auth.signInWithCredential(credential).then((sha) async {
             if(sha.user?.uid!=''&&sha.user?.uid!=null){
-              AppLog('firebase_login_callback',event: "success",data:'+${area_code}__${phone}');
+              AppLog('firebase_login_callback',event: "success",data:'+${area_code}__$phone');
               FirebaseAnalytics.instance.logEvent(
                 name: "login_firebase_login_callback_success_re",
                 parameters: {
@@ -102,7 +102,7 @@ class PhoneVerificationLogic extends GetxController {
               String? idToken = await user?.getIdToken();
               if (idToken != null) {
                 // 将idToken发送给后端进行验证和处理
-                print('手机号${idToken}');
+                print('手机号$idToken');
                 firebaseverification(context,idToken);
               }else{
                 Toast.toast(context,msg: "验证失败".tr,position: ToastPostion.center);
@@ -129,14 +129,14 @@ class PhoneVerificationLogic extends GetxController {
 
         },
         verificationFailed: (FirebaseAuthException e) {
-          AppLog('firebase_login_callback',event: "verificationFailed",data:'+${area_code}__${phone} error:${e.code}');
+          AppLog('firebase_login_callback',event: "verificationFailed",data:'+${area_code}__$phone error:${e.code}');
           FirebaseAnalytics.instance.logEvent(
             name: "login_firebase_login_callback_error_re",
             parameters: {
               "error": e.code,
             },
           );
-          print('bbb${e}');
+          print('bbb$e');
           state.clicks.value=true;
           Navigator.pop(context);
           print(e.code);
@@ -151,7 +151,7 @@ class PhoneVerificationLogic extends GetxController {
         },
         // 发送验证码
         codeSent: (String verificationId, int? resendToken) async {
-          AppLog('firebase_login_callback',event: "codeSent",data:'+${area_code}__${phone}');
+          AppLog('firebase_login_callback',event: "codeSent",data:'+${area_code}__$phone');
           FirebaseAnalytics.instance.logEvent(
             name: "login_phone_codeSent_re",
             parameters: {
@@ -211,7 +211,7 @@ class PhoneVerificationLogic extends GetxController {
   Timer  startTimer() {
     state.clicks.value=false;
     // ToastUtil.showTips('短信验证码已发送，请注意查收');
-    timers= Timer.periodic(Duration(seconds: 1), (Timer timer) => {
+    timers= Timer.periodic(const Duration(seconds: 1), (Timer timer) => {
       if(state.timeCount <= 0){
         //state.VerificationCode = '获取验证码'.tr,
         timer.cancel(),
@@ -303,7 +303,7 @@ class PhoneVerificationLogic extends GetxController {
     //   Toast.toast(context,msg: responseData['info'],position: ToastPostion.bottom);
     // }
     EasyLoading.dismiss();
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       print('lai');
       status = true;
     });
@@ -369,7 +369,7 @@ class PhoneVerificationLogic extends GetxController {
     // else{
     //   Toast.toast(context,msg: responseData['info'],position: ToastPostion.bottom);
     // }
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       status = true;
     });
 
@@ -384,7 +384,7 @@ class PhoneVerificationLogic extends GetxController {
         Toast.toast(context,
             msg: "填写成功".tr, position: ToastPostion.bottom);
       }
-      Timer.periodic(Duration(milliseconds: 1000),(timer){
+      Timer.periodic(const Duration(milliseconds: 1000),(timer){
         antishake=true;
         timer.cancel();//取消定时器
       }
@@ -399,7 +399,7 @@ class PhoneVerificationLogic extends GetxController {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return new LoadingDialog(text: '',
+          return LoadingDialog(text: '',
           );
         });
   }

@@ -95,7 +95,7 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
         if (user != null) {
           String? idToken = await user.getIdToken();
           // 将idToken发送给后端进行验证和处理
-          print('谷歌数据${idToken}');
+          print('谷歌数据$idToken');
           print(information);
           var BindingResults = await SetUprovider.Thirdpartybinding(
               1, information?.displayName, information?.photoUrl,
@@ -127,7 +127,7 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
       if (user != null) {
         String? idToken = await user.getIdToken();
         // 将idToken发送给后端进行验证和处理
-        print('苹果数据${idToken}');
+        print('苹果数据$idToken');
 
         var BindingResults = await SetUprovider.Thirdpartybinding(3, '', '', '', information.user?.uid, '', idToken);
 
@@ -199,13 +199,13 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
       appBar: AppBar(
         title: Text(
           '账号与安全'.tr,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
       ),
       body: Container(
         //decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
-          padding: EdgeInsets.fromLTRB(20, 23, 20, 0),
-          color: Color(0xffF5F5F5),
+          padding: const EdgeInsets.fromLTRB(20, 23, 20, 0),
+          color: const Color(0xffF5F5F5),
           child: Column(
             children: <Widget>[
               // Container(
@@ -275,43 +275,43 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
               // SizedBox(height: 20,),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                decoration:BoxDecoration(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                decoration:const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
                 child: Column(
                   children: [
                     GestureDetector(child: Container(
-                      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                       child: Row(
                         mainAxisAlignment:MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Facebook'),
+                          const Text('Facebook'),
                          Row(
                             children: [
                               Container(
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxWidth: 200, // 最大宽度
                                 ),
                                 child:
                                 facebook['type']!=0?Text(
                                   facebook['name'].toString()!=''?facebook['name'].toString():'绑定成功'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff000000),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ):Text(
                                   '未绑定'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff999999),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Icon(Icons.chevron_right,)
+                              const Icon(Icons.chevron_right,)
                             ],
                           )
                         ],
@@ -329,37 +329,37 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
                       }
 
                     },) ,
-                    Divider(height: 1.0,color: Color(0xffF1F1F1),),
+                    const Divider(height: 1.0,color: Color(0xffF1F1F1),),
                     GestureDetector(child: Container(
-                      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                       child: Row(
                         mainAxisAlignment:MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Apple ID'),
+                          const Text('Apple ID'),
                           Row(
                             children: [
                               Container(
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxWidth: 200, // 最大宽度
                                 ),
                                 child:
                                 apple['type']!=0?Text(
                                   apple['name'].toString()!=''?apple['name'].toString():'绑定成功'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff000000),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ):Text(
                                   '未绑定'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff999999),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Icon(Icons.chevron_right,)
+                              const Icon(Icons.chevron_right,)
                             ],
                           )
                         ],
@@ -373,36 +373,36 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
                         }
                       }
                     },) ,
-                    Divider(height: 1.0,color: Color(0xffF1F1F1),),
+                    const Divider(height: 1.0,color: Color(0xffF1F1F1),),
                     GestureDetector(child: Container(
-                      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                       child: Row(
                         mainAxisAlignment:MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Google'),
+                          const Text('Google'),
                           Row(
                             children: [
                               Container(
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxWidth: 200, // 最大宽度
                                 ),
                                 child: google['type']!=0?Text(
                                   google['name'].toString()!=''?google['name'].toString():'绑定成功'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff000000),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ):Text(
                                   '未绑定'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff999999),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Icon(Icons.chevron_right,)
+                              const Icon(Icons.chevron_right,)
                             ],
                           )
                         ],
@@ -417,10 +417,10 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
                           }
                         }
                     },),
-                    Divider(height: 1.0,color: Color(0xffF1F1F1),),
+                    const Divider(height: 1.0,color: Color(0xffF1F1F1),),
                     ///手机号
                     if(mobile['type']!=0)GestureDetector(child: Container(
-                      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                       child: Row(
                         mainAxisAlignment:MainAxisAlignment.spaceBetween,
                         children: [
@@ -428,27 +428,27 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
                           Row(
                             children: [
                               Container(
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxWidth: 200, // 最大宽度
                                 ),
                                 child:
                                 mobile['type']!=0?Text(
                                   mobile['name'].toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff000000),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ):Text(
                                   '未绑定'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff999999),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Icon(Icons.chevron_right,)
+                              const Icon(Icons.chevron_right,)
                             ],
                           )
                         ],
@@ -470,10 +470,10 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
                       //   });
                       // }
                     },),
-                    Divider(height: 1.0,color: Color(0xffF1F1F1),),
+                    const Divider(height: 1.0,color: Color(0xffF1F1F1),),
                     ///邮箱绑定
                     GestureDetector(child: Container(
-                      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                       child: Row(
                         mainAxisAlignment:MainAxisAlignment.spaceBetween,
                         children: [
@@ -481,27 +481,27 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
                           Row(
                             children: [
                               Container(
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxWidth: 200, // 最大宽度
                                 ),
                                 child:
                                 email['type']!=0?Text(
                                   email['name'].toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff000000),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ):Text(
                                   '未绑定'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     color: Color(0xff999999),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Icon(Icons.chevron_right,)
+                              const Icon(Icons.chevron_right,)
                             ],
                           )
                         ],
@@ -529,11 +529,11 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
             ],)
       ),
       bottomNavigationBar: Container(
-        color: Color(0xffF5F5F5),
-        padding: EdgeInsets.all(50),
+        color: const Color(0xffF5F5F5),
+        padding: const EdgeInsets.all(50),
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Color(0xff000000)),
+            backgroundColor: MaterialStateProperty.all(const Color(0xff000000)),
           ),
           onPressed: ()  {
             if(antishake){
@@ -541,7 +541,7 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
             }
 
           },
-          child: Text('注销账户'.tr,style: TextStyle(
+          child: Text('注销账户'.tr,style: const TextStyle(
             fontSize: 17,
             color: Colors.white,
           ),textAlign: TextAlign.center,),
@@ -558,9 +558,9 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
       builder: (context) {
         return CupertinoAlertDialog(
           title: Text("确认解绑？".tr), // 标题
-          content:  Container(margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
+          content:  Container(margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
             child:Text(text),) , // 内容
-          insetAnimationDuration: Duration(
+          insetAnimationDuration: const Duration(
               milliseconds: 200), // 动画时间，默认为 const Duration(milliseconds: 100)
           insetAnimationCurve:
           Curves.bounceIn, // 动画效果，渐进渐出等等，默认为 Curves.decelerate
@@ -637,9 +637,9 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
       builder: (context) {
         return CupertinoAlertDialog(
           title: Text("您确定要注销当前账号吗".tr), // 标题
-          content:  Container(margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
+          content:  Container(margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
             child:Text("账号注销后会永久删除所有数据".tr),) , // 内容
-          insetAnimationDuration: Duration(
+          insetAnimationDuration: const Duration(
               milliseconds: 200), // 动画时间，默认为 const Duration(milliseconds: 100)
           insetAnimationCurve:
           Curves.bounceIn, // 动画效果，渐进渐出等等，默认为 Curves.decelerate
@@ -648,7 +648,7 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
-              child: Text("取消".tr,style: TextStyle(color: Color(0xff999999)),),
+              child: Text("取消".tr,style: const TextStyle(color: Color(0xff999999)),),
             ),
             TextButton(
               onPressed: () async {
@@ -667,7 +667,7 @@ class AccountSecurityState extends State<AccountSecurityWidget> {
                 }
 
               },
-              child: Text("确定".tr,style: TextStyle(color: Colors.black),),
+              child: Text("确定".tr,style: const TextStyle(color: Colors.black),),
             ),
           ],
         );

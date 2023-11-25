@@ -18,7 +18,7 @@ class ActivityZoneState extends State<ActivityZonePage> with AutomaticKeepAliveC
   Publicmethodes Publicmethods = Get.put(Publicmethodes());
   final userLogic = Get.find<UserLogic>();
   bool get wantKeepAlive => true; // 是否开启缓存
-  ScrollController _scrollController = ScrollController(); //listview 的控制器
+  final ScrollController _scrollController = ScrollController(); //listview 的控制器
   bool oneData = false; // 是否首次请求过-用于展示等待页面
   bool antishake=true;
   var newdata;
@@ -89,37 +89,37 @@ class ActivityZoneState extends State<ActivityZonePage> with AutomaticKeepAliveC
   Widget build(BuildContext context) {
     return !oneData
         ? StartDetailLoading()
-        : Container(padding: EdgeInsets.only(left: 20,right: 20,bottom: 10),child: newdata!=null?ListView.builder(
+        : Container(padding: const EdgeInsets.only(left: 20,right: 20,bottom: 10),child: newdata!=null?ListView.builder(
         controller: _scrollController,
         itemCount: newdata.length,
         itemBuilder: (context, i) {
           return GestureDetector(child: Container(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Container(alignment: Alignment.centerRight,child: Text(newdata[i]['title'],style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),),
-                SizedBox(
+                Container(alignment: Alignment.centerRight,child: Text(newdata[i]['title'],style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),),
+                const SizedBox(
                   height: 15,
                 ),
                 Stack(children: [
                   Container(clipBehavior: Clip.hardEdge,width: double.infinity,height: 100,decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),child: Image.network(newdata[i]['image'],fit: BoxFit.cover,),),
                   if(timedetermine(newdata[i]['start_time'],newdata[i]['end_time'])!="0"&&timedetermine(newdata[i]['start_time'],newdata[i]['end_time'])!="01")
-                  Container(clipBehavior: Clip.hardEdge,width: double.infinity,height: 100,decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Color.fromRGBO(0, 0, 0, 0.4)),child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
-                    Text('即将开始'.tr,style: TextStyle(fontSize: 27,fontWeight: FontWeight.w600,color: Colors.white),),
-                    SizedBox(height: 10,),
+                  Container(clipBehavior: Clip.hardEdge,width: double.infinity,height: 100,decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: const Color.fromRGBO(0, 0, 0, 0.4)),child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
+                    Text('即将开始'.tr,style: const TextStyle(fontSize: 27,fontWeight: FontWeight.w600,color: Colors.white),),
+                    const SizedBox(height: 10,),
                     Row(mainAxisAlignment:MainAxisAlignment.center,children:  [
-                      Text('倒计时'.tr,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color: Colors.white),),
-                      SizedBox(width: 5,),
-                      Container(alignment: Alignment.center,decoration: BoxDecoration(borderRadius: BorderRadius.circular(2),color:Color.fromRGBO(255, 255, 255, 0.4)),padding: EdgeInsets.only(left: 10,right: 10,top: 1,bottom:1),child: Text(timedetermine(newdata[i]['start_time'],newdata[i]['end_time']),style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,height: 1,color: Colors.white),),),
-                      SizedBox(width: 5,),
-                      Text('天'.tr,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color: Colors.white),)],)
+                      Text('倒计时'.tr,style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color: Colors.white),),
+                      const SizedBox(width: 5,),
+                      Container(alignment: Alignment.center,decoration: BoxDecoration(borderRadius: BorderRadius.circular(2),color:const Color.fromRGBO(255, 255, 255, 0.4)),padding: const EdgeInsets.only(left: 10,right: 10,top: 1,bottom:1),child: Text(timedetermine(newdata[i]['start_time'],newdata[i]['end_time']),style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,height: 1,color: Colors.white),),),
+                      const SizedBox(width: 5,),
+                      Text('天'.tr,style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color: Colors.white),)],)
                   ],),),
-                  if(timedetermine(newdata[i]['start_time'],newdata[i]['end_time'])=="0")Container(clipBehavior: Clip.hardEdge,width: double.infinity,height: 100,decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Color.fromRGBO(255, 255, 255, 0.4)),),
-                  if(timedetermine(newdata[i]['start_time'],newdata[i]['end_time'])=="0")Positioned(right: 10,bottom:10,child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(68),color: Color.fromRGBO(0, 0, 0, 0.5)),padding: EdgeInsets.fromLTRB(10, 8, 10, 8),child: Text('活动结束'.tr,style: TextStyle(fontSize: 12,color: Color.fromRGBO(255, 255, 255, 0.8)),),)),
+                  if(timedetermine(newdata[i]['start_time'],newdata[i]['end_time'])=="0")Container(clipBehavior: Clip.hardEdge,width: double.infinity,height: 100,decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: const Color.fromRGBO(255, 255, 255, 0.4)),),
+                  if(timedetermine(newdata[i]['start_time'],newdata[i]['end_time'])=="0")Positioned(right: 10,bottom:10,child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(68),color: const Color.fromRGBO(0, 0, 0, 0.5)),padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),child: Text('活动结束'.tr,style: const TextStyle(fontSize: 12,color: Color.fromRGBO(255, 255, 255, 0.8)),),)),
                 ],),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],
@@ -143,7 +143,7 @@ class ActivityZoneState extends State<ActivityZonePage> with AutomaticKeepAliveC
                       "uuid":userLogic.deviceData['uuid'],
                     },
                   );
-                  Get.toNamed('/public/webview',arguments: BASE_DOMAIN+newdata[i]['target_id']+'?token='+userLogic.token+'&uuid='+userLogic.deviceData['uuid']);
+                  Get.toNamed('/public/webview',arguments: '${BASE_DOMAIN+newdata[i]['target_id']}?token=${userLogic.token}&uuid='+userLogic.deviceData['uuid']);
                 }else if(newdata[i]['target_other']=='/public/Planningpage'){
                   Get.toNamed(newdata[i]['target_other'],arguments:  {
                     'id': int.parse(newdata[i]['target_id']),

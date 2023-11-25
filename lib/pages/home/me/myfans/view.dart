@@ -20,7 +20,7 @@ class MyfansState extends State<MyfansPage> {
   final userController = Get.find<UserLogic>();
   final state = Get.find<MyfansLogic>().state;
   NewConcernStatus status = NewConcernStatus.init;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class MyfansState extends State<MyfansPage> {
     var result = await  widget.provider.Myfansinterface(Get.arguments,state.page);
 
     // 延迟1秒请求，防止速率过快
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       status = NewConcernStatus.normal;
     });
     setState(() {
@@ -87,20 +87,20 @@ class MyfansState extends State<MyfansPage> {
           centerTitle: true,
           leading: IconButton(
               color: Colors.black,
-              icon: Icon(Icons.arrow_back_ios),
+              icon: const Icon(Icons.arrow_back_ios),
               tooltip: "Search",
               onPressed: () {
                 //print('menu Pressed');
                 Navigator.of(context).pop();
               }),
-          title: Text('粉丝'.tr, style: TextStyle(
+          title: Text('粉丝'.tr, style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
             //fontFamily: ' PingFang SC-Semibold, PingFang SC',
           ),),
         ),
         body: Container(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: const BoxDecoration(color: Colors.white),
           child: Column(
             children: [
               Divider(height: 1.0, color: Colors.grey.shade200,),
@@ -114,8 +114,8 @@ class MyfansState extends State<MyfansPage> {
                             itemBuilder: (context, i) {
                               return
                                 Container(
-                                padding: EdgeInsets.fromLTRB(20, 25, 20, 25),
-                                decoration: BoxDecoration(border: Border(
+                                padding: const EdgeInsets.fromLTRB(20, 25, 20, 25),
+                                decoration: const BoxDecoration(border: Border(
                                     bottom: BorderSide(
                                         width: 1, color: Color(0xffF1F1F1)))),
                                 child: Row(
@@ -150,14 +150,14 @@ class MyfansState extends State<MyfansPage> {
                                       Get.toNamed('/public/user',
                                           arguments: state.Myfanslist[i].userId);
                                     },),
-                                    SizedBox(width: 15,),
+                                    const SizedBox(width: 15,),
                                     Expanded(
                                       flex: 1,
                                       child: Column(
                                         children: [
                                           Row(
                                             children: [
-                                              Text(state.Myfanslist[i].userName, style: TextStyle(
+                                              Text(state.Myfanslist[i].userName, style: const TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600,
                                                   //fontFamily: 'PingFang SC-Semibold, PingFang SC'
@@ -169,7 +169,7 @@ class MyfansState extends State<MyfansPage> {
                                               // ),),
                                             ],
                                           ),
-                                          SizedBox(height: 12,),
+                                          const SizedBox(height: 12,),
                                           // Row(
                                           //   children: [
                                           //     Text(state.Myfanslist[i].message, style: TextStyle(
@@ -194,7 +194,7 @@ class MyfansState extends State<MyfansPage> {
                                                     '#999999'),
                                                 //fontFamily: 'PingFang SC-Regular',
                                               ),),
-                                              SizedBox(width: 5,),
+                                              const SizedBox(width: 5,),
                                               Text(
                                                 state.Myfanslist[i].works
                                                     .toString(),
@@ -204,7 +204,7 @@ class MyfansState extends State<MyfansPage> {
                                                       '#999999'),
                                                   //fontFamily: 'PingFang SC-Regular',
                                                 ),),
-                                              SizedBox(width: 10,),
+                                              const SizedBox(width: 10,),
                                               SizedBox(
                                                 width: 1,
                                                 height: 14,
@@ -214,7 +214,7 @@ class MyfansState extends State<MyfansPage> {
                                                           '#999999')),
                                                 ),
                                               ),
-                                              SizedBox(width: 10,),
+                                              const SizedBox(width: 10,),
                                               Text(
                                                 '粉丝'.tr, style: TextStyle(
                                                 fontSize: 12,
@@ -222,7 +222,7 @@ class MyfansState extends State<MyfansPage> {
                                                     '#999999'),
                                                 //fontFamily: 'PingFang SC-Regular',
                                               ),),
-                                              SizedBox(width: 5,),
+                                              const SizedBox(width: 5,),
                                               Text(
                                                 state.Myfanslist[i].fans
                                                     .toString(),
@@ -237,16 +237,16 @@ class MyfansState extends State<MyfansPage> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(width: 15,),
+                                    const SizedBox(width: 15,),
                                     if(state.Myfanslist[i].userId!=userController.userId)!userController.getFollow(state.Myfanslist[i].userId)?
                                     GestureDetector(child: Container(
-                                      padding: EdgeInsets.fromLTRB(
+                                      padding: const EdgeInsets.fromLTRB(
                                           20, 6, 20, 6),
-                                      child: Text('关注'.tr, style: TextStyle(
+                                      child: Text('关注'.tr, style: const TextStyle(
                                           color: Colors.white, fontSize: 15,fontWeight: FontWeight.w600,),),
                                       decoration: BoxDecoration(
                                         //     //设置四周圆角 角度
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(30.0)),
                                         border: Border.all(
                                             color: HexColor('#000000'),
@@ -260,14 +260,14 @@ class MyfansState extends State<MyfansPage> {
                                       logic.update();
                                     },) :
                                     GestureDetector(child: Container(
-                                      padding: EdgeInsets.fromLTRB(
+                                      padding: const EdgeInsets.fromLTRB(
                                           20, 6, 20, 6),
                                       child: Text('已关注'.tr, style: TextStyle(
                                           color: HexColor('#999999'),
                                           fontSize: 15),),
                                       decoration: BoxDecoration(
                                         //     //设置四周圆角 角度
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(30.0)),
                                         border: Border.all(
                                             color: HexColor('#E4E4E4'),
@@ -293,7 +293,7 @@ class MyfansState extends State<MyfansPage> {
   }
 
   Future<void> _onRefresh() async {
-    await Future.delayed(Duration(seconds: 1), () {
+    await Future.delayed(const Duration(seconds: 1), () {
       //widget.logic.MyfansLogic();
     });
   }

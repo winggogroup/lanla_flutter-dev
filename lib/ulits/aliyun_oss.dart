@@ -54,10 +54,10 @@ class UploadOss {
     Dio dio = Dio(options);
     // 生成oss的路径和文件名我这里目前设置的是moment/20201229/test.mp4
     String pathName =
-        '$rootDir/${getDate()}/${getRandom(12)}.${fileType == null ? getFileType(file.path) : fileType}';
+        '$rootDir/${getDate()}/${getRandom(12)}.${fileType ?? getFileType(file.path)}';
 
     // 请求参数的form对象
-    FormData data = new FormData.fromMap({
+    FormData data = FormData.fromMap({
       'key': pathName,
       'policy': getSplicyBase64(policyText),
       'OSSAccessKeyId': ossAccessKeyId,

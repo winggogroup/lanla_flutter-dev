@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/main.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -29,7 +28,7 @@ AppLog(
   UserLogic user = Get.find<UserLogic>();
   user.userId;
   PackageInfo info = await PackageInfo.fromPlatform();
-  print('挂起时间 ${AppPausedTimeTotal}');
+  print('挂起时间 $AppPausedTimeTotal');
   Map<String, String> uri = {
     "userid": user.userId.toString(),
     "token": user.token,

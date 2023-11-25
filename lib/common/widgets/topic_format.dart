@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 TopicFormat(List<dynamic> list,{isVideo:false}) {
@@ -12,9 +11,9 @@ TopicFormat(List<dynamic> list,{isVideo:false}) {
             Get.toNamed('/public/topic',arguments: e["id"] as int);
           },
           child: Container(
-            margin: EdgeInsets.only(left: 10, right: 20),
+            margin: const EdgeInsets.only(left: 10, right: 20),
             child: Text(
-              "#"+e["title"].toString(),
+              "#${e["title"]}",
               style: TextStyle(color: isVideo ? Colors.white:Colors.blueGrey,fontSize: 15),
             ),
           ),

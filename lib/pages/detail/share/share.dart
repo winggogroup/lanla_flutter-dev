@@ -1,10 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
 
-/**
- * 分享页 - 发布内容完成后的页面
- */
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
@@ -76,7 +72,7 @@ class SharePage extends StatelessWidget {
             right: 25,
             bottom: 280,
             child: Container(
-              padding: EdgeInsets.only(top:20,left:20,right: 20,bottom: 60),
+              padding: const EdgeInsets.only(top:20,left:20,right: 20,bottom: 60),
               decoration: const BoxDecoration(
                 color: Colors.white,
                 //设置四周圆角 角度
@@ -124,8 +120,8 @@ class SharePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(Get.find<UserLogic>().userName,style: TextStyle(fontWeight: FontWeight.w600),),
-                Text('我发布了一片新动态'.tr,style: TextStyle(color: Colors.black38),)
+                Text(Get.find<UserLogic>().userName,style: const TextStyle(fontWeight: FontWeight.w600),),
+                Text('我发布了一片新动态'.tr,style: const TextStyle(color: Colors.black38),)
               ],),
           ),
           Positioned(
@@ -138,7 +134,7 @@ class SharePage extends StatelessWidget {
                 Get.back();
               },
               child: Container(
-                child: Icon(Icons.highlight_off, size: 28,color: Colors.white,),
+                child: const Icon(Icons.highlight_off, size: 28,color: Colors.white,),
               ),
             ),
           ),

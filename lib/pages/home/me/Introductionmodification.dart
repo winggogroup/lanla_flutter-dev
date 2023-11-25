@@ -1,10 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/services/user.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
@@ -28,7 +26,7 @@ class IntroductionmodificationState extends State<IntroductionmodificationWidget
   @override
   void initState() {
     super.initState();
-    _controller = new TextEditingController(text: userLogic.slogan);
+    _controller = TextEditingController(text: userLogic.slogan);
   }
   @override
   Widget build(BuildContext context) {
@@ -36,14 +34,14 @@ class IntroductionmodificationState extends State<IntroductionmodificationWidget
       appBar: AppBar(
         title: Text(
           '修改简介'.tr,
-          style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
+          style: const TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
         ),
         actions: [
           GestureDetector(child:  Container(
-              margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+              margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Text('保存'.tr,style: TextStyle(
+                children: <Widget>[Text('保存'.tr,style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                 ),)],
@@ -64,9 +62,9 @@ class IntroductionmodificationState extends State<IntroductionmodificationWidget
       ),
       body: Column(
         children: [
-          SizedBox(height: 23,),
+          const SizedBox(height: 23,),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child:TextField(
               maxLines: 5,
               maxLength: 70,
@@ -75,14 +73,14 @@ class IntroductionmodificationState extends State<IntroductionmodificationWidget
               // cursorColor: Color(0xffffffff),
               decoration: InputDecoration(
 
-                contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                 hintText: "请输入你简介".tr,
-                hintStyle: TextStyle(color: Color(0xff666666)),
+                hintStyle: const TextStyle(color: Color(0xff666666)),
                 border: InputBorder.none, // 隐藏边框
                 fillColor: Colors.white,
 
                 filled: true,
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   /*边角*/
                   borderRadius: BorderRadius.all(
                     Radius.circular(20), //边角为5
@@ -92,7 +90,7 @@ class IntroductionmodificationState extends State<IntroductionmodificationWidget
                     width: 0.5,
                   ),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.white,
                     width: 0.5,

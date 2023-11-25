@@ -3,10 +3,8 @@ import 'dart:convert';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:extended_tabs/extended_tabs.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/common/widgets/round_underline_tabindicator.dart';
 import 'package:lanla_flutter/models/ChannelList.dart';
@@ -186,15 +184,15 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
-    return Selecteddata.length==0
+    return Selecteddata.isEmpty
         ? StartDetailLoading()
         : Column(
         children: [
           Container(
             height: 40,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.05),
                       //color:Colors.black,
@@ -213,12 +211,12 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
                           begin: Alignment.centerRight,
                           end: Alignment.center,
                           colors: [Colors.black, Colors.transparent],
-                        ).createShader(Rect.fromLTRB(0, 0, 20, 0));
+                        ).createShader(const Rect.fromLTRB(0, 0, 20, 0));
                       },
                       blendMode: BlendMode.dstIn,
                       child: GetBuilder<StartListLogic>(builder: (logic) {
-                        return Selecteddata.length == 0
-                            ? GestureDetector(child: Icon(Icons.downloading),onTap: (){
+                        return Selecteddata.isEmpty
+                            ? GestureDetector(child: const Icon(Icons.downloading),onTap: (){
                               logic.initChannelData();
                             },) : TabBar(
                           // indicatorWeight: 3,
@@ -231,13 +229,13 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
                               )
                           ),
                           isScrollable: true,
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'DroidArabicKufi',
                           ),
                           labelColor: Colors.black,
-                          unselectedLabelStyle: TextStyle(
+                          unselectedLabelStyle: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               fontFamily: 'DroidArabicKufi',
@@ -266,7 +264,7 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
                               .toList(),
                         );
                       }),
-                    ):Row(children: [SizedBox(width: 15,),Text('我的频道'.tr,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),SizedBox(width: 10,),Text('点击进入频道'.tr,style: TextStyle(fontSize: 12,color: Color.fromRGBO(153, 153, 153, 1)),)],)),
+                    ):Row(children: [const SizedBox(width: 15,),Text('我的频道'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),const SizedBox(width: 10,),Text('点击进入频道'.tr,style: const TextStyle(fontSize: 12,color: Color.fromRGBO(153, 153, 153, 1)),)],)),
                 ///编辑按钮
                 if(!uparrow)GestureDetector(
                   onTap: (){
@@ -274,12 +272,12 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
                     setState(() {});
                   },
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Color.fromRGBO(249, 249, 249, 1)),
-                    child:Text(!isedit?'进入编辑'.tr:'完成编辑'.tr,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w600,color: Color.fromRGBO(0, 54, 107, 1),height: 1),),
+                    padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: const Color.fromRGBO(249, 249, 249, 1)),
+                    child:Text(!isedit?'进入编辑'.tr:'完成编辑'.tr,style: const TextStyle(fontSize: 12,fontWeight: FontWeight.w600,color: Color.fromRGBO(0, 54, 107, 1),height: 1),),
                   ),
                 ),
-                SizedBox(width: 5,),
+                const SizedBox(width: 5,),
                 ///下拉按钮
                 GestureDetector(
                   onTap: (){
@@ -305,7 +303,7 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
                     alignment: Alignment.centerRight,
                     child: Icon(
                       uparrow?Icons.expand_more:Icons.expand_less,
-                      color: Color.fromRGBO(153, 153, 153, 1),
+                      color: const Color.fromRGBO(153, 153, 153, 1),
                       size: 28,
                     ),
                     width: 40,
@@ -376,8 +374,8 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
 
 
           GetBuilder<StartListLogic>(builder: (logic) {
-            return Selecteddata.length == 0
-                ? Text('')
+            return Selecteddata.isEmpty
+                ? const Text('')
                 : Expanded(
                   child: Stack(children: [
                     if(uparrow)TabBarView(
@@ -398,9 +396,9 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
                     ),
                     if(!uparrow)Positioned(top: 0,left: 0,right: 0,bottom:0,
 
-                        child: GestureDetector(child: Container(color: Color.fromRGBO(0, 0, 0, 0.5,),child:Column(children: [
+                        child: GestureDetector(child: Container(color: const Color.fromRGBO(0, 0, 0, 0.5,),child:Column(children: [
                           GestureDetector(
-                            child: Container(padding:EdgeInsets.all(15),width: double.infinity,color: Colors.white,child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
+                            child: Container(padding:const EdgeInsets.all(15),width: double.infinity,color: Colors.white,child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
                             // Wrap(
                             //   spacing: 15.0, // 子组件之间的水平间距
                             //   runSpacing: 15.0, // 子组件之间的垂直间距
@@ -465,7 +463,7 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
                                     [
                                       for(var i=0;i<Selecteddata.length;i++)
                                         GestureDetector(child: Stack(clipBehavior: Clip.none,children: [
-                                          Container(padding: EdgeInsets.fromLTRB(20, 10, 20, 10),child: Text(Selecteddata[i]['name'],style: TextStyle(color: Selecteddata[i]['id']!=0?Color.fromRGBO(102, 102, 102, 1): Color.fromRGBO(28, 28, 28, 1),height: 1),),decoration: BoxDecoration(color: Selecteddata[i]['id']!=0?Colors.white:Color.fromRGBO(249, 249, 249, 1,),borderRadius: BorderRadius.circular(5),border: Border.all(width: 1,color: Selecteddata[i]['id']!=0?Color.fromRGBO(228, 228, 228, 1):Color.fromRGBO(249, 249, 249, 1,)),)),
+                                          Container(padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),child: Text(Selecteddata[i]['name'],style: TextStyle(color: Selecteddata[i]['id']!=0?const Color.fromRGBO(102, 102, 102, 1): const Color.fromRGBO(28, 28, 28, 1),height: 1),),decoration: BoxDecoration(color: Selecteddata[i]['id']!=0?Colors.white:const Color.fromRGBO(249, 249, 249, 1,),borderRadius: BorderRadius.circular(5),border: Border.all(width: 1,color: Selecteddata[i]['id']!=0?const Color.fromRGBO(228, 228, 228, 1):const Color.fromRGBO(249, 249, 249, 1,)),)),
                                           if(isedit&&Selecteddata[i]['id']!=0)Positioned(right: -25/2.2,top:-25/2.2,child: GestureDetector(child:Container(alignment: Alignment.center,width: 25,height: 25,child: Image.asset('assets/images/chathree.png',width: 15,height: 15,),),onTap: (){
                                             if(isedit&&Selecteddata.length>3){
                                               notselectedata=[...notselectedata,Selecteddata[i]];
@@ -508,18 +506,18 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
                                     }
                                 ),
 
-                            SizedBox(height: 60,),
-                            Row(children: [Text('其他频道'.tr,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),SizedBox(width: 15,),Text('点击添加频道'.tr,style: TextStyle(fontSize: 12,color: Color.fromRGBO(153, 153, 153, 1)),)],),
-                            SizedBox(height: 15,),
+                            const SizedBox(height: 60,),
+                            Row(children: [Text('其他频道'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),const SizedBox(width: 15,),Text('点击添加频道'.tr,style: const TextStyle(fontSize: 12,color: Color.fromRGBO(153, 153, 153, 1)),)],),
+                            const SizedBox(height: 15,),
                             Wrap(
                               spacing: 15.0, // 子组件之间的水平间距
                               runSpacing: 15.0, // 子组件之间的垂直间距
                               children: <Widget>[
                                 // 在这里添加子组件
                                 for(var i=0; i<notselectedata.length;i++)
-                                  GestureDetector(child: Container(padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                      child: Wrap(children: [Container(alignment: Alignment.center,width: 14,height: 14,child: Image.asset('assets/images/jiahao.png',width: 11,height: 11,),),SizedBox(width: 3,),Text('${notselectedata[i]['name']}',style: TextStyle(color: Color.fromRGBO(102, 102, 102, 1),height: 1),),],),
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),border: Border.all(width: 1,color: Color.fromRGBO(228, 228, 228, 1)),)
+                                  GestureDetector(child: Container(padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                      child: Wrap(children: [Container(alignment: Alignment.center,width: 14,height: 14,child: Image.asset('assets/images/jiahao.png',width: 11,height: 11,),),const SizedBox(width: 3,),Text('${notselectedata[i]['name']}',style: const TextStyle(color: Color.fromRGBO(102, 102, 102, 1),height: 1),),],),
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),border: Border.all(width: 1,color: const Color.fromRGBO(228, 228, 228, 1)),)
                                   ),onTap: (){
                                     Selecteddata=[...Selecteddata,notselectedata[i]];
                                     notselectedata.removeWhere((element) => element['id'] == notselectedata[i]['id']);
@@ -531,7 +529,7 @@ class ListViewState extends State<ListViewWidget> with TickerProviderStateMixin{
                                 // ...
                               ],
                             ),
-                            SizedBox(height: 30,),
+                            const SizedBox(height: 30,),
                           ],),),
                             onTap: (){},
                           )

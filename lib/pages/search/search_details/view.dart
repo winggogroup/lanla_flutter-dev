@@ -31,31 +31,31 @@ class SearchDetailsState extends State<SearchDetailsPage> {
       child: GetBuilder<SearchDetailsLogic>(builder: (logic) {
         return Container(
 
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: const BoxDecoration(color: Colors.white),
           child: Column(
             children: [
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Container(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                 height: 42,
                 // decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(child: Icon(Icons.arrow_back_ios, size: 22,),onTap: (){
+                    GestureDetector(child: const Icon(Icons.arrow_back_ios, size: 22,),onTap: (){
                       Navigator.of(context).pop();
                     },),
-                    SizedBox(width: 15,),
+                    const SizedBox(width: 15,),
                     Expanded(flex: 1, child:
                     TextField(
                         controller: selectionController,
                         decoration: InputDecoration(
-                          hintStyle: TextStyle(color: Color(0xff999999)),
-                          contentPadding: EdgeInsets.only(top: 0, bottom: 0),
+                          hintStyle: const TextStyle(color: Color(0xff999999)),
+                          contentPadding: const EdgeInsets.only(top: 0, bottom: 0),
                           border: InputBorder.none,
                           hintText: '输入搜索内容'.tr,
-                          fillColor: Color(0xFFF9f9f9),
-                          enabledBorder: OutlineInputBorder(
+                          fillColor: const Color(0xFFF9f9f9),
+                          enabledBorder: const OutlineInputBorder(
                             /*边角*/
                             borderRadius: BorderRadius.all(
                               Radius.circular(20), //边角为5
@@ -65,7 +65,7 @@ class SearchDetailsState extends State<SearchDetailsPage> {
                               width: 0, //边线宽度为2
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             /*边角*/
                             borderRadius: BorderRadius.all(
                               Radius.circular(20), //边角为5
@@ -78,8 +78,8 @@ class SearchDetailsState extends State<SearchDetailsPage> {
                           ),
                           filled: true,
                           prefixIcon:Padding(
-                            padding: EdgeInsets.only(top: 10,bottom: 10,right: 5),
-                            child:SvgPicture.asset('assets/icons/sousuo.svg',color: Color(0xff999999),),
+                            padding: const EdgeInsets.only(top: 10,bottom: 10,right: 5),
+                            child:SvgPicture.asset('assets/icons/sousuo.svg',color: const Color(0xff999999),),
                           ),
                         ),
                         onChanged: (v){
@@ -97,9 +97,9 @@ class SearchDetailsState extends State<SearchDetailsPage> {
                     )
 
                       ,),
-                    SizedBox(width: 15,),
+                    const SizedBox(width: 15,),
                     GestureDetector(
-                      child: Text('搜索'.tr, style: TextStyle(
+                      child: Text('搜索'.tr, style: const TextStyle(
                           color: Color(0xff666666), fontSize: 15),
                       ),
                       onTap: () {
@@ -123,7 +123,7 @@ class SearchDetailsState extends State<SearchDetailsPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Expanded(flex: 1,
 
                 child:

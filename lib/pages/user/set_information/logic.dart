@@ -49,7 +49,7 @@ class SetInformationLogic extends GetxController {
             msg: "填写成功".tr, position: ToastPostion.bottom);
       }
 
-      Timer.periodic(Duration(milliseconds: 1000),(timer){
+      Timer.periodic(const Duration(milliseconds: 1000),(timer){
         antishake=true;
         timer.cancel();//取消定时器
       }

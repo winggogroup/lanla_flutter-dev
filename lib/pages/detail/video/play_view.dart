@@ -3,14 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/Starrating.dart';
 import 'package:lanla_flutter/common/widgets/report.dart';
 
@@ -177,7 +175,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
     // TODO:暂时解决，在playing=true时，视频未加载出来，所以会有一帧的黑屏，延迟隐藏图片
     if (!playReadyLib && playing) {
       playReadyLib = true;
-      Future.delayed(Duration(milliseconds: 100), () {
+      Future.delayed(const Duration(milliseconds: 100), () {
         setState(() => playReady = true);
       });
     }
@@ -272,21 +270,21 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                 crossAxisAlignment:CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  if(widget.dataSource.goodsList.length>0)GestureDetector(
+                  if(widget.dataSource.goodsList.isNotEmpty)GestureDetector(
                     onTap: () {
                       Get.bottomSheet(Container(
-                        padding: EdgeInsets.all(20),
-                        decoration:BoxDecoration(
+                        padding: const EdgeInsets.all(20),
+                        decoration:const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.horizontal(left: Radius.circular(10),right:Radius.circular(10)),
                         ),
                         child: Column(children: [
                           Row(children: [
                             Image.asset('assets/images/spcommoditytwo.png',width: 30,height: 30,),
-                            SizedBox(width: 10,),
-                            Text('关联的商品'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),)
+                            const SizedBox(width: 10,),
+                            Text('关联的商品'.tr,style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 16),)
                           ],),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           Expanded(child: Container(child: ListView.builder(shrinkWrap: true,primary:false,padding:EdgeInsets.zero,itemCount: widget.dataSource.goodsList.length,itemBuilder: (context, i) {
                             return GestureDetector(onTap: (){
                               if (!userLogic.checkUserLogin()) {
@@ -297,14 +295,14 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                             },child: Column(children: [
                               // Container(width: double.infinity,height: 10,color: Color(0xfff9f9f9),),
                               // SizedBox(height: 15,),
-                              Row(children: [SizedBox(width: 20,),
+                              Row(children: [const SizedBox(width: 20,),
                                 Container(width: 50, height: 50,
                                   //超出部分，可裁剪
                                   clipBehavior: Clip.hardEdge,
                                   decoration: BoxDecoration(
-                                    color:Color(0xfff5f5f5),
+                                    color:const Color(0xfff5f5f5),
                                     borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(width: 0.5,color: Color(0xfff5f5f5))
+                                      border: Border.all(width: 0.5,color: const Color(0xfff5f5f5))
                                   ),
                                   child: Image.network(
                                     widget.dataSource.goodsList[i].thumbnail,
@@ -313,37 +311,37 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                                     width: 50, height: 50,
                                   ),
                                 ),
-                                SizedBox(width: 8,),
+                                const SizedBox(width: 8,),
                                 Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                  Container(constraints: BoxConstraints(maxWidth: 250,),child:
+                                  Container(constraints: const BoxConstraints(maxWidth: 250,),child:
                                   Text(widget.dataSource.goodsList[i].title,overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,style: TextStyle(fontSize: 16),),),
+                                    maxLines: 1,style: const TextStyle(fontSize: 16),),),
                                   Row(children: [
-                                    Container(height: 25,child: Text('评估'.tr,style: TextStyle(color: Color(0xff999999)),),),
-                                    SizedBox(width: 5,),
+                                    Container(height: 25,child: Text('评估'.tr,style: const TextStyle(color: Color(0xff999999)),),),
+                                    const SizedBox(width: 5,),
                                     XMStartRating(rating: double.parse(widget.dataSource.goodsList[i].score) ,showtext:true)
                                   ],),
                                 ],)],),
                               Container(height: 56,alignment: Alignment.centerRight,
-                                padding: EdgeInsets.fromLTRB(0, 10, 0,0),
+                                padding: const EdgeInsets.fromLTRB(0, 10, 0,0),
                                 child: ListView(
                                     shrinkWrap: true,
                                     primary:false,
                                     scrollDirection: Axis.horizontal,
                                     children:[
                                       for(var j=0;j<jsonDecode(widget.dataSource.goodsList[i].priceOther).length;j++)
-                                        GestureDetector(child:Container(margin:EdgeInsets.only(right: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width: 0.5,color: Color((0xffF5F5F5))),
-                                            color: Color(0xfff5f5f5),
-                                            borderRadius: BorderRadius.all(Radius.circular(5))
+                                        GestureDetector(child:Container(margin:const EdgeInsets.only(right: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width: 0.5,color: const Color((0xffF5F5F5))),
+                                            color: const Color(0xfff5f5f5),
+                                            borderRadius: const BorderRadius.all(Radius.circular(5))
                                         ),child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
                                           Row(mainAxisAlignment:MainAxisAlignment.center,children: [
                                             // Text("SAR",style: TextStyle(fontSize: 12,height: 1.1),),
                                             // SizedBox(width: 2,),
-                                            Text(jsonDecode(widget.dataSource.goodsList[i].priceOther)[j]['price'].split(' ')[0],style: TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
-                                            SizedBox(width: 4,),
-                                            Text(jsonDecode(widget.dataSource.goodsList[i].priceOther)[j]['price'].split(' ')[1],style: TextStyle(height: 1.3,fontSize: 12),)
+                                            Text(jsonDecode(widget.dataSource.goodsList[i].priceOther)[j]['price'].split(' ')[0],style: const TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
+                                            const SizedBox(width: 4,),
+                                            Text(jsonDecode(widget.dataSource.goodsList[i].priceOther)[j]['price'].split(' ')[1],style: const TextStyle(height: 1.3,fontSize: 12),)
                                           ],),
-                                          Text(jsonDecode(widget.dataSource.goodsList[i].priceOther)[j]['platform'],style: TextStyle(fontSize: 12,color: Color(0xff999999)),)
+                                          Text(jsonDecode(widget.dataSource.goodsList[i].priceOther)[j]['platform'],style: const TextStyle(fontSize: 12,color: Color(0xff999999)),)
                                         ],),) ,onTap: () async {
                                           if (!userLogic.checkUserLogin()) {
                                             Get.toNamed('/public/loginmethod');
@@ -353,11 +351,11 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                                         },)
                                     ]),
                               ),
-                              SizedBox(height: 15,),
+                              const SizedBox(height: 15,),
                               ///分割线
                               Container(
                                 height: 1.0,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Color(0xfff1f1f1),
                                   boxShadow: [
                                     BoxShadow(
@@ -369,7 +367,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 15,),
+                              const SizedBox(height: 15,),
                             ]),);
                           })),)
                         ],),
@@ -378,7 +376,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                     child: Container(
                       height: 35,
                       width: 35,
-                      margin: EdgeInsets.only(right: 10,left: 10,bottom: 10),
+                      margin: const EdgeInsets.only(right: 10,left: 10,bottom: 10),
                       child: Image.asset(
                         'assets/images/spcommodity.png',
                         fit: BoxFit.cover,
@@ -386,7 +384,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                     ),
                   ),
                   _userInfoBar(),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   _bottomBar(),
                 ],
               ),
@@ -414,13 +412,13 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                   //提示进度的气泡的背景色
                   valueIndicatorColor: Colors.green,
                   //提示进度的气泡文本的颜色
-                  valueIndicatorTextStyle: TextStyle(
+                  valueIndicatorTextStyle: const TextStyle(
                     color:Colors.white,
                   ),
                   thumbShape: RoundSliderThumbShape( //  滑块形状，可以自定义
                       enabledThumbRadius: slideheight  // 滑块大小
                   ),
-                  overlayShape: RoundSliderOverlayShape(  // 滑块外圈形状，可以自定义
+                  overlayShape: const RoundSliderOverlayShape(  // 滑块外圈形状，可以自定义
                     overlayRadius: 6, // 滑块外圈大小
                   ),
                   //滑块中心的颜色
@@ -432,13 +430,13 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                 ),
                 child: Slider(
                   value: sliderValue,
-                  label: '${int.parse((sliderValue  / 3600000).toStringAsFixed(0))<10?'0'+(sliderValue  / 3600000).toStringAsFixed(0):(sliderValue  / 3600000).toStringAsFixed(0)}:${int.parse(((sliderValue  % 3600000) /  60000).toStringAsFixed(0))<10?'0'+((sliderValue  % 3600000) /  60000).toStringAsFixed(0):((sliderValue  % 3600000) /  60000).toStringAsFixed(0)}:${int.parse(((sliderValue  % 60000) /  1000).toStringAsFixed(0))<10?'0'+((sliderValue % 60000) /  1000).toStringAsFixed(0):((sliderValue  % 60000) /  1000).toStringAsFixed(0)}',
+                  label: '${int.parse((sliderValue  / 3600000).toStringAsFixed(0))<10?'0${(sliderValue  / 3600000).toStringAsFixed(0)}':(sliderValue  / 3600000).toStringAsFixed(0)}:${int.parse(((sliderValue  % 3600000) /  60000).toStringAsFixed(0))<10?'0${((sliderValue  % 3600000) /  60000).toStringAsFixed(0)}':((sliderValue  % 3600000) /  60000).toStringAsFixed(0)}:${int.parse(((sliderValue  % 60000) /  1000).toStringAsFixed(0))<10?'0${((sliderValue % 60000) /  1000).toStringAsFixed(0)}':((sliderValue  % 60000) /  1000).toStringAsFixed(0)}',
                   min: 0.0,
                   max: maxDurations,
                   divisions: 1000,
                   onChangeEnd:(val){
                     Timer.periodic(
-                        Duration(seconds : 2),(timer){
+                        const Duration(seconds : 2),(timer){
 
                       setState(() {
                         slideheight=1;
@@ -474,7 +472,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
               child: Container(
                 height: 50,
                 width: 50,
-                child: Center(
+                child: const Center(
                   child: Icon(
                     Icons.arrow_back_ios,
                     color: Colors.white70,
@@ -501,8 +499,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                 }
                 AppLog('share', event: 'video',targetid: widget.dataSource.id );
                 Get.put<ContentProvider>(ContentProvider()).ForWard(widget.dataSource.id,1);
-                Share.share('https://api.lanla.app/share?c=' +
-                    widget.dataSource.id.toString());
+                Share.share('https://api.lanla.app/share?c=${widget.dataSource.id}');
               },
               child: Container(
                 //decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red)),
@@ -593,7 +590,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
     return Container(
       height: 70,
       color: Colors.black,
-      padding: EdgeInsets.fromLTRB(20, 0, 15, 0),
+      padding: const EdgeInsets.fromLTRB(20, 0, 15, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -621,12 +618,12 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
               },
               child:
                   Container(
-                    padding: EdgeInsets.fromLTRB(25, 3, 5, 3),
+                    padding: const EdgeInsets.fromLTRB(25, 3, 5, 3),
                     child:
                     Container(
                       height: 44,
-                      padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.fromLTRB(15, 3, 15, 3),
+                      decoration: const BoxDecoration(
                         // color: HexColor('#efefef'),
                         color: Color(0x4cffffff),
                         //设置四周圆角 角度
@@ -635,9 +632,9 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/svg/bi_drak.svg',width: 18,height: 18,),
-                          SizedBox(width: 8,),
+                          const SizedBox(width: 8,),
                           Text(
-                            '说点什么'.tr + '...',
+                            '${'说点什么'.tr}...',
 
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -654,7 +651,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(right: 0),
+            margin: const EdgeInsets.only(right: 0),
             // padding: EdgeInsets.only(left: 10),
             alignment: Alignment.centerRight,
             child: Row(
@@ -675,7 +672,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                     AppLog('tap', event: 'collect', data: "video");
                     widget.setCollect(widget.index);
                   },
-                  child:Container(color: Colors.transparent,margin:EdgeInsets.only(left: 20),child:Column(
+                  child:Container(color: Colors.transparent,margin:const EdgeInsets.only(left: 20),child:Column(
                     mainAxisAlignment:MainAxisAlignment.center,
                     children: [
                       Container(
@@ -716,7 +713,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                         AppLog('tap', event: 'like', data: "video");
                         widget.setLike(widget.index);
                       },
-                      child: Container(color: Colors.transparent,margin:EdgeInsets.only(left: 20),child:Column(
+                      child: Container(color: Colors.transparent,margin:const EdgeInsets.only(left: 20),child:Column(
                         mainAxisAlignment:MainAxisAlignment.center,
                         children: [
                           userLogic.getLike(widget.dataSource.id)
@@ -772,7 +769,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                           widget.updateCommentNumber();
                         });
                   },
-                  child: Container(color: Colors.transparent,margin:EdgeInsets.only(left: 20),child:Column(
+                  child: Container(color: Colors.transparent,margin:const EdgeInsets.only(left: 20),child:Column(
                     mainAxisAlignment:MainAxisAlignment.center,
                     children: [
                       Container(
@@ -806,7 +803,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                       Get.toNamed('/public/loginmethod');
                       return;
                     }
-                    if(Giftlist.length>0){
+                    if(Giftlist.isNotEmpty){
                       giftshowBottomSheet(context);
                     }
                   },
@@ -821,7 +818,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                         width: 24,
                         height: 24,
                       ),
-                      SizedBox(height: 0,),
+                      const SizedBox(height: 0,),
                       Text(
                         '礼物'.tr,
                         style: const TextStyle(
@@ -889,7 +886,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                         userLogic.update();
                         followPopup(context);
                         Timer.periodic(
-                            Duration(milliseconds: 1000), (timer) {
+                            const Duration(milliseconds: 1000), (timer) {
                             timer.cancel(); //取消定时器
                             Navigator.pop(context);
                         }
@@ -959,13 +956,13 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
             ),
             Container(
               alignment: Alignment.bottomRight,
-              margin: EdgeInsets.only(bottom: 5),
+              margin: const EdgeInsets.only(bottom: 5),
               child: Text(
                 widget.dataSource.title,
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                style: const TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
             widget.dataSource.text == ''
@@ -978,10 +975,10 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 4,
-                style: TextStyle(color: Colors.white, fontSize: 14),
+                style: const TextStyle(color: Colors.white, fontSize: 14),
               ),
             ),
-            TopicFormat(widget.dataSource!.topics,isVideo:true)
+            TopicFormat(widget.dataSource.topics,isVideo:true)
           ],
         ),
       );
@@ -1039,11 +1036,11 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                         .of(context)
                         .size
                         .height / 2 - 20,
-                    decoration: new BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.white,
-                        borderRadius: new BorderRadius.only(
-                            topLeft: const Radius.circular(10.0),
-                            topRight: const Radius.circular(10.0))
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10.0),
+                            topRight: Radius.circular(10.0))
                     ),
                     child:
                     // Column(
@@ -1062,22 +1059,22 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                     //   ],
                     // )
                     Column(children: [
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       Container(
                         width: 25,
                         height: 3,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(
                                 10),),
                             color: Color(0xffe4e4e4)
                         ),
                       ),
-                      SizedBox(height: 15,),
-                      Container(padding: EdgeInsets.only(left: 20, right: 20),
+                      const SizedBox(height: 15,),
+                      Container(padding: const EdgeInsets.only(left: 20, right: 20),
                         alignment: Alignment.centerRight,
-                        child: Text('礼物'.tr, style: TextStyle(
+                        child: Text('礼物'.tr, style: const TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 16),),),
-                      SizedBox(height: 22,),
+                      const SizedBox(height: 22,),
                       Container(child: CarouselSlider(
                         options: CarouselOptions(
                             height: 210,
@@ -1094,7 +1091,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                         items: Giftlist
                             .map((item) =>
                             Container(
-                              padding: EdgeInsets.only(left: 12, right: 12),
+                              padding: const EdgeInsets.only(left: 12, right: 12),
                               width: double.infinity,
                               child: Wrap(
                                   alignment: WrapAlignment.spaceBetween,
@@ -1107,7 +1104,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                                                 color: giftItem.id == item[i].id
                                                     ? Colors.black
                                                     : Colors.white),
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                                 Radius.circular(10.0))
                                         ),
                                         width: (MediaQuery
@@ -1115,7 +1112,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                                             .size
                                             .width - 54) / 4,
                                         height: 100,
-                                        padding: EdgeInsets.fromLTRB(
+                                        padding: const EdgeInsets.fromLTRB(
                                             15, 10, 15, 10),
                                         child: Column(
                                           mainAxisAlignment: MainAxisAlignment
@@ -1130,9 +1127,9 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                                                   ? 'assets/images/jinbi.png'
                                                   : 'assets/images/beike.png',
                                                 width: 15, height: 15,),
-                                              SizedBox(width: 5,),
+                                              const SizedBox(width: 5,),
                                               Text(item[i].price.toString(),
-                                                style: TextStyle(fontSize: 12),)
+                                                style: const TextStyle(fontSize: 12),)
                                             ],)
                                           ],),
                                       ), onTap: () {
@@ -1158,7 +1155,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                             child: Container(
                               width: 5.0,
                               height: 5.0,
-                              margin: EdgeInsets.symmetric(
+                              margin: const EdgeInsets.symmetric(
                                   vertical: 10.0, horizontal: 4.0),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
@@ -1173,15 +1170,15 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                           );
                         }).toList(),
                       ),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       Container(child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(child: Container(
-                            padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
+                            padding: const EdgeInsets.fromLTRB(30, 8, 30, 8),
                             child: Text(
-                              '赠送'.tr, style: TextStyle(color: Colors.white),),
-                            decoration: BoxDecoration(
+                              '赠送'.tr, style: const TextStyle(color: Colors.white),),
+                            decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(
                                   Radius.circular(50.0)), color: Colors.black,
                             ),), onTap: () async {
@@ -1222,7 +1219,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                                 });
                                 songift(context, givingifts.body['imagePath']);
                                 Timer.periodic(
-                                    Duration(milliseconds: 2000), (timer) {
+                                    const Duration(milliseconds: 2000), (timer) {
 
                                   timer.cancel(); //取消定时器
                                   Navigator.pop(context);
@@ -1234,32 +1231,32 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                               });
                             }
                           },),
-                          Container(decoration: BoxDecoration(
+                          Container(decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(
                                 Radius.circular(50.0)),
                             color: Color(0xfff5f5f5),
                           ),
-                              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                              padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                               height: 35,
                               child: Row(children: [
                                 Image.asset(giftItem.type == 1
                                     ? 'assets/images/jinbi.png'
                                     : 'assets/images/beike.png', width: 15,
                                   height: 15,),
-                                SizedBox(width: 5,),
+                                const SizedBox(width: 5,),
                                 Container(
                                   child: Text(
                                     giftItem.type == 1 ? Balancequery['laGold']
                                         .toString() : Balancequery['nacre']
                                         .toString(), style: TextStyle(
-                                      color: giftItem.type == 1 ? Color(
-                                          0xffFFA800) : Color(0xffFFA8C7),
+                                      color: giftItem.type == 1 ? const Color(
+                                          0xffFFA800) : const Color(0xffFFA8C7),
                                       fontWeight: FontWeight.w600
                                   ),),),
-                                SizedBox(width: 10,),
+                                const SizedBox(width: 10,),
                                 GestureDetector(child: Text(
                                   giftItem.type == 1 ? '充值la币'.tr : '贝壳'.tr,
-                                  style: TextStyle(fontSize: 12,
+                                  style: const TextStyle(fontSize: 12,
                                       fontWeight: FontWeight.w600),),
                                   onTap: () {
                                     if (player.state == FijkState.started) {
@@ -1276,7 +1273,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                                     }
                                   },),
 
-                                SizedBox(width: 10,),
+                                const SizedBox(width: 10,),
                                 SvgPicture.asset(
                                   "assets/icons/publish/arrow.svg",
                                   width: 10,
@@ -1284,7 +1281,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                                 ),
                               ],)),
                         ],
-                      ), padding: EdgeInsets.only(left: 20, right: 20))
+                      ), padding: const EdgeInsets.only(left: 20, right: 20))
 
                     ]),
 
@@ -1348,8 +1345,8 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
 
         return AlertDialog(
           backgroundColor: Colors.transparent,
-          contentPadding:EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape:RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
+          contentPadding:const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape:const RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
           content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -1358,15 +1355,15 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
 
                   width: 270,
                   height: 270,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10))
                   ),
                   child: Column(children: [
-                    SizedBox(height: 40,),
+                    const SizedBox(height: 40,),
                     Image.network(image,width: 150,height: 150,),
-                    SizedBox(height: 22,),
-                    Text('赠送成功'.tr,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
+                    const SizedBox(height: 22,),
+                    Text('赠送成功'.tr,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
                   ],),
                 ),
               ]),
@@ -1386,23 +1383,23 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
 
         return AlertDialog(
           backgroundColor: Colors.transparent,
-          contentPadding:EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape:RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
+          contentPadding:const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape:const RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
           content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 15,bottom: 15),
+                  padding: const EdgeInsets.only(top: 15,bottom: 15),
                   //color: Colors.transparent,
                   width: 200,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(20))
                   ),
                   child: Column(children: [
                     Image.asset('assets/images/guanzhusahng.png',width: 49,height: 55,),
-                    SizedBox(height: 15,),
-                    Text('关注成功'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 17),)
+                    const SizedBox(height: 15,),
+                    Text('关注成功'.tr,style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 17),)
                   ],),
                 ),
               ]),

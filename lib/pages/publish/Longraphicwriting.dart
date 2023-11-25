@@ -1,18 +1,13 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:ui';
 import 'package:audio_session/audio_session.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:circular_seek_bar/circular_seek_bar.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 // import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_sound/flutter_sound.dart';
-import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
@@ -129,7 +124,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
       );
       String html = converter.convert();
       html = html.replaceAllMapped(RegExp(r'class="ql-size-(\d+)"'), (match) => 'style="font-size: ${match.group(1)}px"');
-      print('转化的html${html}');
+      print('转化的html$html');
       final document = html_parser.parse(html);
       final images = document.getElementsByTagName('img');
       for (var image in images) {
@@ -182,7 +177,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
       if(text[i]["insert"] is String){
         runtext=runtext+text[i]["insert"];
       }else{
-        runtext=runtext+'<!--IMAGE-->'+text[i]["insert"]["image"]+'<!--IMAGE-->';
+        runtext='${'$runtext<!--IMAGE-->'+text[i]["insert"]["image"]}<!--IMAGE-->';
       }
     }
     return runtext;
@@ -202,7 +197,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
         //     return ;
         //   }
         if (insertData is quill.Embed) {
-          final embed = insertData as quill.Embed;
+          final embed = insertData;
           if (embed.value is quill.BlockEmbed && embed.value.type == 'image') {
             final imageUrl = embed.value.data['source'] ?? '';
             return {'insert': '[Image: $imageUrl]'};
@@ -317,7 +312,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return new LoadingDialog(text: '',);
+          return LoadingDialog(text: '',);
         });
   }
   void insertImage(String imageUrl) {
@@ -361,7 +356,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
   }
 
 
-  final InputDecoration decoration = InputDecoration(
+  final InputDecoration decoration = const InputDecoration(
     prefixIcon: Icon(Icons.image),
     prefixText: '# ',
     hintText: '请输入内容',
@@ -526,18 +521,18 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                     alignment: Alignment.center,
 
                     child: Container(
-                      margin: EdgeInsets.only(right: 15),
+                      margin: const EdgeInsets.only(right: 15),
                       alignment: Alignment.center,
                       width: 58,
                       height: 28,
                       // padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.all(Radius.circular(38))
                       ),
                       child: Text(
                         '完成'.tr,
-                        style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w600,),
+                        style: const TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w600,),
                       ),
                     ),
                   ),
@@ -552,43 +547,43 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
         ),
         actions: [
           GestureDetector(child: Container(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            child: Icon(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: const Icon(
               Icons.info_outline,
               color: Colors.black12,
               size: 28,
             ),
           ), onTap: () {
-            Get.defaultDialog(titlePadding: EdgeInsets.fromLTRB(8, 20, 8, 8),
+            Get.defaultDialog(titlePadding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
                 content:
                 Container(child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('LanLa鼓励向上、真实、原创的内容，含以下内容的笔记将不会被推荐：'.tr),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Text('1．含有不文明语言、过度性感图片；'.tr),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Text('2．含有网址链接、联系方式、二维码或售卖语言；'.tr),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Text('3．冒充他人身份或搬运他人作品；'.tr),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Text('4．为刻意博取眼球，在标题、封面等处使用夸张表达'.tr),
                   ],
-                ), padding: EdgeInsets.fromLTRB(0, 10, 20, 10),),
+                ), padding: const EdgeInsets.fromLTRB(0, 10, 20, 10),),
                 confirm: Column(children: [
                   ElevatedButton(onPressed: () {
                     Get.back();
                   },
                     child: Text(
-                      "我知道了".tr, style: TextStyle(color: Colors.white),),
+                      "我知道了".tr, style: const TextStyle(color: Colors.white),),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                          Color(0xff000000)), //背景颜色
+                          const Color(0xff000000)), //背景颜色
                     ),),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                 ],),
                 title: '发布小贴士'.tr,
-                titleStyle: TextStyle(fontSize: 16));
+                titleStyle: const TextStyle(fontSize: 16));
           },)
         ],
       ),
@@ -600,14 +595,14 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
           GetBuilder<LonggraphictextLogic>(builder: (logic) {
             return Container(
               height: MediaQuery.of(context).size.height-200,
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(child:
                   GestureDetector(child:  Container(
                     width: double.infinity,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 8,
                     ),
                     child: SingleChildScrollView(child:
@@ -627,7 +622,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                             if (element.localName == 'img') {
                               final pictureUrl = element.attributes['src'];
                               if (pictureUrl != null) {
-                                  return Container(padding:EdgeInsets.only(top: 10,bottom: 10),width: double.infinity,alignment:Alignment.center,child: Container(
+                                  return Container(padding:const EdgeInsets.only(top: 10,bottom: 10),width: double.infinity,alignment:Alignment.center,child: Container(
                                     width: element.attributes['style']!.contains('width:50%;')?MediaQuery.of(context).size.width*0.5:double.infinity,
                                     child:
                                     // CachedNetworkImage(
@@ -653,7 +648,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                             return null;
                           },
                         ),)
-                    :Text("说说你此刻的心情".tr,style: TextStyle(color: Colors.black12,fontSize: 16))),
+                    :Text("说说你此刻的心情".tr,style: const TextStyle(color: Colors.black12,fontSize: 16))),
 
                   ),onTap: (){
                     // print('淡季了');
@@ -665,8 +660,8 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                   ),
                   ///新标签位置
                   Container(alignment: Alignment.centerRight,
-                    child: Container(padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
-                      decoration: BoxDecoration(color: Color(0xfff5f5f5),
+                    child: Container(padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+                      decoration: const BoxDecoration(color: Color(0xfff5f5f5),
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: Row(mainAxisSize: MainAxisSize.min, children: [
                         GestureDetector(child: SizedBox(
@@ -674,14 +669,14 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                           child: SvgPicture.asset(
                             "assets/icons/publish/dingwei.svg",
                             color: logic.state.positioninformation.toString() ==
-                                '{}' ? Color(0xffe4e4e4) : Colors.black,
+                                '{}' ? const Color(0xffe4e4e4) : Colors.black,
                           ),
                         ),onTap: (){
                           Get.toNamed('/verify/locationlist');
                         },),
 
                         GestureDetector(child: Container(
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             maxWidth: 210,
                           ),
                           child: logic.state.positioninformation
@@ -690,7 +685,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                               ? Text(
                             '添加地址'.tr,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Color(0xff666666),
                                 fontSize: 12,
                                 height: 1),
@@ -698,7 +693,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                               : Text(
                               logic.state.positioninformation['name'],
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Color(0xff666666),
                                   fontSize: 12,
                                   height: 1)),
@@ -707,7 +702,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                         },),
                         if(logic.state.positioninformation
                             .toString() !=
-                            '{}')SizedBox(width: 5,),
+                            '{}')const SizedBox(width: 5,),
                         logic.state.positioninformation.toString() != '{}'?GestureDetector(
                           child: Container(
                             width: 20,
@@ -719,7 +714,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                                 "assets/svg/cha.svg",
                                 width: 8,
                                 height: 8,
-                                color: Color(0xffE1E1E1),
+                                color: const Color(0xffE1E1E1),
                               ),
                             ),
                           ),
@@ -730,8 +725,8 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                         ):Container(width: 3,),
                       ],)
                       ,),),
-                  SizedBox(height: 15,),
-                  Divider(height: 1.0,color: Color(0xffF1F1F1),),
+                  const SizedBox(height: 15,),
+                  const Divider(height: 1.0,color: Color(0xffF1F1F1),),
                   ///录音
                   SizedBox(
                     height: 60,
@@ -747,7 +742,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                                 color: logic.state.formData["recorderpath"]!=null&&logic.state
                                     .formData["recorderpath"] != ''
                                     ? Colors.black
-                                    : Color(0xffe4e4e4),
+                                    : const Color(0xffe4e4e4),
                               ),
                               const SizedBox(
                                 width: 10,
@@ -810,14 +805,14 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                                           }
                                         },
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
                                       Expanded(
                                         flex: 1,
                                         child: Container(
                                           height: 16,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                               image:
                                               DecorationImage(
                                                 image: AssetImage(
@@ -827,19 +822,19 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                                               )),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
                                       Text(
                                         "${logic.state
                                             .formData['recordingtime']}s",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             color: Colors.white,
                                             fontWeight:
                                             FontWeight.w600),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 20,
                                       ),
                                     ],
@@ -848,7 +843,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                               )
                                   : GestureDetector(
                                 child: Padding(
-                                    padding: EdgeInsets.only(right: 10),
+                                    padding: const EdgeInsets.only(right: 10),
                                     child: Text('录音'.tr)),
                                 onTap: () {
                                   showBottomSheet(
@@ -859,7 +854,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                                           .height);
                                 },
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 15,
                               ),
                               if (logic.state.formData["recorderpath"]!=null&&logic.state.formData["recorderpath"] != '')
@@ -873,7 +868,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                                     Recordingdeletion();
                                   },
                                 ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 40,
                               ),
                               // GestureDetector(child:Text('播放') ,onTap: (){
@@ -886,7 +881,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                       ],
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 1.0,
                     color: Color(0xffF1F1F1),
                   ),
@@ -904,7 +899,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                             width: 22,
                             child: SvgPicture.asset(
                               "assets/icons/publish/topic.svg",
-                              color: logic.state.selectTopic.isEmpty ? Color(
+                              color: logic.state.selectTopic.isEmpty ? const Color(
                                   0xffe4e4e4) : Colors.black,
                             ),
                           ),
@@ -913,7 +908,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                                 scrollDirection: Axis.horizontal,
                                 child: logic.state.selectTopic.isEmpty
                                     ? Padding(
-                                    padding: EdgeInsets.only(right: 10),
+                                    padding: const EdgeInsets.only(right: 10),
                                     child: Text('没有选择话题'.tr))
                                     : _TopicListWidget(logic.state.selectTopic),
                               )),
@@ -928,7 +923,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                       ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     height: 1.0,
                     color: Color(0xffF1F1F1),
                   ),
@@ -942,7 +937,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                             width: 22,
                             child: SvgPicture.asset(
                               "assets/icons/publish/bilibili.svg",
-                              color: Check ? Colors.black : Color(0xffe4e4e4),
+                              color: Check ? Colors.black : const Color(0xffe4e4e4),
                             )),
                         if(logic.state.formData['channel']!=null)Expanded(
                             child: SingleChildScrollView(
@@ -992,13 +987,12 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                             width: 18,
                             child: SvgPicture.asset(
                               "assets/svg/guanlianht.svg",
-                              color: logic.state.listItem.length ==
-                                  0 ? Color(0xffe4e4e4) : Colors.black,
+                              color: logic.state.listItem.isEmpty ? const Color(0xffe4e4e4) : Colors.black,
                             ),
                           ),
                           Expanded(
                               child: Padding(
-                                  padding: EdgeInsets.only(right: 10),
+                                  padding: const EdgeInsets.only(right: 10),
                                   child: Text('关联宝贝'.tr))
                           ),
                         ],
@@ -1007,20 +1001,20 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                   ),
                   Container(
                     child: Column(
-                      children: logic.state.listItem.length > 0 ? logic.state.listItem.map((value){
+                      children: logic.state.listItem.isNotEmpty ? logic.state.listItem.map((value){
                         return
                           Column(
                             children: [
                               Container(
-                                decoration: BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.all(Radius.circular(5)),),
-                                margin: EdgeInsets.only(bottom: 10),
-                                padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                decoration: const BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.all(Radius.circular(5)),),
+                                margin: const EdgeInsets.only(bottom: 10),
+                                padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                                 child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
                                   Row(children: [Container(width: 40, height: 40,
                                     //超出部分，可裁剪
                                     clipBehavior: Clip.hardEdge,
                                     decoration: BoxDecoration(
-                                      color:Color(0xfff5f5f5),
+                                      color:const Color(0xfff5f5f5),
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Image.network(
@@ -1030,15 +1024,15 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                                       width: 40, height: 40,
                                     ),
                                   ),
-                                    SizedBox(width: 5,),
+                                    const SizedBox(width: 5,),
                                     Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                      Container(constraints: BoxConstraints(maxWidth: 200,),child:
+                                      Container(constraints: const BoxConstraints(maxWidth: 200,),child:
                                       Text(value.title,overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,style: TextStyle(fontSize: 14),),),
-                                      SizedBox(height: 5,),
+                                        maxLines: 1,style: const TextStyle(fontSize: 14),),),
+                                      const SizedBox(height: 5,),
                                       Row(children: [
-                                        Container(height: 25,child: Text('评估'.tr,style: TextStyle(color: Color(0xff999999),fontSize: 14),),),
-                                        SizedBox(width: 5,),
+                                        Container(height: 25,child: Text('评估'.tr,style: const TextStyle(color: Color(0xff999999),fontSize: 14),),),
+                                        const SizedBox(width: 5,),
                                         XMStartRating(rating: double.parse(value.score) ,showtext:true)
                                       ],),
                                     ]),],),
@@ -1047,7 +1041,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                                     height: 15,
                                     child: SvgPicture.asset(
                                       "assets/svg/cha.svg",
-                                      color: Color(0xff999999),
+                                      color: const Color(0xff999999),
                                     ),
                                   ),onTap: (){
                                     setState(() {
@@ -1062,15 +1056,15 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                       }).toList() : [],
                     ),),
                   ///继续关联
-                  if(logic.state.listItem.length>0&&logic.state.listItem.length<3)GestureDetector(
+                  if(logic.state.listItem.isNotEmpty&&logic.state.listItem.length<3)GestureDetector(
                     child: Container(width: double.infinity,height: 47,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/images/xuxian.png'),
                           fit: BoxFit.fill, // 完全填充
                         ),
                       ),
-                      child: Row(mainAxisAlignment:MainAxisAlignment.center,children: [Text('继续关联'.tr),SizedBox(width: 10,),SvgPicture.asset(
+                      child: Row(mainAxisAlignment:MainAxisAlignment.center,children: [Text('继续关联'.tr),const SizedBox(width: 10,),SvgPicture.asset(
                         "assets/svg/jia.svg",
                         width: 10,
                         height: 10,
@@ -1444,7 +1438,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
       //               ))),
       Column(children: [
         Expanded(
-          child: Container(padding: EdgeInsets.only(left: 20,right: 20),child:Stack(
+          child: Container(padding: const EdgeInsets.only(left: 20,right: 20),child:Stack(
             children: [
               if (_showPlaceholder &&
                   (state.formData['text'] == '' ||
@@ -1454,16 +1448,16 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                     top: 0,
                     child: Text(
                       "说说你此刻的心情".tr,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.black12, fontSize: 16),
                     )),
               quill.QuillEditor(
-                locale: Locale('ar'),
+                locale: const Locale('ar'),
                 controller: _controlleres,
                 focusNode: focusNode,
                 autoFocus: false,
                 expands: true,
-                padding: EdgeInsets.only(bottom: 20,top: 5),
+                padding: const EdgeInsets.only(bottom: 20,top: 5),
                 scrollController: ScrollController(),
                 scrollable: true,
                 readOnly: false,
@@ -1491,23 +1485,23 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
 
         ),
         ///分割线
-        Container(height: 1.0, decoration: BoxDecoration(color: Color(0xfff1f1f1), boxShadow: [BoxShadow(color: Color(0x0c00000), offset: Offset(0, 2), blurRadius: 5, spreadRadius: 0,),],
+        Container(height: 1.0, decoration: const BoxDecoration(color: Color(0xfff1f1f1), boxShadow: [BoxShadow(color: Color(0x0c00000), offset: Offset(0, 2), blurRadius: 5, spreadRadius: 0,),],
         ),),
         Container(width: MediaQuery.of(context).size.width,
           height: 45,
           child: Row(
             mainAxisAlignment:MainAxisAlignment.start,
             children: [
-              SizedBox(width: 20,),
+              const SizedBox(width: 20,),
               GestureDetector(child: Container(
                 width: 25,
                 height: 25,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color:  _controlleres.getSelectionStyle().attributes.containsKey(quill.Attribute.bold.key)
-                      ? Color(0xffD1FF34)
+                      ? const Color(0xffD1FF34)
                       : null,
-                  borderRadius: BorderRadius.all(Radius.circular(5))
+                  borderRadius: const BorderRadius.all(Radius.circular(5))
                 ),
                child: SvgPicture.asset(
                  width: 12,
@@ -1530,9 +1524,9 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
 
                 });
               },),
-              SizedBox(width: 15,),
+              const SizedBox(width: 15,),
               GestureDetector(child: Container(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                child: SvgPicture.asset(
                 "assets/svg/zisize.svg",
                  width: 18,
@@ -1545,7 +1539,7 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0), // 设置边框圆角
                     ),
-                    contentPadding: EdgeInsets.all(0),
+                    contentPadding: const EdgeInsets.all(0),
                     // title: Text('选择字号'.tr,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),textAlign: TextAlign.center,),
                     content:StatefulBuilder(
                         builder: (BuildContext context, StateSetter setState) {
@@ -1553,9 +1547,9 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
 
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              SizedBox(height: 30,),
-                              Text('选择字号'.tr,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),textAlign: TextAlign.center,),
-                              SizedBox(height: 30,),
+                              const SizedBox(height: 30,),
+                              Text('选择字号'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w600),textAlign: TextAlign.center,),
+                              const SizedBox(height: 30,),
                               // ElevatedButton(
                               //   onPressed: () {
                               //     final selectionStyle = quill.Attribute.clone(
@@ -1579,52 +1573,52 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                               // ),
                               GestureDetector(child: Container(width: 150,height: 50,alignment:Alignment.center,decoration: BoxDecoration(color: Colors.white,
                                 borderRadius: BorderRadius.circular(50.0),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Color.fromRGBO(0, 0, 0, 0.05), // 设置阴影颜色
                                     offset: Offset(0, 1), // 设置阴影偏移量
                                     blurRadius: 2, // 设置阴影模糊半径
                                     spreadRadius: 2, // 设置阴影扩展半径
                                   ),
-                                ],),child: Text('小'.tr,style: TextStyle(fontSize: 14),),),onTap: (){
+                                ],),child: Text('小'.tr,style: const TextStyle(fontSize: 14),),),onTap: (){
                                 final selectionStyle = quill.Attribute.clone(
                                     quill.Attribute.size, '14');
                                 _controlleres.formatSelection(selectionStyle);
                                 Navigator.pop(context);
                               },),
-                              SizedBox(height: 25,),
+                              const SizedBox(height: 25,),
                               GestureDetector(child: Container(width: 150,height: 50,alignment:Alignment.center,decoration: BoxDecoration(color: Colors.white,
                                 borderRadius: BorderRadius.circular(50.0),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Color.fromRGBO(0, 0, 0, 0.05), // 设置阴影颜色
                                     offset: Offset(0, 1), // 设置阴影偏移量
                                     blurRadius: 2, // 设置阴影模糊半径
                                     spreadRadius: 2, // 设置阴影扩展半径
                                   ),
-                                ],),child: Text('中'.tr,style: TextStyle(fontSize: 16),),),onTap: (){
+                                ],),child: Text('中'.tr,style: const TextStyle(fontSize: 16),),),onTap: (){
                                 final selectionStyle = quill.Attribute.clone(
                                     quill.Attribute.size, '16');
                                 _controlleres.formatSelection(selectionStyle);
                                 Navigator.pop(context);
                               },),
-                              SizedBox(height: 25,),
+                              const SizedBox(height: 25,),
                               GestureDetector(child: Container(width: 150,height: 50,alignment:Alignment.center,decoration: BoxDecoration(color: Colors.white,
                                 borderRadius: BorderRadius.circular(50.0),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Color.fromRGBO(0, 0, 0, 0.05), // 设置阴影颜色
                                     offset: Offset(0, 1), // 设置阴影偏移量
                                     blurRadius: 2, // 设置阴影模糊半径
                                     spreadRadius: 2, // 设置阴影扩展半径
                                   ),
-                                ],),child: Text('大'.tr,style: TextStyle(fontSize: 18),),),onTap: (){
+                                ],),child: Text('大'.tr,style: const TextStyle(fontSize: 18),),),onTap: (){
                                 final selectionStyle = quill.Attribute.clone(
                                     quill.Attribute.size, '18');
                                 _controlleres.formatSelection(selectionStyle);
                                 Navigator.pop(context);
                               },),
-                              SizedBox(height: 30,),
+                              const SizedBox(height: 30,),
                               // ElevatedButton(
                               //   onPressed: () {
                               //     final selectionStyle = quill.Attribute.clone(
@@ -1675,9 +1669,9 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                   ),
                 );
               },),
-              SizedBox(width: 15,),
+              const SizedBox(width: 15,),
               GestureDetector(child: Container(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 child: SvgPicture.asset(
                   width: 19,
                   height: 19,
@@ -1685,9 +1679,9 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
               ),),onTap: (){
                 _insertImage();
               },),
-              SizedBox(width: 15,),
+              const SizedBox(width: 15,),
               GestureDetector(child: Container(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 child: SvgPicture.asset(
                   width: 24,
                   height: 24,
@@ -1846,17 +1840,17 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                     logic.onPublish(context);
                   },
                   child: Container(
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     height: 70,
-                    padding: EdgeInsets.only(bottom: 3),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.only(bottom: 3),
+                    decoration: const BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.all(Radius.circular(30.0)),
                     ),
                     child: Center(
                       child: Text(
                         '发布笔记'.tr,
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
                   ),
@@ -1871,14 +1865,14 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
       return Container();
     }
     return Container(
-      margin: EdgeInsets.only(right: 10),
+      margin: const EdgeInsets.only(right: 10),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           foregroundColor: id == activeId ? Colors.white : Colors.black87,
           backgroundColor: id == activeId ? Colors.black : Colors.white,
           surfaceTintColor: Colors.white,
-          minimumSize: Size(66, 28),
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          minimumSize: const Size(66, 28),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
@@ -1923,12 +1917,12 @@ class LongraphicwritingState extends State<LongraphicwritingPage> with WidgetsBi
                 topRight: Radius.circular(10.0))),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 55,
             ),
             Text(
               '快用语音简单描述一下吧'.tr,
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
             ),
             Expanded(
               flex: 1,
@@ -1999,7 +1993,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
               if (Recordingoperation)
                 GestureDetector(
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(20, 8, 20, 8),
+                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(50),
@@ -2023,7 +2017,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
                   },
                 ),
               Container(
-                color: Color.fromARGB(1, 0, 0, 0), //一个透明的color
+                color: const Color.fromARGB(1, 0, 0, 0), //一个透明的color
                 width: 100,
                 height: 100,
                 child: Stack(
@@ -2041,7 +2035,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
                       sweepAngle: 360,
                       strokeCap: StrokeCap.butt,
                       progressColor: Colors.black,
-                      trackColor: Color(0xfff1f1f1),
+                      trackColor: const Color(0xfff1f1f1),
                       child: Center(
                         child: GestureDetector(
                           child: Container(
@@ -2113,7 +2107,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                     decoration: BoxDecoration(
-                      color: Color(0xffF5F5F5),
+                      color: const Color(0xffF5F5F5),
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: Container(
@@ -2161,7 +2155,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
         throw RecordingPermissionException('Microphone permission not granted');
       }
     }
-    await recorderModule!.openRecorder();
+    await recorderModule.openRecorder();
     final session = await AudioSession.instance;
     await session.configure(AudioSessionConfiguration(
       avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
@@ -2204,33 +2198,31 @@ class AudioRecordState extends State<AudioRecordWidget> {
 
         await recorderModule
             .startRecorder(
-          toFile: "${dir.path}/${path}",
+          toFile: "${dir.path}/$path",
           codec: Codec.aacADTS,
         )
             .then((value) {
           setState(() {});
         });
-        recorderModule.setSubscriptionDuration(Duration(milliseconds: 1000));
+        recorderModule.setSubscriptionDuration(const Duration(milliseconds: 1000));
 
         /// 监听录音
         recorderSubscription = recorderModule.onProgress!.listen((e) {
-          if (e != null && e.duration != null) {
-            var date = DateTime.fromMillisecondsSinceEpoch(
-                e.duration.inMilliseconds,
-                isUtc: true);
-            setState(() {
-              //更新录音时长
-              Recordingtime = Recordingtime + 1;
-            });
-            logics.state.formData['recordingtime'] = Recordingtime;
-            logics.update();
-            // var txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
-            //设置了最大录音时长
+          var date = DateTime.fromMillisecondsSinceEpoch(
+              e.duration.inMilliseconds,
+              isUtc: true);
+          setState(() {
+            //更新录音时长
+            Recordingtime = Recordingtime + 1;
+          });
+          logics.state.formData['recordingtime'] = Recordingtime;
+          logics.update();
+          // var txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
+          //设置了最大录音时长
 
-            if (Recordingtime >= 59.0) {
-              stopRecorder();
-              return;
-            }
+          if (Recordingtime >= 59.0) {
+            stopRecorder();
+            return;
           }
         });
       });
@@ -2255,7 +2247,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
         });
     Directory dir = await getTemporaryDirectory();
 
-    File file = File("${dir.path}/${path}");
+    File file = File("${dir.path}/$path");
 
     // AliOssClient.init(
     //   //tokenGetter: _tokenGetterMethod,
@@ -2270,7 +2262,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
 
     final recordingName =  storageRef.child("user/audio/${dateTime.year}${dateTime.month}${dateTime.day}${dateTime
         .hour}${dateTime.minute}${dateTime.second}.mp3");
-    final recordingUpload = recordingName.putFile(File("${dir.path}/${path}"),);
+    final recordingUpload = recordingName.putFile(File("${dir.path}/$path"),);
 
     await recordingUpload.whenComplete(() {});
     String newThumbnailPath =  await recordingName.getDownloadURL();
@@ -2283,7 +2275,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
     //         .hour}${dateTime.minute}${dateTime.second}");
 
     ///保存本地地址
-    logics.state.formData['recorderpath'] = "${dir.path}/${path}";
+    logics.state.formData['recorderpath'] = "${dir.path}/$path";
 
     ///保存oss地址
 
@@ -2295,7 +2287,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
 
   ///关闭录制
   void stopRecorder() async {
-    await recorderModule!.stopRecorder().then((value) {
+    await recorderModule.stopRecorder().then((value) {
       setState(() {
         recroding = false;
       });
@@ -2328,16 +2320,14 @@ class AudioRecordState extends State<AudioRecordWidget> {
 
   /// 取消录音监听
   void _cancelRecorderSubscriptions() {
-    if (recorderSubscription != null) {
-      recorderSubscription.cancel();
-    }
+    recorderSubscription.cancel();
   }
 }
 
 class LoadingDialog extends Dialog {
   final String text;
 
-  LoadingDialog({required this.text}) : super();
+  const LoadingDialog({required this.text}) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -2421,7 +2411,7 @@ class CustomImageEmbedBuilder extends quill.EmbedBuilder {
       ) {
     final imageUrl = node.value.data as String?;
     if (imageUrl != null) {
-      return Container( padding: EdgeInsets.only(top: 20, bottom: 20),alignment: Alignment.center,child: Container(width: changewh.contains(imageUrl)?MediaQuery.of(context).size.width * 0.5:MediaQuery.of(context).size.width,child: Stack(
+      return Container( padding: const EdgeInsets.only(top: 20, bottom: 20),alignment: Alignment.center,child: Container(width: changewh.contains(imageUrl)?MediaQuery.of(context).size.width * 0.5:MediaQuery.of(context).size.width,child: Stack(
         children: [
           Container(
             width: changewh.contains(imageUrl)?MediaQuery.of(context).size.width * 0.5:MediaQuery.of(context).size.width,
@@ -2448,7 +2438,7 @@ class CustomImageEmbedBuilder extends quill.EmbedBuilder {
             top: 10,
             right: 10,
             child: Container(height: 23,alignment:Alignment.center,decoration: const BoxDecoration(color: Color.fromRGBO(0, 0, 0, 0.5),borderRadius: BorderRadius.all(Radius.circular(5))),child: Row(children: [
-              SizedBox(width: 10,),
+              const SizedBox(width: 10,),
               GestureDetector(
                 onTap: () {
                   applyStylesToImages(imageUrl,1);
@@ -2460,13 +2450,13 @@ class CustomImageEmbedBuilder extends quill.EmbedBuilder {
                   // padding: EdgeInsets.all(2),
                   child: SvgPicture.asset(
                     "assets/svg/reduce.svg",
-                    color: changewh.contains(imageUrl)?Colors.white:Color.fromRGBO(255, 255, 255, 0.5),
+                    color: changewh.contains(imageUrl)?Colors.white:const Color.fromRGBO(255, 255, 255, 0.5),
                     width: 15,
                     height: 15,
                   ),
                 ),
               ),
-              SizedBox(width: 10,),
+              const SizedBox(width: 10,),
               GestureDetector(
                 onTap: () {
                   applyStylesToImages(imageUrl,2);
@@ -2475,14 +2465,14 @@ class CustomImageEmbedBuilder extends quill.EmbedBuilder {
                 },
                 child: SvgPicture.asset(
                   "assets/svg/Tile.svg",
-                  color: !changewh.contains(imageUrl)?Colors.white:Color.fromRGBO(255, 255, 255, 0.5),
+                  color: !changewh.contains(imageUrl)?Colors.white:const Color.fromRGBO(255, 255, 255, 0.5),
                   width: 15,
                   height: 15,
                 ),
               ),
-              SizedBox(width: 10,),
+              const SizedBox(width: 10,),
               Container(height: 23,width: 0.5,color: Colors.white,),
-              SizedBox(width: 5,),
+              const SizedBox(width: 5,),
               GestureDetector(
                 onTap: () {
                   controller.document.delete(node.documentOffset, 1);
@@ -2499,7 +2489,7 @@ class CustomImageEmbedBuilder extends quill.EmbedBuilder {
                   ),
                 ),
               ),
-              SizedBox(width: 5,),
+              const SizedBox(width: 5,),
             ],),),
           ),
           // Positioned(
@@ -2571,7 +2561,7 @@ class CustomImageEmbedBuilder extends quill.EmbedBuilder {
         ],
       ),),);
     } else {
-      return SizedBox();
+      return const SizedBox();
     }
   }
 }
@@ -2590,7 +2580,7 @@ class CustomVideoEmbedBuilder extends quill.EmbedBuilder {
       ) {
     final videoUrl = node.value.data as String?;
     if (videoUrl != null) {
-      return Container(padding: EdgeInsets.fromLTRB(0, 10, 0, 10),child: Stack(
+      return Container(padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),child: Stack(
         children: [
           Container(
             alignment: Alignment.center,
@@ -2608,12 +2598,12 @@ class CustomVideoEmbedBuilder extends quill.EmbedBuilder {
               child: Container(
                 width: 22,
                 height: 22,
-                padding: EdgeInsets.all(2),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(2),
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(50)),
                   color: Colors.black38,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.close,
                   color: Colors.white,
                   size: 18,
@@ -2624,7 +2614,7 @@ class CustomVideoEmbedBuilder extends quill.EmbedBuilder {
         ],
       ),);
     } else {
-      return SizedBox();
+      return const SizedBox();
     }
   }
 }

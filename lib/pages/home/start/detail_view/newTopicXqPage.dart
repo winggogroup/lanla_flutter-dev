@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -19,7 +18,7 @@ class newTopicxqpageState extends State<newTopicxqpagePage>
   final provider = Get.find<ContentProvider>();
   final userController = Get.find<UserLogic>();
   bool oneData = false; // 是否首次请求过-用于展示等待页面
-  ScrollController _scrollControllerls = ScrollController(); //listview 的控制器
+  final ScrollController _scrollControllerls = ScrollController(); //listview 的控制器
   var TopicList = [];
   int page = 0; // 当前页数
 
@@ -46,8 +45,8 @@ class newTopicxqpageState extends State<newTopicxqpagePage>
       Antishaking = false;
       var result = await provider.Topicpage(page);
       if (result.statusCode == 200) {
-        if (TopicpageFromJson(result.bodyString!).length > 0) {
-          if (TopicList.length == 0) {
+        if (TopicpageFromJson(result.bodyString!).isNotEmpty) {
+          if (TopicList.isEmpty) {
             TopicList = TopicpageFromJson(result.bodyString!);
           } else {
             TopicList.addAll(TopicpageFromJson(result.bodyString!));
@@ -83,7 +82,7 @@ class newTopicxqpageState extends State<newTopicxqpagePage>
       Antishaking = false;
       var result = await provider.Topicpage(1);
       if (result.statusCode == 200) {
-        if (TopicpageFromJson(result.bodyString!).length > 0) {
+        if (TopicpageFromJson(result.bodyString!).isNotEmpty) {
           TopicList = TopicpageFromJson(result.bodyString!);
         } else {
           page--;
@@ -106,10 +105,10 @@ class newTopicxqpageState extends State<newTopicxqpagePage>
         ? StartDetailLoading()
         : Column(
             children: [
-              TopicList.length > 0
+              TopicList.isNotEmpty
                   ? Expanded(
                       child: Container(
-                        padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                         color: Colors.white,
                         child: RefreshIndicator(
                           onRefresh: _onRefresh,
@@ -125,7 +124,7 @@ class newTopicxqpageState extends State<newTopicxqpagePage>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 20,
                                           ),
                                           Row(
@@ -145,7 +144,7 @@ class newTopicxqpageState extends State<newTopicxqpagePage>
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 12,
                                               ),
                                               Container(
@@ -171,12 +170,9 @@ class newTopicxqpageState extends State<newTopicxqpagePage>
                                                       ],
                                                     ),
                                                     Text(
-                                                      TopicList[i]
-                                                              .visits
-                                                              .toString() +
-                                                          ' ' +
-                                                          '参与人员'.tr,
-                                                      style: TextStyle(
+                                                      '${TopicList[i]
+                                                              .visits} ${'参与人员'.tr}',
+                                                      style: const TextStyle(
                                                           fontSize: 12,
                                                           color: Color(
                                                               0xff999999)),
@@ -423,12 +419,12 @@ class newTopicxqpageState extends State<newTopicxqpagePage>
                                           //       )
                                           //   ],
                                           // ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 20,
                                           ),
                                           Container(
                                             height: 1.0,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               color: Color(0xfff1f1f1),
                                               boxShadow: [
                                                 BoxShadow(

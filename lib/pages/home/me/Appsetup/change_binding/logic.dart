@@ -30,7 +30,7 @@ class ChangeBindingLogic extends GetxController {
       FirebaseAuth auth = FirebaseAuth.instance;
       load(context);
       await auth.verifyPhoneNumber(
-        phoneNumber: '+${area_code}${phone}',
+        phoneNumber: '+$area_code$phone',
         verificationCompleted: (PhoneAuthCredential credential) async {
           Navigator.pop(context);
         },
@@ -81,14 +81,14 @@ class ChangeBindingLogic extends GetxController {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return new LoadingDialog(text: '',);
+          return LoadingDialog(text: '',);
         });
   }
   //倒计时
   late  int timeCount=60 ;
   Timer  startTimer() {
     // ToastUtil.showTips('短信验证码已发送，请注意查收');
-    var timer = Timer.periodic(Duration(seconds: 1), (Timer timer) => {
+    var timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) => {
       if(state.timeCount <= 0){
         //state.VerificationCode = '获取验证码'.tr,
         timer.cancel(),
@@ -133,7 +133,7 @@ class ChangeBindingLogic extends GetxController {
         Get.back();
       }
     }
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       status = true;
     });
   }

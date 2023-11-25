@@ -3,10 +3,8 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/pages/home/view.dart';
@@ -50,7 +48,7 @@ class _SecondWidgetState extends State<InvitationPage> {
         children: [
           SizedBox(height: 23+MediaQueryData.fromWindow(window).padding.top,),
           Container(width: double.infinity,child: Image.asset('assets/images/yqmbj.png',fit: BoxFit.cover,),),
-          Container(alignment: Alignment.centerRight,padding:EdgeInsets.all(20),child: Text('填写好友邀请码'.tr,style: TextStyle(fontWeight: FontWeight.w600),),),
+          Container(alignment: Alignment.centerRight,padding:const EdgeInsets.all(20),child: Text('填写好友邀请码'.tr,style: const TextStyle(fontWeight: FontWeight.w600),),),
           KeyboardActions(
             autoScroll:false,
             config: KeyboardActionsConfig(
@@ -67,13 +65,13 @@ class _SecondWidgetState extends State<InvitationPage> {
 
                 ]),
             child:Container(
-              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               height: 56,
               decoration: BoxDecoration(
                 border: Border.all(width: 2,color: Colors.black),
                 color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                boxShadow: const [
                   BoxShadow(
                     color: Color(0x3347B000),
                     offset: Offset(0, 2),
@@ -85,11 +83,11 @@ class _SecondWidgetState extends State<InvitationPage> {
               child:TextField(
                 focusNode: _nodeText1,
                 keyboardType: TextInputType.number,
-                cursorColor: Color(0xff666666),
+                cursorColor: const Color(0xff666666),
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                  contentPadding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                   hintText: "填写好友邀请码（非必填项）".tr,
-                  hintStyle: TextStyle(color: Color(0xff666666)),
+                  hintStyle: const TextStyle(color: Color(0xff666666)),
                   border: InputBorder.none,
                   // enabledBorder: OutlineInputBorder(
                   //   borderSide: BorderSide(color: Color(0xff666666)),
@@ -110,11 +108,11 @@ class _SecondWidgetState extends State<InvitationPage> {
 
           ),
           Container(width: double.infinity,child: Padding(
-            padding: EdgeInsets.only(left: 20,top: 50,right: 20,bottom: 20),
+            padding: const EdgeInsets.only(left: 20,top: 50,right: 20,bottom: 20),
             child:
             ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color(0xff000000)),
+                backgroundColor: MaterialStateProperty.all(const Color(0xff000000)),
               ),
               onPressed: () async {
                 if(antishake){
@@ -129,7 +127,7 @@ class _SecondWidgetState extends State<InvitationPage> {
                           msg: "填写成功".tr, position: ToastPostion.bottom);
                     }
                   }
-                  Timer.periodic(Duration(milliseconds: 1000),(timer){
+                  Timer.periodic(const Duration(milliseconds: 1000),(timer){
                     antishake=true;
                     timer.cancel();//取消定时器
                   }
@@ -140,7 +138,7 @@ class _SecondWidgetState extends State<InvitationPage> {
               },
               child: Text(
                 '确定'.tr,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 17,
                   color: Colors.white,
                 ),
@@ -148,7 +146,7 @@ class _SecondWidgetState extends State<InvitationPage> {
               ),
             ),
           ),),
-          GestureDetector(child: Container(alignment: Alignment.center,margin: EdgeInsets.only(bottom: 20),child:Text('跳过'.tr,style: TextStyle(
+          GestureDetector(child: Container(alignment: Alignment.center,margin: const EdgeInsets.only(bottom: 20),child:Text('跳过'.tr,style: const TextStyle(
             color: Color(0xff666666),
 
           ),) ,),onTap: (){

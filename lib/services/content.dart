@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:lanla_flutter/common/toast/view.dart';
 import 'package:lanla_flutter/models/HomeDetails.dart';
 import 'package:lanla_flutter/models/HomeItem.dart';
@@ -181,19 +180,19 @@ class ContentProvider extends BaseProvider {
   Future<Response> userChannellist()=>get('topics/userChannel');
 
   ///内容专区列表
-  Future<Response> contentArealist(page)=>get('contentArea/list?page=${page}');
+  Future<Response> contentArealist(page)=>get('contentArea/list?page=$page');
 
   ///内容专区详情
-  Future<Response> contentAreadetail(id)=>get('contentArea/detail?id=${id}');
+  Future<Response> contentAreadetail(id)=>get('contentArea/detail?id=$id');
 
   ///内容专区详情作品列表
-  Future<Response> contentAreacontents(id,page)=>get('contentArea/contents?id=${id}&page=${page}');
+  Future<Response> contentAreacontents(id,page)=>get('contentArea/contents?id=$id&page=$page');
 
   ///活动专区列表
-  Future<Response> eventlist(page)=>get('event/list?page=${page}');
+  Future<Response> eventlist(page)=>get('event/list?page=$page');
 
   ///商品页面信息
-  Future<Response> commoditylist(page,mark_type,is_like)=>get('item/list?page=${page}&mark_type=${mark_type}&is_like=${is_like}&approval_status=1');
+  Future<Response> commoditylist(page,mark_type,is_like)=>get('item/list?page=$page&mark_type=$mark_type&is_like=$is_like&approval_status=1');
 
   ///商品页面配置盒子
   Future<Response> commoditybox()=>get('item/box');

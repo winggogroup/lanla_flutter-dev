@@ -199,11 +199,11 @@ class UserLogic extends GetxController {
   Future<String>createDynamicLinkes(userid) async {
     final DynamicLinkParameters dynamicLinkParams = DynamicLinkParameters(
       uriPrefix: 'https://lanla.page.link',
-      link: Uri.parse('http://lanla.app/testLink?Referrer=${userid}'),
-      androidParameters: AndroidParameters(
+      link: Uri.parse('http://lanla.app/testLink?Referrer=$userid'),
+      androidParameters: const AndroidParameters(
         packageName: 'lanla.app',
       ),
-      iosParameters: IOSParameters(
+      iosParameters: const IOSParameters(
         bundleId: 'lanla.app',
           appStoreId:'6443484359',
       ),
@@ -225,7 +225,7 @@ class UserLogic extends GetxController {
       if (deepLink != null) {
         final referrerParam = deepLink.queryParameters['Referrer'];
         if(referrerParam!=null){
-          Invitationcodes=referrerParam!;
+          Invitationcodes=referrerParam;
           isshowFillincode=false;
           update();
         }
@@ -246,27 +246,23 @@ class UserLogic extends GetxController {
             (pendingDynamicLinkData) async {
 
           // Set up the `onLink` event listener next as it may be received here
-          if (pendingDynamicLinkData != null) {
-            final Uri deepLinkes = pendingDynamicLinkData.link;
-            // print('监听到的深层链接${deepLinkes}');
-            // Example of using the dynamic link to push the user to a different screen
-            if (deepLinkes != null) {
-              final referrerParam = deepLinkes.queryParameters['Referrer'];
-              // print('邀请码链接${deepLinkes}');
-              if(referrerParam!=null) {
-                Invitationcodes = referrerParam!;
-                isshowFillincode = false;
-                update();
-              } else if(deepLinkes.queryParameters["targetOther"]!=null){
-                if(deepLinkes.queryParameters["targetOther"]=='/public/video' || deepLinkes.queryParameters["targetOther"]=='/public/picture'|| deepLinkes.queryParameters["targetOther"] == '/public/xiumidata'){
-                  Get.toNamed(deepLinkes.queryParameters["targetOther"]!,arguments:  {
-                    'data':  int.parse(deepLinkes.queryParameters['targetId']!),
-                    'isEnd': false
-                  });
-                }else{
-                  Get.toNamed(deepLinkes.queryParameters["targetOther"]!,arguments: int.parse(deepLinkes.queryParameters['targetId']!));
-                }
-              }
+          final Uri deepLinkes = pendingDynamicLinkData.link;
+          // print('监听到的深层链接${deepLinkes}');
+          // Example of using the dynamic link to push the user to a different screen
+          final referrerParam = deepLinkes.queryParameters['Referrer'];
+          // print('邀请码链接${deepLinkes}');
+          if(referrerParam!=null) {
+            Invitationcodes = referrerParam;
+            isshowFillincode = false;
+            update();
+          } else if(deepLinkes.queryParameters["targetOther"]!=null){
+            if(deepLinkes.queryParameters["targetOther"]=='/public/video' || deepLinkes.queryParameters["targetOther"]=='/public/picture'|| deepLinkes.queryParameters["targetOther"] == '/public/xiumidata'){
+              Get.toNamed(deepLinkes.queryParameters["targetOther"]!,arguments:  {
+                'data':  int.parse(deepLinkes.queryParameters['targetId']!),
+                'isEnd': false
+              });
+            }else{
+              Get.toNamed(deepLinkes.queryParameters["targetOther"]!,arguments: int.parse(deepLinkes.queryParameters['targetId']!));
             }
           }
         },
@@ -282,8 +278,8 @@ class UserLogic extends GetxController {
   ///归因token
   Future<void> ascribeto(trackerName,sourcePlatforms,adid) async {
     var sp = await SharedPreferences.getInstance();
-    sp.setString("sourcePlatform", '${trackerName}'+'_${sourcePlatforms}'+'_${adid}');
-    sourcePlatform = '${trackerName}'+'_${sourcePlatforms}'+'_${adid}';
+    sp.setString("sourcePlatform", '$trackerName''_$sourcePlatforms''_$adid');
+    sourcePlatform = '$trackerName''_$sourcePlatforms''_$adid';
     // print('辊印来了${sourcePlatform}');
   }
   ///归因打点
@@ -397,10 +393,10 @@ class UserLogic extends GetxController {
   }
   ///清除未读消息数
   Clearunread(i){
-    if(Chatrelated['${userId}']['Unreadmessagezs']>0){
-      Chatrelated['${userId}']['Unreadmessagezs']=Chatrelated['${userId}']['Unreadmessagezs']-Chatrelated['${userId}']['Chatlist'][i]['Messagesnum'];
+    if(Chatrelated['$userId']['Unreadmessagezs']>0){
+      Chatrelated['$userId']['Unreadmessagezs']=Chatrelated['$userId']['Unreadmessagezs']-Chatrelated['$userId']['Chatlist'][i]['Messagesnum'];
     }
-    Chatrelated['${userId}']['Chatlist'][i]['Messagesnum']=0;
+    Chatrelated['$userId']['Chatlist'][i]['Messagesnum']=0;
     update();
     SaveChat();
   }

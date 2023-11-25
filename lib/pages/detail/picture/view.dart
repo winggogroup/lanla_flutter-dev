@@ -22,7 +22,7 @@ class _PicturePageState extends State<PicturePage> {
   bool? isEnd;
   int nowUserId = 0;
   var dataSource;
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
 
   @override
   void initState() {

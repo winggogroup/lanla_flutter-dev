@@ -11,7 +11,7 @@ class HomepagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('用户页'),
+        title: const Text('用户页'),
       ),
     );
   }

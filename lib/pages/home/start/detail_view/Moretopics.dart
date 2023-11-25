@@ -14,7 +14,7 @@ class MoretopicsPage extends StatefulWidget {
 
 class Moretopics extends State<MoretopicsPage> {
   final userController = Get.find<UserLogic>();
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   final provider = Get.find<ContentProvider>();
   ///数据
   var topicslist=[];
@@ -47,12 +47,12 @@ class Moretopics extends State<MoretopicsPage> {
       page++;
       var result = await provider.Topicslist(page);
       if(result.statusCode==200){
-        if(topicModelFromJson(result.bodyString!).length>0){
+        if(topicModelFromJson(result.bodyString!).isNotEmpty){
           setState(() {
             topicslist.addAll(topicModelFromJson(result.bodyString!));
             oneData = true;
           });
-          Future.delayed(Duration(milliseconds: 1000), () {
+          Future.delayed(const Duration(milliseconds: 1000), () {
             setState(() {
               Antishaking=true;
             });
@@ -61,7 +61,7 @@ class Moretopics extends State<MoretopicsPage> {
           if(page>0){
             page--;
           }
-          Future.delayed(Duration(milliseconds: 1500), () {
+          Future.delayed(const Duration(milliseconds: 1500), () {
             setState(() {
               Antishaking=true;
             });
@@ -98,13 +98,13 @@ class Moretopics extends State<MoretopicsPage> {
             centerTitle: true,
             leading: IconButton(
                 color: Colors.black,
-                icon: Icon(Icons.arrow_back_ios),
+                icon: const Icon(Icons.arrow_back_ios),
                 tooltip: "Search",
                 onPressed: () {
                   //print('menu Pressed');
                   Navigator.of(context).pop();
                 }),
-            title: Text('热门话题'.tr, style: TextStyle(
+            title: Text('热门话题'.tr, style: const TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w600,
             ),),
@@ -112,20 +112,20 @@ class Moretopics extends State<MoretopicsPage> {
           body:  !oneData
               ? StartDetailLoading()
               : Container(
-            decoration: BoxDecoration(color: Colors.white),
+            decoration: const BoxDecoration(color: Colors.white),
             child: Column(
               children: [
                 Divider(height: 1.0, color: Colors.grey.shade200,),
                 Expanded(
                     flex: 1,
                     child: RefreshIndicator(onRefresh: _onRefresh,
-                          child: topicslist.length>0?
+                          child: topicslist.isNotEmpty?
                           ListView.builder(
                               itemCount: topicslist.length,
                               controller: _scrollController,
                               itemBuilder: (context, i) {
-                                return GestureDetector(child:Container(padding: EdgeInsets.fromLTRB(0, 20, 0, 20),margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                                  decoration: BoxDecoration(
+                                return GestureDetector(child:Container(padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                                  decoration: const BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(
                                         width: 1,//宽度
@@ -148,11 +148,11 @@ class Moretopics extends State<MoretopicsPage> {
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                      SizedBox(width: 10,),
+                                      const SizedBox(width: 10,),
                                       Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                        Row(children: [Image.asset('assets/images/jinghao.png',width: 19,height: 19,),SizedBox(width: 3,),Text(topicslist[i].title,style: TextStyle(fontSize: 16),)],),
-                                        SizedBox(height: 10,),
-                                        Text('浏览量'.tr+' '+topicslist[i].visits.toString(),style: TextStyle(fontSize: 14,color: Color(0xff666666)),),
+                                        Row(children: [Image.asset('assets/images/jinghao.png',width: 19,height: 19,),const SizedBox(width: 3,),Text(topicslist[i].title,style: const TextStyle(fontSize: 16),)],),
+                                        const SizedBox(height: 10,),
+                                        Text('${'浏览量'.tr} ${topicslist[i].visits}',style: const TextStyle(fontSize: 14,color: Color(0xff666666)),),
                                       ],)
                                     ],
                                   ),
@@ -164,10 +164,10 @@ class Moretopics extends State<MoretopicsPage> {
                             // decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red),),
                             child:Column(
                               children: [
-                                SizedBox(height: 120,),
+                                const SizedBox(height: 120,),
                                 Image.asset('assets/images/nobeijing.png',width: 200,height: 200,),
-                                SizedBox(height: 40,),
-                                Text('暂无内容'.tr,style: TextStyle(
+                                const SizedBox(height: 40,),
+                                Text('暂无内容'.tr,style: const TextStyle(
                                     fontSize: 16,
                                     color: Color(0xff999999)
                                 ),),
@@ -185,7 +185,7 @@ Future<void> _onRefresh() async {
     Antishaking=false;
     var result = await provider.Topicslist(1);
     if(result.statusCode==200){
-      if(topicModelFromJson(result.bodyString!).length>0){
+      if(topicModelFromJson(result.bodyString!).isNotEmpty){
         setState(() {
           topicslist=topicModelFromJson(result.bodyString!);
           Antishaking=true;

@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -29,11 +27,11 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
   int page=1;
   var Desireddata;
   List<HomeItem> contentList = [];
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     // 延迟1秒请求接口，防止渲染太多 引起卡顿
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       // _fetch();
       dataId=Get.arguments['id'];
       _getData();
@@ -64,7 +62,7 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
   getDataList(pages) async{
     var result = await provider.contentAreacontents(dataId,pages);
     if(result.statusCode==200){
-      if(homeItemFromJson(result.bodyString!).length!=0){
+      if(homeItemFromJson(result.bodyString!).isNotEmpty){
         page=page+1;
         if(page==1){
           contentList=homeItemFromJson(result.bodyString!);
@@ -80,11 +78,6 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
 
     });
 
-  }
-  void dispose() {
-    super.dispose();
-
-    // _scrollController.dispose();
   }
 
   @override
@@ -108,7 +101,7 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
             Expanded(
                 child: Center(
                   child: Text(
-                    Get.arguments['title']!=null?Get.arguments['title']:'',
+                    Get.arguments['title'] ?? '',
                     style: const TextStyle(fontSize: 20),
                   ),
                 )),
@@ -121,7 +114,7 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
       body:  !oneData ? StartDetailLoading():Column(children: [
         Container(
           height: 1.0,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xfff1f1f1),
             boxShadow: [
               BoxShadow(
@@ -134,9 +127,9 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
           ),
         ),
         Expanded(child: ListView(controller: _scrollController,children: [
-          SizedBox(height: 20,),
-          Container(padding: EdgeInsets.only(right: 15),child: Text(Desireddata['boutique_assemble_title'],style: TextStyle(fontWeight: FontWeight.w600),),),
-          SizedBox(height: 15,),
+          const SizedBox(height: 20,),
+          Container(padding: const EdgeInsets.only(right: 15),child: Text(Desireddata['boutique_assemble_title'],style: const TextStyle(fontWeight: FontWeight.w600),),),
+          const SizedBox(height: 15,),
           Container( height:200,child: ListView(
               shrinkWrap: true,
               primary:false,
@@ -150,7 +143,7 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
                     //   borderRadius: BorderRadius.all(Radius.circular(8)),
                     //   border: new Border.all(width: 0.2, color: Color.fromRGBO(0, 0, 1, 0.2)),
                     // ),
-                    margin: EdgeInsets.only(right: 15),
+                    margin: const EdgeInsets.only(right: 15),
                     child:  Stack(children: [
                       Column(
                         mainAxisAlignment:MainAxisAlignment.center,
@@ -180,7 +173,7 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
                             child: CachedNetworkImage(
                               imageUrl: item['boutique_image'],
                               fit: BoxFit.cover,
-                              placeholder: (context, url) => Container(color: Color(0xffF5F5F5),padding: EdgeInsets.only(left: 20,right: 20),width: double.infinity,child:Image.asset('assets/images/LanLazhanwei.png') ,),
+                              placeholder: (context, url) => Container(color: const Color(0xffF5F5F5),padding: const EdgeInsets.only(left: 20,right: 20),width: double.infinity,child:Image.asset('assets/images/LanLazhanwei.png') ,),
                             ),
                           )),
 
@@ -249,13 +242,13 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
                     }
                     // Get.toNamed('/public/Evaluationdetails');
                   },),
-                SizedBox(width: 20,)
+                const SizedBox(width: 20,)
               ]),),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           ///中间banner
-          Container(padding: EdgeInsets.only(right: 15),child: Text(Desireddata['banner_title'],style: TextStyle(fontWeight: FontWeight.w600),),),
-          SizedBox(height: 15,),
-          GestureDetector(child: Container(margin:EdgeInsets.only(left: 15,right: 15),clipBehavior: Clip.hardEdge,width: double.infinity,height: 100,decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),child: Image.network(Desireddata['banner_image'],fit: BoxFit.cover,),),onTap: () async {
+          Container(padding: const EdgeInsets.only(right: 15),child: Text(Desireddata['banner_title'],style: const TextStyle(fontWeight: FontWeight.w600),),),
+          const SizedBox(height: 15,),
+          GestureDetector(child: Container(margin:const EdgeInsets.only(left: 15,right: 15),clipBehavior: Clip.hardEdge,width: double.infinity,height: 100,decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),child: Image.network(Desireddata['banner_image'],fit: BoxFit.cover,),),onTap: () async {
             FirebaseAnalytics.instance.logEvent(
               name: "ContentZonebanner",
               parameters: {
@@ -285,9 +278,9 @@ class PlanningState extends State<Planningpage>with SingleTickerProviderStateMix
               await launchUrl(Uri.parse(Desireddata['banner_target_id']), mode: LaunchMode.externalApplication,);
             }
           },),
-          SizedBox(height: 25,),
-          Container(padding: EdgeInsets.only(right: 15),child: Text('优选笔记'.tr,style: TextStyle(fontWeight: FontWeight.w600),),),
-          SizedBox(height: 15,),
+          const SizedBox(height: 25,),
+          Container(padding: const EdgeInsets.only(right: 15),child: Text('优选笔记'.tr,style: const TextStyle(fontWeight: FontWeight.w600),),),
+          const SizedBox(height: 15,),
           MasonryGridView.count(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(), //禁止滚动

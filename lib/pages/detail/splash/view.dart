@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -66,11 +65,11 @@ class _SplashPageState extends State<SplashPage> {
     _appOpenAd =AppOpenAd.load(
       adUnitId: adUnitId,
       orientation: AppOpenAd.orientationPortrait,
-      request: AdRequest(),
+      request: const AdRequest(),
       adLoadCallback: AppOpenAdLoadCallback(
         onAdLoaded: (ad) {
           // _appOpenAd = ad;
-          ad!.show();
+          ad.show();
 
           // Future.delayed(Duration(seconds: 5), () {
           //   Navigator.of(context).pop();
@@ -134,7 +133,7 @@ class _SplashPageState extends State<SplashPage> {
         child: CachedNetworkImage(
           imageUrl: adDataSource!.imagePath,
           fit: BoxFit.cover,
-          placeholder: (context, url) => Padding(padding: EdgeInsets.only(top: 80),
+          placeholder: (context, url) => Padding(padding: const EdgeInsets.only(top: 80),
           child: Column(children: const [CircularProgressIndicator(color: Colors.black,)],)),
           errorWidget: (context, url, error) => const Icon(Icons.error),
         ),

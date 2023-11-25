@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_picker/flutter_picker.dart';
@@ -12,7 +11,6 @@ import 'package:lanla_flutter/pages/detail/FlowDetails/ListDetails.dart';
 import 'package:lanla_flutter/pages/home/start/detail_view/loading_widget.dart';
 import 'package:lanla_flutter/services/GiftDetails.dart';
 import 'package:lanla_flutter/ulits/hex_color.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -48,7 +46,7 @@ class _FlowDetailsState extends State<FlowDetailsPage> with SingleTickerProvider
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(color:Color(0xffF5F5F5)),
+        decoration: const BoxDecoration(color:Color(0xffF5F5F5)),
         child: DefaultTabController(
           length: 2,
           initialIndex:pagetype,
@@ -60,7 +58,7 @@ class _FlowDetailsState extends State<FlowDetailsPage> with SingleTickerProvider
                   labelColor: Colors.black,
                   unselectedLabelColor:HexColor('#999999'),
                   // labelPadding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  indicatorPadding:EdgeInsets.only(bottom: 10,top: 6),
+                  indicatorPadding:const EdgeInsets.only(bottom: 10,top: 6),
                   // isScrollable: true,
                   indicatorColor: HexColor('#000000'),
                   indicatorWeight: 3,
@@ -73,7 +71,7 @@ class _FlowDetailsState extends State<FlowDetailsPage> with SingleTickerProvider
                   // indicator:,
                   indicatorSize: TabBarIndicatorSize.label,
                 ),),
-              Divider(height: 1.0, color: Color(0xffF1F1F1),),
+              const Divider(height: 1.0, color: Color(0xffF1F1F1),),
               Expanded(
                   child: TabBarView(controller: _tabController,children: [
                     ListDetailsPage(type: ApiType.myLike, pagetype: 1),
@@ -86,11 +84,11 @@ class _FlowDetailsState extends State<FlowDetailsPage> with SingleTickerProvider
       ),
       appBar: AppBar(
         elevation: 0, //消除阴影
-        title: Text('明细'.tr,style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600),),
+        title: Text('明细'.tr,style: const TextStyle(fontSize: 17,fontWeight: FontWeight.w600),),
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');

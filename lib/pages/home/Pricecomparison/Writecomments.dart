@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -48,13 +47,13 @@ class WritecommentsState extends State<WritecommentsPage>{
           centerTitle: true,
           leading: IconButton(
               color: Colors.black,
-              icon: Icon(Icons.arrow_back_ios),
+              icon: const Icon(Icons.arrow_back_ios),
               tooltip: "Search",
               onPressed: () {
                 //print('menu Pressed');
                 Navigator.of(context).pop();
               }),
-          title: Text('你的评价'.tr, style: TextStyle(
+          title: Text('你的评价'.tr, style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
             //fontFamily: ' PingFang SC-Semibold, PingFang SC',
@@ -76,198 +75,198 @@ class WritecommentsState extends State<WritecommentsPage>{
                   ),
                 ]),
             child:Container(
-                decoration: BoxDecoration(color: Colors.white),
-                padding: EdgeInsets.only(left: 20,right: 20),
+                decoration: const BoxDecoration(color: Colors.white),
+                padding: const EdgeInsets.only(left: 20,right: 20),
                 child:
                 ListView(children: [
                   Column(
                     crossAxisAlignment:CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 15,),
-                      Text('说说你对TA的评价'.tr,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-                      SizedBox(height: 15,),
+                      const SizedBox(height: 15,),
+                      Text('说说你对TA的评价'.tr,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+                      const SizedBox(height: 15,),
                       ///质量
                       Row(children: [
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         Container(width: 110,child:Text('质量'.tr ,),),
                         for(var i=1;i<6;i++)
-                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score1>=i?Color(0xFF9BE400):Color(0xFFE4E4E4),),SizedBox(width: 5,)],),
+                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score1>=i?const Color(0xFF9BE400):const Color(0xFFE4E4E4),),const SizedBox(width: 5,)],),
                             onTap: (){
                               setState(() {
                                 score1=i;
                               });
                             },
                           ),
-                        SizedBox(width: 20,),
+                        const SizedBox(width: 20,),
                         if(score1==5)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('超赞'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('超赞'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score1==4)Row(children: [
                           Image.asset('assets/images/manyi.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('满意'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('满意'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score1==3)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('一般'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('一般'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score1==2)Row(children: [
                           Image.asset('assets/images/tucao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('吐槽'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('吐槽'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score1==1)Row(children: [
                           Image.asset('assets/images/zaogao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('糟糕'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('糟糕'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
 
                       ],),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       ///性价比
                       Row(children: [
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         Container(width: 110,child:Text('性价比'.tr ,),),
                         for(var i=1;i<6;i++)
-                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score2>=i?Color(0xFF9BE400):Color(0xFFE4E4E4),),SizedBox(width: 5,)],),
+                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score2>=i?const Color(0xFF9BE400):const Color(0xFFE4E4E4),),const SizedBox(width: 5,)],),
                             onTap: (){
                               setState(() {
                                 score2=i;
                               });
                             },
                           ),
-                        SizedBox(width: 20,),
+                        const SizedBox(width: 20,),
                         if(score2==5)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('超赞'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('超赞'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score2==4)Row(children: [
                           Image.asset('assets/images/manyi.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('满意'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('满意'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score2==3)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('一般'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('一般'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score2==2)Row(children: [
                           Image.asset('assets/images/tucao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('吐槽'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('吐槽'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score2==1)Row(children: [
                           Image.asset('assets/images/zaogao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('糟糕'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('糟糕'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
 
                       ],),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       ///品牌
                       Row(children: [
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         Container(width: 110,child:Text('品牌'.tr ,),),
                         for(var i=1;i<6;i++)
-                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score3>=i?Color(0xFF9BE400):Color(0xFFE4E4E4),),SizedBox(width: 5,)],),
+                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score3>=i?const Color(0xFF9BE400):const Color(0xFFE4E4E4),),const SizedBox(width: 5,)],),
                             onTap: (){
                               setState(() {
                                 score3=i;
                               });
                             },
                           ),
-                        SizedBox(width: 20,),
+                        const SizedBox(width: 20,),
 
                         if(score3==5)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('超赞'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('超赞'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score3==4)Row(children: [
                           Image.asset('assets/images/manyi.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('满意'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('满意'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score3==3)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('一般'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('一般'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score3==2)Row(children: [
                           Image.asset('assets/images/tucao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('吐槽'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('吐槽'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score3==1)Row(children: [
                           Image.asset('assets/images/zaogao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('糟糕'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('糟糕'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
 
                       ],),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       ///外观设计
                       Row(children: [
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         Container(width: 110,child:Text('外观设计'.tr ,),),
                         for(var i=1;i<6;i++)
-                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score4>=i?Color(0xFF9BE400):Color(0xFFE4E4E4),),SizedBox(width: 5,)],),
+                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score4>=i?const Color(0xFF9BE400):const Color(0xFFE4E4E4),),const SizedBox(width: 5,)],),
                             onTap: (){
                               setState(() {
                                 score4=i;
                               });
                             },
                           ),
-                        SizedBox(width: 20,),
+                        const SizedBox(width: 20,),
                         if(score4==5)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('超赞'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('超赞'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score4==4)Row(children: [
                           Image.asset('assets/images/manyi.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('满意'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('满意'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score4==3)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('一般'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('一般'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score4==2)Row(children: [
                           Image.asset('assets/images/tucao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('吐槽'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('吐槽'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score4==1)Row(children: [
                           Image.asset('assets/images/zaogao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('糟糕'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('糟糕'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
 
                       ],),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       ///会回购
                       Row(children: [
-                        SizedBox(width: 5,),
+                        const SizedBox(width: 5,),
                         Container(width: 110,child:Text('会回购'.tr ,),),
                         for(var i=1;i<6;i++)
-                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score5>=i?Color(0xFF9BE400):Color(0xFFE4E4E4),),SizedBox(width: 5,)],),
+                          GestureDetector(child: Row(children: [Icon(Icons.star, size: 20, color: score5>=i?const Color(0xFF9BE400):const Color(0xFFE4E4E4),),const SizedBox(width: 5,)],),
                             onTap: (){
                               setState(() {
                                 score5=i;
                               });
                             },
                           ),
-                        SizedBox(width: 20,),
+                        const SizedBox(width: 20,),
                         if(score5==5)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('超赞'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('超赞'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score5==4)Row(children: [
                           Image.asset('assets/images/manyi.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('满意'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('满意'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score5==3)Row(children: [
                           Image.asset('assets/images/chaozan.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('一般'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('一般'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score5==2)Row(children: [
                           Image.asset('assets/images/tucao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('吐槽'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('吐槽'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                         if(score5==1)Row(children: [
                           Image.asset('assets/images/zaogao.png',width: 20,height: 20,),
-                          SizedBox(width: 5,),
-                          Text('糟糕'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
+                          const SizedBox(width: 5,),
+                          Text('糟糕'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),],),
                       ],),
-                      SizedBox(height: 15,),
+                      const SizedBox(height: 15,),
                       Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(
                             Radius.circular(20), //边角为5
                           ),
@@ -281,13 +280,13 @@ class WritecommentsState extends State<WritecommentsPage>{
                             // controller: _controller,
                             // cursorColor: Color(0xffffffff),
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                              contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                               hintText: "来说说你对TA的使用感受，跟大家一起交流吧".tr,
-                              hintStyle: TextStyle(color: Color(0xff666666)),
+                              hintStyle: const TextStyle(color: Color(0xff666666)),
                               border: InputBorder.none, // 隐藏边框
-                              fillColor: Color(0xffF5F5F5),
+                              fillColor: const Color(0xffF5F5F5),
                               filled: true,
-                              enabledBorder: OutlineInputBorder(
+                              enabledBorder: const OutlineInputBorder(
                                 /*边角*/
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20), //边角为5
@@ -297,7 +296,7 @@ class WritecommentsState extends State<WritecommentsPage>{
                                   width: 0.5,
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
+                              focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Colors.white,
                                   width: 0.5,
@@ -313,11 +312,11 @@ class WritecommentsState extends State<WritecommentsPage>{
                               });
                             },
                           ),
-                          SizedBox(height: 20,),
+                          const SizedBox(height: 20,),
                           Container(
-                            margin: EdgeInsets.only(right: 20),
-                            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                            decoration: BoxDecoration(
+                            margin: const EdgeInsets.only(right: 20),
+                            padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                            decoration: const BoxDecoration(
                               color: Color(0xffF5F5F5),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10), //边角为5
@@ -337,7 +336,7 @@ class WritecommentsState extends State<WritecommentsPage>{
                                       for(var i=0;i<imageListFile.length;i++)
                                         GestureDetector(child: Stack(children: [
                                           Container(
-                                            margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                            margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                                             key: ValueKey(imageListFile[i]),
                                             width: 70,height: 70,
                                             child: GestureDetector(
@@ -357,7 +356,7 @@ class WritecommentsState extends State<WritecommentsPage>{
                                                     )),
                                                 decoration: BoxDecoration(
                                                   border: Border.all(color: Colors.black12),
-                                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                                                 ),
                                               ),
                                             ),),
@@ -392,10 +391,10 @@ class WritecommentsState extends State<WritecommentsPage>{
         ),
       bottomNavigationBar: Container(
         //color: Color(0xffF5F5F5),
-        padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Color(0xff000000)),
+            backgroundColor: MaterialStateProperty.all(const Color(0xff000000)),
           ),
           onPressed: () async {
             if(score1==0 || score2==0|| score3==0|| score4==0|| score5==0){
@@ -420,7 +419,7 @@ class WritecommentsState extends State<WritecommentsPage>{
               // String newThumbnailPath =
               // await AliOssClient().putObject(imageObj.path, 'thumb', _getFileName());
 
-              final pictureName =  storageRef.child('user/img/'+_getFileName()+'.png');
+              final pictureName =  storageRef.child('user/img/${_getFileName()}.png');
               final pictureUpload = pictureName.putFile(File(imageObj.path));
               await pictureUpload.whenComplete(() {});
               String newThumbnailPath =  await pictureName.getDownloadURL();
@@ -429,7 +428,7 @@ class WritecommentsState extends State<WritecommentsPage>{
               await publiDataLogic.finishTask();
               print('publish:循环上传图文成功');
             }
-            var res = await Pricemodules.parityRatiocommentadd({"goodsId":Get.arguments,"text":text,"score1":score1,"score2":score2,"score3":score3,"score4":score4,"score5":score5,"images":imagesPath.length>0? imagesPath.join(','):''});
+            var res = await Pricemodules.parityRatiocommentadd({"goodsId":Get.arguments,"text":text,"score1":score1,"score2":score2,"score3":score3,"score4":score4,"score5":score5,"images":imagesPath.isNotEmpty? imagesPath.join(','):''});
             if(res.statusCode==200){
               EasyLoading.dismiss();
               Get.back(result: true);
@@ -437,7 +436,7 @@ class WritecommentsState extends State<WritecommentsPage>{
               ToastInfo('评价成功，感谢你的测评'.tr);
             }
           },
-          child: Text('发布'.tr,style: TextStyle(
+          child: Text('发布'.tr,style: const TextStyle(
             fontSize: 17,
             color: Colors.white,
           ),textAlign: TextAlign.center,),
@@ -506,9 +505,7 @@ class WritecommentsState extends State<WritecommentsPage>{
       if (data[i].type == AssetType.image) {
         newData.add(item);
         File? file = await item.file;
-        if (File != null) {
-          newDataFile.add(file!);
-        }
+        newDataFile.add(file!);
       }
     }
     setState(() {

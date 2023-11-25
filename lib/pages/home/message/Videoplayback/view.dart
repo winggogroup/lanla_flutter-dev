@@ -1,5 +1,4 @@
 import 'package:fijkplayer/fijkplayer.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -83,7 +82,7 @@ class Videoplayback extends State<Videoplaybackpage>{
             right: 10,
             left: 10,
             bottom: 10,
-            child: GestureDetector(child: Icon(
+            child: GestureDetector(child: const Icon(
               Icons.play_circle_outline,
               size: 120,
               color: Colors.white54,

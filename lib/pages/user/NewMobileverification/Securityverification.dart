@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lanla_flutter/common/controller/publicmethodes.dart';
@@ -22,7 +21,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
   ContentProvider provider = ContentProvider();
   Publicmethodes Publicmethods = Get.put(Publicmethodes());
   int AuthenticationType =0;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   String phone='';
   String areaCode='';
   bool oneData = true; // 是否首次请求过-用于展示等待页面
@@ -53,7 +52,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
   }
 
   String formatTimestamp(BuildContext context, int timestamp) {
-    print('${timestamp}');
+    print('$timestamp');
     // 根据用户的本地化设置来格式化时间戳
     final DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
     final String formattedDateTime = DateFormat('yyyy-MM-dd').format(dateTime);
@@ -77,7 +76,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
        oneData = false;
        setState(() {});
        AuthenticationType=Random().nextInt(Randomdimension);
-       print('随机数${areaCode}');
+       print('随机数$areaCode');
      }
   }
 
@@ -106,7 +105,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
           }
         }else if(res.body['status']=="ok"){
             Navigator.pop(context);
-            print('进来了${jumptype}');
+            print('进来了$jumptype');
             Get.to(InputpasswordPage(),arguments: {'phone':phone,'areacode':areaCode,'type':type,'sec_val_token':AuthenticationID});
         }else if(res.body['status']=="security_authentication_forbidden"){
           Navigator.pop(context);
@@ -131,26 +130,26 @@ class SecurityverificationState extends State<SecurityverificationPage> {
       body: oneData
           ? StartDetailLoading():Container(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+        decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
         child: Column(
           //crossAxisAlignment:CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 60),
             Container(alignment: Alignment.centerRight,child: Text('安全验证'.tr,style:const TextStyle(fontSize: 25,fontWeight: FontWeight.w600),),),
-            SizedBox(height: 10,),
-            if(AuthenticationType==0)Container(alignment: Alignment.centerRight,child: Text('下面哪一个是你当前账号的头像'.tr,style: TextStyle(fontSize: 15),),),
-            if(AuthenticationType==1)Container(alignment: Alignment.centerRight,child: Text('下面哪一个是你当前账号的昵称'.tr,style: TextStyle(fontSize: 15),),),
-            if(AuthenticationType==2)Container(alignment: Alignment.centerRight,child: Text('下面哪一个是你当前账号的注册时间'.tr,style: TextStyle(fontSize: 15),),),
-            if(AuthenticationType==3)Container(alignment: Alignment.centerRight,child: Text('下面哪一个是你所填的生日信息'.tr,style: TextStyle(fontSize: 15),),),
+            const SizedBox(height: 10,),
+            if(AuthenticationType==0)Container(alignment: Alignment.centerRight,child: Text('下面哪一个是你当前账号的头像'.tr,style: const TextStyle(fontSize: 15),),),
+            if(AuthenticationType==1)Container(alignment: Alignment.centerRight,child: Text('下面哪一个是你当前账号的昵称'.tr,style: const TextStyle(fontSize: 15),),),
+            if(AuthenticationType==2)Container(alignment: Alignment.centerRight,child: Text('下面哪一个是你当前账号的注册时间'.tr,style: const TextStyle(fontSize: 15),),),
+            if(AuthenticationType==3)Container(alignment: Alignment.centerRight,child: Text('下面哪一个是你所填的生日信息'.tr,style: const TextStyle(fontSize: 15),),),
             ///头像验证
             if(AuthenticationType==0)Expanded(
               flex: 1,
               child: Container(
                   width: double.infinity,
-                  margin: EdgeInsets.fromLTRB(15, 36, 15, 0),
+                  margin: const EdgeInsets.fromLTRB(15, 36, 15, 0),
                   child:
                   GridView.count(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                     crossAxisSpacing: 35.0,
                     //水平子 Widget 之间间距
                     mainAxisSpacing: 35.0,
@@ -173,7 +172,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
 
                                   border: Border.all(
                                     color:
-                                      AuthenticationID==presentationdata['content']['head_img'][i]['sec_val_token']?Color.fromRGBO(209, 255, 52, 1):Colors.white, // 边框颜色
+                                      AuthenticationID==presentationdata['content']['head_img'][i]['sec_val_token']?const Color.fromRGBO(209, 255, 52, 1):Colors.white, // 边框颜色
                                     width: 5, // 边框宽度
                                   ),
                                   borderRadius: BorderRadius.circular(100),
@@ -218,7 +217,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                 flex: 1,
                 child: Container(
                     width: double.infinity,
-                    margin: EdgeInsets.fromLTRB(15, 36, 15, 0),
+                    margin: const EdgeInsets.fromLTRB(15, 36, 15, 0),
                     child: ListView.builder(
                         itemCount:
                             presentationdata['content']['nickname'].length,
@@ -226,7 +225,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                         itemBuilder: (context, i) {
                           return GestureDetector(
                             child: Container(
-                              margin: EdgeInsets.only(bottom: 25),
+                              margin: const EdgeInsets.only(bottom: 25),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -234,7 +233,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                                   Text(
                                     presentationdata['content']['nickname'][i]
                                         ['val'],
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 15),
                                   ),
@@ -292,7 +291,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                 flex: 1,
                 child: Container(
                     width: double.infinity,
-                    margin: EdgeInsets.fromLTRB(15, 36, 15, 0),
+                    margin: const EdgeInsets.fromLTRB(15, 36, 15, 0),
                     child: ListView.builder(
                         itemCount: presentationdata['content']
                                 ['register_login_time']
@@ -301,14 +300,14 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                         itemBuilder: (context, i) {
                           return GestureDetector(
                             child: Container(
-                              margin: EdgeInsets.only(bottom: 25),
+                              margin: const EdgeInsets.only(bottom: 25),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     formatTimestamp(context, int.parse(presentationdata['content']['register_login_time'][i]['val']) ),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 15),
                                   ),
@@ -368,7 +367,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                 flex: 1,
                 child: Container(
                     width: double.infinity,
-                    margin: EdgeInsets.fromLTRB(15, 36, 15, 0),
+                    margin: const EdgeInsets.fromLTRB(15, 36, 15, 0),
                     child: ListView.builder(
                         itemCount:
                             presentationdata['content']['birthday'].length,
@@ -376,7 +375,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                         itemBuilder: (context, i) {
                           return GestureDetector(
                             child: Container(
-                              margin: EdgeInsets.only(bottom: 25),
+                              margin: const EdgeInsets.only(bottom: 25),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -384,7 +383,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                                   Text(
                                     presentationdata['content']['birthday'][i]
                                         ['val'],
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 15),
                                   ),
@@ -435,17 +434,17 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                           );
                         })),
               ),
-            SizedBox(height: 20,),
-            GestureDetector(child: Container(child: Text('换一个问题'.tr,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: Color.fromRGBO(168, 246, 0, 1)),),),onTap: (){
+            const SizedBox(height: 20,),
+            GestureDetector(child: Container(child: Text('换一个问题'.tr,style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: Color.fromRGBO(168, 246, 0, 1)),),),onTap: (){
               changeValue();
             },),
-            SizedBox(height: 25,),
+            const SizedBox(height: 25,),
             Container(
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                  backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                   // elevation: MaterialStateProperty.all(20),
                   shadowColor: MaterialStateProperty.all(Colors.black),
@@ -466,7 +465,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                 },
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             //)
           ],
         ),
@@ -476,7 +475,7 @@ class SecurityverificationState extends State<SecurityverificationPage> {
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');
@@ -498,8 +497,8 @@ class SecurityverificationState extends State<SecurityverificationPage> {
         return AlertDialog(
           backgroundColor: Colors.white,
           elevation:0,
-          contentPadding: EdgeInsets.fromLTRB(35, 35, 35, 35),
-          shape: RoundedRectangleBorder(
+          contentPadding: const EdgeInsets.fromLTRB(35, 35, 35, 35),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           content: Column(mainAxisSize: MainAxisSize.min, children: [
             Container(
@@ -513,21 +512,21 @@ class SecurityverificationState extends State<SecurityverificationPage> {
                       width: MediaQuery.of(context).size.width - 100,
                       //height: 311,
 
-                      child: Text('فشل التحقق الأمني ​​، يرجى اختيار طريقة تسجيل دخول أخرى. أو يمكنك أيضًا الاتصال بخدمة العملاء الرسمية لـ LanLa لاسترداد الحساب على whatsapp: +86 15256019084',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),)
+                      child: const Text('فشل التحقق الأمني ​​، يرجى اختيار طريقة تسجيل دخول أخرى. أو يمكنك أيضًا الاتصال بخدمة العملاء الرسمية لـ LanLa لاسترداد الحساب على whatsapp: +86 15256019084',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),)
                   ),
-                  SizedBox(height: 25,),
+                  const SizedBox(height: 25,),
                   GestureDetector(child: Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.only(top: 12, bottom: 12),
-                    margin: EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(top: 12, bottom: 12),
+                    margin: const EdgeInsets.only(left: 10, right: 10),
                     decoration: BoxDecoration(
-                        color: Color.fromRGBO(209, 255, 52, 1),
+                        color: const Color.fromRGBO(209, 255, 52, 1),
                         borderRadius: BorderRadius.circular(30)),
                     width: double.infinity,
                     child: Text(
                       '我知道了'.tr,
                       style:
-                      TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                      const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                     ),
                   ),onTap: (){
                     Navigator.pop(context);

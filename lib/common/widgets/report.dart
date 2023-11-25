@@ -1,12 +1,10 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 //import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lanla_flutter/common/toast/view.dart';
@@ -24,7 +22,7 @@ ReportDoglog(ReportType type, int id,int downloadtype,url,context,{Function? rem
 
   /// 下载图片
   void _save(context) async {
-    print('图片地址${url}');
+    print('图片地址$url');
     if (await Permission.storage.request().isGranted) {
       showDialog(
           context: context,
@@ -73,7 +71,7 @@ ReportDoglog(ReportType type, int id,int downloadtype,url,context,{Function? rem
             ],) ;
           });
       var appDocDir = await getTemporaryDirectory();
-      String savePath = appDocDir.path + "/temp.mp4";
+      String savePath = "${appDocDir.path}/temp.mp4";
       await Dio().download(url, savePath);
       final result = await ImageGallerySaver.saveFile(savePath);
       print(result);
@@ -90,7 +88,7 @@ ReportDoglog(ReportType type, int id,int downloadtype,url,context,{Function? rem
     }
   }
   Get.bottomSheet(Container(
-    padding: EdgeInsets.only(bottom: 20),
+    padding: const EdgeInsets.only(bottom: 20),
     decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(20),),
     child: Wrap(
       children: [

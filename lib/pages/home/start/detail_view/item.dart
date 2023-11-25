@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 
 import 'package:lanla_flutter/models/HomeItem.dart';
@@ -108,8 +106,8 @@ class IndexItemWidget extends StatelessWidget {
             data.userId == userLogic.userId &&
             data.id != 0) {
           Get.defaultDialog(
-              titlePadding: EdgeInsets.only(top: 20, bottom: 20),
-              contentPadding: EdgeInsets.only(bottom: 20, left: 20, right: 20),
+              titlePadding: const EdgeInsets.only(top: 20, bottom: 20),
+              contentPadding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
               backgroundColor: Colors.white.withOpacity(1),
               buttonColor: Colors.black,
               title: "删除".tr,
@@ -128,14 +126,14 @@ class IndexItemWidget extends StatelessWidget {
         data.id != 0
             ? Container(
                 //margin: const EdgeInsets.fromLTRB(2, 2, 2, 2),
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
 
                 // padding: EdgeInsets.all(2),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  border: new Border.all(
-                      width: 0.2, color: Color.fromRGBO(0, 0, 1, 0.2)),
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  border: Border.all(
+                      width: 0.2, color: const Color.fromRGBO(0, 0, 1, 0.2)),
                 ),
                 width: double.infinity,
                 child: Column(children: [
@@ -159,8 +157,8 @@ class IndexItemWidget extends StatelessWidget {
                           imageUrl: data.thumbnail,
                           fit: BoxFit.cover,
                           placeholder: (context, url) => Container(
-                            color: Color(0xffF5F5F5),
-                            padding: EdgeInsets.only(left: 20, right: 20),
+                            color: const Color(0xffF5F5F5),
+                            padding: const EdgeInsets.only(left: 20, right: 20),
                             width: double.infinity,
                             child:
                                 Image.asset('assets/images/LanLazhanwei.png'),
@@ -168,8 +166,8 @@ class IndexItemWidget extends StatelessWidget {
                           errorWidget: (context, url, error) {
                             // 网络图片加载失败时显示本地图片
                             return Container(
-                              color: Color(0xffF5F5F5),
-                              padding: EdgeInsets.only(left: 20, right: 20),
+                              color: const Color(0xffF5F5F5),
+                              padding: const EdgeInsets.only(left: 20, right: 20),
                               width: double.infinity,
                               child:
                               Image.asset('assets/images/LanLazhanwei.png',),
@@ -234,16 +232,16 @@ class IndexItemWidget extends StatelessWidget {
                                     imageUrl: data.userAvatar,
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) => Container(
-                                      color: Color(0xffF5F5F5),
-                                       padding: EdgeInsets.only(left: 2, right: 2),
+                                      color: const Color(0xffF5F5F5),
+                                       padding: const EdgeInsets.only(left: 2, right: 2),
                                       width: double.infinity,
                                        child: Image.asset('assets/images/LanLazhanwei.png'),
                                     ),
                                     errorWidget: (context, url, error) {
                                       // 网络图片加载失败时显示本地图片
                                       return Container(
-                                        color: Color(0xffF5F5F5),
-                                         padding: EdgeInsets.only(left: 2, right: 2),
+                                        color: const Color(0xffF5F5F5),
+                                         padding: const EdgeInsets.only(left: 2, right: 2),
                                         width: double.infinity,
                                         child: Image.asset('assets/images/LanLazhanwei.png',),
                                       );
@@ -322,33 +320,33 @@ class IndexItemWidget extends StatelessWidget {
                     ),
                   )
                 ]))
-            : data.contentArea.length != 0
+            : data.contentArea.isNotEmpty
                 ? Container(
                     margin: const EdgeInsets.fromLTRB(2, 7, 2, 7),
                     // padding: EdgeInsets.all(2),
                     clipBehavior: Clip.hardEdge,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       minHeight: 210,
                     ),
                     //height: (context.width / 2 - 6) * data.attaImageScale>260?260:(context.width / 2 - 6) * data.attaImageScale,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        border: new Border.all(
-                            width: 0.2, color: Color.fromRGBO(0, 0, 1, 0.2)),
+                        border: Border.all(
+                            width: 0.2, color: const Color.fromRGBO(0, 0, 1, 0.2)),
                         color: Colors.white),
                     width: double.infinity,
                     child: Column(children: [
                       Container(
                         width: double.infinity,
-                        padding: EdgeInsets.fromLTRB(15, 12, 15, 12),
+                        padding: const EdgeInsets.fromLTRB(15, 12, 15, 12),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('内容专区'.tr, style: TextStyle(fontSize: 13)),
+                            Text('内容专区'.tr, style: const TextStyle(fontSize: 13)),
                             GestureDetector(
                               child: Text(
                                 '更多'.tr,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 11, color: Color(0xff999999)),
                               ),
                               onTap: () async {
@@ -360,7 +358,7 @@ class IndexItemWidget extends StatelessWidget {
                         ),
                       ),
                       Container(
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             minHeight: 170,
                           ),
                           //超出部分，可裁剪
@@ -372,19 +370,19 @@ class IndexItemWidget extends StatelessWidget {
                                 GestureDetector(
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
+                                      borderRadius: const BorderRadius.all(
                                         Radius.circular(10),
                                       ),
                                       border: Border.all(
                                           width: 0.2,
-                                          color: Color.fromRGBO(0, 0, 1, 0.2)),
+                                          color: const Color.fromRGBO(0, 0, 1, 0.2)),
                                     ),
                                     width: double.infinity,
-                                    constraints: BoxConstraints(
+                                    constraints: const BoxConstraints(
                                       maxHeight: 70,
                                     ),
                                     clipBehavior: Clip.hardEdge,
-                                    margin: EdgeInsets.all(5),
+                                    margin: const EdgeInsets.all(5),
                                     child: CachedNetworkImage(
                                       imageUrl: data.contentArea[i].cover,
                                       fit: BoxFit.cover,
@@ -400,37 +398,37 @@ class IndexItemWidget extends StatelessWidget {
                             ],
                           )),
                     ]))
-                : data.activity.length != 0
+                : data.activity.isNotEmpty
                     ? Container(
                         margin: const EdgeInsets.fromLTRB(2, 7, 2, 7),
                         // padding: EdgeInsets.all(2),
                         clipBehavior: Clip.hardEdge,
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           minHeight: 210,
                         ),
                         //height: (context.width / 2 - 6) * data.attaImageScale>260?260:(context.width / 2 - 6) * data.attaImageScale,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            border: new Border.all(
+                            border: Border.all(
                                 width: 0.2,
-                                color: Color.fromRGBO(0, 0, 1, 0.2)),
+                                color: const Color.fromRGBO(0, 0, 1, 0.2)),
                             color: Colors.white),
                         width: double.infinity,
                         child: Column(children: [
                           if (data.activity.length > 1)
                             Container(
                               width: double.infinity,
-                              padding: EdgeInsets.fromLTRB(15, 12, 15, 12),
+                              padding: const EdgeInsets.fromLTRB(15, 12, 15, 12),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('热门话题'.tr,
-                                      style: TextStyle(fontSize: 13)),
+                                      style: const TextStyle(fontSize: 13)),
                                   GestureDetector(
                                     child: Text(
                                       '更多'.tr,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 11,
                                           color: Color(0xff999999)),
                                     ),
@@ -442,7 +440,7 @@ class IndexItemWidget extends StatelessWidget {
                               ),
                             ),
                           Container(
-                              constraints: BoxConstraints(
+                              constraints: const BoxConstraints(
                                 minHeight: 170,
                               ),
                               //超出部分，可裁剪
@@ -458,20 +456,20 @@ class IndexItemWidget extends StatelessWidget {
                                           GestureDetector(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
+                                                borderRadius: const BorderRadius.all(
                                                   Radius.circular(10),
                                                 ),
                                                 border: Border.all(
                                                     width: 0.2,
-                                                    color: Color.fromRGBO(
+                                                    color: const Color.fromRGBO(
                                                         0, 0, 1, 0.2)),
                                               ),
                                               width: double.infinity,
-                                              constraints: BoxConstraints(
+                                              constraints: const BoxConstraints(
                                                 maxHeight: 70,
                                               ),
                                               clipBehavior: Clip.hardEdge,
-                                              margin: EdgeInsets.all(5),
+                                              margin: const EdgeInsets.all(5),
                                               child: CachedNetworkImage(
                                                 imageUrl:
                                                     data.activity[i].imagePath,
@@ -571,12 +569,8 @@ class IndexItemWidget extends StatelessWidget {
                                                   );
                                                   //if(int.parse(data.activity[i].targetId)==1){
                                                   Get.toNamed('/public/webview',
-                                                      arguments: BASE_DOMAIN +
-                                                          data.activity[i]
-                                                              .targetId +
-                                                          '?token=' +
-                                                          userLogic.token +
-                                                          '&uuid=' +
+                                                      arguments: '$BASE_DOMAIN${data.activity[i]
+                                                              .targetId}?token=${userLogic.token}&uuid=' +
                                                           userLogic.deviceData[
                                                               'uuid']);
                                                   //}
@@ -607,7 +601,7 @@ class IndexItemWidget extends StatelessWidget {
                                     )
                                   : GestureDetector(
                                       child: Container(
-                                        constraints: BoxConstraints(
+                                        constraints: const BoxConstraints(
                                           minHeight: 220,
                                         ),
                                         child: CachedNetworkImage(
@@ -687,11 +681,7 @@ class IndexItemWidget extends StatelessWidget {
                                               },
                                             );
                                             Get.toNamed('/public/webview',
-                                                arguments: BASE_DOMAIN +
-                                                    data.activity[0].targetId +
-                                                    '?token=' +
-                                                    userLogic.token +
-                                                    '&uuid=' +
+                                                arguments: '$BASE_DOMAIN${data.activity[0].targetId}?token=${userLogic.token}&uuid=' +
                                                     userLogic
                                                         .deviceData['uuid']);
                                           }else if(data.activity[0].targetOther == '/public/Planningpage'){

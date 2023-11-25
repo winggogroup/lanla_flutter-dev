@@ -86,19 +86,19 @@ class Routers {
         ///话题
         GetPage(
           name: '/TopicxqpagePage',
-          page: () => ConnectionTopicPage(),
+          page: () => const ConnectionTopicPage(),
           // name: '/TopicxqpagePage',
           // page: () => TopicxqpagePage(),
           //transition: Transition.leftToRight
         ),
         GetPage(
             name: '/video',
-            page: () => VideoPage(),
+            page: () => const VideoPage(),
             //transition: Transition.leftToRight
         ),
         GetPage(
             name: '/picture',
-            page: () => PicturePage(),
+            page: () => const PicturePage(),
             //transition: Transition.leftToRight
         ),
         GetPage(

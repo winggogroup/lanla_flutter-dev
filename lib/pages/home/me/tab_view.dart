@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lanla_flutter/common/Starrating.dart';
@@ -27,7 +26,7 @@ class UserTabView extends StatefulWidget {
 /// DefaultTabController (TabBar + TabBarView) 使用 (内部还是TabController实现)
 class _UserTabViewState extends State<UserTabView> {
   final userLogic = Get.find<UserLogic>();
-  ScrollController _scrollControllerls = ScrollController();
+  final ScrollController _scrollControllerls = ScrollController();
   UserProvider userProvider = Get.put<UserProvider>(UserProvider());
   final List<Tab> myTabs = <Tab>[
     Tab(text: '作品'.tr,),
@@ -109,7 +108,7 @@ class _UserTabViewState extends State<UserTabView> {
             indicatorPadding: const EdgeInsets.only(bottom: 4),
             dividerColor: Colors.transparent,
             // labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w700,
             fontFamily: 'DroidArabicKufi',
@@ -133,21 +132,20 @@ class _UserTabViewState extends State<UserTabView> {
                     child: Column(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 10, bottom: 10),
+                          margin: const EdgeInsets.only(top: 10, bottom: 10),
                           child: Row(
                             children: [
-                              SizedBox(width: 10,),
+                              const SizedBox(width: 10,),
                               GestureDetector(child: Container(
-                                child: Text('笔记'.tr +
-                                    ' · ${userLogic.userInfo?.collect!=null?userLogic.userInfo?.collect
+                                child: Text('${'笔记'.tr} · ${userLogic.userInfo?.collect!=null?userLogic.userInfo?.collect
                                         .toString():'0'}', style: TextStyle(
                                   fontSize: 12,
-                                  color: note==1 ? Color(0xff000000) : Color(
+                                  color: note==1 ? const Color(0xff000000) : const Color(
                                       0xff999999),
                                 ),),
-                                padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                                padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                                 decoration: BoxDecoration(
-                                  color: note==1 ? Color(0xffF5F5F5) : Colors
+                                  color: note==1 ? const Color(0xffF5F5F5) : Colors
                                       .transparent,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
@@ -157,18 +155,18 @@ class _UserTabViewState extends State<UserTabView> {
                                   oneData=false;
                                 });
                               },),
-                              SizedBox(width: 10,),
+                              const SizedBox(width: 10,),
                               GestureDetector(child: Container(
-                                padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                                padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                                 decoration: BoxDecoration(
-                                  color: note==2 ? Color(0xffF5F5F5) : Colors
+                                  color: note==2 ? const Color(0xffF5F5F5) : Colors
                                       .transparent,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
-                                child: Text('话题'.tr+' · ${userLogic.userInfo?.topics!=null?userLogic.userInfo?.topics
+                                child: Text('${'话题'.tr} · ${userLogic.userInfo?.topics!=null?userLogic.userInfo?.topics
                                     .toString():'0'}', style: TextStyle(
                                   fontSize: 12,
-                                  color: note==2 ? Color(0xff000000) : Color(
+                                  color: note==2 ? const Color(0xff000000) : const Color(
                                       0xff999999),
                                 ),),
                               ), onTap: () {
@@ -178,18 +176,18 @@ class _UserTabViewState extends State<UserTabView> {
                                   topiclist();
                                 });
                               },),
-                              SizedBox(width: 10,),
+                              const SizedBox(width: 10,),
                               GestureDetector(child: Container(
-                                padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                                padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                                 decoration: BoxDecoration(
-                                  color: note==3 ? Color(0xffF5F5F5) : Colors
+                                  color: note==3 ? const Color(0xffF5F5F5) : Colors
                                       .transparent,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
-                                child: Text('地点'.tr+' · ${userLogic.userInfo?.addressCollect!=null?userLogic.userInfo?.addressCollect
+                                child: Text('${'地点'.tr} · ${userLogic.userInfo?.addressCollect!=null?userLogic.userInfo?.addressCollect
                                     .toString():'0'}', style: TextStyle(
                                   fontSize: 12,
-                                  color: note==3 ? Color(0xff000000) : Color(
+                                  color: note==3 ? const Color(0xff000000) : const Color(
                                       0xff999999),
                                 ),),
                               ), onTap: () {
@@ -199,18 +197,18 @@ class _UserTabViewState extends State<UserTabView> {
                                   Collectionlocation();
                                 });
                               },),
-                              SizedBox(width: 10,),
+                              const SizedBox(width: 10,),
                               GestureDetector(child: Container(
-                                padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                                padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                                 decoration: BoxDecoration(
-                                  color: note==4 ? Color(0xffF5F5F5) : Colors
+                                  color: note==4 ? const Color(0xffF5F5F5) : Colors
                                       .transparent,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
-                                child: Text('好物'.tr+' · ${userLogic.userInfo?.goodsCollectNum!=null?userLogic.userInfo?.goodsCollectNum
+                                child: Text('${'好物'.tr} · ${userLogic.userInfo?.goodsCollectNum!=null?userLogic.userInfo?.goodsCollectNum
                                     .toString():'0'}', style: TextStyle(
                                   fontSize: 12,
-                                  color: note==4 ? Color(0xff000000) : Color(
+                                  color: note==4 ? const Color(0xff000000) : const Color(
                                       0xff999999),
                                 ),),
                               ), onTap: () {
@@ -231,7 +229,7 @@ class _UserTabViewState extends State<UserTabView> {
                         ///分割线
                         Container(
                           height: 1.0,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Color(0xfff1f1f1),
                             boxShadow: [
                               BoxShadow(
@@ -248,8 +246,8 @@ class _UserTabViewState extends State<UserTabView> {
                             type: ApiType.myCollect, parameter: '0',lasting:false),
                         ),
                         if(note==2) !oneData ? StartDetailLoading():Expanded(child:
-                        labellist.length>0?ListView(
-                            padding: EdgeInsets.only(left: 15, right: 15),
+                        labellist.isNotEmpty?ListView(
+                            padding: const EdgeInsets.only(left: 15, right: 15),
                             children: [
                               for(var i = 0; i < labellist.length; i++)
                                 GestureDetector(
@@ -257,7 +255,7 @@ class _UserTabViewState extends State<UserTabView> {
                                     Get.toNamed('/public/topic',arguments: labellist[i].id);
                                   },
                                   child: Column(children: [
-                                    SizedBox(height: 20,),
+                                    const SizedBox(height: 20,),
                                     Row(
                                       children: [
                                         Container(
@@ -270,7 +268,7 @@ class _UserTabViewState extends State<UserTabView> {
                                           child: Image.network(labellist[i].thumbnail,fit: BoxFit.cover,),
                                           clipBehavior: Clip.hardEdge,
                                         ),
-                                        SizedBox(width: 10,),
+                                        const SizedBox(width: 10,),
                                         Container(height: 47, child: Column(
                                           mainAxisAlignment: MainAxisAlignment
                                               .spaceBetween,
@@ -281,14 +279,14 @@ class _UserTabViewState extends State<UserTabView> {
                                                 Image.asset(
                                                   'assets/images/jinghao.png',
                                                   width: 20, height: 20,),
-                                                SizedBox(width: 7,),
+                                                const SizedBox(width: 7,),
                                                 Text(labellist[i].title)
                                               ],
                                             ),
                                             Row(
                                               children: [
                                                 Text(labellist[i].visits +' '+ '浏览'.tr,
-                                                  style: TextStyle(fontSize: 12,
+                                                  style: const TextStyle(fontSize: 12,
                                                       color: Color(0xff999999)),)
                                               ],
                                             )
@@ -296,12 +294,12 @@ class _UserTabViewState extends State<UserTabView> {
                                         ),)
                                       ],
                                     ),
-                                    SizedBox(height: 20,),
+                                    const SizedBox(height: 20,),
 
                                     ///分割线
                                     Container(
                                       height: 1.0,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0x06000000),
                                         boxShadow: [
                                           BoxShadow(
@@ -320,12 +318,12 @@ class _UserTabViewState extends State<UserTabView> {
                         ):NoDataWidgetNoShoucang(),),
                         ///位置列表
                         if(note==3)  !oneData ? StartDetailLoading():Expanded(child:
-                        FavoriteLocation.length>0?ListView(
-                            padding: EdgeInsets.only(left: 15, right: 15),
+                        FavoriteLocation.isNotEmpty?ListView(
+                            padding: const EdgeInsets.only(left: 15, right: 15),
                             children: [
                               for(var i = 0; i < FavoriteLocation.length; i++)
                                 GestureDetector(child:Column(children: [
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
                                   Row(
                                     children: [
                                       Container(
@@ -338,7 +336,7 @@ class _UserTabViewState extends State<UserTabView> {
                                         child: Image.network(FavoriteLocation[i].thumbnail,fit: BoxFit.cover,),
                                         clipBehavior: Clip.hardEdge,
                                       ),
-                                      SizedBox(width: 10,),
+                                      const SizedBox(width: 10,),
                                       Container(height: 78, child: Column(
                                         mainAxisAlignment: MainAxisAlignment
                                             .spaceBetween,
@@ -354,12 +352,12 @@ class _UserTabViewState extends State<UserTabView> {
                                               for(var r=0;r<FavoriteLocation[i].types.length;r++)
                                                 Row(
                                                   children: [
-                                                    Text(FavoriteLocation[i].types[r],style: TextStyle(color: Colors.black,fontSize: 12),overflow: TextOverflow.ellipsis,),
+                                                    Text(FavoriteLocation[i].types[r],style: const TextStyle(color: Colors.black,fontSize: 12),overflow: TextOverflow.ellipsis,),
                                                     if(r!=FavoriteLocation[i].types.length-1)Container(decoration: BoxDecoration(
                                                       border: Border.all(width: 0.5,color: Colors.black),
                                                     ),
                                                       height: 10,
-                                                      margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                                     )
                                                   ],
                                                 )
@@ -367,19 +365,19 @@ class _UserTabViewState extends State<UserTabView> {
                                           ),
                                           Row(
                                             children: [
-                                              Text(FavoriteLocation[i].createdAt,style: TextStyle(color: Color(0xff999999)),)
+                                              Text(FavoriteLocation[i].createdAt,style: const TextStyle(color: Color(0xff999999)),)
                                             ],
                                           )
                                         ],
                                       ),)
                                     ],
                                   ),
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
 
                                   ///分割线
                                   Container(
                                     height: 1.0,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xfff1f1f1),
                                       boxShadow: [
                                         BoxShadow(
@@ -403,22 +401,22 @@ class _UserTabViewState extends State<UserTabView> {
                         ),
                         ///比价收藏
                         if(note==4)  !oneData ? StartDetailLoading():Expanded(child:
-                        goodthinglist.length>0?ListView(
+                        goodthinglist.isNotEmpty?ListView(
                             controller: _scrollControllerls,
                             //padding: EdgeInsets.only(left: 15, right: 15),
                             children: [
                               for(var i = 0; i < goodthinglist.length; i++)
                                 GestureDetector(child:
                                 Column(children: [
-                                  Container(width: double.infinity,height: 10,color: Color(0xfff9f9f9),),
-                                  SizedBox(height: 15,),
-                                  Row(children: [SizedBox(width: 20,),Container(width: 50, height: 50,
+                                  Container(width: double.infinity,height: 10,color: const Color(0xfff9f9f9),),
+                                  const SizedBox(height: 15,),
+                                  Row(children: [const SizedBox(width: 20,),Container(width: 50, height: 50,
                                     //超出部分，可裁剪
                                     clipBehavior: Clip.hardEdge,
                                     decoration: BoxDecoration(
-                                      color:Color(0xfff5f5f5),
+                                      color:const Color(0xfff5f5f5),
                                       borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(width: 0.5,color: Color(0xfff5f5f5))
+                                        border: Border.all(width: 0.5,color: const Color(0xfff5f5f5))
                                     ),
                                     child: Image.network(
                                       goodthinglist[i].thumbnail,
@@ -427,42 +425,42 @@ class _UserTabViewState extends State<UserTabView> {
                                       width: 50,
                                       height: 50,
                                     ),
-                                  ),SizedBox(width: 8,),Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                    Container(constraints: BoxConstraints(maxWidth: 250,),child:
+                                  ),const SizedBox(width: 8,),Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
+                                    Container(constraints: const BoxConstraints(maxWidth: 250,),child:
                                     Text(goodthinglist[i].title,overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,style: TextStyle(fontSize: 16),),),
+                                      maxLines: 1,style: const TextStyle(fontSize: 16),),),
                                       Row(children: [
-                                        Container(height: 25,child: Text('评估'.tr,style: TextStyle(color: Color(0xff999999)),),),
-                                        SizedBox(width: 5,),
+                                        Container(height: 25,child: Text('评估'.tr,style: const TextStyle(color: Color(0xff999999)),),),
+                                        const SizedBox(width: 5,),
                                         XMStartRating(rating: double.parse(goodthinglist[i].score) ,showtext:true)
                                       ],),
                                   ],)],),
                                   Container(height: 56,alignment: Alignment.centerRight,
-                                    padding: EdgeInsets.fromLTRB(0, 10, 0,0),
+                                    padding: const EdgeInsets.fromLTRB(0, 10, 0,0),
                                     child: ListView(
                                         shrinkWrap: true,
                                         primary:false,
                                         scrollDirection: Axis.horizontal,
                                         children:[
                                           for(var j=0;j<jsonDecode(goodthinglist[i].priceOther).length;j++)
-                                            GestureDetector(child:Container(margin:EdgeInsets.only(right: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width: 0.5,color: Color((0xffF5F5F5))),
-                                                color: Color(0xfff5f5f5),
-                                                borderRadius: BorderRadius.all(Radius.circular(5))
+                                            GestureDetector(child:Container(margin:const EdgeInsets.only(right: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width: 0.5,color: const Color((0xffF5F5F5))),
+                                                color: const Color(0xfff5f5f5),
+                                                borderRadius: const BorderRadius.all(Radius.circular(5))
                                             ),child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
                                               Row(mainAxisAlignment:MainAxisAlignment.center,children: [
                                                 // Text("SAR",style: TextStyle(fontSize: 12,height: 1.1),),
                                                 // SizedBox(width: 2,),
-                                                Text(jsonDecode(goodthinglist[i].priceOther)[j]['price'].split(' ')[0],style: TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
-                                                SizedBox(width: 4,),
-                                                Text(jsonDecode(goodthinglist[i].priceOther)[j]['price'].split(' ')[1],style: TextStyle(height: 1.3,fontSize: 12),)
+                                                Text(jsonDecode(goodthinglist[i].priceOther)[j]['price'].split(' ')[0],style: const TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
+                                                const SizedBox(width: 4,),
+                                                Text(jsonDecode(goodthinglist[i].priceOther)[j]['price'].split(' ')[1],style: const TextStyle(height: 1.3,fontSize: 12),)
                                               ],),
-                                              Text(jsonDecode(goodthinglist[i].priceOther)[j]['platform'],style: TextStyle(fontSize: 12,color: Color(0xff999999)),)
+                                              Text(jsonDecode(goodthinglist[i].priceOther)[j]['platform'],style: const TextStyle(fontSize: 12,color: Color(0xff999999)),)
                                             ],),) ,onTap: () async {
                                               await launchUrl(Uri.parse(jsonDecode(goodthinglist[i].priceOther)[j]['detailPath']), mode: LaunchMode.externalApplication,);
                                             },)
                                         ]),
                                   ),
-                                  SizedBox(height: 15,),
+                                  const SizedBox(height: 15,),
                                 ]),onTap: (){
                                   Get.toNamed('/public/Evaluationdetails',arguments: {'data':goodthinglist[i]} );
                                 },)
@@ -492,7 +490,7 @@ class _UserTabViewState extends State<UserTabView> {
           ),
         ),
         // 3. 使用 TabBarView
-        body: TabBarView(children: <Widget>[
+        body: const TabBarView(children: <Widget>[
 
           /// 全部订单
           Center(child: Text('全部订222单')),

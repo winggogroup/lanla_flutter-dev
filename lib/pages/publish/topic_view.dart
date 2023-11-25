@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:keyboard_actions/keyboard_actions_config.dart';
 import 'package:lanla_flutter/common/widgets/button_black.dart';
 import 'package:lanla_flutter/models/topic.dart';
 import 'package:lanla_flutter/pages/publish/Longgraphictext.dart';
@@ -142,7 +140,7 @@ class _PublishTopicState extends State<PublishTopicPage> {
                                     BorderRadius.all(Radius.circular(30.0)),
                                 borderSide: BorderSide.none),
                             hintText: '输入搜索内容'.tr,
-                            fillColor: Color(0x07000000),
+                            fillColor: const Color(0x07000000),
                             filled: true,
                             prefixIcon: Padding(
                               padding: const EdgeInsets.only(
@@ -204,7 +202,7 @@ class _PublishTopicState extends State<PublishTopicPage> {
     }
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.fromLTRB(15, 5, 15, 0),
+        padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -226,7 +224,7 @@ class _PublishTopicState extends State<PublishTopicPage> {
   _hostList() {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.fromLTRB(15, 5, 15, 0),
+        padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -258,7 +256,7 @@ class _PublishTopicState extends State<PublishTopicPage> {
               Container(
                 child: Image.asset('assets/images/jinghao.png', height: 20,width:20,),
               ),
-              SizedBox(width: 5,),
+              const SizedBox(width: 5,),
               Expanded(
                 child: Text(
                   item.title,
@@ -272,7 +270,7 @@ class _PublishTopicState extends State<PublishTopicPage> {
                 child: Container(
                   child: Text(
                     '立即创建'.tr,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.blue, fontWeight: FontWeight.w600),
                   ),
                 ),

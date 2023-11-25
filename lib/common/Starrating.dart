@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// 5星评分的展示的小组件 -- 支持不同数量的星星、颜色、大小等
@@ -12,7 +11,7 @@ class XMStartRating extends StatelessWidget {
   final double spacing; // 星星间的间隙
   final bool showtext; // 星星间的间隙
   // 自定义构造函数
-  XMStartRating({
+  const XMStartRating({
     required this.rating,
     required this.showtext,
     this.totalRating = 5,
@@ -31,9 +30,9 @@ class XMStartRating extends StatelessWidget {
       child: Row(
         //mainAxisSize: MainAxisSize.min,
         children: [
-          if(this.showtext)
-            Container(height: 25, alignment: Alignment.bottomCenter,child: Text("${this.rating}",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Color(0xff9BE400),height: 1.3),),),
-          if(this.showtext)SizedBox(width: 5,),
+          if(showtext)
+            Container(height: 25, alignment: Alignment.bottomCenter,child: Text("${rating}",style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Color(0xff9BE400),height: 1.3),),),
+          if(showtext)const SizedBox(width: 5,),
           Stack(
             children: [
               getUnSelectStarWidget(),
@@ -48,22 +47,22 @@ class XMStartRating extends StatelessWidget {
 
   // 获取背景：未填充的星星
   List<Widget> _getUnSelectStars() {
-    return List<Widget>.generate(this.count, (index) {
-      return Icon(Icons.star_outline_rounded,size: size,color: Color(0xffD9D9D9),);
+    return List<Widget>.generate(count, (index) {
+      return Icon(Icons.star_outline_rounded,size: size,color: const Color(0xffD9D9D9),);
     });
   }
 
   // 填充星星
   List<Widget> _getSelectStars() {
-    return List<Widget>.generate(this.count, (index) {
-      return Icon(Icons.star, size: size, color: Color(0xFF9BE400),);
+    return List<Widget>.generate(count, (index) {
+      return Icon(Icons.star, size: size, color: const Color(0xFF9BE400),);
     });
   }
 
   // 获取背景星星的组件
   Widget getUnSelectStarWidget() {
     return  Wrap(
-      spacing: this.spacing,
+      spacing: spacing,
       alignment: WrapAlignment.spaceBetween,
       children: _getUnSelectStars(),
     );
@@ -72,18 +71,18 @@ class XMStartRating extends StatelessWidget {
   // 获取针对整个选中的星星裁剪的组件
   Widget getSelectStarWidget() {
     // 应该展示几个星星 --- 例如：4.6个星星
-    final double showStarCount = this.count * (this.rating/this.totalRating);
+    final double showStarCount = count * (rating/totalRating);
     final int fillStarCount = showStarCount.floor();// 满星的数量
 
     final double halfStarCount = showStarCount - fillStarCount; // 半星的数量
     // 最终需要裁剪的宽度
-    final double clipWith = fillStarCount*(this.size + this.spacing) + halfStarCount*this.size;
+    final double clipWith = fillStarCount*(size + spacing) + halfStarCount*size;
     return ClipRect(
       clipper: XMStarClipper(clipWith),
       child: Container(
         child: Wrap(
           textDirection: TextDirection.ltr,
-          spacing: this.spacing,
+          spacing: spacing,
           //alignment: WrapAlignment.center,
           children: _getSelectStars(),
         ),
@@ -97,7 +96,7 @@ class XMStarClipper extends CustomClipper<Rect> {
   XMStarClipper(this.clipWidth);
   @override
   Rect getClip(Size size) {
-    print('jianqie${clipWidth}');
+    print('jianqie$clipWidth');
     return Rect.fromLTRB(size.width-clipWidth, 0, size.width, size.height);
     //return Rect.fromLTRB(0, 0, clipWidth, size.height);
   }

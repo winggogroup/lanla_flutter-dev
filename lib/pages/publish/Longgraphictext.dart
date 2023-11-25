@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:dio/dio.dart' as dio2;
 import 'package:flustars/flustars.dart';
@@ -125,9 +124,9 @@ class LonggraphictextLogic extends GetxController {
     if (thumbnailPath != null) {
       ///谷歌存储桶设置
       final storageRef   = FirebaseStorage.instanceFor(bucket: "gs://lanla").ref();
-      File imageObj = await CompressImageFile(File(thumbnailPath!));
+      File imageObj = await CompressImageFile(File(thumbnailPath));
       ///谷歌上传缩略图
-      final spaceRef =  storageRef.child('user/img/Longraphictext'+_getFileName()+'.png');
+      final spaceRef =  storageRef.child('user/img/Longraphictext${_getFileName()}.png');
       final uploadTask = spaceRef.putFile(File(imageObj.path));
       await uploadTask.whenComplete(() {});
       videothumbnail =  await spaceRef.getDownloadURL();
@@ -151,10 +150,7 @@ class LonggraphictextLogic extends GetxController {
     if (firstTag.startsWith('<iframe')) {
       final document = parser.parse(htmlString);
       final iframeElement = document.getElementsByTagName('iframe').first;
-      if (iframeElement != null) {
-
-        return iframeElement.attributes['src'];
-      }
+      return iframeElement.attributes['src'];
     }
 
     return null;
@@ -197,7 +193,7 @@ class LonggraphictextLogic extends GetxController {
     }
 
     Get.offAll(HomePage());
-    Timer.periodic(Duration(milliseconds: 500), (timer) {
+    Timer.periodic(const Duration(milliseconds: 500), (timer) {
       homeLogic.setNowPage(3);
       timer.cancel(); //取消定时器
     });
@@ -217,7 +213,7 @@ class LonggraphictextLogic extends GetxController {
         recordingPath:state.formData['ossrecorderpath'],
         videoPath: '',
         attaImageScale: 0,
-        placeId:state.positioninformation['placeId']==null?'':state.positioninformation['placeId']
+        placeId:state.positioninformation['placeId'] ?? ''
     );
     // Navigator.pop(context);
     if (publiDataLogic.contentId == 0) {
@@ -317,7 +313,7 @@ class LonggraphictextLogic extends GetxController {
       });
       await pictureUpload.whenComplete(() {});
       String newVideoPath =  await pictureName.getDownloadURL();
-      print('视频地址${newVideoPath}');
+      print('视频地址$newVideoPath');
       if (state.formData['text'].contains(videoUrl)) {
         state.formData['text'] = state.formData['text'].replaceAll(videoUrl, newVideoPath);
         print('Updated string: ${state.formData['text']}');
@@ -334,7 +330,7 @@ class LonggraphictextLogic extends GetxController {
       final storageRef   = FirebaseStorage.instanceFor(bucket: "gs://lanla").ref();
       File imageObj = await CompressImageFile(File(imageUrl!));
       ///谷歌上传缩略图
-      final spaceRef =  storageRef.child('user/img/Longraphictext'+_getFileName()+'.png');
+      final spaceRef =  storageRef.child('user/img/Longraphictext${_getFileName()}.png');
       final uploadTask = spaceRef.putFile(File(imageObj.path));
       uploadTask.snapshotEvents.listen((taskSnapshot) {
         switch (taskSnapshot.state) {
@@ -487,13 +483,13 @@ class LonggraphictextLogic extends GetxController {
     }
 
 
-    print("datasssss${bendidata}");
+    print("datasssss$bendidata");
 
     var chucundata=jsonDecode(sp.getString("holduptank")!);
     chucundata['${userLogic.userId}']=bendidata;
     print('类型${chucundata is String}');
     // return;
-    sp.setString("holduptank", jsonEncode(chucundata)!);
+    sp.setString("holduptank", jsonEncode(chucundata));
     //
     Get.back();
     Get.back();

@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
@@ -120,7 +118,7 @@ class _TopicPageState extends State<TopicPage> {
                         Share.share('${'分享给你一个话题'.tr} https://api.lanla.app/share?t=${Get.arguments}');
                       },
                       child: Container(
-                        margin: EdgeInsets.only(left: 20,right: 20),
+                        margin: const EdgeInsets.only(left: 20,right: 20),
                         width: 22,
                         height: 22,
                         child: Image.asset(
@@ -169,7 +167,7 @@ class _TopicPageState extends State<TopicPage> {
                           children: [
                             Image.asset('assets/images/jinghao.png',fit: BoxFit.cover,width: 22,height: 22,),
                             const SizedBox(width: 7,),
-                            Container(constraints: BoxConstraints(maxWidth: 250,),child:Text(
+                            Container(constraints: const BoxConstraints(maxWidth: 250,),child:Text(
                               overflow: TextOverflow.ellipsis,
                                _dataSource?.title ?? "---",
                               style: const TextStyle(
@@ -309,7 +307,7 @@ class _TopicPageState extends State<TopicPage> {
                   _publish();
                 },
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                  padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                   width: 140,
                   height: 50,
                   decoration: BoxDecoration(
@@ -360,7 +358,7 @@ class _TopicPageState extends State<TopicPage> {
               Get.back();
               final AssetEntity? result = await CameraPicker.pickFromCamera(
                 context,
-                pickerConfig: CameraPickerConfig(
+                pickerConfig: const CameraPickerConfig(
                     textDelegate: ArabCameraPickerTextDelegate(),
                     enableRecording: true,
                     shouldAutoPreviewVideo: true),
@@ -380,7 +378,7 @@ class _TopicPageState extends State<TopicPage> {
                 children: [
                   Text(
                     '拍摄'.tr,
-                    style: TextStyle(fontSize: 17),
+                    style: const TextStyle(fontSize: 17),
                   ),
                 ],
               ),
@@ -411,7 +409,7 @@ class _TopicPageState extends State<TopicPage> {
               color: Colors.white,
               child: Text(
                 '从相册选择'.tr,
-                style: TextStyle(fontSize: 17),
+                style: const TextStyle(fontSize: 17),
               ),
             ),
           ),
@@ -433,7 +431,7 @@ class _TopicPageState extends State<TopicPage> {
               child: Center(
                 child: Text(
                   '取消'.tr,
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ),
             ),
@@ -455,13 +453,13 @@ class MyDelegate extends SliverPersistentHeaderDelegate {
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       height: 50,
-      padding: EdgeInsets.only(left: 15, right: 15),
+      padding: const EdgeInsets.only(left: 15, right: 15),
       alignment: Alignment.center,
       color: Colors.white,
       child: Container(
         height: 50,
         child: Container(
-          padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+          padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
           child: Row(
             children: [
               Container(

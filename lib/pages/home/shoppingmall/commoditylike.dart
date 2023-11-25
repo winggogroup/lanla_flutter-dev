@@ -20,7 +20,7 @@ class commoditylikeState extends State<commoditylikePage> {
   final provider = Get.find<ContentProvider>();
   bool oneData = false;
   int likePage=1;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   var likelistdata = [];
   @override
   void initState() {
@@ -42,7 +42,7 @@ class commoditylikeState extends State<commoditylikePage> {
     if(res.statusCode==200){
       if(res.body['data'].length>0){
         likePage++;
-        if(likelistdata.length==0){
+        if(likelistdata.isEmpty){
           likelistdata=res.body['data'];
         }else{
           likelistdata=[...likelistdata,...res.body['data']];
@@ -77,20 +77,20 @@ class commoditylikeState extends State<commoditylikePage> {
               height: 22,
             ),
           ),
-          title: Text('我的喜欢'.tr, style: TextStyle(
+          title: Text('我的喜欢'.tr, style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
           ),),
         ),
         body: Container(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: const BoxDecoration(color: Colors.white),
           child: Column(
             children: [
               Divider(height: 1.0, color: Colors.grey.shade200,),
               Expanded(
                   flex: 1,
                   child: !oneData
-                      ? StartDetailLoading():likelistdata.length>0?
+                      ? StartDetailLoading():likelistdata.isNotEmpty?
                   RefreshIndicator(onRefresh: _onRefresh,
                       child: MasonryGridView.count(
                         controller: _scrollController,
@@ -107,13 +107,13 @@ class commoditylikeState extends State<commoditylikePage> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             child: Container(
-                              padding: EdgeInsets.all(15),
+                              padding: const EdgeInsets.all(15),
                               height: 244,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 0.5,
-                                      color: Color.fromRGBO(
+                                      color: const Color.fromRGBO(
                                           245, 245, 245, 1))),
                               child: Column(
                                 mainAxisAlignment:
@@ -128,8 +128,8 @@ class commoditylikeState extends State<commoditylikePage> {
                                       fit: BoxFit.contain,
                                       placeholder: (context, url) =>
                                           Container(
-                                            color: Color(0xffF5F5F5),
-                                            padding: EdgeInsets.only(
+                                            color: const Color(0xffF5F5F5),
+                                            padding: const EdgeInsets.only(
                                                 left: 20, right: 20),
                                             width: double.infinity,
                                             child: Image.asset(
@@ -139,8 +139,8 @@ class commoditylikeState extends State<commoditylikePage> {
                                           (context, url, error) {
                                         // 网络图片加载失败时显示本地图片
                                             return Container(
-                                              color: Color(0xffF5F5F5),
-                                              padding: EdgeInsets.only(
+                                              color: const Color(0xffF5F5F5),
+                                              padding: const EdgeInsets.only(
                                                   left: 20, right: 20),
                                               width: double.infinity,
                                               child: Image.asset(
@@ -150,7 +150,7 @@ class commoditylikeState extends State<commoditylikePage> {
                                             },
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   Container(
@@ -160,7 +160,7 @@ class commoditylikeState extends State<commoditylikePage> {
                                       overflow: TextOverflow.ellipsis,
                                       //长度溢出后显示省略号
                                       maxLines: 2,
-                                      style: TextStyle(fontSize: 13),
+                                      style: const TextStyle(fontSize: 13),
                                     ),
                                   ),
                                   // SizedBox(height: 8,),
@@ -190,10 +190,10 @@ class commoditylikeState extends State<commoditylikePage> {
                     // decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red),),
                     child:Column(
                       children: [
-                        SizedBox(height: 120,),
+                        const SizedBox(height: 120,),
                         Image.asset('assets/images/noZanguobg.png',width: 200,height: 200,),
-                        SizedBox(height: 40,),
-                        Text('暂无喜欢的商品'.tr,style: TextStyle(
+                        const SizedBox(height: 40,),
+                        Text('暂无喜欢的商品'.tr,style: const TextStyle(
                             fontSize: 15,
                             color: Color(0xff999999)
                         ),),

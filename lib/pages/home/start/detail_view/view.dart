@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -102,7 +101,7 @@ class _startDetailState extends State<StartDetailPage> with AutomaticKeepAliveCl
     });
     _controller.addListener(_controllerListener);
     // 延迟1秒请求接口，防止渲染太多 引起卡顿
-    Future.delayed(Duration(milliseconds: 500), ()  {
+    Future.delayed(const Duration(milliseconds: 500), ()  {
       _fetch(1);
 
     });
@@ -176,7 +175,7 @@ class _startDetailState extends State<StartDetailPage> with AutomaticKeepAliveCl
     }
     if(widget.type==ApiType.home){
       wantKeepAlives = widget.lasting;
-      this.updateKeepAlive();
+      updateKeepAlive();
       for(var i=0;i<bannerstate.channelDataSource.length;i++){
         if(bannerstate.channelDataSource[i].id==int.parse(widget.parameter)){
           topicindex=i;
@@ -209,15 +208,15 @@ class _startDetailState extends State<StartDetailPage> with AutomaticKeepAliveCl
                     if(widget.type==ApiType.home&&bannerstate.channelDataSource[topicindex].banner.length>0&&userController.token!='')Container(
                       //超出部分，可裁剪
                       clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
-                      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: home_swiper(context,bannerstate.channelDataSource[topicindex].banner),
                     ),
                     MasonryGridView.count(
                     shrinkWrap: true,
-                    physics: new NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     // controller:
                     // widget.type == ApiType.myPublish ? null : _controller,
                     //key: PageStorageKey(item.id),

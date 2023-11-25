@@ -116,7 +116,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
     }
   }
   empty(){
-    Future.delayed(Duration(milliseconds: 200)).then((e) {
+    Future.delayed(const Duration(milliseconds: 200)).then((e) {
       for (var i = 0; i <
           userController.Chatrelated['${userController.userId}']['Chatlist']
               .length; i++) {
@@ -157,20 +157,20 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
               height: 22,
             ),
           ),
-          title: Text(uname, style: TextStyle(
+          title: Text(uname, style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
           ),),
         ),
         body: GestureDetector(child: Container(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: const BoxDecoration(color: Colors.white),
           child: Column(
             children: [
               Divider(height: 1.0, color: Colors.grey.shade200,),
               Expanded(flex: 1, child: Container(
                   width: double.infinity,
-                  color: Color(0xfff5f5f5),
-                  padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                  color: const Color(0xfff5f5f5),
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                   child: Column(children: [
                     Expanded(child:
                     Container(
@@ -191,36 +191,36 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                               // physics: const NeverScrollableScrollPhysics(), //禁止滚动
                               itemCount: userController
                                   .Chatrelated['${userController
-                                  .userId}']['record']['${uid}'] != null
+                                  .userId}']['record']['$uid'] != null
                                   ? userController.Chatrelated['${userController
-                                  .userId}']['record']['${uid}'].length
+                                  .userId}']['record']['$uid'].length
                                   : 0,
 
                               itemBuilder: (context, i) {
                                 return userController
                                     .Chatrelated['${userController
-                                    .userId}']['record']['${uid}'][i]['send'] ==
+                                    .userId}']['record']['$uid'][i]['send'] ==
                                     miid ? Column(children: [
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
                                   Column(children: [
                                     i == userController
                                         .Chatrelated['${userController
-                                        .userId}']['record']['${uid}'].length -
+                                        .userId}']['record']['$uid'].length -
                                         1 ? Text(messageTime(userController
                                         .Chatrelated['${userController
-                                        .userId}']['record']['${uid}'][i]["Times"]))
+                                        .userId}']['record']['$uid'][i]["Times"]))
                                         : compare(userController
                                         .Chatrelated['${userController
-                                        .userId}']['record']['${uid}'][i]["Times"],
+                                        .userId}']['record']['$uid'][i]["Times"],
                                         userController
                                             .Chatrelated['${userController
-                                            .userId}']['record']['${uid}'][i +
+                                            .userId}']['record']['$uid'][i +
                                             1]["Times"]) ? Text(messageTime(
                                         userController
                                             .Chatrelated['${userController
-                                            .userId}']['record']['${uid}'][i]["Times"]))
+                                            .userId}']['record']['$uid'][i]["Times"]))
                                         : Container(),
-                                    SizedBox(height: 20,),
+                                    const SizedBox(height: 20,),
                                     Row(crossAxisAlignment: CrossAxisAlignment
                                         .start, children: [
                                       Container(
@@ -236,10 +236,10 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                               fit: BoxFit.cover),
                                         ),
                                       ),
-                                      SizedBox(width: 10,),
+                                      const SizedBox(width: 10,),
                                       if(userController
                                           .Chatrelated['${userController
-                                          .userId}']['record']['${uid}'][i]["MessageType"] ==
+                                          .userId}']['record']['$uid'][i]["MessageType"] ==
                                           1)
                                         Container(
                                           constraints: BoxConstraints(
@@ -248,22 +248,22 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                                 .size
                                                 .width - 90,
                                           ),
-                                          padding: EdgeInsets.fromLTRB(
+                                          padding: const EdgeInsets.fromLTRB(
                                               15, 12, 15, 12),
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(5)),
                                               color: Color(0xff222222)),
                                           child: Text(userController
                                               .Chatrelated['${userController
-                                              .userId}']['record']['${uid}'][i]["message"]
+                                              .userId}']['record']['$uid'][i]["message"]
                                               .toString(),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: Colors.white),),
                                         ),
                                       if(userController
                                           .Chatrelated['${userController
-                                          .userId}']['record']['${uid}'][i]["MessageType"] ==
+                                          .userId}']['record']['$uid'][i]["MessageType"] ==
                                           2)
                                         GestureDetector(child: Stack(children: [
 
@@ -282,13 +282,13 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                               child: Image.network(
                                                 (userController
                                                     .Chatrelated['${userController
-                                                    .userId}']['record']['${uid}'][i]["message"]
+                                                    .userId}']['record']['$uid'][i]["message"]
                                                     .split(",")[0]), width: 200,
                                                 fit: BoxFit.cover,),
                                             ),
                                           ),
 
-                                          Positioned(
+                                          const Positioned(
                                             top: 10,
                                             right: 10,
                                             left: 10,
@@ -307,11 +307,11 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                             Get.to(Videoplaybackpage(),
                                                 arguments: userController
                                                     .Chatrelated['${userController
-                                                    .userId}']['record']['${uid}'][i]["message"]);
+                                                    .userId}']['record']['$uid'][i]["message"]);
                                           },),
                                       if(userController
                                           .Chatrelated['${userController
-                                          .userId}']['record']['${uid}'][i]["MessageType"] ==
+                                          .userId}']['record']['$uid'][i]["MessageType"] ==
                                           3)
                                         GestureDetector(child: Card(
                                           shape: RoundedRectangleBorder(
@@ -320,7 +320,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                           clipBehavior: Clip.antiAlias,
                                           child: Image.network((userController
                                               .Chatrelated['${userController
-                                              .userId}']['record']['${uid}'][i]["message"]),
+                                              .userId}']['record']['$uid'][i]["message"]),
                                             width: 200, fit: BoxFit.cover,),
                                         ), onTap: () {
                                           SystemChannels.textInput.invokeMethod(
@@ -328,7 +328,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                           Get.to(Pictureviewpage(),
                                               arguments: userController
                                                   .Chatrelated['${userController
-                                                  .userId}']['record']['${uid}'][i]["message"]);
+                                                  .userId}']['record']['$uid'][i]["message"]);
                                         },),
                                     ],),
                                   ],),
@@ -336,26 +336,26 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                 Column(children: [
 
                                   ///对方消息
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
                                   Column(children: [
                                     i == userController
                                         .Chatrelated['${userController
-                                        .userId}']['record']['${uid}'].length -
+                                        .userId}']['record']['$uid'].length -
                                         1 ? Text(messageTime(userController
                                         .Chatrelated['${userController
-                                        .userId}']['record']['${uid}'][i]["Times"]))
+                                        .userId}']['record']['$uid'][i]["Times"]))
                                         : compare(userController
                                         .Chatrelated['${userController
-                                        .userId}']['record']['${uid}'][i]["Times"],
+                                        .userId}']['record']['$uid'][i]["Times"],
                                         userController
                                             .Chatrelated['${userController
-                                            .userId}']['record']['${uid}'][i +
+                                            .userId}']['record']['$uid'][i +
                                             1]["Times"]) ? Text(messageTime(
                                         userController
                                             .Chatrelated['${userController
-                                            .userId}']['record']['${uid}'][i]["Times"]))
+                                            .userId}']['record']['$uid'][i]["Times"]))
                                         : Container(),
-                                    SizedBox(height: 20,),
+                                    const SizedBox(height: 20,),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment: CrossAxisAlignment
@@ -373,7 +373,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                         // ),
                                         if(userController
                                             .Chatrelated['${userController
-                                            .userId}']['record']['${uid}'][i]["MessageType"] ==
+                                            .userId}']['record']['$uid'][i]["MessageType"] ==
                                             1)
                                           Expanded(child: Row(
                                             mainAxisAlignment: MainAxisAlignment
@@ -384,23 +384,23 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                                   .size
                                                   .width - 90,
                                             ),
-                                            padding: EdgeInsets.fromLTRB(
+                                            padding: const EdgeInsets.fromLTRB(
                                                 15, 12, 15, 12),
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(5)),
                                                 color: Color(0xff222222)),
                                             child: Text(userController
                                                 .Chatrelated['${userController
-                                                .userId}']['record']['${uid}'][i]["message"]
+                                                .userId}']['record']['$uid'][i]["message"]
                                                 .toString(),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.white),),
                                           )
                                           ],),),
                                         if(userController
                                             .Chatrelated['${userController
-                                            .userId}']['record']['${uid}'][i]["MessageType"] ==
+                                            .userId}']['record']['$uid'][i]["MessageType"] ==
                                             2)
                                           GestureDetector(child: Card(
                                             shape: RoundedRectangleBorder(
@@ -409,7 +409,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                             clipBehavior: Clip.antiAlias,
                                             child: Image.network((userController
                                                 .Chatrelated['${userController
-                                                .userId}']['record']['${uid}'][i]["message"]
+                                                .userId}']['record']['$uid'][i]["message"]
                                                 .split(",")[0]), width: 200,
                                               fit: BoxFit.cover,),
                                           ), onTap: () {
@@ -418,12 +418,12 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                             Get.to(Videoplaybackpage(),
                                                 arguments: userController
                                                     .Chatrelated['${userController
-                                                    .userId}']['record']['${uid}'][i]["message"]
+                                                    .userId}']['record']['$uid'][i]["message"]
                                                     .split(",")[1]);
                                           },),
                                         if(userController
                                             .Chatrelated['${userController
-                                            .userId}']['record']['${uid}'][i]["MessageType"] ==
+                                            .userId}']['record']['$uid'][i]["MessageType"] ==
                                             3)
                                           GestureDetector(child: Card(
                                             shape: RoundedRectangleBorder(
@@ -432,7 +432,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                             clipBehavior: Clip.antiAlias,
                                             child: Image.network((userController
                                                 .Chatrelated['${userController
-                                                .userId}']['record']['${uid}'][i]["message"]),
+                                                .userId}']['record']['$uid'][i]["message"]),
                                               width: 200, fit: BoxFit.cover,),
                                           ), onTap: () {
                                             SystemChannels.textInput
@@ -440,9 +440,9 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                                             Get.to(Pictureviewpage(),
                                                 arguments: userController
                                                     .Chatrelated['${userController
-                                                    .userId}']['record']['${uid}'][i]["message"]);
+                                                    .userId}']['record']['$uid'][i]["message"]);
                                           },),
-                                        SizedBox(width: 10,),
+                                        const SizedBox(width: 10,),
                                         if(Avatar!=null)GestureDetector(child: Container(
                                           width: 40,
                                           height: 40,
@@ -469,7 +469,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                     ),
                   ],)
               )),
-              Container(padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              Container(padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                 child: Row(
                   children: [Expanded(child: TextField(
                     controller: chatvalue,
@@ -479,17 +479,17 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                       });
                     },
                     maxLines: null,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 14, color: Colors.black, height: 1.3),
                     //输入文本的样式
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       fillColor: Color(0xfff9f9f9),
                       //背景颜色，必须结合filled: true,才有效
                       filled: true,
                       //重点，必须设置为true，fillColor才有效
                       // hintText: '请填写'.tr,
-                      hintStyle: const TextStyle(color: Colors.black12),
-                      focusedBorder: const OutlineInputBorder(
+                      hintStyle: TextStyle(color: Colors.black12),
+                      focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.white, // 边框颜色
                         ),
@@ -504,7 +504,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                           top: 10, bottom: 10, left: 15, right: 15),
                     ),
                     autofocus: true,
-                  ),), SizedBox(width: 15,),
+                  ),), const SizedBox(width: 15,),
                     lttext == '' ? GestureDetector(child: Image.asset(
                         'assets/images/ltianjia.png', width: 24,
                         height: 24,
@@ -544,8 +544,8 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
               if(bottomhz)Container(
                 width: double.infinity,
                 height: 250,
-                color: Color(0xfff9f9f9),
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                color: const Color(0xfff9f9f9),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -585,8 +585,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                               var thumbnailPath = await VideoThumbnail
                                   .thumbnailFile(
                                 video: file!.path,
-                                thumbnailPath: dir.path + "/" + getUUid() +
-                                    ".png",
+                                thumbnailPath: "${"${dir.path}/" + getUUid()}.png",
                                 //imageFormat: ImageFormat.PNG,
                                 maxWidth: 300,
                                 quality: 25,
@@ -609,21 +608,21 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                         Image.asset('assets/images/xiangce.png', width: 60,
                           height: 60,
                           fit: BoxFit.cover,),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Text('相册'.tr)
                       ],),),
-                      SizedBox(width: 20,),
+                      const SizedBox(width: 20,),
                       GestureDetector(child: Column(children: [
                         Image.asset('assets/images/paizhao.png', width: 60,
                           height: 60,
                           fit: BoxFit.cover,),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Text('拍照'.tr)
                       ],), onTap: () async {
                         final AssetEntity? result = await CameraPicker
                             .pickFromCamera(
                           context,
-                          pickerConfig: CameraPickerConfig(
+                          pickerConfig: const CameraPickerConfig(
                               textDelegate: ArabCameraPickerTextDelegate(),
                               enableRecording: true,
                               shouldAutoPreviewVideo: true),
@@ -648,8 +647,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
                             var thumbnailPath = await VideoThumbnail
                                 .thumbnailFile(
                               video: file!.path,
-                              thumbnailPath: dir.path + "/" + getUUid() +
-                                  ".png",
+                              thumbnailPath: "${"${dir.path}/" + getUUid()}.png",
                               //imageFormat: ImageFormat.PNG,
                               maxWidth: 300,
                               quality: 25,
@@ -690,51 +688,42 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
 // }
   static String messageTime(timeStamp) {
     // 当前时间
-    int time = (new DateTime.now().millisecondsSinceEpoch / 1000).round();
+    int time = (DateTime.now().millisecondsSinceEpoch / 1000).round();
     // 对比
     num _distance = time - timeStamp;
     if (_distance <= 180) {
       return '刚刚'.tr;
     } else if (_distance <= 3600) {
-      return '前'.tr + '${(_distance / 60).floor()}' + '分钟'.tr;
+      return '${'前'.tr}${(_distance / 60).floor()}${'分钟'.tr}';
     } else if (_distance <= 43200) {
-      return '前'.tr + '${(_distance / 60 / 60).floor()}' + '小时'.tr;
+      return '${'前'.tr}${(_distance / 60 / 60).floor()}${'小时'.tr}';
     } else if (DateTime
         .fromMillisecondsSinceEpoch(time * 1000)
         .year == DateTime
         .fromMillisecondsSinceEpoch(timeStamp * 1000)
         .year) {
       //return '${CustomStamp_str(Timestamp: timeStamp, Date: 'MM/DD hh:mm', toInt: false)}';
-      return DateTime
+      return '${DateTime
           .fromMillisecondsSinceEpoch(timeStamp * 1000)
-          .hour
-          .toString() + ':' + DateTime
+          .hour}:${DateTime
           .fromMillisecondsSinceEpoch(timeStamp * 1000)
-          .minute
-          .toString() + ' ' + DateTime
+          .minute} ${DateTime
           .fromMillisecondsSinceEpoch(timeStamp * 1000)
-          .day
-          .toString() + '/' + DateTime
+          .day}/${DateTime
           .fromMillisecondsSinceEpoch(timeStamp * 1000)
-          .month
-          .toString();
+          .month}';
     } else {
-      return DateTime
+      return '${DateTime
           .fromMillisecondsSinceEpoch(timeStamp * 1000)
-          .hour
-          .toString() + ':' + DateTime
+          .hour}:${DateTime
           .fromMillisecondsSinceEpoch(timeStamp * 1000)
-          .minute
-          .toString() + ' ' + DateTime
+          .minute} ${DateTime
           .fromMillisecondsSinceEpoch(timeStamp * 1000)
-          .day
-          .toString() + '/' + DateTime
+          .day}/${DateTime
           .fromMillisecondsSinceEpoch(timeStamp * 1000)
-          .month
-          .toString() + '/' + DateTime
+          .month}/${DateTime
           .fromMillisecondsSinceEpoch(timeStamp * 1000)
-          .year
-          .toString();
+          .year}';
     }
   }
 
@@ -773,14 +762,14 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
     // String newThumbnailPath =
     // await AliOssClient().putObject(imageObj.path, 'thumb', _getFileName());
 
-    final pictureName =  storageRef.child("user/img/"+_getFileName()+".png");
+    final pictureName =  storageRef.child("user/img/${_getFileName()}.png");
     final pictureUpload = pictureName.putFile(File(imageObj.path));
     await pictureUpload.whenComplete(() {});
     String newThumbnailPath =  await pictureName.getDownloadURL();
 
     // imagesPath.add(newThumbnailPath);
     //await publiDataLogic.finishTask();
-    print('publish:${newThumbnailPath}');
+    print('publish:$newThumbnailPath');
 
     // var client = http.Client();
     // http.Response response = await client.get(Uri.parse(newThumbnailPath + '?x-oss-process=image/info'));
@@ -810,7 +799,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
     //     .putObject(imageObj.path!, 'thumb', _getFileName());
 
     ///谷歌上传缩略图
-    final spaceRef =  storageRef.child("user/img/v"+_getFileName()+".png");
+    final spaceRef =  storageRef.child("user/img/v${_getFileName()}.png");
     final uploadTask = spaceRef.putFile(File(imageObj.path));
     await uploadTask.whenComplete(() {});
     String newThumbnailPath =  await spaceRef.getDownloadURL();
@@ -834,7 +823,7 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
       print('压缩大小:${files.lengthSync()}');
     }
 
-    print('压缩后：${mediaInfo}');
+    print('压缩后：$mediaInfo');
 
     // ---任务2-上传视频--
     // var newVideoPath = await AliOssClient()
@@ -846,14 +835,14 @@ class Chat extends State<ChatPage> with WidgetsBindingObserver {
     final pictureUpload = pictureName.putFile(mediaInfo != null ? File(mediaInfo.path!) : File(file.path!),);
     await pictureUpload.whenComplete(() {});
     String newVideoPath =  await pictureName.getDownloadURL();
-    print('视频上传${newVideoPath}');
+    print('视频上传$newVideoPath');
     WebSocketes.channel.sink.add(
         jsonEncode({
           'Code': 10001,
           'Target': uid,
           'Send': miid,
           'MessageType': 2,
-          'Message': '${newThumbnailPath},${newVideoPath}'
+          'Message': '$newThumbnailPath,$newVideoPath'
         }));
     Navigator.pop(context);
   }

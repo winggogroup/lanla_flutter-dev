@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
@@ -44,7 +43,7 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
       backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text('榜单'.tr , style: TextStyle(
+          title: Text('榜单'.tr , style: const TextStyle(
         fontSize: 20)),
           actions: [
             GestureDetector(
@@ -77,7 +76,7 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
                           right: -22 / 2,
                           child: Container(
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                     Radius.circular(50)),
                                 color: Colors.red
@@ -85,7 +84,7 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
                             width: 16,
                             height: 16,
                             child: Text(userLogic.NumberMessages+userLogic.Chatrelated['${userLogic.userId}']['Unreadmessagezs']>99?'99':'${userLogic.NumberMessages+userLogic.Chatrelated['${userLogic.userId}']['Unreadmessagezs']}',
-                              style: TextStyle(color: Colors.white,
+                              style: const TextStyle(color: Colors.white,
                                   fontSize: 8,
                                   height: 1.0),),
                           ),
@@ -96,7 +95,7 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
                           right: -22 / 2,
                           child: Container(
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                     Radius.circular(50)),
                                 color: Colors.red
@@ -104,7 +103,7 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
                             width: 16,
                             height: 16,
                             child: Text(userLogic.NumberMessages.toString(),
-                              style: TextStyle(color: Colors.white,
+                              style: const TextStyle(color: Colors.white,
                                   fontSize: 8,
                                   height: 1.0),),
                           ),
@@ -121,8 +120,8 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
           ],
         ),
         body:  Container(
-          padding: EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.only(top: 10),
+          decoration: const BoxDecoration(
             border: Border(top: BorderSide(color: Color(0x10000000),width: 0.3))
           ),
           child: loading ? SpinKitChasingDots(
@@ -135,7 +134,7 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
           ):RefreshIndicator(
             onRefresh: _onRefresh,
             displacement: 10.0,
-            child:dataSource!=null&&dataSource!.length>0?
+            child:dataSource!=null&&dataSource!.isNotEmpty?
           ListView.builder(
               itemCount: dataSource!.length,
               itemBuilder: (BuildContext context, int index) {
@@ -146,7 +145,7 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.width*dataSource![index].attaImageScale,
-                    margin: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                    margin: const EdgeInsets.fromLTRB(20, 15, 20, 15),
                     child: CachedNetworkImage(
                       imageUrl: dataSource![index].banner,
                       imageBuilder: (context, imageProvider) => Container(
@@ -156,7 +155,7 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
                             image: imageProvider,
                             fit: BoxFit.fill,
                           ),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color(0x50000000),
                               offset: Offset(0, 5),
@@ -178,7 +177,7 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
                   child: Column(
                     // mainAxisAlignment:MainAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 100,
                       ),
                       Image.asset(
@@ -186,22 +185,22 @@ class _TopPageState extends State<TopPage> with AutomaticKeepAliveClientMixin {
                         width: 200,
                         height: 200,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                       Text(
-                        userLogic.follows.length>0?'你关注的人还没有发布内容哟'.tr:'还没有关注的人'.tr,
-                        style: TextStyle(
+                        userLogic.follows.isNotEmpty?'你关注的人还没有发布内容哟'.tr:'还没有关注的人'.tr,
+                        style: const TextStyle(
                           fontSize: 16,
                           //fontFamily: 'PingFang SC-Regular, PingFang SC'
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
-                      if(userLogic.follows.length==0)Text(
+                      if(userLogic.follows.isEmpty)Text(
                         '关注后，可以在这里查看对方的最新动态'.tr,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 12,
                             //fontFamily: 'PingFang SC-Regular, PingFang SC',
                             color: Color(0xff999999)),

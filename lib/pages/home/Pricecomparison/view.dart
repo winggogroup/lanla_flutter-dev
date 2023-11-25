@@ -3,8 +3,6 @@ import 'dart:ui';
 
 
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -43,7 +41,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
   @override
   void initState() {
      super.initState();
-     SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent,statusBarIconBrightness: Brightness.dark);
+     SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(statusBarColor: Colors.transparent,statusBarIconBrightness: Brightness.dark);
      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
      ///商品
      pindaolist();
@@ -143,7 +141,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
         // ),
         body: GestureDetector(child:!oneData ? StartDetailLoading():Container(color: Colors.white,child: Column(
           children: [
-            Container(width: double.infinity,height: 170,decoration: BoxDecoration(gradient: LinearGradient(
+            Container(width: double.infinity,height: 170,decoration: const BoxDecoration(gradient: LinearGradient(
                 begin: Alignment.topCenter,//渐变开始于上面的中间开始
                 end: Alignment.bottomCenter,//渐变结束于下面的中间
                 colors: [Color(0xffC5FF00),Color(0x00C5FF00)//开始颜色和结束颜色
@@ -151,7 +149,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
               child: Column(children: [
                 SizedBox(height: MediaQueryData.fromWindow(window).padding.top+20,),
                 ///搜索
-                Container(padding:EdgeInsets.fromLTRB(20, 0, 20, 0),child:TextField(
+                Container(padding:const EdgeInsets.fromLTRB(20, 0, 20, 0),child:TextField(
                     controller: mControll3,
                   //focusNode: _searchFocus,
                     decoration: InputDecoration(
@@ -159,7 +157,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                       const TextStyle(color: Color(0xffD9D9D9),fontSize: 13),
                       contentPadding:
                       const EdgeInsets.only(top: 0, bottom: 0),
-                      enabledBorder: OutlineInputBorder(
+                      enabledBorder: const OutlineInputBorder(
                         ///设置边框四个角的弧度
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                         ///用来配置边框的样式
@@ -170,7 +168,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                         //   width: 2.0,
                         // )
                         borderSide: BorderSide.none,),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         // borderSide: BorderSide(
                         //   color: Colors.black, //边框颜色为白色
                         //   width: 2, //宽度为5
@@ -181,7 +179,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                         ),
                       ),
                       hintText: '输入搜索内容'.tr,
-                      fillColor: Color(0xffffffff),
+                      fillColor: const Color(0xffffffff),
                       filled: true,
                       prefixIcon: Padding(                        padding: const EdgeInsets.only(
                             top: 12, bottom: 12, right: 5),
@@ -220,14 +218,14 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                       // _search();
                     }),),
                 ///
-                SizedBox(height: 10,),
-                Expanded(child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [Text('全网比价'.tr,style: TextStyle(color: Colors.black,fontSize: 13,),),SizedBox(height: 1,),Text('你的LanLa时尚购物指南'.tr,style: TextStyle(color: Colors.black,fontSize: 13,))],))
+                const SizedBox(height: 10,),
+                Expanded(child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [Text('全网比价'.tr,style: const TextStyle(color: Colors.black,fontSize: 13,),),const SizedBox(height: 1,),Text('你的LanLa时尚购物指南'.tr,style: const TextStyle(color: Colors.black,fontSize: 13,))],))
               ],),
             ),
             Expanded(child: Column(children: [
               Row(children: [
                 Expanded(child: Container(height: 105,alignment: Alignment.center,
-                  padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                   child: ListView(
                       shrinkWrap: true,
                       primary:false,
@@ -237,7 +235,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                         for(var item in frequencylist)
                           GestureDetector(child:Container(
                             color: Colors.white,
-                            margin: EdgeInsets.only(right: 20),
+                            margin: const EdgeInsets.only(right: 20),
                             child: Column(
                               children: [
                                 Container(
@@ -248,7 +246,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                                   //padding: EdgeInsets.all(8),
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                        width: 1, color: spchannel==item['id']? Colors.black:Color(0xfff1f1f1)),
+                                        width: 1, color: spchannel==item['id']? Colors.black:const Color(0xfff1f1f1)),
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                   child: Image.network(
@@ -256,9 +254,9 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                                SizedBox(height:5,),
-                                Container(constraints: BoxConstraints(maxWidth: 60,),child: Text(item['title'],overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,style: TextStyle(fontSize: 12,color: spchannel==item['id']? Colors.black:Color(0xffD9D9D9)),),)
+                                const SizedBox(height:5,),
+                                Container(constraints: const BoxConstraints(maxWidth: 60,),child: Text(item['title'],overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,style: TextStyle(fontSize: 12,color: spchannel==item['id']? Colors.black:const Color(0xffD9D9D9)),),)
                               ],
                             ),
                           ),onTap: (){
@@ -284,12 +282,12 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                             }
                             // Get.toNamed('/public/Evaluationdetails');
                           },),
-                        SizedBox(width: 20,)
+                        const SizedBox(width: 20,)
                       ]),
                 )),
               ],),
               !twoData ? StartDetailLoading():Expanded(child: Container(child: RefreshIndicator(onRefresh: _onRefresh,
-                child: commoditylist.length>0?ListView.builder(shrinkWrap: true,primary:false,controller:  sp_controller,padding:EdgeInsets.zero,itemCount: commoditylist.length,itemBuilder: (context, i) {
+                child: commoditylist.isNotEmpty?ListView.builder(shrinkWrap: true,primary:false,controller:  sp_controller,padding:EdgeInsets.zero,itemCount: commoditylist.length,itemBuilder: (context, i) {
                 return GestureDetector(onTap: (){
                   if (!userController.checkUserLogin()) {
                     Get.toNamed('/public/loginmethod');
@@ -299,17 +297,17 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                   Get.toNamed('/public/Evaluationdetails',arguments: {'data':commoditylist[i]} );
                   //Get.toNamed('/public/Evaluationdetails',arguments: 15454 );
                 },child: Column(children: [
-                  Container(width: double.infinity,height: 10,color: Color(0xfff9f9f9),),
-                  SizedBox(height: 15,),
+                  Container(width: double.infinity,height: 10,color: const Color(0xfff9f9f9),),
+                  const SizedBox(height: 15,),
                   Row(children: [
-                    SizedBox(width: 20,),
+                    const SizedBox(width: 20,),
                     Stack(children: [Container(width: 80, height: 80,
                       //超出部分，可裁剪
                       clipBehavior: Clip.hardEdge,
                       decoration: BoxDecoration(
-                          color:Color(0xfff5f5f5),
+                          color:const Color(0xfff5f5f5),
                           borderRadius: BorderRadius.circular(5),
-                          border:Border.all(width: 0.5,color: Color(0xfff5f5f5))
+                          border:Border.all(width: 0.5,color: const Color(0xfff5f5f5))
                       ),
                       child: Image.network(
                         commoditylist[i].thumbnail,
@@ -324,24 +322,24 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                         fit: BoxFit.cover,
                       ),
                     ),child: Text((i+1).toString(),style: TextStyle(color: (i+1)<4?Colors.black:Colors.white,fontSize: 10,fontWeight: FontWeight.w700),),))],),
-                    SizedBox(width: 10,),
+                    const SizedBox(width: 10,),
                     Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
                     Container(width: MediaQuery.of(context).size.width-120,child:
                     Text(commoditylist[i].title,overflow: TextOverflow.ellipsis,
-                      maxLines: 1,style: TextStyle(fontSize: 14),),),
+                      maxLines: 1,style: const TextStyle(fontSize: 14),),),
 
                       // Container(constraints: BoxConstraints(maxWidth: 250,),child:
                       // Text(commoditylist[i].title,overflow: TextOverflow.ellipsis,
                       //   maxLines: 1,style: TextStyle(fontSize: 14),),),
-                    SizedBox(height: 8,),
+                    const SizedBox(height: 8,),
                     Row(children: [
-                      Container(height: 25,child: Text('评估'.tr,style: TextStyle(color: Color(0xff999999)),),),
-                      SizedBox(width: 5,),
+                      Container(height: 25,child: Text('评估'.tr,style: const TextStyle(color: Color(0xff999999)),),),
+                      const SizedBox(width: 5,),
                       XMStartRating(rating: double.parse(commoditylist[i].score) ,showtext:true)
                     ],),
                   ],)],),
                   Container(height: 56,alignment: Alignment.centerRight,
-                    padding: EdgeInsets.fromLTRB(0, 10, 10,0),
+                    padding: const EdgeInsets.fromLTRB(0, 10, 10,0),
                     child: ListView(
                         shrinkWrap: true,
                         primary:false,
@@ -349,18 +347,18 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                         children:[
                           for(var j=0;j<jsonDecode(commoditylist[i].priceOther).length;j++)
                             //GestureDetector(child:
-                            Container(margin:EdgeInsets.only(right: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width: 0.5,color: Color((0xffF5F5F5))),
-                                color:Color(0xfff5f5f5),
-                                borderRadius: BorderRadius.all(Radius.circular(5))
+                            Container(margin:const EdgeInsets.only(right: 10),width: 110,height: 56,decoration: BoxDecoration(border: Border.all(width: 0.5,color: const Color((0xffF5F5F5))),
+                                color:const Color(0xfff5f5f5),
+                                borderRadius: const BorderRadius.all(Radius.circular(5))
                             ),child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
                               Row(mainAxisAlignment:MainAxisAlignment.center,children: [
                                 // Text("SAR",style: TextStyle(fontSize: 12,height: 1.1),),
                                 // SizedBox(width: 2,),
-                                Text(jsonDecode(commoditylist[i].priceOther)[j]['price'].split(' ')[0],style: TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
-                                SizedBox(width: 4,),
-                                Text(jsonDecode(commoditylist[i].priceOther)[j]['price'].split(' ')[1],style: TextStyle(height: 1.3,fontSize: 12),)
+                                Text(jsonDecode(commoditylist[i].priceOther)[j]['price'].split(' ')[0],style: const TextStyle(height: 1.3,fontSize: 15,fontWeight: FontWeight.w600),),
+                                const SizedBox(width: 4,),
+                                Text(jsonDecode(commoditylist[i].priceOther)[j]['price'].split(' ')[1],style: const TextStyle(height: 1.3,fontSize: 12),)
                               ],),
-                              Text(jsonDecode(commoditylist[i].priceOther)[j]['platform'],style: TextStyle(fontSize: 12,color: Color(0xff999999)),)
+                              Text(jsonDecode(commoditylist[i].priceOther)[j]['platform'],style: const TextStyle(fontSize: 12,color: Color(0xff999999)),)
                             ],),)
                               //,onTap: () async {
                               // if (!userController.checkUserLogin()) {
@@ -371,7 +369,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                             //},)
                         ]),
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                 ]),);
               }):ListView.builder(
                     itemCount: 1,
@@ -381,7 +379,7 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                         child: Column(
                           // mainAxisAlignment:MainAxisAlignment.center,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 60,
                             ),
                             Image.asset(
@@ -389,18 +387,18 @@ class PricecomparisonState extends State<Pricecomparisonpage> with AutomaticKeep
                               width: 200,
                               height: 200,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Text(
                               '没有更多数据'.tr,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: Color(0xff999999),
                                 //fontFamily: 'PingFang SC-Regular, PingFang SC'
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
 

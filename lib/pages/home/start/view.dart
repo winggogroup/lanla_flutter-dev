@@ -27,7 +27,7 @@ class StartPage extends StatelessWidget {
   final homelogic = Get.find<HomeLogic>();
   final WebSocketes = Get.put(StartDetailLogic());
 
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
 
   final userLogic = Get.find<UserLogic>();
   final state = Get
@@ -46,12 +46,12 @@ class StartPage extends StatelessWidget {
             systemOverlayStyle: SystemUiOverlayStyle.dark,
             title: GetBuilder<StartLogic>(builder: (logic) {
               return state.topTabController == null
-                  ? Text('loading')
+                  ? const Text('loading')
                   : Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [GestureDetector(
                   onTap: () {
                     //关闭登录验证
                     if (userLogic.token != '') {
-                      Get.to(ConnectionStartPage());
+                      Get.to(const ConnectionStartPage());
                     } else {
                       Get.to(LoginmethodPage(), transition: Transition.downToUp);
                     }
@@ -76,7 +76,7 @@ class StartPage extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 10,right: 10),
                     height: 36,
                     child: TextField(
-                      style: TextStyle(fontSize: 13),
+                      style: const TextStyle(fontSize: 13),
                       focusNode: _focusNode,
                       decoration: InputDecoration(
                             hintStyle: const TextStyle(color: Color(0xff999999)),
@@ -186,7 +186,7 @@ class StartPage extends StatelessWidget {
                             right: -22 / 2,
                             child: Container(
                               alignment: Alignment.center,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(50)),
                                   color: Colors.red
@@ -194,7 +194,7 @@ class StartPage extends StatelessWidget {
                               width: 16,
                               height: 16,
                               child: Text(userLogic.NumberMessages+userLogic.Chatrelated['${userLogic.userId}']['Unreadmessagezs']>99?'99':'${userLogic.NumberMessages+userLogic.Chatrelated['${userLogic.userId}']['Unreadmessagezs']}',
-                                style: TextStyle(color: Colors.white,
+                                style: const TextStyle(color: Colors.white,
                                     fontSize: 8,
                                     height: 1.0),),
                             ),
@@ -205,7 +205,7 @@ class StartPage extends StatelessWidget {
                             right: -22 / 2,
                             child: Container(
                               alignment: Alignment.center,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(50)),
                                   color: Colors.red
@@ -213,7 +213,7 @@ class StartPage extends StatelessWidget {
                               width: 16,
                               height: 16,
                               child: Text(userLogic.NumberMessages.toString(),
-                                style: TextStyle(color: Colors.white,
+                                style: const TextStyle(color: Colors.white,
                                     fontSize: 8,
                                     height: 1.0),),
                             ),

@@ -1349,7 +1349,7 @@ class MobileverificationState extends State<MobileverificationPage> {
     for (var i = 0; i < countrycodelist.length; i++) {
       if (countrycodelist[i]["country_code"] == st.countryCode) {
         areacode = countrycodelist[i]["phone_code"]!;
-        favorite = st.countryCode!;
+        favorite = st.countryCode;
       }
     }
   }
@@ -1393,7 +1393,7 @@ class MobileverificationState extends State<MobileverificationPage> {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+        decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
         child: ListView(
           //crossAxisAlignment:CrossAxisAlignment.start,
           children: [
@@ -1421,7 +1421,7 @@ class MobileverificationState extends State<MobileverificationPage> {
                         child: GestureDetector(child:
                         Row(
                           children: [
-                            Text('+${areacode}',textAlign:TextAlign.center,),
+                            Text('+$areacode',textAlign:TextAlign.center,),
                             Container(
                               padding: const EdgeInsets.fromLTRB(4, 0,6, 0),
                               // child: Icon(Icons.arrow_drop_down),
@@ -1444,7 +1444,7 @@ class MobileverificationState extends State<MobileverificationPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             )
 
@@ -1467,7 +1467,7 @@ class MobileverificationState extends State<MobileverificationPage> {
                             // Optional. Sets the theme for the country list picker.
                             countryListTheme: CountryListThemeData(
                               // Optional. Sets the border radius for the bottomsheet.
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 topRight: Radius.circular(10.0),
                               ),
@@ -1503,8 +1503,8 @@ class MobileverificationState extends State<MobileverificationPage> {
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp("[0-9]")),//数字
                       ],
-                      scrollPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      cursorColor: Color(0xFF999999),
+                      scrollPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      cursorColor: const Color(0xFF999999),
                       decoration: InputDecoration(
                         // focusedBorder: OutlineInputBorder(
                         //   // borderSide: BorderSide(color: Colors.blue)
@@ -1512,7 +1512,7 @@ class MobileverificationState extends State<MobileverificationPage> {
                           border: InputBorder.none,
                           hintText: "请输入手机号码".tr
                       ),
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                       onChanged: (text) {
                         phonenumber = text;
                         setState(() {
@@ -1524,7 +1524,7 @@ class MobileverificationState extends State<MobileverificationPage> {
                   ]
               ),
             ),
-            Divider(height: 1.0,color: Color(0xFFf1f1f1),),
+            const Divider(height: 1.0,color: Color(0xFFf1f1f1),),
             const SizedBox(height: 164),
             // Expanded(
             //   child:
@@ -1532,7 +1532,7 @@ class MobileverificationState extends State<MobileverificationPage> {
               height: 56,
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor:MaterialStateProperty.all(Color(0xff000000)),
+                  backgroundColor:MaterialStateProperty.all(const Color(0xff000000)),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                   // elevation: MaterialStateProperty.all(20),
                   shadowColor: MaterialStateProperty.all(Colors.black),
@@ -1566,7 +1566,7 @@ class MobileverificationState extends State<MobileverificationPage> {
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');
@@ -1589,8 +1589,8 @@ class MobileverificationState extends State<MobileverificationPage> {
         return AlertDialog(
           backgroundColor: Colors.white,
           elevation:0,
-          contentPadding: EdgeInsets.fromLTRB(35, 35, 35, 35),
-          shape: RoundedRectangleBorder(
+          contentPadding: const EdgeInsets.fromLTRB(35, 35, 35, 35),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           content: Column(mainAxisSize: MainAxisSize.min, children: [
             Container(
@@ -1604,21 +1604,21 @@ class MobileverificationState extends State<MobileverificationPage> {
                       width: MediaQuery.of(context).size.width - 100,
                       //height: 311,
 
-                      child: Text('فشل التحقق الأمني ​​، يرجى اختيار طريقة تسجيل دخول أخرى. أو يمكنك أيضًا الاتصال بخدمة العملاء الرسمية لـ LanLa لاسترداد الحساب على whatsapp: +86 15256019084',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),)
+                      child: const Text('فشل التحقق الأمني ​​، يرجى اختيار طريقة تسجيل دخول أخرى. أو يمكنك أيضًا الاتصال بخدمة العملاء الرسمية لـ LanLa لاسترداد الحساب على whatsapp: +86 15256019084',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),)
                   ),
-                  SizedBox(height: 25,),
+                  const SizedBox(height: 25,),
                   GestureDetector(child: Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.only(top: 12, bottom: 12),
-                    margin: EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(top: 12, bottom: 12),
+                    margin: const EdgeInsets.only(left: 10, right: 10),
                     decoration: BoxDecoration(
-                        color: Color.fromRGBO(209, 255, 52, 1),
+                        color: const Color.fromRGBO(209, 255, 52, 1),
                         borderRadius: BorderRadius.circular(30)),
                     width: double.infinity,
                     child: Text(
                       '我知道了'.tr,
                       style:
-                      TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                      const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                     ),
                   ),onTap: (){
                     Navigator.pop(context);
@@ -1644,8 +1644,8 @@ class MobileverificationState extends State<MobileverificationPage> {
         return AlertDialog(
           backgroundColor: Colors.white,
           elevation:0,
-          contentPadding: EdgeInsets.fromLTRB(35, 35, 35, 35),
-          shape: RoundedRectangleBorder(
+          contentPadding: const EdgeInsets.fromLTRB(35, 35, 35, 35),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           content: Column(mainAxisSize: MainAxisSize.min, children: [
             Container(
@@ -1657,7 +1657,7 @@ class MobileverificationState extends State<MobileverificationPage> {
                 children: [
                   Container(
                       width: MediaQuery.of(context).size.width - 100,
-                      child: Text('很抱歉，手机号登录系统正在升级中，请选择其他的登录方式'.tr,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),)
+                      child: Text('很抱歉，手机号登录系统正在升级中，请选择其他的登录方式'.tr,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w700),)
                   ),
                 ],
               ),

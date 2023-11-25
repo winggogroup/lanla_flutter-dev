@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 child: Image.asset(
                   isActive
                       ? 'assets/images/home/${tip}_active.png'
-                      : 'assets/images/home/${tip}.png',
+                      : 'assets/images/home/$tip.png',
                   height: 42,
                 )
             )
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     // mririrenwu();
     WidgetsBinding.instance.addObserver(this); //添加观察者
     SplashModel? ad = Get.arguments;
-    Future.delayed(Duration(milliseconds: 10), () async {
+    Future.delayed(const Duration(milliseconds: 10), () async {
       var huancuns = await SharedPreferences.getInstance();
       if(huancuns.getBool("isopenApp") == null){
         FirebaseAnalytics.instance.logEvent(
@@ -207,7 +207,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       if (userLogic.token != ''&&!userLogic.DurationTimer){
         userLogic.DurationTimer=true;
         // userLogic.update();
-        Timer.periodic(Duration(milliseconds: 60000), (timer) async {
+        Timer.periodic(const Duration(milliseconds: 60000), (timer) async {
           if (userLogic.token == '') {
             userLogic.DurationTimer=false;
             timer.cancel(); //取消定时器
@@ -233,20 +233,20 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             parameters: {"router": ad?.targetType, "id": ad?.targetId},
           );
           if (ad?.targetId != '' && ad?.targetType == 1) {
-            Get.toNamed('/public/topic', arguments: int.parse(ad!.targetId));
+            Get.toNamed('/public/topic', arguments: int.parse(ad.targetId));
           } else if (ad?.targetId != '' && ad?.targetType == 4) {
             Get.toNamed('/public/webview', arguments: ad?.targetId);
           } else if (ad?.targetId != '' && ad?.targetType == 10) {
-            Get.toNamed('/public/user', arguments: int.parse(ad!.targetId));
+            Get.toNamed('/public/user', arguments: int.parse(ad.targetId));
           } else if (ad?.targetId != '' && ad?.targetType == 5) {
-            _launchUniversalLinkIos(Uri.parse(ad!.targetOther));
+            _launchUniversalLinkIos(Uri.parse(ad.targetOther));
           } else if (ad?.targetId != '' && ad?.targetType == 6) {
-            _launchUniversalLinkIos(Uri.parse(ad!.targetOther));
+            _launchUniversalLinkIos(Uri.parse(ad.targetOther));
           } else if (ad?.targetId != '' && ad?.targetType == 11) {
             if (ad?.targetOther == '/public/video' ||
                 ad?.targetOther == '/public/picture'|| ad?.targetOther == '/public/xiumidata') {
-              Get.toNamed(ad!.targetOther,
-                  arguments: {'data': int.parse(ad!.targetId), 'isEnd': false});
+              Get.toNamed(ad.targetOther,
+                  arguments: {'data': int.parse(ad.targetId), 'isEnd': false});
             }else if(ad?.targetId=='share/invite/index'){
               FirebaseAnalytics.instance.logEvent(
                 name: "jumpwebh5",
@@ -255,19 +255,19 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   "uuid":userLogic.deviceData['uuid'],
                 },
               );
-              Get.toNamed('/public/webview',arguments: BASE_DOMAIN+ad!.targetId+'?token='+userLogic.token+'&uuid='+userLogic.deviceData['uuid']);
+              Get.toNamed('/public/webview',arguments: '$BASE_DOMAIN${ad.targetId}?token=${userLogic.token}&uuid='+userLogic.deviceData['uuid']);
             } else if(ad?.targetOther == '/public/Planningpage'){
-              Get.toNamed(ad!.targetOther,
-                  arguments: {'id': int.parse(ad!.targetId), 'title': ''});
+              Get.toNamed(ad.targetOther,
+                  arguments: {'id': int.parse(ad.targetId), 'title': ''});
             } else {
               Get.toNamed(
-                ad!.targetOther,
-                arguments: int.parse(ad!.targetId),
+                ad.targetOther,
+                arguments: int.parse(ad.targetId),
               );
             }
-          } else if (ad!.targetId != '' && ad!.targetType == 12) {
+          } else if (ad.targetId != '' && ad.targetType == 12) {
             await launchUrl(
-              Uri.parse(ad!.targetId),
+              Uri.parse(ad.targetId),
               mode: LaunchMode.externalApplication,
             );
           }
@@ -302,7 +302,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     bool isTuesday = now.weekday == DateTime.tuesday;
     bool isSunday = now.weekday == DateTime.sunday;
     ///签到弹窗
-    Timer.periodic(Duration(milliseconds: 1000), (timer) {
+    Timer.periodic(const Duration(milliseconds: 1000), (timer) {
       if(!isPopupopens){
         Signmechanism();
       }
@@ -360,7 +360,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     // });
 
     ///app评价弹窗计时器
-    Timer.periodic(Duration(milliseconds: 1800000), (timer) {
+    Timer.periodic(const Duration(milliseconds: 1800000), (timer) {
       if(!isPopupopens){
         Localdata();
       }
@@ -372,15 +372,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     var huancun = await SharedPreferences.getInstance();
     if (huancun.getInt("LaxinOpeningtime") == null) {
       huancun.setInt(
-          "LaxinOpeningtime", new DateTime.now().millisecondsSinceEpoch);
+          "LaxinOpeningtime", DateTime.now().millisecondsSinceEpoch);
       laxinDialoges(context);
-    } else if (new DateTime.now()
+    } else if (DateTime.now()
             .difference(DateTime.fromMillisecondsSinceEpoch(
                 huancun.getInt("LaxinOpeningtime")!))
             .inDays >
         1) {
       huancun.setInt(
-          "LaxinOpeningtime", new DateTime.now().millisecondsSinceEpoch);
+          "LaxinOpeningtime", DateTime.now().millisecondsSinceEpoch);
       laxinDialoges(context);
     }
   }
@@ -404,7 +404,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             toupdateDialog(context, result.body["ok"]);
           }
           if(result.body["ok"] == 2){
-            Timer.periodic(Duration(milliseconds: 300000), (timer) {
+            Timer.periodic(const Duration(milliseconds: 300000), (timer) {
               if(!isPopupopens) {
                 toupdateDialog(context, result.body["ok"]);
               }
@@ -435,7 +435,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     var res=await SetUprovider.isNeedBindAccount();
     if(res.statusCode==200){
       if(res.body['need_bind_account_right_now']){
-        Timer.periodic(Duration(seconds: 40), (timer) {
+        Timer.periodic(const Duration(seconds: 40), (timer) {
           if(!isPopupopens){
             BindPopupopen(res.body);
           }
@@ -453,8 +453,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         return AlertDialog(
           backgroundColor: Colors.transparent,
           elevation:0,
-          contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape: RoundedRectangleBorder(
+          contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           content: Column(mainAxisSize: MainAxisSize.min, children: [
             Container(
@@ -490,14 +490,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                   child: Container(
                                     alignment: Alignment.center,
                                     padding:
-                                        EdgeInsets.only(top: 12, bottom: 12),
+                                        const EdgeInsets.only(top: 12, bottom: 12),
                                     width:
                                         MediaQuery.of(context).size.width - 180,
-                                    margin: EdgeInsets.fromLTRB(40, 32, 40, 13),
+                                    margin: const EdgeInsets.fromLTRB(40, 32, 40, 13),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(40),
                                       color: Colors.black,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           color: Color(0xFF55D200),
                                           offset: Offset(0, 1),
@@ -508,7 +508,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                     ),
                                     child: Text(
                                       '立刻升级'.tr,
-                                      style: TextStyle(color: Colors.white),
+                                      style: const TextStyle(color: Colors.white),
                                     ),
                                   ),
                                   onTap: () {
@@ -528,7 +528,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                       Navigator.pop(context);
                                     },
                                   ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 18,
                                 ),
                               ],
@@ -555,9 +555,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     if (shuju.getInt("pjOpeningtime") == null &&
         shuju.getBool("isevaluate") == null &&
         !laxinopen) {
-      shuju.setInt("pjOpeningtime", new DateTime.now().millisecondsSinceEpoch);
+      shuju.setInt("pjOpeningtime", DateTime.now().millisecondsSinceEpoch);
       Wellreceived(context);
-    } else if (new DateTime.now()
+    } else if (DateTime.now()
         .difference(DateTime.fromMillisecondsSinceEpoch(
         shuju.getInt("pjOpeningtime")!))
         .inDays >
@@ -565,7 +565,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         shuju.getBool("isevaluate") == null &&
         shuju.getInt("Numberdetails")! > 50 &&
         !laxinopen) {
-      shuju.setInt("pjOpeningtime", new DateTime.now().millisecondsSinceEpoch);
+      shuju.setInt("pjOpeningtime", DateTime.now().millisecondsSinceEpoch);
       Wellreceived(context);
     }
   }
@@ -581,8 +581,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         return AlertDialog(
           backgroundColor: Colors.transparent,
           elevation:0,
-          contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape: RoundedRectangleBorder(
+          contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           content: Column(mainAxisSize: MainAxisSize.min, children: [
             Container(
@@ -615,19 +615,19 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                               children: [
                                 Text(
                                   '喜欢LanLa吗？'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Container(
                                   width:
                                       MediaQuery.of(context).size.width - 140,
-                                  margin: EdgeInsets.fromLTRB(40, 15, 40, 0),
+                                  margin: const EdgeInsets.fromLTRB(40, 15, 40, 0),
                                   child: Text(
                                       'LanLa的成长需要你的支持，我们诚恳希望能得到你的鼓励与评价，因为你的每一次鼓励能让我们做得更好。'
                                           .tr,
                                       maxLines: 4,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 12,
                                           color: Color(0xff999999))),
                                 ),
@@ -635,14 +635,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                   child: Container(
                                     alignment: Alignment.center,
                                     padding:
-                                        EdgeInsets.only(top: 12, bottom: 12),
+                                        const EdgeInsets.only(top: 12, bottom: 12),
                                     width:
                                         MediaQuery.of(context).size.width - 180,
-                                    margin: EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                    margin: const EdgeInsets.fromLTRB(40, 10, 40, 10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(40),
                                       color: Colors.black,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           color: Color(0xFF55D200),
                                           offset: Offset(0, 1),
@@ -653,7 +653,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                     ),
                                     child: Text(
                                       '五星好评'.tr,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                       ),
                                     ),
@@ -675,7 +675,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 GestureDetector(
                                   child: Text(
                                     '我要反馈与建议'.tr,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Color(0xff999999), fontSize: 12),
                                   ),
                                   onTap: () async {
@@ -686,7 +686,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                     Get.to(FeedbackWidget());
                                   },
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 25,
                                 ),
                               ],
@@ -712,15 +712,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     var huancun = await SharedPreferences.getInstance();
     if (huancun.getInt("Activeopentime${PopupData[index]['id']}") == null) {
       huancun.setInt(
-          "Activeopentime${PopupData[index]['id']}", new DateTime.now().millisecondsSinceEpoch);
+          "Activeopentime${PopupData[index]['id']}", DateTime.now().millisecondsSinceEpoch);
       ActivePopup(context,index);
-    } else if (new DateTime.now()
+    } else if (DateTime.now()
             .difference(DateTime.fromMillisecondsSinceEpoch(
                 huancun.getInt("Activeopentime${PopupData[index]['id']}")!))
             .inDays >
         1) {
       huancun.setInt(
-          "Activeopentime${PopupData[index]['id']}", new DateTime.now().millisecondsSinceEpoch);
+          "Activeopentime${PopupData[index]['id']}", DateTime.now().millisecondsSinceEpoch);
       ActivePopup(context,index);
     }
   }
@@ -728,15 +728,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     var huancun = await SharedPreferences.getInstance();
     if (huancun.getInt("Activeopentimetwo") == null) {
       huancun.setInt(
-          "Activeopentimetwo", new DateTime.now().millisecondsSinceEpoch);
+          "Activeopentimetwo", DateTime.now().millisecondsSinceEpoch);
       ActivePopuptwo(context);
-    } else if (new DateTime.now()
+    } else if (DateTime.now()
         .difference(DateTime.fromMillisecondsSinceEpoch(
         huancun.getInt("Activeopentimetwo")!))
         .inDays >
         1) {
       huancun.setInt(
-          "Activeopentimetwo", new DateTime.now().millisecondsSinceEpoch);
+          "Activeopentimetwo", DateTime.now().millisecondsSinceEpoch);
       ActivePopuptwo(context);
     }
   }
@@ -747,15 +747,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     var huancun = await SharedPreferences.getInstance();
     if (huancun.getInt("BindPopuptime${userLogic.userId}") == null) {
       huancun.setInt(
-          "BindPopuptime${userLogic.userId}", new DateTime.now().millisecondsSinceEpoch);
+          "BindPopuptime${userLogic.userId}", DateTime.now().millisecondsSinceEpoch);
       BindPopup(context,data);
-    } else if (new DateTime.now()
+    } else if (DateTime.now()
         .difference(DateTime.fromMillisecondsSinceEpoch(
         huancun.getInt("BindPopuptime${userLogic.userId}")!))
         .inDays >
         1) {
       huancun.setInt(
-          "BindPopuptime${userLogic.userId}", new DateTime.now().millisecondsSinceEpoch);
+          "BindPopuptime${userLogic.userId}", DateTime.now().millisecondsSinceEpoch);
       BindPopup(context,data);
     }
     }
@@ -769,8 +769,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           return AlertDialog(
             backgroundColor: Colors.transparent,
             elevation:0,
-            contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            shape: RoundedRectangleBorder(
+            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             content: Column(mainAxisSize: MainAxisSize.min, children: [
               Container(
@@ -778,7 +778,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   child: Stack(
                     children: [
                       GestureDetector(
-                        child:  Container(margin: EdgeInsets.only(top: 10),child: Image.network(
+                        child:  Container(margin: const EdgeInsets.only(top: 10),child: Image.network(
                           PopupData[index]['pic'],
                           fit: BoxFit.cover,
                         ),),
@@ -827,7 +827,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         right: 0,
                         child: GestureDetector(
                           child: Padding(
-                            padding: EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(20),
                             child: SvgPicture.asset(
                               "assets/svg/cha.svg",
                               color: Colors.white,
@@ -859,8 +859,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           return AlertDialog(
             backgroundColor: Colors.transparent,
             elevation:0,
-            contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            shape: RoundedRectangleBorder(
+            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             content: Column(mainAxisSize: MainAxisSize.min, children: [
               Container(
@@ -868,7 +868,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   child: Stack(
                     children: [
                       GestureDetector(
-                        child:  Container(margin: EdgeInsets.only(top: 10),child: Image.asset(
+                        child:  Container(margin: const EdgeInsets.only(top: 10),child: Image.asset(
                           'assets/images/huodong2.png',
                           fit: BoxFit.cover,
                         ),),
@@ -895,7 +895,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         right: 0,
                         child: GestureDetector(
                           child: Padding(
-                            padding: EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(20),
                             child: SvgPicture.asset(
                               "assets/svg/cha.svg",
                               color: Colors.white,
@@ -927,8 +927,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           return AlertDialog(
             backgroundColor: Colors.white,
             elevation:0,
-            contentPadding: EdgeInsets.fromLTRB(20, 22, 20, 40),
-            shape: RoundedRectangleBorder(
+            contentPadding: const EdgeInsets.fromLTRB(20, 22, 20, 40),
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             content: Column(mainAxisSize: MainAxisSize.min, children: [
               Container(
@@ -936,14 +936,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   child: Stack(
                     children: [
                       Column(children: [
-                        SizedBox(height: 35,),
-                        Text('由于LanLa登录系统的优化，请绑定其他的登录方式'.tr,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700,height: 1.8),textAlign: TextAlign.center,),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 35,),
+                        Text('由于LanLa登录系统的优化，请绑定其他的登录方式'.tr,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700,height: 1.8),textAlign: TextAlign.center,),
+                        const SizedBox(height: 20,),
                         if(data['bind_list'][1]['bind_type']==2&&!data['bind_list'][1]['already_bind'])GestureDetector(
                           child: Container(
                             height: 43,
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(209, 255, 52, 1),
+                              color: const Color.fromRGBO(209, 255, 52, 1),
                               borderRadius:BorderRadius.circular((46)),
                               // boxShadow:const [
                               //   BoxShadow(
@@ -990,12 +990,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
                           },
                         ),
-                        if(data['bind_list'][1]['bind_type']==2&&!data['bind_list'][1]['already_bind'])SizedBox(height: 20,),
+                        if(data['bind_list'][1]['bind_type']==2&&!data['bind_list'][1]['already_bind'])const SizedBox(height: 20,),
                         if(data['bind_list'][2]['bind_type']==3&&!data['bind_list'][2]['already_bind'])GestureDetector(
                           child: Container(
                             height: 43,
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(209, 255, 52, 1),
+                              color: const Color.fromRGBO(209, 255, 52, 1),
                               borderRadius:BorderRadius.circular((46)),
                               // boxShadow:const [
                               //   BoxShadow(
@@ -1014,8 +1014,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                   // decoration: BoxDecoration(border: Border.all(color: Colors.red),color: Colors.red),
                                   child: Row(
                                     mainAxisAlignment:MainAxisAlignment.center,
-                                    children: [
-                                      Text('Apple',style:const TextStyle(
+                                    children: const [
+                                      Text('Apple',style:TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
                                         decoration:TextDecoration.none,
@@ -1042,12 +1042,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
                           },
                         ),
-                        if(data['bind_list'][2]['bind_type']==3&&!data['bind_list'][2]['already_bind'])SizedBox(height: 20,),
+                        if(data['bind_list'][2]['bind_type']==3&&!data['bind_list'][2]['already_bind'])const SizedBox(height: 20,),
                         if(data['bind_list'][0]['bind_type']==1&&!data['bind_list'][0]['already_bind'])GestureDetector(
                           child: Container(
                             height: 43,
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(209, 255, 52, 1),
+                              color: const Color.fromRGBO(209, 255, 52, 1),
                               borderRadius:BorderRadius.circular((46)),
                               // boxShadow:const [
                               //   BoxShadow(
@@ -1066,8 +1066,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                   // decoration: BoxDecoration(border: Border.all(color: Colors.red),color: Colors.red),
                                   child: Row(
                                     mainAxisAlignment:MainAxisAlignment.center,
-                                    children: [
-                                      Text('Google',style:const TextStyle(
+                                    children: const [
+                                      Text('Google',style:TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
                                         decoration:TextDecoration.none,
@@ -1094,12 +1094,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
                           },
                         ),
-                        if(data['bind_list'][0]['bind_type']==1&&!data['bind_list'][0]['already_bind'])SizedBox(height: 20,),
+                        if(data['bind_list'][0]['bind_type']==1&&!data['bind_list'][0]['already_bind'])const SizedBox(height: 20,),
                         if(data['bind_list'][3]['bind_type']==5&&!data['bind_list'][3]['already_bind'])GestureDetector(
                           child: Container(
                             height: 43,
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(209, 255, 52, 1),
+                              color: const Color.fromRGBO(209, 255, 52, 1),
                               borderRadius:BorderRadius.circular((46)),
                               // boxShadow:const [
                               //   BoxShadow(
@@ -1118,8 +1118,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                   // decoration: BoxDecoration(border: Border.all(color: Colors.red),color: Colors.red),
                                   child: Row(
                                     mainAxisAlignment:MainAxisAlignment.center,
-                                    children: [
-                                      Text('Email',style:const TextStyle(
+                                    children: const [
+                                      Text('Email',style:TextStyle(
                                         color: Colors.black,
                                         fontSize: 14,
                                         decoration:TextDecoration.none,
@@ -1156,7 +1156,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         right: 0,
                         child: GestureDetector(
                           child: Padding(
-                            padding: EdgeInsets.all(0),
+                            padding: const EdgeInsets.all(0),
                             child: SvgPicture.asset(
                               "assets/svg/cha.svg",
                               color: Colors.black,
@@ -1280,13 +1280,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         return AlertDialog(
           backgroundColor: Colors.transparent,
           elevation:0,
-          contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape: RoundedRectangleBorder(
+          contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           content: Column(mainAxisSize: MainAxisSize.min, children: [
             Container(
                 width: MediaQuery.of(context).size.width - 100,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   minHeight: 372,
                 ),
                 // decoration: BoxDecoration(
@@ -1314,10 +1314,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                           );
                           Navigator.pop(context);
                           Get.toNamed('/public/webview',
-                              arguments: BASE_DOMAIN +
-                                  'share/invite/index?token=' +
-                                  userLogic.token +
-                                  '&uuid=' +
+                              arguments: '${BASE_DOMAIN}share/invite/index?token=${userLogic.token}&uuid=' +
                                   userLogic.deviceData['uuid']);
                         } else {
                           Get.toNamed('/public/loginmethod');
@@ -1331,7 +1328,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       right: 0,
                       child: GestureDetector(
                         child: Padding(
-                          padding: EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20),
                           child: SvgPicture.asset(
                             "assets/svg/cha.svg",
                             color: Colors.black,
@@ -1479,11 +1476,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         //   Signinpopup(context);
         // }
       if (Cache.getString("Signintime")==null){
-        Cache.setString("Signintime", jsonEncode({'${userLogic.userId}':new DateTime.now().millisecondsSinceEpoch}));
+        Cache.setString("Signintime", jsonEncode({'${userLogic.userId}':DateTime.now().millisecondsSinceEpoch}));
         // Cache.setInt("Signintime", new DateTime.now().millisecondsSinceEpoch);
         Signinpopup(context);
       }else if(jsonDecode(Cache.getString("Signintime")!)['${userLogic.userId}']==null){
-        Cache.setString("Signintime", jsonEncode({...jsonDecode(Cache.getString("Signintime")!),'${userLogic.userId}':new DateTime.now().millisecondsSinceEpoch}));
+        Cache.setString("Signintime", jsonEncode({...jsonDecode(Cache.getString("Signintime")!),'${userLogic.userId}':DateTime.now().millisecondsSinceEpoch}));
         Signinpopup(context);
       }
       // else if(isAfterToday(Cache.getInt("Signintime"))){
@@ -1492,7 +1489,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       // }
       else if(isAfterToday(jsonDecode(Cache.getString("Signintime")!)['${userLogic.userId}'])){
         var xinqddata=jsonDecode(Cache.getString("Signintime")!);
-        xinqddata['${userLogic.userId}']=new DateTime.now().millisecondsSinceEpoch;
+        xinqddata['${userLogic.userId}']=DateTime.now().millisecondsSinceEpoch;
         Cache.setString("Signintime", jsonEncode(xinqddata));
         Signinpopup(context);
       }
@@ -1514,8 +1511,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         },child: AlertDialog(
             backgroundColor: Colors.transparent,
             elevation:0,
-            contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
             content: Container(
                 width: double.infinity,
                 height: 400,
@@ -1523,14 +1520,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   children: [
                     Image.asset('assets/images/qdtanc.png', fit: BoxFit.cover,),
                     Expanded(child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(20),
                             bottomLeft: Radius.circular(20)),
                       ),
                       width: double.infinity,
-                      padding: EdgeInsets.fromLTRB(15, 16, 15, 16),
+                      padding: const EdgeInsets.fromLTRB(15, 16, 15, 16),
                       child: Column(
                         children: [
                           Row(
@@ -1550,10 +1547,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                             end: Alignment
                                                 .bottomCenter, //渐变结束于下面的中间
                                             colors: [
-                                              userLogic.signindata.userIndex==1?Color(0x00FFFFFF):Color(0xFFF5F5F5),
-                                              userLogic.signindata.userIndex==1?Color(0xFFD1FF34):Color(0xFFF5F5F5)
+                                              userLogic.signindata.userIndex==1?const Color(0x00FFFFFF):const Color(0xFFF5F5F5),
+                                              userLogic.signindata.userIndex==1?const Color(0xFFD1FF34):const Color(0xFFF5F5F5)
                                             ]),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(8))),
                                     child: Stack(
                                       alignment: Alignment.center,
@@ -1564,7 +1561,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                           width: 32,
                                           height: 30,
                                         ),
-                                        if((userLogic.signindata.userIndex>=1&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>1)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
+                                        if((userLogic.signindata.userIndex>=1&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>1)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: const Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
                                         Positioned(
                                             left: 0,
                                             top: 0,
@@ -1572,14 +1569,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                               alignment: Alignment.center,
                                               width: 20,
                                               height: 20,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   color: Colors.black,
                                                   borderRadius:
                                                   BorderRadius.only(
                                                       bottomRight:
                                                       Radius.circular(
                                                           50))),
-                                              child: Text(
+                                              child: const Text(
                                                 '1',
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -1591,7 +1588,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 15,),
+                                  const SizedBox(height: 15,),
                                   ///第四天
                                   Container(
                                     width: 60,
@@ -1604,10 +1601,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                             end: Alignment
                                                 .bottomCenter, //渐变结束于下面的中间
                                             colors: [
-                                              userLogic.signindata.userIndex==4?Color(0x00FFFFFF):Color(0xFFF5F5F5),
-                                              userLogic.signindata.userIndex==4?Color(0xFFD1FF34):Color(0xFFF5F5F5)
+                                              userLogic.signindata.userIndex==4?const Color(0x00FFFFFF):const Color(0xFFF5F5F5),
+                                              userLogic.signindata.userIndex==4?const Color(0xFFD1FF34):const Color(0xFFF5F5F5)
                                             ]),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(8))),
                                     child: Stack(
                                       alignment: Alignment.center,
@@ -1617,7 +1614,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                           width: 32,
                                           height: 30,
                                         ),
-                                        if((userLogic.signindata.userIndex>=4&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>4)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
+                                        if((userLogic.signindata.userIndex>=4&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>4)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: const Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
                                         Positioned(
                                             left: 0,
                                             top: 0,
@@ -1625,14 +1622,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                               alignment: Alignment.center,
                                               width: 20,
                                               height: 20,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   color: Colors.black,
                                                   borderRadius:
                                                   BorderRadius.only(
                                                       bottomRight:
                                                       Radius.circular(
                                                           50))),
-                                              child: Text(
+                                              child: const Text(
                                                 '4',
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -1661,10 +1658,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                             end: Alignment
                                                 .bottomCenter, //渐变结束于下面的中间
                                             colors: [
-                                              userLogic.signindata.userIndex==2?Color(0x00FFFFFF):Color(0xFFF5F5F5),
-                                              userLogic.signindata.userIndex==2?Color(0xFFD1FF34):Color(0xFFF5F5F5)
+                                              userLogic.signindata.userIndex==2?const Color(0x00FFFFFF):const Color(0xFFF5F5F5),
+                                              userLogic.signindata.userIndex==2?const Color(0xFFD1FF34):const Color(0xFFF5F5F5)
                                             ]),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(8))),
                                     child: Stack(
                                       alignment: Alignment.center,
@@ -1678,7 +1675,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                             top: 0,left: 0,right: 0,bottom:0,
                                             child: Container(
                                               alignment: Alignment.center,
-                                              color: Color.fromRGBO(0, 0, 0, 0.30),
+                                              color: const Color.fromRGBO(0, 0, 0, 0.30),
                                               child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
 
                                         Positioned(
@@ -1688,14 +1685,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                               alignment: Alignment.center,
                                               width: 20,
                                               height: 20,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   color: Colors.black,
                                                   borderRadius:
                                                   BorderRadius.only(
                                                       bottomRight:
                                                       Radius.circular(
                                                           50))),
-                                              child: Text(
+                                              child: const Text(
                                                 '2',
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -1708,7 +1705,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 15,),
+                                  const SizedBox(height: 15,),
                                   ///第五天
                                   Container(
                                     width: 60,
@@ -1719,10 +1716,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                             begin: Alignment.topCenter, //渐变开始于上面的中间开始
                                             end: Alignment.bottomCenter, //渐变结束于下面的中间
                                             colors: [
-                                              userLogic.signindata.userIndex==5?Color(0x00FFFFFF):Color(0xFFF5F5F5),
-                                              userLogic.signindata.userIndex==5?Color(0xFFD1FF34):Color(0xFFF5F5F5)
+                                              userLogic.signindata.userIndex==5?const Color(0x00FFFFFF):const Color(0xFFF5F5F5),
+                                              userLogic.signindata.userIndex==5?const Color(0xFFD1FF34):const Color(0xFFF5F5F5)
                                             ]),
-                                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                                        borderRadius: const BorderRadius.all(Radius.circular(8))),
                                     child: Stack(
                                       alignment: Alignment.center,
                                       children: [
@@ -1731,7 +1728,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                           width: 32,
                                           height: 30,
                                         ),
-                                        if((userLogic.signindata.userIndex>=5&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>5)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
+                                        if((userLogic.signindata.userIndex>=5&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>5)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: const Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
                                         Positioned(
                                             left: 0,
                                             top: 0,
@@ -1739,14 +1736,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                               alignment: Alignment.center,
                                               width: 20,
                                               height: 20,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   color: Colors.black,
                                                   borderRadius:
                                                   BorderRadius.only(
                                                       bottomRight:
                                                       Radius.circular(
                                                           50))),
-                                              child: Text(
+                                              child: const Text(
                                                 '5',
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -1776,10 +1773,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                             end: Alignment
                                                 .bottomCenter, //渐变结束于下面的中间
                                             colors: [
-                                              userLogic.signindata.userIndex==3?Color(0x00FFFFFF):Color(0xFFF5F5F5),
-                                              userLogic.signindata.userIndex==3?Color(0xFFD1FF34):Color(0xFFF5F5F5)
+                                              userLogic.signindata.userIndex==3?const Color(0x00FFFFFF):const Color(0xFFF5F5F5),
+                                              userLogic.signindata.userIndex==3?const Color(0xFFD1FF34):const Color(0xFFF5F5F5)
                                             ]),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(8))),
                                     child: Stack(
                                       alignment: Alignment.center,
@@ -1789,7 +1786,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                           width: 36,
                                           height: 36,
                                         ),
-                                        if((userLogic.signindata.userIndex>=3&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>3)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
+                                        if((userLogic.signindata.userIndex>=3&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>3)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: const Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
                                         Positioned(
                                             left: 0,
                                             top: 0,
@@ -1797,14 +1794,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                               alignment: Alignment.center,
                                               width: 20,
                                               height: 20,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   color: Colors.black,
                                                   borderRadius:
                                                   BorderRadius.only(
                                                       bottomRight:
                                                       Radius.circular(
                                                           50))),
-                                              child: Text(
+                                              child: const Text(
                                                 '3',
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -1817,7 +1814,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 15,),
+                                  const SizedBox(height: 15,),
                                   ///第六天
                                   Container(
                                     width: 60,
@@ -1830,10 +1827,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                             end: Alignment
                                                 .bottomCenter, //渐变结束于下面的中间
                                             colors: [
-                                              userLogic.signindata.userIndex==6?Color(0x00FFFFFF):Color(0xFFF5F5F5),
-                                              userLogic.signindata.userIndex==6?Color(0xFFD1FF34):Color(0xFFF5F5F5)
+                                              userLogic.signindata.userIndex==6?const Color(0x00FFFFFF):const Color(0xFFF5F5F5),
+                                              userLogic.signindata.userIndex==6?const Color(0xFFD1FF34):const Color(0xFFF5F5F5)
                                             ]),
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                             Radius.circular(8))),
                                     child: Stack(
                                       alignment: Alignment.center,
@@ -1843,7 +1840,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                           width: 32,
                                           height: 30,
                                         ),
-                                        if((userLogic.signindata.userIndex>=6&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>6)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
+                                        if((userLogic.signindata.userIndex>=6&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>6)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: const Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
                                         Positioned(
                                             left: 0,
                                             top: 0,
@@ -1851,14 +1848,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                               alignment: Alignment.center,
                                               width: 20,
                                               height: 20,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   color: Colors.black,
                                                   borderRadius:
                                                   BorderRadius.only(
                                                       bottomRight:
                                                       Radius.circular(
                                                           50))),
-                                              child: Text(
+                                              child: const Text(
                                                 '6',
                                                 style: TextStyle(
                                                     color: Colors.white,
@@ -1885,9 +1882,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                     end: Alignment
                                         .bottomCenter, //渐变结束于下面的中间
                                     colors: [
-                                      userLogic.signindata.userIndex==7?Color(0x00FFFFFF):Color(0xFFF5F5F5),
-                                      userLogic.signindata.userIndex==7?Color(0xFFD1FF34):Color(0xFFF5F5F5)
-                                    ]), borderRadius: BorderRadius.all(Radius.circular(8))),
+                                      userLogic.signindata.userIndex==7?const Color(0x00FFFFFF):const Color(0xFFF5F5F5),
+                                      userLogic.signindata.userIndex==7?const Color(0xFFD1FF34):const Color(0xFFF5F5F5)
+                                    ]), borderRadius: const BorderRadius.all(Radius.circular(8))),
                                 child: Stack(
                                   alignment: Alignment.center,
                                   children: [
@@ -1897,10 +1894,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                         width: 54,
                                         height: 51,
                                       ),
-                                      SizedBox(height: 5,),
-                                      Text('惊喜'.tr,style: TextStyle(fontSize: 10,color: Color(0xff666666)),)
+                                      const SizedBox(height: 5,),
+                                      Text('惊喜'.tr,style: const TextStyle(fontSize: 10,color: Color(0xff666666)),)
                                     ],),
-                                    if((userLogic.signindata.userIndex>=7&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>7)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
+                                    if((userLogic.signindata.userIndex>=7&&userLogic.signindata.userDailySignIn)||userLogic.signindata.userIndex>7)Positioned(top: 0,left: 0,right: 0,bottom:0,child: Container( alignment: Alignment.center, color: const Color.fromRGBO(0, 0, 0, 0.30),child: Image.asset('assets/images/sigindg.png',width: 30,height: 30,),)),
                                     Positioned(
                                         left: 0,
                                         top: 0,
@@ -1908,14 +1905,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                           alignment: Alignment.center,
                                           width: 20,
                                           height: 20,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                               color: Colors.black,
                                               borderRadius:
                                               BorderRadius.only(
                                                   bottomRight:
                                                   Radius.circular(
                                                       50))),
-                                          child: Text(
+                                          child: const Text(
                                             '7',
                                             style: TextStyle(
                                                 color: Colors.white,
@@ -1933,16 +1930,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               userLogic.signindata.userIndex>1 || userLogic.signindata.userDailySignIn?Row(mainAxisAlignment:MainAxisAlignment.center,children: [
-                                Text('连续签到'.tr, style: TextStyle(fontSize: 12, color: Color(0xff999999)),),
-                                Text(userLogic.signindata.userIndex.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),),
-                                Text('天得贝壳'.tr, style: TextStyle(fontSize: 12, color: Color(0xff999999)),),
+                                Text('连续签到'.tr, style: const TextStyle(fontSize: 12, color: Color(0xff999999)),),
+                                Text(userLogic.signindata.userIndex.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),),
+                                Text('天得贝壳'.tr, style: const TextStyle(fontSize: 12, color: Color(0xff999999)),),
                               ],):Text(
                                 '连续签到7天得贝壳'.tr,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 12, color: Color(0xff999999)),
                               ),
                               GestureDetector(child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(50)),
                                   color: Colors.black,
@@ -1952,7 +1949,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 alignment: Alignment.center,
                                 child: Text(
                                   userLogic.signindata.userDailySignIn?'签到成功'.tr:'签到'.tr,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700),
@@ -1970,7 +1967,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         ],
                       ),
                     )),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     GestureDetector(child: Image.asset('assets/images/chatwo.png',width: 23,height: 23,),onTap: (){
                       Navigator.pop(context);
                     },)
@@ -1995,8 +1992,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         return AlertDialog(
             backgroundColor: Colors.transparent,
             elevation:0,
-            contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
             content: Container(
                 width: double.infinity,
                 height: 375,
@@ -2004,20 +2001,20 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   children: [
                     Image.asset('assets/images/qdtanc.png', fit: BoxFit.cover,),
                     Expanded(child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(20),
                             bottomLeft: Radius.circular(20)),
                       ),
                       width: double.infinity,
-                      padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+                      padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
                       child: Column(
                         mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                         children: [
                           Image.asset('assets/images/jinglibk.png',width: 165,),
 
-                          Row(mainAxisAlignment:MainAxisAlignment.center,children: [ Text('你获得了'.tr,), Text(Rewardamount(userLogic.signindata.task[userLogic.signindata.userIndex-1].taskRewards),style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Color(0xffFF789B)),), Text('个贝币'.tr)],)
+                          Row(mainAxisAlignment:MainAxisAlignment.center,children: [ Text('你获得了'.tr,), Text(Rewardamount(userLogic.signindata.task[userLogic.signindata.userIndex-1].taskRewards),style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Color(0xffFF789B)),), Text('个贝币'.tr)],)
                         ],
                       ),
                     ))
@@ -2029,7 +2026,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       closeRewardPopup=true;
       // 弹窗关闭后执行的操作
       isPopupopens=false;
-      Future.delayed(Duration(milliseconds: 1000), () async {
+      Future.delayed(const Duration(milliseconds: 1000), () async {
         Dailytasks(context);
       });
     });
@@ -2057,7 +2054,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         closeRewardPopup=false;
         Signinreward(context);
         if(!closeRewardPopup){
-          Timer.periodic(Duration(milliseconds: 1000), (timer) {
+          Timer.periodic(const Duration(milliseconds: 1000), (timer) {
             Navigator.pop(context);
             timer.cancel(); //取消定时器
           });
@@ -2081,8 +2078,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         return AlertDialog(
             backgroundColor: Colors.transparent,
             elevation:0,
-            contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
             content: Container(
                 width: double.infinity,
                 height: 495,
@@ -2090,7 +2087,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   children: [
                     Image.asset('assets/images/qdtanc.png', fit: BoxFit.cover,),
                     Expanded(child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(20),
@@ -2103,29 +2100,29 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         children: [
                           if(taskdata.newData.length>=4)
                           for(var i=0;i<4;i++)
-                            Container(padding: EdgeInsets.fromLTRB(15, 15, 15, 15),child: Row(
+                            Container(padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),child: Row(
                               mainAxisAlignment:MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(children: [
                                   Container(width: 30,height: 30,child: Image.network(taskdata.newData[i].image,width: 30,height: 30,),),
-                                  SizedBox(width: 15,),
+                                  const SizedBox(width: 15,),
                                   Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                    Text(taskdata.newData[i].summary,style: TextStyle(fontSize: 12),),
-                                    SizedBox(height: 8,),
+                                    Text(taskdata.newData[i].summary,style: const TextStyle(fontSize: 12),),
+                                    const SizedBox(height: 8,),
                                     Row(children: [
-                                      Row(children: [Image.asset('assets/images/beiketwo.png',width: 16,height: 16,),SizedBox(width: 5,),Text(taskdata.newData[i].rewardBeans.toString()+'+',strutStyle: StrutStyle(forceStrutHeight: true, leading: 0.5,),style: TextStyle(fontWeight: FontWeight.w700,color: Color(0xffFF789B)),)],),
+                                      Row(children: [Image.asset('assets/images/beiketwo.png',width: 16,height: 16,),const SizedBox(width: 5,),Text('${taskdata.newData[i].rewardBeans}+',strutStyle: const StrutStyle(forceStrutHeight: true, leading: 0.5,),style: const TextStyle(fontWeight: FontWeight.w700,color: Color(0xffFF789B)),)],),
                                     ],)
                                   ],)],),
                                 GestureDetector(child:
                                   Container(
                                     alignment: Alignment.center,
-                                    decoration: BoxDecoration(color: Colors.black,borderRadius: BorderRadius.all(Radius.circular(50))),
+                                    decoration: const BoxDecoration(color: Colors.black,borderRadius: BorderRadius.all(Radius.circular(50))),
                                     width: 64,height: 28,
-                                    child: Text('إكمال',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 12,color: Colors.white),),
+                                    child: const Text('إكمال',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 12,color: Colors.white),),
                                   ),onTap: (){
                                   if(taskdata.newData[i].jumpType==1){
                                     Navigator.of(context).pop();
-                                    Future.delayed(Duration(milliseconds: 100), (){
+                                    Future.delayed(const Duration(milliseconds: 100), (){
                                       _publishtwo(context);
                                     });
                                   }
@@ -2137,25 +2134,25 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                             ),),
                           if(taskdata.newData.length<4)
                           for(var i=0;i<taskdata.newData.length;i++)
-                            Container(padding: EdgeInsets.fromLTRB(15, 15, 15, 15),child: Row(
+                            Container(padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),child: Row(
                             mainAxisAlignment:MainAxisAlignment.spaceBetween,
                             children: [
                               Row(children: [
                                 Container(width: 30,height: 30,child: Image.network(taskdata.newData[i].image,width: 30,height: 30,),),
-                                SizedBox(width: 15,),
+                                const SizedBox(width: 15,),
                                 Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                  Text(taskdata.newData[i].summary,style: TextStyle(fontSize: 12),),
-                                  SizedBox(height: 8,),
+                                  Text(taskdata.newData[i].summary,style: const TextStyle(fontSize: 12),),
+                                  const SizedBox(height: 8,),
                                   Row(children: [
-                                    Row(children: [Image.asset('assets/images/beiketwo.png',width: 16,height: 16,),SizedBox(width: 5,),Text(taskdata.newData[i].rewardBeans.toString()+'+',strutStyle: StrutStyle(forceStrutHeight: true, leading: 0.5,),style: TextStyle(fontWeight: FontWeight.w700,color: Color(0xffFF789B)),)],),
+                                    Row(children: [Image.asset('assets/images/beiketwo.png',width: 16,height: 16,),const SizedBox(width: 5,),Text('${taskdata.newData[i].rewardBeans}+',strutStyle: const StrutStyle(forceStrutHeight: true, leading: 0.5,),style: const TextStyle(fontWeight: FontWeight.w700,color: Color(0xffFF789B)),)],),
 
                                   ],)
                                 ],)],),
-                              GestureDetector(child: Container(alignment: Alignment.center,decoration: BoxDecoration(color: Colors.black,borderRadius: BorderRadius.all(Radius.circular(50))),width: 64,height: 28,child: Text('إكمال',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 12,color: Colors.white),),)
+                              GestureDetector(child: Container(alignment: Alignment.center,decoration: const BoxDecoration(color: Colors.black,borderRadius: BorderRadius.all(Radius.circular(50))),width: 64,height: 28,child: const Text('إكمال',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 12,color: Colors.white),),)
                                 ,onTap: (){
                                 if(taskdata.newData[i].jumpType==1){
                                   Navigator.of(context).pop();
-                                  Future.delayed(Duration(milliseconds: 100), (){
+                                  Future.delayed(const Duration(milliseconds: 100), (){
                                     _publishtwo(context);
                                   });
                                 }
@@ -2166,27 +2163,27 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                           ),),
                           if(taskdata.newData.length<4)
                             for(var i=0;i<4-taskdata.newData.length;i++)
-                              Container(padding: EdgeInsets.fromLTRB(15, 15, 15, 15),child: Row(
+                              Container(padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),child: Row(
                                 mainAxisAlignment:MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(children: [
                                     Container(width: 30,height: 30,child: Image.network(taskdata.data[i].image,width: 30,height: 30,),),
-                                    SizedBox(width: 15,),
+                                    const SizedBox(width: 15,),
                                     Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                      Text(taskdata.data[i].summary,style: TextStyle(fontSize: 12),),
-                                      SizedBox(height: 8,),
+                                      Text(taskdata.data[i].summary,style: const TextStyle(fontSize: 12),),
+                                      const SizedBox(height: 8,),
                                       Row(children: [
-                                        Row(children: [Image.asset('assets/images/beiketwo.png',width: 16,height: 16,),SizedBox(width: 5,),Text(taskdata.data[i].rewardBeans.toString()+'+',strutStyle: StrutStyle(forceStrutHeight: true, leading: 0.5,),style: TextStyle(fontWeight: FontWeight.w700,color: Color(0xffFF789B)),)],),
+                                        Row(children: [Image.asset('assets/images/beiketwo.png',width: 16,height: 16,),const SizedBox(width: 5,),Text('${taskdata.data[i].rewardBeans}+',strutStyle: const StrutStyle(forceStrutHeight: true, leading: 0.5,),style: const TextStyle(fontWeight: FontWeight.w700,color: Color(0xffFF789B)),)],),
                                       ],)
                                     ],)],),
                                   GestureDetector(child:
                                   Container(alignment: Alignment.center,
-                                    decoration: BoxDecoration(color: Colors.black,borderRadius: BorderRadius.all(Radius.circular(50))),width: 64,height: 28,
-                                    child: Text('إكمال',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 12,color: Colors.white),),)
+                                    decoration: const BoxDecoration(color: Colors.black,borderRadius: BorderRadius.all(Radius.circular(50))),width: 64,height: 28,
+                                    child: const Text('إكمال',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 12,color: Colors.white),),)
                                     ,onTap: (){
                                       if(taskdata.data[i].jumpType==1){
                                         Navigator.of(context).pop();
-                                        Future.delayed(Duration(milliseconds: 100), (){
+                                        Future.delayed(const Duration(milliseconds: 100), (){
                                           _publishtwo(context);
                                         });
                                       }
@@ -2198,17 +2195,17 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                               ),),
                           Expanded(child:
                             GestureDetector(child: Container(
-                              color: Color(0xffF5F5F5),
+                              color: const Color(0xffF5F5F5),
                               alignment: Alignment.center,
                               child: Text(
-                                '前往'.tr,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w600,color: Color(0xff666666)),),),onTap: (){
+                                '前往'.tr,style: const TextStyle(fontSize: 12,fontWeight: FontWeight.w600,color: Color(0xff666666)),),),onTap: (){
                               Navigator.of(context).pop();
                               Get.to(TaskCenterPage());
                             },))
                         ],
                       ),
                     )),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     GestureDetector(child: Image.asset('assets/images/chatwo.png',width: 23,height: 23,),onTap: (){
                       Navigator.pop(context);
                     },)
@@ -2236,7 +2233,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               Get.back();
               final AssetEntity? result = await CameraPicker.pickFromCamera(
                 context,
-                pickerConfig: CameraPickerConfig(
+                pickerConfig: const CameraPickerConfig(
                     textDelegate: ArabCameraPickerTextDelegate(),
                     enableRecording: true,
                     shouldAutoPreviewVideo: true),
@@ -2256,7 +2253,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 children: [
                   Text(
                     '拍摄'.tr,
-                    style: TextStyle(fontSize: 17),
+                    style: const TextStyle(fontSize: 17),
                   ),
                 ],
               ),
@@ -2287,7 +2284,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               color: Colors.white,
               child: Text(
                 '从相册选择'.tr,
-                style: TextStyle(fontSize: 17),
+                style: const TextStyle(fontSize: 17),
               ),
             ),
           ),
@@ -2309,7 +2306,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               child: Center(
                 child: Text(
                   '取消'.tr,
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ),
             ),
@@ -2345,7 +2342,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           _lastTime = DateTime.now();
           return false;
         } else {
-          if (DateTime.now().difference(_lastTime!) > Duration(seconds: 1)) {
+          if (DateTime.now().difference(_lastTime!) > const Duration(seconds: 1)) {
             _lastTime = DateTime.now();
             return false;
           }
@@ -2397,16 +2394,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               bottom: 0,
               right: 0,
               child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color:Colors.white,
               ),
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(0, 54, 0, 30),
+                    padding: const EdgeInsets.fromLTRB(0, 54, 0, 30),
                     width: double.infinity,
                     height: 150,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fitWidth,
                         image: AssetImage(
@@ -2416,8 +2413,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                     ),
                   ),
 
-                  SizedBox(height: 40),
-                  Text('您的美好生活指南！'.tr,style:TextStyle(
+                  const SizedBox(height: 40),
+                  Text('您的美好生活指南！'.tr,style:const TextStyle(
                       color: Colors.black,
                       fontSize: 22,
                       fontWeight:  FontWeight.w600,
@@ -2490,7 +2487,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                             ///facebook
                             GestureDetector(
                               child: Container(
-                                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                                 height: 56,
                                 decoration: BoxDecoration(
                                   color: Colors.black,
@@ -2548,10 +2545,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 }
                               },
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             Platform.isIOS?GestureDetector(
                               child: Container(
-                                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                                 height: 56,
                                 decoration: BoxDecoration(
                                   color: Colors.black,
@@ -2610,7 +2607,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                               },
                             ):GestureDetector(
                               child: Container(
-                                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                                 height: 56,
                                 decoration: BoxDecoration(
                                   color: Colors.black,
@@ -2668,7 +2665,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 }
                               },
                             ),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 40),
                             Row(
                               children: [
                                 Expanded(
@@ -2769,25 +2766,25 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 },)
                               ],
                             ),
-                            SizedBox(height: 15),
+                            const SizedBox(height: 15),
                             Container(
                               width: 280,
                               // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
                               child: Column(
                                 children: [
-                                  Text('登录或注册意味着您同意'.tr,style:TextStyle(
+                                  Text('登录或注册意味着您同意'.tr,style:const TextStyle(
                                       color: Color(0xff999999),
                                       fontSize: 12,
                                       //fontFamily: 'PingFang SC-Regular',
                                       fontWeight:  FontWeight.w400,
                                       decoration:TextDecoration.none
                                   )),
-                                  SizedBox(height: 5,),
+                                  const SizedBox(height: 5,),
                                   Row(
                                     mainAxisAlignment:MainAxisAlignment.center,
                                     children: [
                                       GestureDetector(
-                                        child:Text('隐私政策'.tr,style:TextStyle(
+                                        child:Text('隐私政策'.tr,style:const TextStyle(
                                             color: Color(0xff000000),
                                             fontSize: 12,
                                             fontWeight:  FontWeight.w400,
@@ -2797,14 +2794,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                           launchUrl(Uri.parse("https://www.lanla.app/ys.html"),mode: LaunchMode.externalApplication,);
                                         },
                                       ),
-                                      Text('与'.tr,style:TextStyle(
+                                      Text('与'.tr,style:const TextStyle(
                                           color: Color(0xff999999),
                                           fontSize: 12,
                                           fontWeight:  FontWeight.w400,
                                           decoration:TextDecoration.none
                                       )),
                                       GestureDetector(
-                                        child:Text('用户协议'.tr,style:TextStyle(
+                                        child:Text('用户协议'.tr,style:const TextStyle(
                                             color: Color(0xff000000),
                                             fontSize: 12,
                                             fontWeight:  FontWeight.w400,
@@ -2992,7 +2989,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       final AssetEntity? result =
                       await CameraPicker.pickFromCamera(
                         context,
-                        pickerConfig: CameraPickerConfig(
+                        pickerConfig: const CameraPickerConfig(
                             textDelegate: ArabCameraPickerTextDelegate(),
                             enableRecording: true,
                             shouldAutoPreviewVideo: true),
@@ -3020,7 +3017,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         children: [
                           Text(
                             '拍摄'.tr,
-                            style: TextStyle(fontSize: 17),
+                            style: const TextStyle(fontSize: 17),
                           ),
                         ],
                       ),
@@ -3055,7 +3052,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       color: Colors.white,
                       child: Text(
                         '从相册选择'.tr,
-                        style: TextStyle(fontSize: 17),
+                        style: const TextStyle(fontSize: 17),
                       ),
                     ),
                   ),
@@ -3074,7 +3071,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       color: Colors.white,
                       child: Text(
                         '长图文'.tr,
-                        style: TextStyle(fontSize: 17),
+                        style: const TextStyle(fontSize: 17),
                       ),
                     ),
                   ),
@@ -3096,7 +3093,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       child: Center(
                         child: Text(
                           '取消'.tr,
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ),
                     ),

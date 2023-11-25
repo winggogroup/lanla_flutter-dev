@@ -9,12 +9,8 @@ import 'package:circular_seek_bar/circular_seek_bar.dart';
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_sound/flutter_sound.dart';
-import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
@@ -44,7 +40,6 @@ import 'package:intl/intl.dart' show DateFormat;
 
 // import 'package:extended_text_field/extended_text_field.dart';
 // import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 
 import 'Shop/view.dart';
@@ -73,7 +68,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
   var Check = false;
   var Friendspage=1;
 
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   ///初始化播放器
   FlutterSoundPlayer playerModule = FlutterSoundPlayer();
   NewesProvider providerFriends =  Get.put(NewesProvider());
@@ -115,7 +110,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
   }
 
 
-  final InputDecoration decoration = InputDecoration(
+  final InputDecoration decoration = const InputDecoration(
     prefixIcon: Icon(Icons.image),
     prefixText: '# ',
     hintText: '请输入内容',
@@ -256,43 +251,43 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
         actions: [
 // <<<<<<< HEAD
           GestureDetector(child: Container(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            child: Icon(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: const Icon(
               Icons.info_outline,
               color: Colors.black12,
               size: 28,
             ),
           ), onTap: () {
-            Get.defaultDialog(titlePadding: EdgeInsets.fromLTRB(8, 20, 8, 8),
+            Get.defaultDialog(titlePadding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
                 content:
                 Container(child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('LanLa鼓励向上、真实、原创的内容，含以下内容的笔记将不会被推荐：'.tr),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Text('1．含有不文明语言、过度性感图片；'.tr),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Text('2．含有网址链接、联系方式、二维码或售卖语言；'.tr),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Text('3．冒充他人身份或搬运他人作品；'.tr),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Text('4．为刻意博取眼球，在标题、封面等处使用夸张表达'.tr),
                   ],
-                ), padding: EdgeInsets.fromLTRB(0, 10, 20, 10),),
+                ), padding: const EdgeInsets.fromLTRB(0, 10, 20, 10),),
                 confirm: Column(children: [
                   ElevatedButton(onPressed: () {
                     Get.back();
                   },
                     child: Text(
-                      "我知道了".tr, style: TextStyle(color: Colors.white),),
+                      "我知道了".tr, style: const TextStyle(color: Colors.white),),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                          Color(0xff000000)), //背景颜色
+                          const Color(0xff000000)), //背景颜色
                     ),),
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                 ],),
                 title: '发布小贴士'.tr,
-                titleStyle: TextStyle(fontSize: 16));
+                titleStyle: const TextStyle(fontSize: 16));
           },)
 // =======
         ],
@@ -880,7 +875,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
       SingleChildScrollView(
         controller: _controller,
         child: Container(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -928,7 +923,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                               ),
                               Text(
                                 '添加图片'.tr,
-                                style: TextStyle(fontSize: 12),
+                                style: const TextStyle(fontSize: 12),
                               ),
                             ],
                           ),
@@ -941,11 +936,11 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                         },
                         child: Container(
                           color: HexColor('f6f6f6'),
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               left: 10, right: 10, top: 5, bottom: 5),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.play_circle,
                                 size: 12,
                               ),
@@ -954,7 +949,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                               ),
                               Text(
                                 '预览视频'.tr,
-                                style: TextStyle(fontSize: 12),
+                                style: const TextStyle(fontSize: 12),
                               ),
                             ],
                           ),
@@ -983,7 +978,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                       ]),
                   child:Column(children: [
                     Container(
-                      margin: EdgeInsets.only(top: 15,),
+                      margin: const EdgeInsets.only(top: 15,),
                       child: TextField(
                         //控制大小写
                         textCapitalization: TextCapitalization.none,
@@ -993,11 +988,11 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                         decoration: InputDecoration(
                           hintText: "写标题会得到更多赞哦".tr,
                           // counterText: '',
-                          hintStyle: TextStyle(color: Colors.black12),
+                          hintStyle: const TextStyle(color: Colors.black12),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: HexColor('efefef')),
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Color(0xffF1F1F1),),
                           ),
                         ),
@@ -1007,7 +1002,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         bottom: 8,
                       ),
                       child:
@@ -1015,16 +1010,16 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                         focusNode: _nodeText2,
                         controller: _textEditingController,
                         maxLines: 6,
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        style: const TextStyle(fontSize: 16, color: Colors.black),
                         //控制大小写
                         textCapitalization: TextCapitalization.none,
                         decoration: InputDecoration(
                           hintText: "说说你此刻的心情".tr,
                           hintStyle: const TextStyle(color: Colors.black12),
-                          enabledBorder: UnderlineInputBorder(
+                          enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.transparent),
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.transparent),
                           ),
                         ),
@@ -1087,7 +1082,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                       itemCount: Friendlist.length,
                       itemBuilder: (context, i) {
                         return GestureDetector(child: Column(children: [
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           Row(children: [
                             GestureDetector(
                               onTap: () {
@@ -1107,14 +1102,14 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 10,),
+                            const SizedBox(width: 10,),
                             Text(Friendlist[i].userName)
                           ],),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           ///分割线
                           Container(
                             height: 1.0,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color(0xfffcfafa),
                               boxShadow: [
                                 BoxShadow(
@@ -1127,7 +1122,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                             ),
                           ),
                         ],),onTap: (){
-                          _textEditingController.text=_textEditingController.text+Friendlist[i].userName+' ';
+                          _textEditingController.text='${_textEditingController.text+Friendlist[i].userName} ';
                           Friendsdisplay=false;
                           setState(() {});
                           _textEditingController.selection = TextSelection.fromPosition(TextPosition(offset: _textEditingController.text.length));
@@ -1144,17 +1139,17 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                       itemCount: subjectlist.length,
                       itemBuilder: (context, i) {
                         return GestureDetector(child: Column(children: [
-                          SizedBox(height: 10,),
-                          Row(children: [
+                          const SizedBox(height: 10,),
+                          Row(children: const [
                             Text('#'),
                             SizedBox(width: 10,),
                             Text('1233333')
                           ],),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           ///分割线
                           Container(
                             height: 1.0,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color(0xfffcfafa),
                               boxShadow: [
                                 BoxShadow(
@@ -1167,7 +1162,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                             ),
                           ),
                         ],),onTap: (){
-                          _textEditingController.text=_textEditingController.text+'123332'+' ';
+                          _textEditingController.text='${_textEditingController.text}123332 ';
                           subjectplay=false;
                           setState(() {});
                           _textEditingController.selection = TextSelection.fromPosition(TextPosition(offset: _textEditingController.text.length));
@@ -1182,8 +1177,8 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
               //if(logic.state.positioninformation.toString() != '{}')
               GetBuilder<PublishLogic>(builder: (logic) {
                 return  Container(alignment: Alignment.centerRight,
-                  child: Container(padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
-                    decoration: BoxDecoration(color: Color(0xfff5f5f5),
+                  child: Container(padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+                    decoration: const BoxDecoration(color: Color(0xfff5f5f5),
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Row(mainAxisSize: MainAxisSize.min, children: [
                       GestureDetector(child: SizedBox(
@@ -1191,14 +1186,14 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                         child: SvgPicture.asset(
                           "assets/icons/publish/dingwei.svg",
                           color: logic.state.positioninformation.toString() ==
-                              '{}' ? Color(0xffe4e4e4) : Colors.black,
+                              '{}' ? const Color(0xffe4e4e4) : Colors.black,
                         ),
                       ),onTap: (){
                         Get.toNamed('/verify/locationlist');
                       },),
 
                       GestureDetector(child: Container(
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 210,
                         ),
                         child: logic.state.positioninformation
@@ -1207,7 +1202,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                             ? Text(
                           '添加地址'.tr,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Color(0xff666666),
                               fontSize: 12,
                               height: 1),
@@ -1215,7 +1210,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                             : Text(
                             logic.state.positioninformation['name'],
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Color(0xff666666),
                                 fontSize: 12,
                                 height: 1)),
@@ -1224,7 +1219,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                       },),
                       if(logic.state.positioninformation
                           .toString() !=
-                          '{}')SizedBox(width: 5,),
+                          '{}')const SizedBox(width: 5,),
                       logic.state.positioninformation.toString() != '{}'?GestureDetector(
                             child: Container(
                               width: 20,
@@ -1236,7 +1231,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                   "assets/svg/cha.svg",
                                   width: 8,
                                   height: 8,
-                                  color: Color(0xffE1E1E1),
+                                  color: const Color(0xffE1E1E1),
                                 ),
                               ),
                             ),
@@ -1248,8 +1243,8 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                         ],)
                     ,),);
               }),
-              SizedBox(height: 15,),
-              Divider(height: 1.0,color: Color(0xffF1F1F1),),
+              const SizedBox(height: 15,),
+              const Divider(height: 1.0,color: Color(0xffF1F1F1),),
 
 
               ///录音
@@ -1274,7 +1269,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                     color: logic.state
                                         .formData["recorderpath"] != ''
                                         ? Colors.black
-                                        : Color(0xffe4e4e4),
+                                        : const Color(0xffe4e4e4),
                                   ),
                                   const SizedBox(
                                     width: 10,
@@ -1337,14 +1332,14 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                               }
                                             },
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 15,
                                           ),
                                           Expanded(
                                             flex: 1,
                                             child: Container(
                                               height: 16,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   image:
                                                   DecorationImage(
                                                     image: AssetImage(
@@ -1354,19 +1349,19 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                                   )),
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 15,
                                           ),
                                           Text(
                                             "${logic.state
                                                 .formData['recordingtime']}s",
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.white,
                                                 fontWeight:
                                                 FontWeight.w600),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 20,
                                           ),
                                         ],
@@ -1375,7 +1370,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                   )
                                       : GestureDetector(
                                     child: Padding(
-                                        padding: EdgeInsets.only(right: 10),
+                                        padding: const EdgeInsets.only(right: 10),
                                         child: Text('录音'.tr)),
                                     onTap: () {
                                       showBottomSheet(
@@ -1386,7 +1381,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                               .height);
                                     },
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 15,
                                   ),
                                   if (logic.state.formData["recorderpath"] !=
@@ -1401,7 +1396,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                         Recordingdeletion();
                                       },
                                     ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 40,
                                   ),
                                   // GestureDetector(child:Text('播放') ,onTap: (){
@@ -1441,7 +1436,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                           width: 22,
                           child: SvgPicture.asset(
                             "assets/icons/publish/topic.svg",
-                            color: logic.state.selectTopic.isEmpty ? Color(
+                            color: logic.state.selectTopic.isEmpty ? const Color(
                                 0xffe4e4e4) : Colors.black,
                           ),
                         ),
@@ -1450,7 +1445,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                               scrollDirection: Axis.horizontal,
                               child: logic.state.selectTopic.isEmpty
                                   ? Padding(
-                                  padding: EdgeInsets.only(right: 10),
+                                  padding: const EdgeInsets.only(right: 10),
                                   child: Text('没有选择话题'.tr))
                                   : _TopicListWidget(logic.state.selectTopic),
                             )),
@@ -1539,7 +1534,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                         width: 22,
                         child: SvgPicture.asset(
                           "assets/icons/publish/bilibili.svg",
-                          color: Check ? Colors.black : Color(0xffe4e4e4),
+                          color: Check ? Colors.black : const Color(0xffe4e4e4),
                         )),
                     if(logic.state.formData['channel']!=null)Expanded(
                         child: SingleChildScrollView(
@@ -1595,13 +1590,12 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                           width: 18,
                           child: SvgPicture.asset(
                             "assets/svg/guanlianht.svg",
-                            color: logic.state.listItem.length ==
-                                0 ? Color(0xffe4e4e4) : Colors.black,
+                            color: logic.state.listItem.isEmpty ? const Color(0xffe4e4e4) : Colors.black,
                           ),
                         ),
                         Expanded(
                             child: Padding(
-                                padding: EdgeInsets.only(right: 10),
+                                padding: const EdgeInsets.only(right: 10),
                                 child: Text('关联宝贝'.tr))
                         ),
                       ],
@@ -1627,20 +1621,20 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                 child: Column(
                   // 禁止listview滑动
                   // physics: const NeverScrollableScrollPhysics(),
-                  children: logic.state.listItem.length > 0 ? logic.state.listItem.map((value){
+                  children: logic.state.listItem.isNotEmpty ? logic.state.listItem.map((value){
                     return
                       Column(
                         children: [
                          Container(
-                           decoration: BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.all(Radius.circular(5)),),
-                           margin: EdgeInsets.only(bottom: 10),
-                           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                           decoration: const BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.all(Radius.circular(5)),),
+                           margin: const EdgeInsets.only(bottom: 10),
+                           padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                            child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
                               Row(children: [Container(width: 40, height: 40,
                               //超出部分，可裁剪
                               clipBehavior: Clip.hardEdge,
                               decoration: BoxDecoration(
-                                color:Color(0xfff5f5f5),
+                                color:const Color(0xfff5f5f5),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Image.network(
@@ -1650,15 +1644,15 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                 width: 40, height: 40,
                               ),
                             ),
-                              SizedBox(width: 5,),
+                              const SizedBox(width: 5,),
                               Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                Container(constraints: BoxConstraints(maxWidth: 200,),child:
+                                Container(constraints: const BoxConstraints(maxWidth: 200,),child:
                                 Text(value.title,overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,style: TextStyle(fontSize: 14),),),
-                                SizedBox(height: 5,),
+                                  maxLines: 1,style: const TextStyle(fontSize: 14),),),
+                                const SizedBox(height: 5,),
                                 Row(children: [
-                                  Container(height: 25,child: Text('评估'.tr,style: TextStyle(color: Color(0xff999999),fontSize: 14),),),
-                                  SizedBox(width: 5,),
+                                  Container(height: 25,child: Text('评估'.tr,style: const TextStyle(color: Color(0xff999999),fontSize: 14),),),
+                                  const SizedBox(width: 5,),
                                   XMStartRating(rating: double.parse(value.score) ,showtext:true)
                                 ],),
                               ]),],),
@@ -1667,7 +1661,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                                height: 15,
                                child: SvgPicture.asset(
                                  "assets/svg/cha.svg",
-                                 color: Color(0xff999999),
+                                 color: const Color(0xff999999),
                                ),
                              ),onTap: (){
                                setState(() {
@@ -1682,15 +1676,15 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                   }).toList() : [],
               ),),
               ///继续关联
-              if(logic.state.listItem.length>0&&logic.state.listItem.length<3)GestureDetector(
+              if(logic.state.listItem.isNotEmpty&&logic.state.listItem.length<3)GestureDetector(
                 child: Container(width: double.infinity,height: 47,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/xuxian.png'),
                       fit: BoxFit.fill, // 完全填充
                     ),
                   ),
-                  child: Row(mainAxisAlignment:MainAxisAlignment.center,children: [Text('继续关联'.tr),SizedBox(width: 10,),SvgPicture.asset(
+                  child: Row(mainAxisAlignment:MainAxisAlignment.center,children: [Text('继续关联'.tr),const SizedBox(width: 10,),SvgPicture.asset(
                     "assets/svg/jia.svg",
                     width: 10,
                     height: 10,
@@ -1734,17 +1728,17 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                     logic.onPublish();
                   },
                   child: Container(
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     height: 70,
-                    padding: EdgeInsets.only(bottom: 3),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.only(bottom: 3),
+                    decoration: const BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.all(Radius.circular(30.0)),
                     ),
                     child: Center(
                       child: Text(
                         '发布笔记'.tr,
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
                   ),
@@ -1789,7 +1783,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
             );
           },
           child: Container(
-            margin: EdgeInsets.all(5),
+            margin: const EdgeInsets.all(5),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.file(
@@ -1798,7 +1792,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                 )),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black12),
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
           ),
         ),
@@ -1820,7 +1814,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
           child: Container(
             width: 120,
             height: 200,
-            margin: EdgeInsets.all(5),
+            margin: const EdgeInsets.all(5),
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black12),
@@ -1860,7 +1854,7 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                   child: Center(
                     child: Text(
                       '更换封面'.tr,
-                      style: TextStyle(color: Colors.white, fontSize: 14),
+                      style: const TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ),
                 ),
@@ -1877,14 +1871,14 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
       return Container();
     }
     return Container(
-      margin: EdgeInsets.only(right: 10),
+      margin: const EdgeInsets.only(right: 10),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           foregroundColor: id == activeId ? Colors.white : Colors.black87,
           backgroundColor: id == activeId ? Colors.black : Colors.white,
           surfaceTintColor: Colors.white,
-          minimumSize: Size(66, 28),
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          minimumSize: const Size(66, 28),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
@@ -1930,12 +1924,12 @@ class PublishState extends State<PublishPage> with WidgetsBindingObserver {
                 topRight: Radius.circular(10.0))),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 55,
             ),
             Text(
               '快用语音简单描述一下吧'.tr,
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
             ),
             Expanded(
               flex: 1,
@@ -2016,7 +2010,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
               if (Recordingoperation)
                 GestureDetector(
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(20, 8, 20, 8),
+                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(50),
@@ -2040,7 +2034,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
                   },
                 ),
               Container(
-                color: Color.fromARGB(1, 0, 0, 0), //一个透明的color
+                color: const Color.fromARGB(1, 0, 0, 0), //一个透明的color
                 width: 100,
                 height: 100,
                 child: Stack(
@@ -2058,7 +2052,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
                       sweepAngle: 360,
                       strokeCap: StrokeCap.butt,
                       progressColor: Colors.black,
-                      trackColor: Color(0xfff1f1f1),
+                      trackColor: const Color(0xfff1f1f1),
                       child: Center(
                         child: GestureDetector(
                           child: Container(
@@ -2130,7 +2124,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
                   child: Container(
                     padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                     decoration: BoxDecoration(
-                      color: Color(0xffF5F5F5),
+                      color: const Color(0xffF5F5F5),
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: Container(
@@ -2178,7 +2172,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
         throw RecordingPermissionException('Microphone permission not granted');
       }
     }
-    await recorderModule!.openRecorder();
+    await recorderModule.openRecorder();
     final session = await AudioSession.instance;
     await session.configure(AudioSessionConfiguration(
       avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
@@ -2221,35 +2215,33 @@ class AudioRecordState extends State<AudioRecordWidget> {
 
         await recorderModule
             .startRecorder(
-          toFile: "${dir.path}/${path}",
+          toFile: "${dir.path}/$path",
           codec: Codec.aacADTS,
         )
             .then((value) {
           setState(() {});
         });
-        recorderModule.setSubscriptionDuration(Duration(milliseconds: 1000));
+        recorderModule.setSubscriptionDuration(const Duration(milliseconds: 1000));
 
         /// 监听录音
         recorderSubscription = recorderModule.onProgress!.listen((e) {
-          if (e != null && e.duration != null) {
-            var date = DateTime.fromMillisecondsSinceEpoch(
-                e.duration.inMilliseconds,
-                isUtc: true);
-            // print('监听中');
-            setState(() {
-              //更新录音时长
-              Recordingtime = Recordingtime + 1;
-            });
-            logics.state.formData['recordingtime'] = Recordingtime;
-            logics.update();
-            // var txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
-            //设置了最大录音时长
+          var date = DateTime.fromMillisecondsSinceEpoch(
+              e.duration.inMilliseconds,
+              isUtc: true);
+          // print('监听中');
+          setState(() {
+            //更新录音时长
+            Recordingtime = Recordingtime + 1;
+          });
+          logics.state.formData['recordingtime'] = Recordingtime;
+          logics.update();
+          // var txt = DateFormat('mm:ss:SS', 'en_GB').format(date);
+          //设置了最大录音时长
 
-            if (Recordingtime >= 59.0) {
-              stopRecorder();
-              // print('录音超时了');
-              return;
-            }
+          if (Recordingtime >= 59.0) {
+            stopRecorder();
+            // print('录音超时了');
+            return;
           }
         });
         // print("没监听${recorderSubscription}");
@@ -2277,7 +2269,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
     Directory dir = await getTemporaryDirectory();
     // print('临时目录 : ${dir.path}');
 
-    File file = File("${dir.path}/${path}");
+    File file = File("${dir.path}/$path");
     // print(file.existsSync());
 
     // AliOssClient.init(
@@ -2293,7 +2285,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
 
     final recordingName =  storageRef.child("user/audio/${dateTime.year}${dateTime.month}${dateTime.day}${dateTime
         .hour}${dateTime.minute}${dateTime.second}.mp3");
-    final recordingUpload = recordingName.putFile(File("${dir.path}/${path}"),);
+    final recordingUpload = recordingName.putFile(File("${dir.path}/$path"),);
 
     await recordingUpload.whenComplete(() {});
     String newThumbnailPath =  await recordingName.getDownloadURL();
@@ -2306,7 +2298,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
     //         .hour}${dateTime.minute}${dateTime.second}");
 
     ///保存本地地址
-    logics.state.formData['recorderpath'] = "${dir.path}/${path}";
+    logics.state.formData['recorderpath'] = "${dir.path}/$path";
     ///保存oss地址
     logics.state.formData['ossrecorderpath'] = newThumbnailPath;
     logics.update();
@@ -2317,7 +2309,7 @@ class AudioRecordState extends State<AudioRecordWidget> {
 
   ///关闭录制
   void stopRecorder() async {
-    await recorderModule!.stopRecorder().then((value) {
+    await recorderModule.stopRecorder().then((value) {
       setState(() {
         recroding = false;
       });
@@ -2350,16 +2342,14 @@ class AudioRecordState extends State<AudioRecordWidget> {
 
   /// 取消录音监听
   void _cancelRecorderSubscriptions() {
-    if (recorderSubscription != null) {
-      recorderSubscription.cancel();
-    }
+    recorderSubscription.cancel();
   }
 }
 
 class LoadingDialog extends Dialog {
   final String text;
 
-  LoadingDialog({required this.text}) : super();
+  const LoadingDialog({required this.text}) : super();
 
   @override
   Widget build(BuildContext context) {

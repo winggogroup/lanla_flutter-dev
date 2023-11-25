@@ -1,10 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/services/user.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
@@ -36,14 +34,14 @@ class ModifyGenderState extends State<ModifyGenderWidget> {
       appBar: AppBar(
         title: Text(
           '修改性别'.tr,
-          style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
+          style: const TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
         ),
         actions: [
           GestureDetector(child:  Container(
-              margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+              margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Text('保存'.tr,style: TextStyle(
+                children: <Widget>[Text('保存'.tr,style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                 ),)],
@@ -63,18 +61,18 @@ class ModifyGenderState extends State<ModifyGenderWidget> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 23,),
+          const SizedBox(height: 23,),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-            decoration:BoxDecoration(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+            decoration:const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
             child: Column(
               children: [
                 GestureDetector(child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                   child: Row(
                     mainAxisAlignment:MainAxisAlignment.spaceBetween,
                     children: [
@@ -99,9 +97,9 @@ class ModifyGenderState extends State<ModifyGenderWidget> {
                     Sex=1;
                   });
                 },) ,
-                Divider(height: 1.0,color: Color(0xffF1F1F1),),
+                const Divider(height: 1.0,color: Color(0xffF1F1F1),),
                 GestureDetector(child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                   child: Row(
                     mainAxisAlignment:MainAxisAlignment.spaceBetween,
                     children: [
@@ -126,9 +124,9 @@ class ModifyGenderState extends State<ModifyGenderWidget> {
                     Sex=2 ;
                   });
                 },) ,
-                Divider(height: 1.0,color: Color(0xffF1F1F1),),
+                const Divider(height: 1.0,color: Color(0xffF1F1F1),),
                 GestureDetector(child: Container(
-                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                   child: Row(
                     mainAxisAlignment:MainAxisAlignment.spaceBetween,
                     children: [

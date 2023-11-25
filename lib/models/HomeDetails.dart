@@ -79,8 +79,8 @@ class HomeDetails {
     userAvatar: json["userAvatar"],
     topics: json["topics"],
     visits: json["visits"],
-    placeName: json["placeName"]==null?'':json["placeName"],
-    placeId: json["placeId"]==null?'':json["placeId"],
+    placeName: json["placeName"] ?? '',
+    placeId: json["placeId"] ?? '',
     goodsList: List<GoodsList>.from(json["goodsList"].map((x) => GoodsList.fromJson(x))),
   );
 
@@ -106,8 +106,8 @@ class HomeDetails {
     "userAvatar": userAvatar,
     "channel": channel,
     "topics":topics,
-    "placeName":placeName==null?'':placeName,
-    "placeId":placeId==null?'':placeId,
+    "placeName":placeName ?? '',
+    "placeId":placeId ?? '',
     "goodsList": List<dynamic>.from(goodsList.map((x) => x.toJson())),
   };
 }

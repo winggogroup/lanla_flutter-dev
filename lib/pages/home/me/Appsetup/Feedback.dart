@@ -1,12 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/common/function.dart';
 import 'package:lanla_flutter/pages/publish/state.dart';
@@ -35,7 +33,7 @@ class FeedbackState extends State<FeedbackWidget> {
   @override
   void initState() {
     super.initState();
-    _controller = new TextEditingController(text: userLogic.slogan);
+    _controller = TextEditingController(text: userLogic.slogan);
   }
   @override
   Widget build(BuildContext context) {
@@ -43,40 +41,40 @@ class FeedbackState extends State<FeedbackWidget> {
       appBar: AppBar(
         title: Text(
           '意见反馈'.tr,
-          style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
+          style: const TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
         ),
 
       ),
       body: Column(
         children: [
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child:Row(
               children: [
 
 
-                Text('反馈与建议'.tr,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),),
-                SizedBox(width: 10,),
-                Text('*',style: TextStyle(color: Colors.red,fontSize: 16),textAlign: TextAlign.center,),
+                Text('反馈与建议'.tr,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),),
+                const SizedBox(width: 10,),
+                const Text('*',style: TextStyle(color: Colors.red,fontSize: 16),textAlign: TextAlign.center,),
               ],
           ) ,),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child:TextField(
               maxLines: 7,
               maxLength:100,
               controller: _controller,
               // cursorColor: Color(0xffffffff),
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                 hintText: "说说你的建议或者问题，以便我们更好的服务".tr,
-                hintStyle: TextStyle(color: Color(0xff666666)),
+                hintStyle: const TextStyle(color: Color(0xff666666)),
                 border: InputBorder.none, // 隐藏边框
                 fillColor: Colors.white,
                 filled: true,
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   /*边角*/
                   borderRadius: BorderRadius.all(
                     Radius.circular(20), //边角为5
@@ -86,7 +84,7 @@ class FeedbackState extends State<FeedbackWidget> {
                     width: 0.5,
                   ),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.white,
                     width: 0.5,
@@ -105,21 +103,21 @@ class FeedbackState extends State<FeedbackWidget> {
               },
             ),
           ),
-          SizedBox(height: 50,),
+          const SizedBox(height: 50,),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child:Row(
               mainAxisAlignment:MainAxisAlignment.spaceBetween,
               children: [
-                Text('图片描述'.tr,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),),
-                Text('最多三张'.tr,style: TextStyle(color: Color(0xff999999),fontSize: 12),textAlign: TextAlign.center,),
+                Text('图片描述'.tr,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600,),),
+                Text('最多三张'.tr,style: const TextStyle(color: Color(0xff999999),fontSize: 12),textAlign: TextAlign.center,),
               ],
             ) ,),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Container(
-            margin: EdgeInsets.only(left: 20,right: 20),
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-            decoration: BoxDecoration(
+            margin: const EdgeInsets.only(left: 20,right: 20),
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+            decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(
                 Radius.circular(10), //边角为5
@@ -132,7 +130,7 @@ class FeedbackState extends State<FeedbackWidget> {
                 },),
                 for(var i=0;i<imageListFile.length;i++)
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                   key: ValueKey(imageListFile[i]),
                   width: 70,height: 70,
                   child: GestureDetector(
@@ -168,7 +166,7 @@ class FeedbackState extends State<FeedbackWidget> {
                           )),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black12),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
                       ),
                     ),
                   ),
@@ -180,10 +178,10 @@ class FeedbackState extends State<FeedbackWidget> {
       ),
       bottomNavigationBar: Container(
         //color: Color(0xffF5F5F5),
-        padding: EdgeInsets.all(50),
+        padding: const EdgeInsets.all(50),
         child: opiniontext!=''?ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Color(0xff000000)),
+            backgroundColor: MaterialStateProperty.all(const Color(0xff000000)),
           ),
           onPressed: () async {
             EasyLoading.show(status: 'loading...',maskType: EasyLoadingMaskType.black);
@@ -194,33 +192,33 @@ class FeedbackState extends State<FeedbackWidget> {
               File imageObj = await CompressImageFile(file);
               // String newThumbnailPath =
               // await AliOssClient().putObject(imageObj.path, 'thumb', _getFileName());
-              final pictureName =  storageRef.child('user/img/'+_getFileName()+'.png');
+              final pictureName =  storageRef.child('user/img/${_getFileName()}.png');
               final pictureUpload = pictureName.putFile(File(imageObj.path));
               await pictureUpload.whenComplete(() {});
               String newThumbnailPath =  await pictureName.getDownloadURL();
               imagesPath.add(newThumbnailPath);
             }
             print(opiniontext);
-            var result = await widget.Feedbackjkprovider.Feedbackjk(opiniontext,imagesPath.length>0?imagesPath.join(','):'');
+            var result = await widget.Feedbackjkprovider.Feedbackjk(opiniontext,imagesPath.isNotEmpty?imagesPath.join(','):'');
             EasyLoading.dismiss();
             if(result.statusCode==200){
               Toast.toast(context,msg: "反馈成功，感谢您的反馈".tr,position: ToastPostion.center);
               Get.back();
             }
           },
-          child: Text('提交反馈'.tr,style: TextStyle(
+          child: Text('提交反馈'.tr,style: const TextStyle(
             fontSize: 17,
             color: Colors.white,
           ),textAlign: TextAlign.center,),
         ):ElevatedButton(
           style: ButtonStyle(
             splashFactory: NoSplash.splashFactory,
-            backgroundColor: MaterialStateProperty.all(Color(0xffffffff)),
+            backgroundColor: MaterialStateProperty.all(const Color(0xffffffff)),
           ),
           onPressed: () async {
             null;
           },
-          child: Text('提交反馈'.tr,style: TextStyle(
+          child: Text('提交反馈'.tr,style: const TextStyle(
             fontSize: 17,
             color: Color(0xff666666),
           ),textAlign: TextAlign.center,),
@@ -294,9 +292,7 @@ class FeedbackState extends State<FeedbackWidget> {
       if (data[i].type == AssetType.image) {
         newData.add(item);
         File? file = await item.file;
-        if (File != null) {
-          newDataFile.add(file!);
-        }
+        newDataFile.add(file!);
       }
     }
     print('tupian');

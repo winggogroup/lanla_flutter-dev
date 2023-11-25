@@ -6,7 +6,6 @@ import 'package:adjust_sdk/adjust_attribution.dart';
 import 'package:adjust_sdk/adjust_config.dart';
 import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:dio/dio.dart';
-import 'package:facebook_audience_network/facebook_audience_network.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -14,21 +13,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lanla_flutter/routers.dart';
-import 'package:lanla_flutter/services/user.dart';
-import 'package:lanla_flutter/translations.dart';
-import 'package:lanla_flutter/ulits/app_log.dart';
+import 'package:lanla_flutter/translations_cn.dart';
 import 'package:lanla_flutter/ulits/routing_callback.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'common/controller/UserLogic.dart';
 import 'firebase_options.dart';
 import 'global_bindings.dart';
-import 'package:unity_ads_plugin/unity_ads_plugin.dart';
+
 String? uuid = "";
 String afuid = "";
 
@@ -47,6 +42,7 @@ Future<void> main() async {
       print('Adapter status for $key: ${value.description}');
     });
   });
+
   ///初始化unity
   // UnityAds.init(
   //   gameId: '5358773',
@@ -59,7 +55,6 @@ Future<void> main() async {
   //   onComplete: () => print('Initialization Complete'),
   //   onFailed: (error, message) => print('Initialization Failed: $error $message'),
   // );
-
 
   // MobileAds.instance.updateRequestConfiguration(
   //     RequestConfiguration(testDeviceIds: ['ED6849B5DCE8089C70BDE02C4F95CCC4']));
@@ -93,9 +88,7 @@ Future<void> main() async {
     await sp.setString('uuid', uuid!);
   }
   Dio().get(
-      'https://app.log.lanla.app/?action=initApp&platform=${Platform.isIOS ? 'ios' : 'android'}&luuid=${uuid??"-"}');
-
-
+      'https://app.log.lanla.app/?action=initApp&platform=${Platform.isIOS ? 'ios' : 'android'}&luuid=${uuid ?? "-"}');
 
   // /// 启动appsflyer
   // AppsFlyerOptions appsFlyerOptions = AppsFlyerOptions(
@@ -113,18 +106,19 @@ Future<void> main() async {
   // await initAppsflyer();
   /// 启动appsflyer结束
   await Adjustes(userLogic);
-  Adjust.setPushToken("AAAAiLqhZ1g:APA91bElS4lfd3VA45fdeYDwctsTsgwd3gPmwLMalTZHJXBr2TdnuW3l3C0UnNAW-9aTf4plXOG8itw9cxLzPtZ0m08zLOP51RlxEqU0Ye9b4pKHdvCTXU2F5j9EJTgA1LeYeAcu4RYW");
+  Adjust.setPushToken(
+      "AAAAiLqhZ1g:APA91bElS4lfd3VA45fdeYDwctsTsgwd3gPmwLMalTZHJXBr2TdnuW3l3C0UnNAW-9aTf4plXOG8itw9cxLzPtZ0m08zLOP51RlxEqU0Ye9b4pKHdvCTXU2F5j9EJTgA1LeYeAcu4RYW");
   final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
   await WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(myBackgroundHandler);
   runApp(GetMaterialApp(
-    translations: TranslationsMap(),
+    translations: TranslationsCNMap(),
     initialRoute: '/splash',
     locale: const Locale('ar', 'AR'),
     // 没有语言时将会按照此处指定的语言翻译
-    fallbackLocale: Locale('en', 'US'),
+    fallbackLocale: const Locale('en', 'US'),
     // 添加一个回调语言选项，以备上面指定的语言翻译不存在
     getPages: Routers.getPages,
     initialBinding: GlobalBindings(),
@@ -173,55 +167,55 @@ initAppsflyer() async {
   _appsflyerSdk.initSdk(
       registerConversionDataCallback: true,
       registerOnAppOpenAttributionCallback: true,
-      registerOnDeepLinkingCallback: true
-  );
+      registerOnDeepLinkingCallback: true);
   _appsflyerSdk.onAppOpenAttribution((res) {
-    print("onAppOpenAttribution res: " + res.toString());
+    print("onAppOpenAttribution res: $res");
   });
   _appsflyerSdk.onInstallConversionData((res) {
-    print("onInstallConversionData res: " + res.toString());
+    print("onInstallConversionData res: $res");
   });
   _appsflyerSdk.onDeepLinking((res) {
-    print("onDeepLinking res: " + res.toString());
+    print("onDeepLinking res: $res");
   });
   var af_uid = await _appsflyerSdk.getAppsFlyerUID();
-  print("af_uid${af_uid}");
-  if(af_uid != null){
+  print("af_uid$af_uid");
+  if (af_uid != null) {
     afuid = af_uid;
   }
 }
 
 /// Adjust
-Adjustes(userLogic) async{
-  AdjustConfig config = AdjustConfig('pk97eiez4glc', AdjustEnvironment.production);
-  config.attributionCallback= (AdjustAttribution attributionChangedData) {
-    print('顺么数据${attributionChangedData.fbInstallReferrer}，${attributionChangedData.trackerToken}，${attributionChangedData.adid}');
+Adjustes(userLogic) async {
+  AdjustConfig config =
+      AdjustConfig('pk97eiez4glc', AdjustEnvironment.production);
+  config.attributionCallback = (AdjustAttribution attributionChangedData) {
+    print(
+        '顺么数据${attributionChangedData.fbInstallReferrer}，${attributionChangedData.trackerToken}，${attributionChangedData.adid}');
     //if (attributionChangedData.trackerToken != null) {
-      userLogic.ascribeto(attributionChangedData.trackerName,attributionChangedData.trackerToken,attributionChangedData.adid);
-      userLogic.ascribetoclick(
-          attributionChangedData.trackerName,
-          attributionChangedData.trackerToken,
-          attributionChangedData.adid,
-          attributionChangedData.network,
-          attributionChangedData.campaign,
-          attributionChangedData.adgroup,
-          attributionChangedData.creative,
-          attributionChangedData.clickLabel,
-          attributionChangedData.costType,
-          attributionChangedData.costAmount,
-          attributionChangedData.costCurrency,
-          attributionChangedData.fbInstallReferrer,
-
-      );
-      // print('[Adjust]: Tracker token: ' + attributionChangedData.trackerToken);
+    userLogic.ascribeto(attributionChangedData.trackerName,
+        attributionChangedData.trackerToken, attributionChangedData.adid);
+    userLogic.ascribetoclick(
+      attributionChangedData.trackerName,
+      attributionChangedData.trackerToken,
+      attributionChangedData.adid,
+      attributionChangedData.network,
+      attributionChangedData.campaign,
+      attributionChangedData.adgroup,
+      attributionChangedData.creative,
+      attributionChangedData.clickLabel,
+      attributionChangedData.costType,
+      attributionChangedData.costAmount,
+      attributionChangedData.costCurrency,
+      attributionChangedData.fbInstallReferrer,
+    );
+    // print('[Adjust]: Tracker token: ' + attributionChangedData.trackerToken);
     //}
   };
   config.logLevel = AdjustLogLevel.error;
   // config.defaultTracker= 'pk97eiez4glc';
   Adjust.start(config);
-
-
 }
+
 /*
   * 生成固定长度的随机字符串
   * */

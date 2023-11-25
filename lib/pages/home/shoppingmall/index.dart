@@ -28,10 +28,10 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
   bool get wantKeepAlive => true;
   final provider = Get.find<ContentProvider>();
   final userLogic = Get.find<UserLogic>();
-  ScrollController _allscrollController = ScrollController();
-  ScrollController _specialscrollController = ScrollController();
-  ScrollController _personalscrollController = ScrollController();
-  FocusNode _focusNode = FocusNode();
+  final ScrollController _allscrollController = ScrollController();
+  final ScrollController _specialscrollController = ScrollController();
+  final ScrollController _personalscrollController = ScrollController();
+  final FocusNode _focusNode = FocusNode();
   TCardController SecretCollection = TCardController();
   int currentIndex = 0; // 当前轮播项索引
   bool oneData = false;
@@ -89,7 +89,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
     if(res.statusCode==200){
       if(res.body['data'].length>0){
         allPage++;
-        if(alllistdata.length==0){
+        if(alllistdata.isEmpty){
           alllistdata=res.body['data'];
         }else{
           alllistdata=[...alllistdata,...res.body['data']];
@@ -103,7 +103,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
     if(specialofferres.statusCode==200){
       if(specialofferres.body['data'].length>0){
         specialPage++;
-        if(specialofferdata.length==0){
+        if(specialofferdata.isEmpty){
           specialofferdata=specialofferres.body['data'];
         }else{
           specialofferdata=[...specialofferdata,...specialofferres.body['data']];
@@ -117,7 +117,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
     if(privateres.statusCode==200){
       if(privateres.body['data'].length>0){
          personalPage++;
-        if(cardData.length==0){
+        if(cardData.isEmpty){
           cardData=privateres.body['data'];
         }else{
           cardData=[...cardData,...privateres.body['data']];
@@ -136,7 +136,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
 
   Future<void> _launchUniversalLinkIos(Uri url,Uri httpurl) async {
     try {
-      print('启动成功:${url}');
+      print('启动成功:$url');
       final bool nativeAppLaunchSucceeded = await launchUrl(
         url,
         mode: LaunchMode.externalNonBrowserApplication,
@@ -270,14 +270,14 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
           controller: _allscrollController,
           scrollDirection: Axis.vertical,
           children: [
-            Container(padding: EdgeInsets.only(left: 15,right: 15),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
+            Container(padding: const EdgeInsets.only(left: 15,right: 15),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
               Container(
                 clipBehavior: Clip.hardEdge,
                 width: double.infinity,constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.width-30,),
-                decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5)),),
+                decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5)),),
                 child: _swiper(context, xunidata['box_1']['cover']),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Row(mainAxisAlignment:MainAxisAlignment.spaceAround,children: [
                 for(var items in xunidata['slogan'])
                 GestureDetector(child:Row(children: [
@@ -285,8 +285,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                     imageUrl: items['icon'],
                     fit: BoxFit.cover,
                     placeholder: (context, url) => Container(
-                      color: Color(0xffF5F5F5),
-                      padding: EdgeInsets.only(left: 20, right: 20),
+                      color: const Color(0xffF5F5F5),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       width: double.infinity,
                       child:
                       Image.asset('assets/images/LanLazhanwei.png'),
@@ -294,23 +294,23 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                     errorWidget: (context, url, error) {
                       // 网络图片加载失败时显示本地图片
                       return Container(
-                        color: Color(0xffF5F5F5),
-                        padding: EdgeInsets.only(left: 20, right: 20),
+                        color: const Color(0xffF5F5F5),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
                         width: double.infinity,
                         child:
                         Image.asset('assets/images/LanLazhanwei.png',),
                       );
                     },
                   ),),
-                  SizedBox(width: 5,),
-                  Text(items['title'],overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 13,),)
+                  const SizedBox(width: 5,),
+                  Text(items['title'],overflow: TextOverflow.ellipsis,style: const TextStyle(fontSize: 13,),)
                 ],) ,onTap: (){
                   // PromptDescription=items['description'];
                   // setState(() {
                   //
                   // });
                   Get.bottomSheet(Container(
-                    padding: EdgeInsets.only(bottom: 40),
+                    padding: const EdgeInsets.only(bottom: 40),
                     decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(20),),
                     child: Wrap(
                       children: [
@@ -322,8 +322,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                               imageUrl: items['icon'],
                               fit: BoxFit.cover,
                               placeholder: (context, url) => Container(
-                                color: Color(0xffF5F5F5),
-                                padding: EdgeInsets.only(left: 20, right: 20),
+                                color: const Color(0xffF5F5F5),
+                                padding: const EdgeInsets.only(left: 20, right: 20),
                                 width: double.infinity,
                                 child:
                                 Image.asset('assets/images/LanLazhanwei.png'),
@@ -331,8 +331,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                               errorWidget: (context, url, error) {
                                 // 网络图片加载失败时显示本地图片
                                 return Container(
-                                  color: Color(0xffF5F5F5),
-                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                  color: const Color(0xffF5F5F5),
+                                  padding: const EdgeInsets.only(left: 20, right: 20),
                                   width: double.infinity,
                                   child:
                                   Image.asset('assets/images/LanLazhanwei.png',),
@@ -346,7 +346,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                           onTap: () {
                           },
                         ),
-                        Container(padding: EdgeInsets.fromLTRB(15, 0, 15, 0),width: double.infinity,child: Text(items['description'],style: TextStyle(
+                        Container(padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),width: double.infinity,child: Text(items['description'],style: const TextStyle(
                             fontSize: 14,
                             color: Color.fromRGBO(153, 153, 153, 1),
                             height: 1.4
@@ -356,9 +356,9 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                   ));
                 },),
               ],),
-              SizedBox(height: 40,),
-              Text('今日特价'.tr,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-              SizedBox(height: 15,),
+              const SizedBox(height: 40,),
+              Text('今日特价'.tr,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+              const SizedBox(height: 15,),
               Container(width: double.infinity,height: 80,child: ListView(
                 shrinkWrap: true,
                 primary: false,
@@ -366,23 +366,23 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                 controller: _specialscrollController,
                 children: [
                   for(var item in specialofferdata)
-                    GestureDetector(child: Container(decoration: BoxDecoration(
+                    GestureDetector(child: Container(decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [Color(0xfff8f8f8), Colors.white], // 渐变色的颜色列表
                       ),
-                    ),width: 60,height: 80,margin: EdgeInsets.only(left: 15),child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
-                      SizedBox(
+                    ),width: 60,height: 80,margin: const EdgeInsets.only(left: 15),child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(width: 40,height: 40,child: CachedNetworkImage(
                         imageUrl: item['image'],
                         fit: BoxFit.contain,
                         placeholder: (context, url) => Container(
-                          color: Color(0xffF5F5F5),
-                          padding: EdgeInsets.only(left: 20, right: 20),
+                          color: const Color(0xffF5F5F5),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           width: double.infinity,
                           child:
                           Image.asset('assets/images/LanLazhanwei.png'),
@@ -390,30 +390,30 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                         errorWidget: (context, url, error) {
                           // 网络图片加载失败时显示本地图片
                           return Container(
-                            color: Color(0xffF5F5F5),
-                            padding: EdgeInsets.only(left: 20, right: 20),
+                            color: const Color(0xffF5F5F5),
+                            padding: const EdgeInsets.only(left: 20, right: 20),
                             width: double.infinity,
                             child:
                             Image.asset('assets/images/LanLazhanwei.png',),
                           );
                         },
                       ),),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       // Text('123',style: TextStyle(fontSize: 13),),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             double.parse(item['price']).toInt().toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 13, height: 1),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 3,
                           ),
                           Text(
                             item['currency'],
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 13,
 
                                 height: 1),
@@ -428,14 +428,14 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                     },)
                 ],
               ),),
-              SizedBox(height: 40,),
-              Text(xunidata['box_2']['name'],style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-              SizedBox(height: 15,),
+              const SizedBox(height: 40,),
+              Text(xunidata['box_2']['name'],style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+              const SizedBox(height: 15,),
               Container(
                 width: double.infinity,
                 clipBehavior: Clip.hardEdge,
                 height: MediaQuery.of(context).size.width-30,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 child: Stack(
@@ -444,8 +444,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                       imageUrl: xunidata['box_2']['cover'][0]['image'],
                       fit: BoxFit.cover,
                       placeholder: (context, url) => Container(
-                        color: Color(0xffF5F5F5),
-                        padding: EdgeInsets.only(left: 20, right: 20),
+                        color: const Color(0xffF5F5F5),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
                         width: double.infinity,
                         child:
                         Image.asset('assets/images/LanLazhanwei.png'),
@@ -453,8 +453,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                       errorWidget: (context, url, error) {
                         // 网络图片加载失败时显示本地图片
                         return Container(
-                          color: Color(0xffF5F5F5),
-                          padding: EdgeInsets.only(left: 20, right: 20),
+                          color: const Color(0xffF5F5F5),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           width: double.infinity,
                           child:
                           Image.asset('assets/images/LanLazhanwei.png',),
@@ -475,7 +475,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                               "uuid":userLogic.deviceData['uuid'],
                             },
                           );
-                          Get.toNamed('/public/webview',arguments: BASE_DOMAIN+xunidata['box_2']['cover'][0]['target_id']+'?token='+userLogic.token+'&uuid='+userLogic.deviceData['uuid']);
+                          Get.toNamed('/public/webview',arguments: '${BASE_DOMAIN+xunidata['box_2']['cover'][0]['target_id']}?token=${userLogic.token}&uuid='+userLogic.deviceData['uuid']);
                         }else if(xunidata['box_2']['cover'][0]['target_other']=='/public/Planningpage'){
                           Get.toNamed(xunidata['box_2']['cover'][0]['target_other'],arguments:  {
                             'id': int.parse(xunidata['box_2']['cover'][0]['target_id']),
@@ -510,12 +510,12 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                           primary: false,
                           scrollDirection: Axis.horizontal,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 15,
                             ),
                             for (var items in xunidata['box_2']['product'])
                               GestureDetector(child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(5)),
                                   gradient: LinearGradient(
@@ -529,7 +529,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                 ),
                                 width: 92,
                                 height: 156,
-                                margin: EdgeInsets.only(left: 15),
+                                margin: const EdgeInsets.only(left: 15),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -540,8 +540,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                         imageUrl: items['image'],
                                         fit: BoxFit.contain,
                                         placeholder: (context, url) => Container(
-                                          color: Color(0xffF5F5F5),
-                                          padding: EdgeInsets.only(left: 20, right: 20),
+                                          color: const Color(0xffF5F5F5),
+                                          padding: const EdgeInsets.only(left: 20, right: 20),
                                           width: double.infinity,
                                           child:
                                           Image.asset('assets/images/LanLazhanwei.png'),
@@ -549,8 +549,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                         errorWidget: (context, url, error) {
                                           // 网络图片加载失败时显示本地图片
                                           return Container(
-                                            color: Color(0xffF5F5F5),
-                                            padding: EdgeInsets.only(left: 20, right: 20),
+                                            color: const Color(0xffF5F5F5),
+                                            padding: const EdgeInsets.only(left: 20, right: 20),
                                             width: double.infinity,
                                             child:
                                             Image.asset('assets/images/LanLazhanwei.png',),
@@ -558,16 +558,16 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                         },
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 15,
                                     ),
                                     Container(child: Text(
                                       items['short_title'],
                                       textAlign: TextAlign.center,
                                       style:
-                                      TextStyle(fontSize: 13, height: 1.1,fontWeight: FontWeight.w600),
+                                      const TextStyle(fontSize: 13, height: 1.1,fontWeight: FontWeight.w600),
                                     ),),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
@@ -576,15 +576,15 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                       children: [
                                         Text(
                                           items['price'],
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 13, height: 1),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 3,
                                         ),
                                         Text(
                                           items['currency'],
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 13,
 
                                               height: 1),
@@ -606,13 +606,13 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                   ],
                 ),
               ),
-              if(cardData.length!=0||personalPage>1)SizedBox(height: 40,),
-              if(cardData.length!=0||personalPage>1)GestureDetector(child:Text('心动私藏'.tr,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),) ,onTap: (){
+              if(cardData.isNotEmpty||personalPage>1)const SizedBox(height: 40,),
+              if(cardData.isNotEmpty||personalPage>1)GestureDetector(child:Text('心动私藏'.tr,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600),) ,onTap: (){
                 Get.to(commoditylikePage());
               },),
-              if(cardData.length!=0||personalPage>1)SizedBox(height: 15,),
+              if(cardData.isNotEmpty||personalPage>1)const SizedBox(height: 15,),
             ],),),
-            if(cardData.length!=0)TCard(
+            if(cardData.isNotEmpty)TCard(
               lockYAxis:true,
               size:Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.width),
               cards: cardData.map((data) {
@@ -636,27 +636,27 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                           imageUrl: data['image'],
                           fit: BoxFit.contain,
                           placeholder: (context, url) => Container(
-                            color: Color(0xffF5F5F5),
-                            padding: EdgeInsets.only(left: 2, right: 2),
+                            color: const Color(0xffF5F5F5),
+                            padding: const EdgeInsets.only(left: 2, right: 2),
                             width: double.infinity,
                             child: Image.asset('assets/images/LanLazhanwei.png'),
                           ),
                           errorWidget: (context, url, error) {
                             // 网络图片加载失败时显示本地图片
                             return Container(
-                              color: Color(0xffF5F5F5),
-                              padding: EdgeInsets.only(left: 2, right: 2),
+                              color: const Color(0xffF5F5F5),
+                              padding: const EdgeInsets.only(left: 2, right: 2),
                               width: double.infinity,
                               child: Image.asset('assets/images/LanLazhanwei.png',),
                             );
                           },
                         ),),
-                        SizedBox(height: 20.0),
-                        Container(padding:EdgeInsets.fromLTRB(20, 0, 20, 0),child: Text(data['title'],
+                        const SizedBox(height: 20.0),
+                        Container(padding:const EdgeInsets.fromLTRB(20, 0, 20, 0),child: Text(data['title'],
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis, //长度溢出后显示省略号
-                          maxLines: 2,style: TextStyle(fontSize: 15,height: 1.5),),),
-                        SizedBox(height: 20.0),
+                          maxLines: 2,style: const TextStyle(fontSize: 15,height: 1.5),),),
+                        const SizedBox(height: 20.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -667,7 +667,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                               cardData.remove(cardData[0]);
                               setState(() {});
                             },),
-                            SizedBox(width: 60,),
+                            const SizedBox(width: 60,),
                             GestureDetector(child: Container(width: 50,height: 50,child: Image.asset('assets/images/shangpbxh.png',fit: BoxFit.cover,),),onTap: (){
                               SecretCollection.forward(direction: SwipDirection.Left);
                               ///不喜欢
@@ -698,7 +698,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                 }
               },
             ),
-            if(cardData.length==0&&personalPage>1)Container(padding:EdgeInsets.all(20),width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.width,child: Container(
+            if(cardData.isEmpty&&personalPage>1)Container(padding:const EdgeInsets.all(20),width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.width,child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -717,13 +717,13 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                 children: [
 
                   Image.asset('assets/images/noshujua.png',width: 200,height: 200,),
-                  SizedBox(height: 40,),
-                  Text('今日暂无更多推荐'.tr,textAlign:TextAlign.center ,style: TextStyle(
+                  const SizedBox(height: 40,),
+                  Text('今日暂无更多推荐'.tr,textAlign:TextAlign.center ,style: const TextStyle(
                       fontSize: 15,
                       color: Color(0xff999999)
                   ),),
-                  SizedBox(height: 5,),
-                  Text('往下滑滑发现更多精彩吧'.tr,textAlign:TextAlign.center ,style: TextStyle(
+                  const SizedBox(height: 5,),
+                  Text('往下滑滑发现更多精彩吧'.tr,textAlign:TextAlign.center ,style: const TextStyle(
                       fontSize: 15,
                       color: Color(0xff999999)
                   ),)
@@ -731,25 +731,25 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                 ],
               ),)
               ,),),
-            SizedBox(height: 40,),
-            Container(padding: EdgeInsets.only(left: 15,right: 15),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-              Text(xunidata['box_3']['name'],style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-              SizedBox(height: 15,),
+            const SizedBox(height: 40,),
+            Container(padding: const EdgeInsets.only(left: 15,right: 15),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
+              Text(xunidata['box_3']['name'],style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+              const SizedBox(height: 15,),
               Container(
                 clipBehavior: Clip.hardEdge,
                 width: double.infinity,
                 constraints: BoxConstraints(
                   minHeight: MediaQuery.of(context).size.width - 30,
                 ),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 child: GestureDetector(child: CachedNetworkImage(
                   imageUrl: xunidata['box_3']['cover'][0]['image'],
                   fit: BoxFit.contain,
                   placeholder: (context, url) => Container(
-                    color: Color(0xffF5F5F5),
-                    padding: EdgeInsets.only(left: 20, right: 20),
+                    color: const Color(0xffF5F5F5),
+                    padding: const EdgeInsets.only(left: 20, right: 20),
                     width: double.infinity,
                     child:
                     Image.asset('assets/images/LanLazhanwei.png'),
@@ -757,8 +757,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                   errorWidget: (context, url, error) {
                     // 网络图片加载失败时显示本地图片
                     return Container(
-                      color: Color(0xffF5F5F5),
-                      padding: EdgeInsets.only(left: 20, right: 20),
+                      color: const Color(0xffF5F5F5),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       width: double.infinity,
                       child:
                       Image.asset('assets/images/LanLazhanwei.png',),
@@ -779,7 +779,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                           "uuid":userLogic.deviceData['uuid'],
                         },
                       );
-                      Get.toNamed('/public/webview',arguments: BASE_DOMAIN+xunidata['box_3']['cover'][0]['target_id']+'?token='+userLogic.token+'&uuid='+userLogic.deviceData['uuid']);
+                      Get.toNamed('/public/webview',arguments: '${BASE_DOMAIN+xunidata['box_3']['cover'][0]['target_id']}?token=${userLogic.token}&uuid='+userLogic.deviceData['uuid']);
                     }else if(xunidata['box_3']['cover'][0]['target_other']=='/public/Planningpage'){
                       Get.toNamed(xunidata['box_3']['cover'][0]['target_other'],arguments:  {
                         'id': int.parse(xunidata['box_3']['cover'][0]['target_id']),
@@ -802,9 +802,9 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                   }
                 },),
               ),
-              SizedBox(height: 40,),
-              Text('好物甄选'.tr,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-              SizedBox(height: 15,),
+              const SizedBox(height: 40,),
+              Text('好物甄选'.tr,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
+              const SizedBox(height: 15,),
 
             ],),),
             MasonryGridView.count(
@@ -824,13 +824,13 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                   child: Stack(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(15),
                         height: 244,
                         width: double.infinity,
                         decoration: BoxDecoration(
                             border: Border.all(
                                 width: 0.5,
-                                color: Color.fromRGBO(
+                                color: const Color.fromRGBO(
                                     245, 245, 245, 1))),
                         child: Column(
                           mainAxisAlignment:
@@ -844,8 +844,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                 fit: BoxFit.contain,
                                 placeholder: (context, url) =>
                                     Container(
-                                      color: Color(0xffF5F5F5),
-                                      padding: EdgeInsets.only(left: 20, right: 20),
+                                      color: const Color(0xffF5F5F5),
+                                      padding: const EdgeInsets.only(left: 20, right: 20),
                                       width: double.infinity,
                                       child: Image.asset('assets/images/LanLazhanwei.png'),
                                     ),
@@ -853,8 +853,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                     (context, url, error) {
                                   // 网络图片加载失败时显示本地图片
                                       return Container(
-                                        color: Color(0xffF5F5F5),
-                                        padding: EdgeInsets.only(
+                                        color: const Color(0xffF5F5F5),
+                                        padding: const EdgeInsets.only(
                                             left: 20, right: 20),
                                         width: double.infinity,
                                         child: Image.asset(
@@ -864,7 +864,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                       },
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Container(
@@ -873,7 +873,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                 alllistdata[index]['title'],
                                 overflow: TextOverflow.ellipsis, //长度溢出后显示省略号
                                 maxLines: 2,
-                                style: TextStyle(fontSize: 13),
+                                style: const TextStyle(fontSize: 13),
                               ),
                             ),
                             // SizedBox(height: 8,),
@@ -882,9 +882,9 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                                 Text(
                                   alllistdata[index]['price']
                                       .toString(),
-                                  style: TextStyle(),
+                                  style: const TextStyle(),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(alllistdata[index]['currency']),
@@ -928,7 +928,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                 );
                 },
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
           ],
         )
 
@@ -951,7 +951,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                   Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.width-30,
-                child: Center(
+                child: const Center(
                   child: CircularProgressIndicator(
                     color: Color(0xffD1FF34),
                     strokeWidth: 4,
@@ -967,8 +967,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                 ),
               ),
               errorWidget: (context, url, error) => Container(
-                color: Color(0xffF5F5F5),
-                padding: EdgeInsets.only(left: 20, right: 20),
+                color: const Color(0xffF5F5F5),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 width: double.infinity,
                 child: Image.asset(
                   'assets/images/LanLazhanwei.png',
@@ -990,7 +990,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                       "uuid":userLogic.deviceData['uuid'],
                     },
                   );
-                  Get.toNamed('/public/webview',arguments: BASE_DOMAIN+imageList[0]['target_id']+'?token='+userLogic.token+'&uuid='+userLogic.deviceData['uuid']);
+                  Get.toNamed('/public/webview',arguments: '${BASE_DOMAIN+imageList[0]['target_id']}?token=${userLogic.token}&uuid='+userLogic.deviceData['uuid']);
                 }else if(imageList[0]['target_other']=='/public/Planningpage'){
                   Get.toNamed(imageList[0]['target_other'],arguments:  {
                     'id': int.parse(imageList[0]['target_id']),
@@ -1036,7 +1036,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                         (context, url, downloadProgress) => Container(
                       width: double.infinity,
                       height: 100,
-                      child: Center(
+                      child: const Center(
                         child: CircularProgressIndicator(
                           color: Color(0xffD1FF34),
                           strokeWidth: 4,
@@ -1044,8 +1044,8 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                       ),
                     ),
                     errorWidget: (context, url, error) => Container(
-                      color: Color(0xffF5F5F5),
-                      padding: EdgeInsets.only(left: 20, right: 20),
+                      color: const Color(0xffF5F5F5),
+                      padding: const EdgeInsets.only(left: 20, right: 20),
                       width: double.infinity,
                       child: Image.asset(
                         'assets/images/LanLazhanwei.png',
@@ -1068,7 +1068,7 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                             "uuid":userLogic.deviceData['uuid'],
                           },
                         );
-                        Get.toNamed('/public/webview',arguments: BASE_DOMAIN+imageList[i]['target_id']+'?token='+userLogic.token+'&uuid='+userLogic.deviceData['uuid']);
+                        Get.toNamed('/public/webview',arguments: '${BASE_DOMAIN+imageList[i]['target_id']}?token=${userLogic.token}&uuid='+userLogic.deviceData['uuid']);
                       }else if(imageList[i]['target_other']=='/public/Planningpage'){
                         Get.toNamed(imageList[i]['target_other'],arguments:  {
                           'id': int.parse(imageList[i]['target_id']),
@@ -1114,11 +1114,11 @@ class _shoppingState extends State<shoppingPage>  with AutomaticKeepAliveClientM
                   imageList.length, // 轮播项数量
                       (index) {
                     return Padding(
-                      padding: EdgeInsets.fromLTRB(4, 4, 4, 10),
+                      padding: const EdgeInsets.fromLTRB(4, 4, 4, 10),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: index == currentIndex?Colors.white:Color.fromRGBO(255, 255, 255, 0.4),
+                          color: index == currentIndex?Colors.white:const Color.fromRGBO(255, 255, 255, 0.4),
                         ),
                         width: index == currentIndex ? 15.0 : 7.0, // 当前项使用长线，其他项使用短线
                         height: 4.0,

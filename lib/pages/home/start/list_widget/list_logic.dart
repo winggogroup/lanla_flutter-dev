@@ -46,14 +46,14 @@ class StartListLogic extends GetxController with GetSingleTickerProviderStateMix
       print(33556);
       if(recommend!=null){
         value.removeAt(recommend);
-        value!.insert(0, ChannelList(id:0, name:'推荐'.tr,banner:recommendate.banner));
+        value.insert(0, ChannelList(id:0, name:'推荐'.tr,banner:recommendate.banner));
       }else{
-        value!.insert(0, ChannelList(id:0, name:'推荐'.tr,banner:[]));
+        value.insert(0, ChannelList(id:0, name:'推荐'.tr,banner:[]));
       }
 
 
-      state.channelTabController = TabController(vsync: this, length: value!.length);
-      state.channelDataSource = value!;
+      state.channelTabController = TabController(vsync: this, length: value.length);
+      state.channelDataSource = value;
 
       // for(var i=0;i<state.channelDataSource.length;i++){
       //     state.channelDataSource[i].banner= [{

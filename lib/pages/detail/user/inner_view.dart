@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -115,7 +114,7 @@ class _UserInnerViewState extends State<UserInnerView>
                 eventBus.fire(UploadContentListEvent());
               });
             },
-            child: Padding(
+            child: const Padding(
               padding: EdgeInsets.only(left: 15, right: 15),
               child: Icon(Icons.more_vert),
             ),
@@ -146,7 +145,7 @@ class _UserInnerViewState extends State<UserInnerView>
                 //sliver
                 SliverToBoxAdapter(
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(20, 25, 20, 20),
+                    padding: const EdgeInsets.fromLTRB(20, 25, 20, 20),
                     color: Colors.white,
                     child: Column(
                       children: [
@@ -154,7 +153,7 @@ class _UserInnerViewState extends State<UserInnerView>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(right: 0),
+                              padding: const EdgeInsets.only(right: 0),
                               child: Stack(children: [
                                 CachedNetworkImage(
                                   width: 80,
@@ -163,7 +162,7 @@ class _UserInnerViewState extends State<UserInnerView>
                                       Container(
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(40),
-                                          border: Border.all(color: Color(0xffF9F9F9), width: 1),
+                                          border: Border.all(color: const Color(0xffF9F9F9), width: 1),
                                           image: DecorationImage(
                                             image: imageProvider,
                                             fit: BoxFit.cover,
@@ -214,43 +213,43 @@ class _UserInnerViewState extends State<UserInnerView>
 
                                  Row(children: [
                                     ///认证
-                                    if(userInfo != null&&userInfo!.labelHighQualityAuthor.icon!='')Container(padding: EdgeInsets.fromLTRB(10, 2, 10, 2),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(26)),color: Color.fromRGBO(245, 255, 210, 1)),child: Row(children: [
+                                    if(userInfo != null&&userInfo!.labelHighQualityAuthor.icon!='')Container(padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(26)),color: Color.fromRGBO(245, 255, 210, 1)),child: Row(children: [
                                       Image.network(userInfo!.labelHighQualityAuthor.icon,width: 13,height: 13,),
-                                      SizedBox(width: 5,),
-                                      Text(userInfo!.labelHighQualityAuthor.desc,style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,height: 1,color:Color.fromRGBO(52, 199, 0, 1)),)
+                                      const SizedBox(width: 5,),
+                                      Text(userInfo!.labelHighQualityAuthor.desc,style: const TextStyle(fontSize: 10,fontWeight: FontWeight.w700,height: 1,color:Color.fromRGBO(52, 199, 0, 1)),)
                                     ],),),
-                                    if(userInfo != null&&userInfo!.labelFamousUser.icon!='')Container(padding: EdgeInsets.fromLTRB(10, 2, 10, 2),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(26)),color: Color.fromRGBO(255, 251, 210, 1)),child: Row(children: [
+                                    if(userInfo != null&&userInfo!.labelFamousUser.icon!='')Container(padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(26)),color: Color.fromRGBO(255, 251, 210, 1)),child: Row(children: [
                                       Image.network(userInfo!.labelFamousUser.icon,width: 13,height: 13,),
-                                      SizedBox(width: 5,),
-                                      Text(userInfo!.labelFamousUser.desc,style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,height: 1,color: Color.fromRGBO(255, 139, 48, 1)),)
+                                      const SizedBox(width: 5,),
+                                      Text(userInfo!.labelFamousUser.desc,style: const TextStyle(fontSize: 10,fontWeight: FontWeight.w700,height: 1,color: Color.fromRGBO(255, 139, 48, 1)),)
                                     ],),),
-                                    if(userInfo != null&&(userInfo!.labelHighQualityAuthor.icon!='' || userInfo!.labelHighQualityAuthor.icon!=''))SizedBox(width: 10,),
+                                    if(userInfo != null&&(userInfo!.labelHighQualityAuthor.icon!='' || userInfo!.labelHighQualityAuthor.icon!=''))const SizedBox(width: 10,),
                                     ///等级
-                                    if(userInfo?.level == 1)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                      children: [
+                                    if(userInfo?.level == 1)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      children: const [
                                         // Image.asset('assets/images/lv1.png',width: 10,height: 10,),SizedBox(width: 4,),
                                         Text('1',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
                                     ),),
-                                    if(userInfo?.level == 2)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                      children: [
+                                    if(userInfo?.level == 2)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      children: const [
                                         // Image.asset('assets/images/lv2.png',width: 10,height: 10,),SizedBox(width: 4,),
                                         Text('2',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
                                     ),),
-                                    if(userInfo?.level == 3)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                      children: [
+                                    if(userInfo?.level == 3)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      children: const [
                                         // Image.asset('assets/images/lv3.png',width: 10,height: 10,),SizedBox(width: 4,),
                                         Text('3',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
                                     ),),
-                                    if(userInfo?.level == 4)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                      children: [
+                                    if(userInfo?.level == 4)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      children: const [
                                         // Image.asset('assets/images/lv4.png',width: 10,height: 10,),SizedBox(width: 4,),
                                         Text('4',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
                                     ),),
-                                    if(userInfo?.level == 5)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                      children: [
+                                    if(userInfo?.level == 5)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      children: const [
                                         // Image.asset('assets/images/lv5.png',width: 10,height: 10,),SizedBox(width: 4,),
                                         Text('5',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
@@ -267,13 +266,13 @@ class _UserInnerViewState extends State<UserInnerView>
                                     // )
                                     //     : Container()
                                   ]),
-                                  SizedBox(height: 8,),
+                                  const SizedBox(height: 8,),
                                   Container(
                                     height: 60,
                                     width: 220,
                                     child: Text(
                                       userInfo?.slogan ?? '-',
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -287,12 +286,12 @@ class _UserInnerViewState extends State<UserInnerView>
 
 
                         Container(
-                          margin: EdgeInsets.only(top: 25),
-                          padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                          margin: const EdgeInsets.only(top: 25),
+                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                           decoration: BoxDecoration(
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
 
-                              border: Border.all(color: Color(0xffF1F1F1),
+                              border: Border.all(color: const Color(0xffF1F1F1),
                                   width: 1),
                               borderRadius: BorderRadius.circular(15),
                               boxShadow: const [
@@ -337,15 +336,15 @@ class _UserInnerViewState extends State<UserInnerView>
                                 children: [
                                   Text(
                                     userInfo?.concern.toString() ?? '0',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  SizedBox(height: 5,),
+                                  const SizedBox(height: 5,),
                                   Text(
                                       '关注'.tr,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
                                         color: Color(0XFF999999),
                                       )
@@ -384,7 +383,7 @@ class _UserInnerViewState extends State<UserInnerView>
                               //   },)
                               //
                               // ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 1,
                                 height: 20,
                                 child: DecoratedBox(
@@ -398,15 +397,15 @@ class _UserInnerViewState extends State<UserInnerView>
                                   children: [
                                     Text(
                                       userInfo?.fans.toString() ?? '0',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 17,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    SizedBox(height: 5,),
+                                    const SizedBox(height: 5,),
                                     Text(
                                       '粉丝'.tr,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
                                         color: Color(0XFF999999),
                                         //fontFamily: 'PingFang SC',
@@ -419,7 +418,7 @@ class _UserInnerViewState extends State<UserInnerView>
                                     transition: Transition.leftToRight,
                                     arguments: userInfo?.userId);
                               },),
-                              SizedBox(
+                              const SizedBox(
                                 width: 1,
                                 height: 20,
                                 child: DecoratedBox(
@@ -467,16 +466,16 @@ class _UserInnerViewState extends State<UserInnerView>
                                         userInfo!.getCollect)
                                         .toString()
                                         : '0',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w600,
                                       //fontFamily: 'PingFang SC',
                                     ),
                                   ),
-                                  SizedBox(height: 5,),
+                                  const SizedBox(height: 5,),
                                   Text(
                                     '获赞和收藏'.tr,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 12,
                                       color: Color(0XFF999999),
                                       //fontFamily: 'PingFang SC',
@@ -519,21 +518,20 @@ class _UserInnerViewState extends State<UserInnerView>
                   child: Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 10, bottom: 10),
+                        margin: const EdgeInsets.only(top: 10, bottom: 10),
                         child: Row(
                           children: [
-                            SizedBox(width: 10,),
+                            const SizedBox(width: 10,),
                             GestureDetector(child: Container(
-                              child: Text('笔记'.tr +
-                                  ' · ${userInfo?.collect!=null?userInfo?.collect
+                              child: Text('${'笔记'.tr} · ${userInfo?.collect!=null?userInfo?.collect
                                       .toString():'0'}', style: TextStyle(
                                 fontSize: 12,
-                                color: note == 1 ? Color(0xff9000000) : Color(
+                                color: note == 1 ? const Color(0xff9000000) : const Color(
                                     0xff999999),
                               ),),
-                              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                              padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                               decoration: BoxDecoration(
-                                color: note == 1 ? Color(0xffF5F5F5) : Colors
+                                color: note == 1 ? const Color(0xffF5F5F5) : Colors
                                     .transparent,
                                 borderRadius: BorderRadius.circular(30),
                               ),
@@ -543,18 +541,18 @@ class _UserInnerViewState extends State<UserInnerView>
                                 oneData = false;
                               });
                             },),
-                            SizedBox(width: 10,),
+                            const SizedBox(width: 10,),
                             GestureDetector(child: Container(
-                              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                              padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                               decoration: BoxDecoration(
-                                color: note == 2 ? Color(0xffF5F5F5) : Colors
+                                color: note == 2 ? const Color(0xffF5F5F5) : Colors
                                     .transparent,
                                 borderRadius: BorderRadius.circular(30),
                               ),
-                              child: Text('话题'.tr + ' · ${userInfo?.topics!=null?userInfo?.topics
+                              child: Text('${'话题'.tr} · ${userInfo?.topics!=null?userInfo?.topics
                                   .toString():'0'}', style: TextStyle(
                                 fontSize: 12,
-                                color: note == 2 ? Color(0xff000000) : Color(
+                                color: note == 2 ? const Color(0xff000000) : const Color(
                                     0xff999999),
                               ),),
                             ), onTap: () {
@@ -563,18 +561,18 @@ class _UserInnerViewState extends State<UserInnerView>
                                 topiclist();
                               });
                             },),
-                            SizedBox(width: 10,),
+                            const SizedBox(width: 10,),
                             GestureDetector(child: Container(
-                              padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
+                              padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                               decoration: BoxDecoration(
-                                color: note == 3 ? Color(0xffF5F5F5) : Colors
+                                color: note == 3 ? const Color(0xffF5F5F5) : Colors
                                     .transparent,
                                 borderRadius: BorderRadius.circular(30),
                               ),
-                              child: Text('地点'.tr + ' · ${userInfo?.addressCollect!=null?userInfo?.addressCollect
+                              child: Text('${'地点'.tr} · ${userInfo?.addressCollect!=null?userInfo?.addressCollect
                                   .toString():'0'}', style: TextStyle(
                                 fontSize: 12,
-                                color: note == 3 ? Color(0xff000000) : Color(
+                                color: note == 3 ? const Color(0xff000000) : const Color(
                                     0xff999999),
                               ),),
                             ), onTap: () {
@@ -590,7 +588,7 @@ class _UserInnerViewState extends State<UserInnerView>
                       ///分割线
                       Container(
                         height: 1.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xfff1f1f1),
                           boxShadow: [
                             BoxShadow(
@@ -610,12 +608,12 @@ class _UserInnerViewState extends State<UserInnerView>
                       ),
                       if(note == 2) !oneData ? StartDetailLoading() : Expanded(
                         child:
-                        labellist.length > 0 ? ListView(
-                            padding: EdgeInsets.only(left: 15, right: 15),
+                        labellist.isNotEmpty ? ListView(
+                            padding: const EdgeInsets.only(left: 15, right: 15),
                             children: [
                               for(var i = 0; i < labellist.length; i++)
                                 Column(children: [
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
                                   Row(
                                     children: [
                                       Container(
@@ -629,7 +627,7 @@ class _UserInnerViewState extends State<UserInnerView>
                                           fit: BoxFit.cover,),
                                         clipBehavior: Clip.hardEdge,
                                       ),
-                                      SizedBox(width: 10,),
+                                      const SizedBox(width: 10,),
                                       Container(height: 47, child: Column(
                                         mainAxisAlignment: MainAxisAlignment
                                             .spaceBetween,
@@ -640,14 +638,14 @@ class _UserInnerViewState extends State<UserInnerView>
                                               Image.asset(
                                                 'assets/images/jinghao.png',
                                                 width: 20, height: 20,),
-                                              SizedBox(width: 7,),
+                                              const SizedBox(width: 7,),
                                               Text(labellist[i].title)
                                             ],
                                           ),
                                           Row(
                                             children: [
                                               Text(labellist[i].visits + ' 浏览'.tr,
-                                                style: TextStyle(fontSize: 12,
+                                                style: const TextStyle(fontSize: 12,
                                                     color: Color(0xff999999)),)
                                             ],
                                           )
@@ -655,12 +653,12 @@ class _UserInnerViewState extends State<UserInnerView>
                                       ),)
                                     ],
                                   ),
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
 
                                   ///分割线
                                   Container(
                                     height: 1.0,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xfff1f1f1),
                                       boxShadow: [
                                         BoxShadow(
@@ -681,12 +679,12 @@ class _UserInnerViewState extends State<UserInnerView>
                       ///位置列表
                       if(note == 3) !oneData ? StartDetailLoading() : Expanded(
                         child:
-                        FavoriteLocation.length > 0 ? ListView(
-                            padding: EdgeInsets.only(left: 15, right: 15),
+                        FavoriteLocation.isNotEmpty ? ListView(
+                            padding: const EdgeInsets.only(left: 15, right: 15),
                             children: [
                               for(var i = 0; i < FavoriteLocation.length; i++)
                                 GestureDetector(child: Column(children: [
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
                                   Row(
                                     children: [
                                       Container(
@@ -701,7 +699,7 @@ class _UserInnerViewState extends State<UserInnerView>
                                           fit: BoxFit.cover,),
                                         clipBehavior: Clip.hardEdge,
                                       ),
-                                      SizedBox(width: 10,),
+                                      const SizedBox(width: 10,),
                                       Container(height: 78, child: Column(
                                         mainAxisAlignment: MainAxisAlignment
                                             .spaceBetween,
@@ -722,7 +720,7 @@ class _UserInnerViewState extends State<UserInnerView>
                                                   children: [
                                                     Text(
                                                       FavoriteLocation[i].types[r],
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color: Colors.black,
                                                           fontSize: 12),
                                                       overflow: TextOverflow
@@ -736,7 +734,7 @@ class _UserInnerViewState extends State<UserInnerView>
                                                             color: Colors.black),
                                                       ),
                                                       height: 10,
-                                                      margin: EdgeInsets.fromLTRB(
+                                                      margin: const EdgeInsets.fromLTRB(
                                                           10, 0, 10, 0),
                                                     )
                                                   ],
@@ -747,7 +745,7 @@ class _UserInnerViewState extends State<UserInnerView>
                                             children: [
                                               GestureDetector(child: Text(
                                                 FavoriteLocation[i].createdAt
-                                                    .toString(), style: TextStyle(
+                                                    .toString(), style: const TextStyle(
                                                   color: Color(0xff999999)),),
                                                 onTap: () {
                                                 },)
@@ -757,12 +755,12 @@ class _UserInnerViewState extends State<UserInnerView>
                                       ),)
                                     ],
                                   ),
-                                  SizedBox(height: 20,),
+                                  const SizedBox(height: 20,),
 
                                   ///分割线
                                   Container(
                                     height: 1.0,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xfff1f1f1),
                                       boxShadow: [
                                         BoxShadow(
@@ -799,7 +797,7 @@ class _UserInnerViewState extends State<UserInnerView>
         height: 100,
         width: double.infinity,
         color: Colors.white,
-        padding: EdgeInsets.only(left: 5,right: 5),
+        padding: const EdgeInsets.only(left: 5,right: 5),
         child:
         Row(mainAxisAlignment:MainAxisAlignment.spaceEvenly,children: [
           GetBuilder<UserLogic>(
@@ -813,7 +811,7 @@ class _UserInnerViewState extends State<UserInnerView>
                   child: Row(
                     children: [
                       Text('通信'.tr),
-                      SizedBox(width: 7,),
+                      const SizedBox(width: 7,),
                       Image.asset(
                         'assets/images/sixin_new.png',
                         width: 22,
@@ -833,7 +831,7 @@ class _UserInnerViewState extends State<UserInnerView>
                     Get.toNamed('/public/loginmethod');
                     return;
                   }
-                  if(userInfo?.userId==null || userController.userId==null){
+                  if(userInfo?.userId==null){
                     return;
                   }
                   if (!userController.Chatdisconnected) {
@@ -849,7 +847,7 @@ class _UserInnerViewState extends State<UserInnerView>
               }),
           // SizedBox(width: 15,),
           GestureDetector(child: Container(
-            padding: EdgeInsets.fromLTRB(15, 2, 40, 2),
+            padding: const EdgeInsets.fromLTRB(15, 2, 40, 2),
             height: 42,
             width: 145,
             child:
@@ -858,10 +856,10 @@ class _UserInnerViewState extends State<UserInnerView>
                 Text(userInfo?.isMyFans ?? false
                       ? '已关注'.tr
                       : '关注'.tr, style: TextStyle(
-                    color: userInfo?.isMyFans ?? false ? Color(
+                    color: userInfo?.isMyFans ?? false ? const Color(
                         0xff999999) : Colors.white,
                   )),
-                SizedBox(width: 7,),
+                const SizedBox(width: 7,),
 
             (userInfo?.isMyFans ?? false)
                     ?
@@ -892,7 +890,7 @@ class _UserInnerViewState extends State<UserInnerView>
                     : Colors.black,
                 border: Border.all(width: 2,
                     color: userInfo?.isMyFans ?? false
-                        ? Color(0xffe1e1e1)
+                        ? const Color(0xffe1e1e1)
                         : Colors.black)
             ),), onTap: () {
             if (!userController.checkUserLogin()) {
@@ -909,7 +907,7 @@ class _UserInnerViewState extends State<UserInnerView>
   _disBlackView() {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 60),
+        margin: const EdgeInsets.only(top: 60),
         child: Column(
           children: [
             Text('已经加入黑名单,内容不可见'.tr),
@@ -921,8 +919,8 @@ class _UserInnerViewState extends State<UserInnerView>
                 EasyLoading.dismiss();
               },
               child: Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: Text('解除黑名单'.tr, style: TextStyle(color: Colors.green),),
+                padding: const EdgeInsets.only(top: 30),
+                child: Text('解除黑名单'.tr, style: const TextStyle(color: Colors.green),),
               ),
             ),
           ],
@@ -940,8 +938,8 @@ class _UserInnerViewState extends State<UserInnerView>
         return AlertDialog(
           backgroundColor: Colors.white,
           elevation: 0,
-          contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape: RoundedRectangleBorder(
+          contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20))),
           content: StatefulBuilder(
 
@@ -955,12 +953,12 @@ class _UserInnerViewState extends State<UserInnerView>
                       height: 66,
 
                       // padding: EdgeInsets.symmetric(vertical: 25, horizontal: 0),
-                      alignment: Alignment(0, 0),
+                      alignment: const Alignment(0, 0),
                       child: Text('赞和收藏'.tr),
                     ),
                     // Divider(height: 1.0, color: Color(0xffe4e4e4),),
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                      margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                       //decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red)),
                       // padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                       child: Row(
@@ -970,8 +968,8 @@ class _UserInnerViewState extends State<UserInnerView>
                             children: [
                               Image.asset('assets/images/xiaoxi.png', width: 30,
                                 height: 30,),
-                              SizedBox(width: 10,),
-                              Text('发布作品数'.tr, style: TextStyle(
+                              const SizedBox(width: 10,),
+                              Text('发布作品数'.tr, style: const TextStyle(
                                   fontSize: 15, color: Color(0xff999999)),)
                             ],
                           ),
@@ -980,7 +978,7 @@ class _UserInnerViewState extends State<UserInnerView>
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       //decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red)),
                       // padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                       child: Row(
@@ -991,8 +989,8 @@ class _UserInnerViewState extends State<UserInnerView>
                               Image.asset(
                                 'assets/images/dianzan.png', width: 30,
                                 height: 30,),
-                              SizedBox(width: 10,),
-                              Text('获得点赞数'.tr, style: TextStyle(
+                              const SizedBox(width: 10,),
+                              Text('获得点赞数'.tr, style: const TextStyle(
                                   fontSize: 15, color: Color(0xff999999)),)
                             ],
                           ),
@@ -1001,7 +999,7 @@ class _UserInnerViewState extends State<UserInnerView>
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       //decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red)),
                       // padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                       child: Row(
@@ -1012,8 +1010,8 @@ class _UserInnerViewState extends State<UserInnerView>
                               Image.asset(
                                 'assets/images/shoucang.png', width: 30,
                                 height: 30,),
-                              SizedBox(width: 10,),
-                              Text('获得收藏数'.tr, style: TextStyle(
+                              const SizedBox(width: 10,),
+                              Text('获得收藏数'.tr, style: const TextStyle(
                                   fontSize: 15, color: Color(0xff999999)),)
                             ],
                           ),
@@ -1021,14 +1019,14 @@ class _UserInnerViewState extends State<UserInnerView>
                         ],
                       ),
                     ),
-                    SizedBox(height: 40,),
+                    const SizedBox(height: 40,),
                     GestureDetector(child: Container(
                       decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(65),
                       ),
-                      padding: EdgeInsets.fromLTRB(40, 15, 40, 15),
-                      child: Text("我知道了".tr, style: TextStyle(
+                      padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
+                      child: Text("我知道了".tr, style: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.w600),),
                     ), onTap: () {
                       Navigator.pop(context);
@@ -1057,7 +1055,7 @@ class MyDelegate extends SliverPersistentHeaderDelegate {
         ? Container()
         : Container(
       height: 66,
-      padding: EdgeInsets.only(left: 15, right: 15),
+      padding: const EdgeInsets.only(left: 15, right: 15),
       // decoration: BoxDecoration(
       //   color: Colors.white,
       //   //设置四周圆角 角度
@@ -1072,7 +1070,7 @@ class MyDelegate extends SliverPersistentHeaderDelegate {
       //     right: BorderSide(color: Colors.black12, width: 0.5),
       //   ),
       // ),
-      decoration:  BoxDecoration(
+      decoration:  const BoxDecoration(
         color: Colors.white,
         border: Border(
           bottom: BorderSide(

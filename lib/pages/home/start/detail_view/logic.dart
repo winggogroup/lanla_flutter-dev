@@ -26,10 +26,6 @@ class StartDetailLogic extends GetxController with GetSingleTickerProviderStateM
   var times;
   int id = 0;
   late StreamSubscription _sub;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   @override
   void onReady() {
@@ -50,38 +46,38 @@ class StartDetailLogic extends GetxController with GetSingleTickerProviderStateM
         name: "Wakeupapp_click",
         parameters: {
           'type':Uri.parse(link!).queryParameters['type'],
-          'targetId':int.parse(Uri.parse(link!).queryParameters['targetId']!),
-          'targetOther':Uri.parse(link!).queryParameters["targetOther"],
+          'targetId':int.parse(Uri.parse(link).queryParameters['targetId']!),
+          'targetOther':Uri.parse(link).queryParameters["targetOther"],
         },
       );
       if(userLogic.token!=''){
-        if(Uri.parse(link!).queryParameters['type']=='2'){
-          Get.toNamed('/public/picture', preventDuplicates: false,arguments: {"data": int.parse(Uri.parse(link!).queryParameters['targetId']!),"isEnd": false});
-        }else if(Uri.parse(link!).queryParameters['type']=='4'){
-          Get.toNamed('/public/webview',arguments: 'https://api.lanla.app/bests?bestId=${int.parse(Uri.parse(link!).queryParameters['targetId']!)}');
-        }else if(Uri.parse(link!).queryParameters['type']=='3'){
-          Get.toNamed('/public/topic',arguments: int.parse(Uri.parse(link!).queryParameters['targetId']!));
-        }else if(Uri.parse(link!).queryParameters['type']=='1'){
-          Get.to(VideoPage(),
+        if(Uri.parse(link).queryParameters['type']=='2'){
+          Get.toNamed('/public/picture', preventDuplicates: false,arguments: {"data": int.parse(Uri.parse(link).queryParameters['targetId']!),"isEnd": false});
+        }else if(Uri.parse(link).queryParameters['type']=='4'){
+          Get.toNamed('/public/webview',arguments: 'https://api.lanla.app/bests?bestId=${int.parse(Uri.parse(link).queryParameters['targetId']!)}');
+        }else if(Uri.parse(link).queryParameters['type']=='3'){
+          Get.toNamed('/public/topic',arguments: int.parse(Uri.parse(link).queryParameters['targetId']!));
+        }else if(Uri.parse(link).queryParameters['type']=='1'){
+          Get.to(const VideoPage(),
               //transition: Transition.leftToRight,
               arguments: {
                 'data':
-                int.parse(Uri.parse(link!).queryParameters['targetId']!),
+                int.parse(Uri.parse(link).queryParameters['targetId']!),
                 'isEnd': false
               });
-        }else if(Uri.parse(link!).queryParameters['type']=='10'){
+        }else if(Uri.parse(link).queryParameters['type']=='10'){
           // 进入个人主页
           Get.toNamed('/public/user',
-              arguments: int.parse(Uri.parse(link!).queryParameters['targetId']!));
+              arguments: int.parse(Uri.parse(link).queryParameters['targetId']!));
         }
-        else if(Uri.parse(link!).queryParameters['type'] == "11"){
-          if(Uri.parse(link!).queryParameters["targetOther"]=='/public/video' || Uri.parse(link!).queryParameters["targetOther"]=='/public/picture'||Uri.parse(link!).queryParameters["targetOther"] == '/public/xiumidata'){
-            Get.toNamed(Uri.parse(link!).queryParameters["targetOther"]!,arguments:  {
-              'data':  int.parse(Uri.parse(link!).queryParameters['targetId']!),
+        else if(Uri.parse(link).queryParameters['type'] == "11"){
+          if(Uri.parse(link).queryParameters["targetOther"]=='/public/video' || Uri.parse(link).queryParameters["targetOther"]=='/public/picture'||Uri.parse(link).queryParameters["targetOther"] == '/public/xiumidata'){
+            Get.toNamed(Uri.parse(link).queryParameters["targetOther"]!,arguments:  {
+              'data':  int.parse(Uri.parse(link).queryParameters['targetId']!),
               'isEnd': false
             });
           }else{
-            Get.toNamed(Uri.parse(link!).queryParameters["targetOther"]!,arguments: int.parse(Uri.parse(link!).queryParameters['targetId']!));
+            Get.toNamed(Uri.parse(link).queryParameters["targetOther"]!,arguments: int.parse(Uri.parse(link).queryParameters['targetId']!));
           }
         }
       }
@@ -115,7 +111,7 @@ class StartDetailLogic extends GetxController with GetSingleTickerProviderStateM
           userLogic.Chatdisconnected=false;
           userLogic.update();
           if(WebSocketfrequency<300){
-            Timer.periodic(Duration(milliseconds: 6000),(timer){
+            Timer.periodic(const Duration(milliseconds: 6000),(timer){
               //debugPrint("Socket is closed");
               // print('重连');
               WebSocketconnection();
@@ -240,7 +236,7 @@ class StartDetailLogic extends GetxController with GetSingleTickerProviderStateM
             //print("Socket is error");
             // WebSocketconnection();
             if(WebSocketfrequency<300){
-              Timer.periodic(Duration(milliseconds: 6000),(timer){
+              Timer.periodic(const Duration(milliseconds: 6000),(timer){
                // debugPrint("Socket is closed");
                 WebSocketconnection();
                 WebSocketfrequency++;
@@ -260,7 +256,7 @@ class StartDetailLogic extends GetxController with GetSingleTickerProviderStateM
 
   ///心跳
   heartbeat(){
-    Timer.periodic(Duration(seconds: 20),(timer) async {
+    Timer.periodic(const Duration(seconds: 20),(timer) async {
       if(userLogic.token == ''){
         timer.cancel();//取消定时器
         return;
@@ -315,9 +311,9 @@ class StartDetailLogic extends GetxController with GetSingleTickerProviderStateM
     }else if(message.data['router']=='4'){
       Get.toNamed('/public/webview',arguments: 'https://api.lanla.app/bests?bestId=${int.parse(message.data['targetId'])}');
     }else if(message.data['router']=='3'){
-      Get.toNamed('/public/topic',arguments: int.parse(message.data['targetId']) as int);
+      Get.toNamed('/public/topic',arguments: int.parse(message.data['targetId']));
     }else if(message.data['router']=='1'){
-      Get.to(VideoPage(),
+      Get.to(const VideoPage(),
           //transition: Transition.leftToRight,
           arguments: {
             'data':

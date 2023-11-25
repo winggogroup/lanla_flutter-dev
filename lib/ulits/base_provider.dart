@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/connect.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/ulits/toast.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -25,7 +23,7 @@ var deviceId ;
 var adid ;
 
 
-DeviceInfoPlugin deviceInfoPlugin  = new DeviceInfoPlugin();
+DeviceInfoPlugin deviceInfoPlugin  = DeviceInfoPlugin();
 Future<List<String>> Appinformation() async {
   if (version==''){
     if (Platform.isAndroid) {
@@ -60,7 +58,7 @@ class BaseProvider extends GetConnect {
     httpClient.baseUrl = lanlaDomain;
     // 请求拦截
     httpClient.addRequestModifier<void>((request) async {
-      if (userLogic.token != null && userLogic.token != "") {
+      if (userLogic.token != "") {
         request.headers['Authorization'] = userLogic.token;
       }
       List<String> result = await Appinformation();
@@ -88,10 +86,10 @@ class BaseProvider extends GetConnect {
         ///提示
         ToastInfo(responseData['message']);
 
-        if(responseData!["code"]=='10001'){
+        if(responseData["code"]=='10001'){
           userLogic.Problemuser();
         }
-        if(responseData!["code"]=='10003'){
+        if(responseData["code"]=='10003'){
           userLogic.Problemuser();
         }
       }

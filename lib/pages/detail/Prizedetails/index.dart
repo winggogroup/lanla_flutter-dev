@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -96,17 +95,17 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
       builder: (BuildContext context) {
         return AlertDialog(
             backgroundColor: Colors.transparent,
-            contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
             content: Container(
                 width: double.infinity,
                 clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Colors.white,),
-                constraints: BoxConstraints(maxHeight: 375),
+                decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Colors.white,),
+                constraints: const BoxConstraints(maxHeight: 375),
                 child: Column(
                   crossAxisAlignment:CrossAxisAlignment.start,
                   children: [
-                    GestureDetector(child: Container(width: 50,color: Colors.white,alignment: Alignment.centerRight,padding: EdgeInsets.fromLTRB(20, 30, 20, 20),child: SvgPicture.asset(
+                    GestureDetector(child: Container(width: 50,color: Colors.white,alignment: Alignment.centerRight,padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),child: SvgPicture.asset(
                       "assets/svg/cha.svg",
                       color: Colors.black,
                       width: 12,
@@ -114,17 +113,17 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                     ),),onTap: (){
                       Navigator.pop(context);
                     },),
-                    Container(width: double.infinity,alignment: Alignment.center,child: Text('兑换申请已提交'.tr,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),),
-                    SizedBox(height: 28,),
-                    Container(padding: EdgeInsets.only(left: 26,right: 26),child: Text('审核通过后，会有LanLa客服人员在3日内联系你的'.tr,style: TextStyle(height: 2.3),),),
-                    SizedBox(height: 47,),
-                    GestureDetector(child: Container(margin: EdgeInsets.only(left: 20,right: 20),alignment: Alignment.center,height:50,width: double.infinity,
-                      decoration: BoxDecoration(color: Colors.white,border: Border.all(width: 2,color: Colors.black),borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Text('我知道了'.tr,style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),),
+                    Container(width: double.infinity,alignment: Alignment.center,child: Text('兑换申请已提交'.tr,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),),
+                    const SizedBox(height: 28,),
+                    Container(padding: const EdgeInsets.only(left: 26,right: 26),child: Text('审核通过后，会有LanLa客服人员在3日内联系你的'.tr,style: const TextStyle(height: 2.3),),),
+                    const SizedBox(height: 47,),
+                    GestureDetector(child: Container(margin: const EdgeInsets.only(left: 20,right: 20),alignment: Alignment.center,height:50,width: double.infinity,
+                      decoration: BoxDecoration(color: Colors.white,border: Border.all(width: 2,color: Colors.black),borderRadius: const BorderRadius.all(Radius.circular(50))),
+                      child: Text('我知道了'.tr,style: const TextStyle(color: Colors.black,fontWeight: FontWeight.w700),),
                     ),onTap: (){
                       Navigator.pop(context);
                     },),
-                    SizedBox(height: 30,),
+                    const SizedBox(height: 30,),
 
                   ],
                 ))
@@ -141,17 +140,17 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
       builder: (BuildContext context) {
         return AlertDialog(
             backgroundColor: Colors.transparent,
-            contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
             content: Container(
                 width: double.infinity,
                 clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Colors.white,),
-                constraints: BoxConstraints(maxHeight: 375),
+                decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Colors.white,),
+                constraints: const BoxConstraints(maxHeight: 375),
                 child: Column(
                   crossAxisAlignment:CrossAxisAlignment.start,
                   children: [
-                    GestureDetector(child: Container(width: 50,color: Colors.white,alignment: Alignment.centerRight,padding: EdgeInsets.fromLTRB(20, 30, 20, 20),child: SvgPicture.asset(
+                    GestureDetector(child: Container(width: 50,color: Colors.white,alignment: Alignment.centerRight,padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),child: SvgPicture.asset(
                       "assets/svg/cha.svg",
                       color: Colors.black,
                       width: 12,
@@ -159,23 +158,23 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                     ),),onTap: (){
                       Navigator.pop(context);
                     },),
-                    Container(width: double.infinity,alignment: Alignment.center,child: Text('兑换成功'.tr,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),),
-                    SizedBox(height: 25,),
-                    Container(padding: EdgeInsets.only(left: 20,right: 20),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                      Text('您的卡密'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),
-                      SizedBox(height: 10,),
-                      Text(pinCod,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
-                      SizedBox(height: 25,),
-                      Text('你的卡密，关闭后可在奖品兑换中查看'.tr,style: TextStyle(fontSize: 12,color: Color(0xffFF6565)))
+                    Container(width: double.infinity,alignment: Alignment.center,child: Text('兑换成功'.tr,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),),
+                    const SizedBox(height: 25,),
+                    Container(padding: const EdgeInsets.only(left: 20,right: 20),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
+                      Text('您的卡密'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),
+                      const SizedBox(height: 10,),
+                      Text(pinCod,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
+                      const SizedBox(height: 25,),
+                      Text('你的卡密，关闭后可在奖品兑换中查看'.tr,style: const TextStyle(fontSize: 12,color: Color(0xffFF6565)))
                     ],),),
-                    SizedBox(height: 47,),
-                    GestureDetector(child: Container(margin: EdgeInsets.only(left: 20,right: 20),alignment: Alignment.center,height:50,width: double.infinity,
-                      decoration: BoxDecoration(color: Colors.white,border: Border.all(width: 2,color: Colors.black),borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Text('我知道了'.tr,style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),),
+                    const SizedBox(height: 47,),
+                    GestureDetector(child: Container(margin: const EdgeInsets.only(left: 20,right: 20),alignment: Alignment.center,height:50,width: double.infinity,
+                      decoration: BoxDecoration(color: Colors.white,border: Border.all(width: 2,color: Colors.black),borderRadius: const BorderRadius.all(Radius.circular(50))),
+                      child: Text('我知道了'.tr,style: const TextStyle(color: Colors.black,fontWeight: FontWeight.w700),),
                     ),onTap: (){
                       Navigator.pop(context);
                     },),
-                    SizedBox(height: 30,),
+                    const SizedBox(height: 30,),
 
                   ],
                 ))
@@ -194,7 +193,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
       //   ),
       // ),
       body:
-      Container(decoration: BoxDecoration(
+      Container(decoration: const BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topCenter,//渐变开始于上面的中间开始
               end: Alignment.bottomCenter,//渐变结束于下面的中间
@@ -208,7 +207,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                 width: double.infinity,
                 height: 60,
                 alignment: Alignment.center,
-                child: Text('贝币兑换'.tr,style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white),),
+                child: Text('贝币兑换'.tr,style: const TextStyle(fontWeight: FontWeight.w600,color: Colors.white),),
               ),
               Positioned(top:20,right:20,child: GestureDetector(child: SvgPicture.asset(
                 "assets/svg/youjiantou.svg",
@@ -222,7 +221,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
             ],),),
             Container(
               height: 40,
-             padding: EdgeInsets.only(right: 10),
+             padding: const EdgeInsets.only(right: 10),
              // color: Colors.white,
               child: Row(
                 children: [
@@ -242,7 +241,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                           ///是否可以滚动
                           isScrollable: true,
                           ///选中字体样式
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             height: 1,
@@ -251,7 +250,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                           ///选中颜色
                           labelColor: Colors.black,
                           ///未选中的选项卡文本的样式
-                          unselectedLabelStyle: TextStyle(
+                          unselectedLabelStyle: const TextStyle(
                             fontSize: 14,
                             height: 1,
                             fontWeight: FontWeight.w400,
@@ -275,8 +274,8 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                           //     .toList(),
                           tabs:[
                             for(var i=0;i<commoditylist.length;i++)
-                              i==0?Tab(child: Row(children: [SizedBox(width: 10,),Text('进行中'.tr),SizedBox(width: 10,),],),):
-                              Tab(child: Row(children: [Container(height: 14,width: 2,color: Color(0x7Fffffff)),SizedBox(width: 10,),Text('进行中'.tr),SizedBox(width: 10,),],),),
+                              i==0?Tab(child: Row(children: [const SizedBox(width: 10,),Text('进行中'.tr),const SizedBox(width: 10,),],),):
+                              Tab(child: Row(children: [Container(height: 14,width: 2,color: const Color(0x7Fffffff)),const SizedBox(width: 10,),Text('进行中'.tr),const SizedBox(width: 10,),],),),
 
                           ]
                       )
@@ -306,38 +305,38 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                 controller: channelTabController,
                 children: [
                   for(var i=0;i<commoditylist.length;i++)
-                  Container(margin: EdgeInsets.only(top: 20),padding: EdgeInsets.only(left: 20,right: 20),child:
+                  Container(margin: const EdgeInsets.only(top: 20),padding: const EdgeInsets.only(left: 20,right: 20),child:
                     Column(children: [
-                      Expanded(child: Container(padding: EdgeInsets.only(left: 15,right: 15),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white,),
+                      Expanded(child: Container(padding: const EdgeInsets.only(left: 15,right: 15),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white,),
                         child: Column(children: [
-                          SizedBox(height: 25,),
-                          Container(alignment: Alignment.center,height: 178,child: Container(decoration: BoxDecoration(color: Color(0xfff5f5f5),borderRadius: BorderRadius.all(Radius.circular(8))),width: 178,height: 178,child:
+                          const SizedBox(height: 25,),
+                          Container(alignment: Alignment.center,height: 178,child: Container(decoration: const BoxDecoration(color: Color(0xfff5f5f5),borderRadius: BorderRadius.all(Radius.circular(8))),width: 178,height: 178,child:
                           Image.network(commoditylist[i].image,width: 148,height: 148,),),),
-                          SizedBox(height: 25,),
-                          Container(width: double.infinity,height: 1,color: Color(0xffF1F1F1),),
-                          SizedBox(height: 25,),
+                          const SizedBox(height: 25,),
+                          Container(width: double.infinity,height: 1,color: const Color(0xffF1F1F1),),
+                          const SizedBox(height: 25,),
                           Expanded(child: Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
                             ///奖品名称
                             Column(children: [
                               Row(children: [
-                                Container(width: 6,height: 6,decoration: BoxDecoration(color: Color(0xffA8F600),borderRadius: BorderRadius.all(Radius.circular(50))),),
-                                SizedBox(width: 8,),
-                                Text('奖品名称'.tr,style: TextStyle(color: Color(0xff666666),fontSize: 12),)
+                                Container(width: 6,height: 6,decoration: const BoxDecoration(color: Color(0xffA8F600),borderRadius: BorderRadius.all(Radius.circular(50))),),
+                                const SizedBox(width: 8,),
+                                Text('奖品名称'.tr,style: const TextStyle(color: Color(0xff666666),fontSize: 12),)
                               ],),
-                              SizedBox(height: 10,),
-                              Container(alignment: Alignment.centerRight,margin: EdgeInsets.only(right: 12),child: Text(commoditylist[i].title,style: TextStyle(fontSize: 13),),),
+                              const SizedBox(height: 10,),
+                              Container(alignment: Alignment.centerRight,margin: const EdgeInsets.only(right: 12),child: Text(commoditylist[i].title,style: const TextStyle(fontSize: 13),),),
                             ],),
 
                             //SizedBox(height: 40,),
                             ///兑换说明
                             Column(children: [
                               Row(children: [
-                                Container(width: 6,height: 6,decoration: BoxDecoration(color: Color(0xffA8F600),borderRadius: BorderRadius.all(Radius.circular(50))),),
-                                SizedBox(width: 8,),
-                                Text('兑换时间'.tr,style: TextStyle(color: Color(0xff666666),fontSize: 12),)
+                                Container(width: 6,height: 6,decoration: const BoxDecoration(color: Color(0xffA8F600),borderRadius: BorderRadius.all(Radius.circular(50))),),
+                                const SizedBox(width: 8,),
+                                Text('兑换时间'.tr,style: const TextStyle(color: Color(0xff666666),fontSize: 12),)
                               ],),
-                              SizedBox(height: 10,),
-                              Container(alignment: Alignment.centerRight,margin: EdgeInsets.only(right: 12),child: Text('兑完为止'.tr,style: TextStyle(fontSize: 13),),),
+                              const SizedBox(height: 10,),
+                              Container(alignment: Alignment.centerRight,margin: const EdgeInsets.only(right: 12),child: Text('兑完为止'.tr,style: const TextStyle(fontSize: 13),),),
                             ],),
 
                             //SizedBox(height: 40,),
@@ -345,16 +344,16 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                             ///参与人数
                             Column(children: [
                               Row(children: [
-                                Container(width: 6,height: 6,decoration: BoxDecoration(color: Color(0xffA8F600),borderRadius: BorderRadius.all(Radius.circular(50))),),
-                                SizedBox(width: 8,),
-                                Text('兑换进程'.tr,style: TextStyle(color: Color(0xff666666),fontSize: 12),)
+                                Container(width: 6,height: 6,decoration: const BoxDecoration(color: Color(0xffA8F600),borderRadius: BorderRadius.all(Radius.circular(50))),),
+                                const SizedBox(width: 8,),
+                                Text('兑换进程'.tr,style: const TextStyle(color: Color(0xff666666),fontSize: 12),)
                               ],),
-                              SizedBox(height: 18,),
+                              const SizedBox(height: 18,),
                               Container(
                                 height: 4, // 进度条高度
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: Color(0xffF5F5F5),
+                                  color: const Color(0xffF5F5F5),
                                   borderRadius: BorderRadius.circular(5), // 圆角边框
                                 ),
                                 child: LayoutBuilder(builder:
@@ -369,7 +368,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                         widthFactor: commoditylist[i].total==0?0:exchangenum/commoditylist[i].total,
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: Color(0xffD1FF34), // 进度条颜色
+                                            color: const Color(0xffD1FF34), // 进度条颜色
                                             borderRadius:
                                             BorderRadius.circular(
                                                 5), // 圆角边框
@@ -386,7 +385,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                             shape: BoxShape.circle,
                                             color: Colors.white, // 指示器的颜色
                                             border: Border.all(
-                                                color: Color(0xffD1FF34),
+                                                color: const Color(0xffD1FF34),
                                                 width: 4), // 边框为蓝色，宽度为2
                                           ),
                                         ),
@@ -395,26 +394,26 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                   );
                                 }),
                               ),
-                              SizedBox(height: 13,),
+                              const SizedBox(height: 13,),
                               Container(height: 21,child:Stack(children: [
-                                if(exchangenum>=3)Positioned(right: 32,child: Container(clipBehavior: Clip.hardEdge,width: 21,height: 21,child: Image.network(exchangeuser[2]['headimg'],fit: BoxFit.cover,),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))),)),
-                                if(exchangenum>=2)Positioned(right: 16,child: Container(clipBehavior: Clip.hardEdge,width: 21,height: 21,child: Image.network(exchangeuser[1]['headimg'],fit: BoxFit.cover,),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))))),
-                                if(exchangenum>=1)Positioned(right: 0,child: Container(clipBehavior: Clip.hardEdge,width: 21,height: 21,child: Image.network(exchangeuser[0]['headimg'],fit: BoxFit.cover,),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))))),
-                                Positioned(top: 3,right: exchangenum==0?0:exchangenum==1?27:exchangenum==2?43:59,child: Text(exchangenum.toString()+'人参与'.tr,style: TextStyle(fontSize: 12),)),
-                                Positioned(top: 3,left: 0,child: Row(children: [Text('共'.tr,style: TextStyle(fontSize: 12,height: 1.2),),
-                                  Text(commoditylist[i].total.toString(),style: TextStyle(fontSize: 12,height: 1.2,fontWeight: FontWeight.w700),),
-                                  Text('份'.tr,style: TextStyle(fontSize: 12,height: 1.2),)],)),
+                                if(exchangenum>=3)Positioned(right: 32,child: Container(clipBehavior: Clip.hardEdge,width: 21,height: 21,child: Image.network(exchangeuser[2]['headimg'],fit: BoxFit.cover,),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))),)),
+                                if(exchangenum>=2)Positioned(right: 16,child: Container(clipBehavior: Clip.hardEdge,width: 21,height: 21,child: Image.network(exchangeuser[1]['headimg'],fit: BoxFit.cover,),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))))),
+                                if(exchangenum>=1)Positioned(right: 0,child: Container(clipBehavior: Clip.hardEdge,width: 21,height: 21,child: Image.network(exchangeuser[0]['headimg'],fit: BoxFit.cover,),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))))),
+                                Positioned(top: 3,right: exchangenum==0?0:exchangenum==1?27:exchangenum==2?43:59,child: Text(exchangenum.toString()+'人参与'.tr,style: const TextStyle(fontSize: 12),)),
+                                Positioned(top: 3,left: 0,child: Row(children: [Text('共'.tr,style: const TextStyle(fontSize: 12,height: 1.2),),
+                                  Text(commoditylist[i].total.toString(),style: const TextStyle(fontSize: 12,height: 1.2,fontWeight: FontWeight.w700),),
+                                  Text('份'.tr,style: const TextStyle(fontSize: 12,height: 1.2),)],)),
                               ],),),
                             ],)
                           ],)),
-                          SizedBox(height: 25,),
+                          const SizedBox(height: 25,),
 
 
 
                           
                         ],),
                       ),),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       Container(
                               child: Column(
                                 children: [
@@ -425,19 +424,19 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                         width: 30,
                                         height: 30,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
                                       Text(
                                         commoditylist[i].price,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 29,
                                             height: 1),
                                       )
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                   int.parse(beikebi) <
@@ -448,7 +447,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                                 child: Container(
                                               alignment: Alignment.center,
                                               height: 45,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                   color: Color(0xffF5F5F5),
                                                   borderRadius:
                                                       BorderRadius.only(
@@ -459,7 +458,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                                               Radius.circular(
                                                                   30))),
                                               child: Text('贝壳不足'.tr,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.w700,
                                                       color:
@@ -470,7 +469,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                                   alignment: Alignment.center,
                                                   height: 45,
                                                   width: 146,
-                                                  decoration: BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                       color: Color(0xffFF739D),
                                                       borderRadius:
                                                           BorderRadius.only(
@@ -481,7 +480,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                                                       30))),
                                                   child: Text(
                                                     '去赚取'.tr,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontWeight:
                                                             FontWeight.w700,
                                                         color: Colors.white),
@@ -496,13 +495,13 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                       alignment: Alignment.center,
                                       height: 45,
                                       width: double.infinity,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                           color: Color(0xffFF739D),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(30))),
                                       child: Text(
                                         '立即兑换'.tr,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w700,
                                             color: Colors.white),
                                       )),onTap: (){
@@ -513,7 +512,7 @@ class PrizedetailsState extends State<PrizedetailsPage>with SingleTickerProvider
                                         }
 
                                   },),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 50,
                                   ),
                                 ],

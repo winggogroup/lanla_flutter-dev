@@ -7,10 +7,6 @@ class HomeLogic extends GetxController {
   final HomeState state = HomeState();
   final PageController controller = PageController(initialPage: 0);
 
-  @override
-  onReady(){
-    super.onReady();
-  }
 
   // 设置当前页
   setNowPage(index) {

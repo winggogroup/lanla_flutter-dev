@@ -11,7 +11,7 @@ class ContentZoneListPage extends StatefulWidget {
 class ContentZoneListState extends State<ContentZoneListPage> with AutomaticKeepAliveClientMixin {
   ContentProvider provider = Get.put(ContentProvider());
   bool get wantKeepAlive => true; // 是否开启缓存
-  ScrollController _scrollController = ScrollController(); //listview 的控制器
+  final ScrollController _scrollController = ScrollController(); //listview 的控制器
   bool oneData = false; // 是否首次请求过-用于展示等待页面
   bool antishake=true;
   var newdata;
@@ -66,22 +66,22 @@ class ContentZoneListState extends State<ContentZoneListPage> with AutomaticKeep
   Widget build(BuildContext context) {
     return !oneData
         ? StartDetailLoading()
-        : Container(padding: EdgeInsets.only(left: 20,right: 20,bottom: 10),child: ListView.builder(
+        : Container(padding: const EdgeInsets.only(left: 20,right: 20,bottom: 10),child: ListView.builder(
         controller: _scrollController,
         itemCount: newdata.length,
         itemBuilder: (context, i) {
           return GestureDetector(child: Container(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Container(alignment: Alignment.centerRight,child: Text(newdata[i]['title'],style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),),
-                SizedBox(
+                Container(alignment: Alignment.centerRight,child: Text(newdata[i]['title'],style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),),
+                const SizedBox(
                   height: 15,
                 ),
                 Container(clipBehavior: Clip.hardEdge,width: double.infinity,height: 100,decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),child: Image.network(newdata[i]['image'],fit: BoxFit.cover,),),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],

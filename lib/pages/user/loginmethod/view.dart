@@ -20,16 +20,16 @@ class LoginmethodPage extends StatelessWidget {
   Widget build(BuildContext context) {
     print('见来了');
     return Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
              color:Colors.white,
         ),
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.fromLTRB(0, 54, 0, 30),
+              padding: const EdgeInsets.fromLTRB(0, 54, 0, 30),
               width: double.infinity,
               height: 150,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.fitWidth,
                   image: AssetImage(
@@ -57,7 +57,7 @@ class LoginmethodPage extends StatelessWidget {
             //     decoration:TextDecoration.none
             // )),
             // SizedBox(height: 15),
-            Text('您的美好生活指南！'.tr,style:TextStyle(
+            Text('您的美好生活指南！'.tr,style:const TextStyle(
                 color: Colors.black,
                 fontSize: 22,
                 fontWeight:  FontWeight.w600,
@@ -133,7 +133,7 @@ class LoginmethodPage extends StatelessWidget {
                       ///facebook
                       GestureDetector(
                         child: Container(
-                          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                           height: 56,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -191,10 +191,10 @@ class LoginmethodPage extends StatelessWidget {
                           }
                         },
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Platform.isIOS?GestureDetector(
                         child: Container(
-                          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                           height: 56,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -254,7 +254,7 @@ class LoginmethodPage extends StatelessWidget {
                         },
                       ):GestureDetector(
                         child: Container(
-                          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                           height: 56,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -498,19 +498,19 @@ class LoginmethodPage extends StatelessWidget {
                         // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
                         child: Column(
                           children: [
-                            Text('登录或注册意味着您同意'.tr,style:TextStyle(
+                            Text('登录或注册意味着您同意'.tr,style:const TextStyle(
                             color: Color(0xff999999),
                             fontSize: 12,
                             //fontFamily: 'PingFang SC-Regular',
                             fontWeight:  FontWeight.w400,
                             decoration:TextDecoration.none
                             )),
-                            SizedBox(height: 5,),
+                            const SizedBox(height: 5,),
                             Row(
                               mainAxisAlignment:MainAxisAlignment.center,
                               children: [
                                 GestureDetector(
-                                child:Text('隐私政策'.tr,style:TextStyle(
+                                child:Text('隐私政策'.tr,style:const TextStyle(
                                     color: Color(0xff000000),
                                     fontSize: 12,
                                     fontWeight:  FontWeight.w400,
@@ -520,14 +520,14 @@ class LoginmethodPage extends StatelessWidget {
                                     launchUrl(Uri.parse("https://www.lanla.app/ys.html"),mode: LaunchMode.externalApplication,);
                                   },
                                 ),
-                                Text('与'.tr,style:TextStyle(
+                                Text('与'.tr,style:const TextStyle(
                                     color: Color(0xff999999),
                                     fontSize: 12,
                                     fontWeight:  FontWeight.w400,
                                     decoration:TextDecoration.none
                                 )),
                                 GestureDetector(
-                                  child:Text('用户协议'.tr,style:TextStyle(
+                                  child:Text('用户协议'.tr,style:const TextStyle(
                                       color: Color(0xff000000),
                                       fontSize: 12,
                                       fontWeight:  FontWeight.w400,

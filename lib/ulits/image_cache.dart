@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget ImageCacheWidget(String imagePath,height){
@@ -9,7 +8,7 @@ Widget ImageCacheWidget(String imagePath,height){
         Container(
           width:  MediaQuery.of(context).size.width,
           height: height,
-          child: Center(
+          child: const Center(
             child: CircularProgressIndicator(
               color: Color(0xffD1FF34),
               strokeWidth: 4,
@@ -23,6 +22,6 @@ Widget ImageCacheWidget(String imagePath,height){
             fit: BoxFit.cover,),
       ),
     ),
-    errorWidget: (context, url, error) => Icon(Icons.error),
+    errorWidget: (context, url, error) => const Icon(Icons.error),
   );
 }

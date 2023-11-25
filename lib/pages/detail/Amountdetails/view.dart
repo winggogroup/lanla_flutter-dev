@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_picker/flutter_picker.dart';
@@ -33,7 +32,7 @@ class AmountPageState extends State<AmountPage>{
   late StreamSubscription<List<PurchaseDetails>> _subscription;
   final Interface = Get.put(GiftDetails());
   List<Rechargelist> Rechargeamountlist=[];
-  ScrollController _scrollControllerls = ScrollController(); //listview 的控制器
+  final ScrollController _scrollControllerls = ScrollController(); //listview 的控制器
   int CurrentPageType=1;
   var  Balancequery={};
   var profitlist=[];
@@ -105,7 +104,7 @@ class AmountPageState extends State<AmountPage>{
     // 加载列表
     EasyLoading.show(status: 'loading...',maskType: EasyLoadingMaskType.black);
     // 延迟消失
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       EasyLoading.dismiss();
     });
 
@@ -346,20 +345,20 @@ class AmountPageState extends State<AmountPage>{
 
 
   profit() async {
-    print('yeshu${page}');
+    print('yeshu$page');
     if (Antishake) {
       page++;
       Antishake=false;
       var result = await Interface.detailedlist(2, dateTime, page);
       // 延迟1秒请求，防止速率过快
-      Future.delayed(Duration(milliseconds: 1000), () {
+      Future.delayed(const Duration(milliseconds: 1000), () {
         setState(() {
           Antishake=true;
         });
       });
       if (result.statusCode == 200) {
-        if (FlowDetailsFromJson(result.bodyString!).length > 0) {
-          if(profitlist.length==0){
+        if (FlowDetailsFromJson(result.bodyString!).isNotEmpty) {
+          if(profitlist.isEmpty){
             setState(() {
               profitlist = FlowDetailsFromJson(result.bodyString!);
             });
@@ -380,7 +379,7 @@ class AmountPageState extends State<AmountPage>{
       Antishake=false;
       var result = await Interface.detailedlist(2, dateTime, 1);
       // 延迟1秒请求，防止速率过快
-      Future.delayed(Duration(milliseconds: 1000), () {
+      Future.delayed(const Duration(milliseconds: 1000), () {
         setState(() {
           Antishake=true;
         });
@@ -429,14 +428,14 @@ class AmountPageState extends State<AmountPage>{
   Widget build(BuildContext context) {
     return
       Container(
-        color: Color(0xffF5F5F5),
+        color: const Color(0xffF5F5F5),
         width: double.infinity,
         child: Column(
           children: [
             Stack(clipBehavior: Clip.none, alignment:Alignment.center ,children: [
-              if(CurrentPageType==1)Container(width: double.infinity,constraints: BoxConstraints(minHeight: 180,),child:Image.asset('assets/images/jinbitc.png',fit: BoxFit.cover,),),
-              if(CurrentPageType==2)Container(width: double.infinity,constraints: BoxConstraints(minHeight: 180,),child:Image.asset('assets/images/beikebj.png',fit: BoxFit.cover,) ,),
-              if(CurrentPageType==3)Container(width: double.infinity,constraints: BoxConstraints(minHeight: 180,),child:Image.asset('assets/images/shouyibj.png',fit: BoxFit.cover,) ,),
+              if(CurrentPageType==1)Container(width: double.infinity,constraints: const BoxConstraints(minHeight: 180,),child:Image.asset('assets/images/jinbitc.png',fit: BoxFit.cover,),),
+              if(CurrentPageType==2)Container(width: double.infinity,constraints: const BoxConstraints(minHeight: 180,),child:Image.asset('assets/images/beikebj.png',fit: BoxFit.cover,) ,),
+              if(CurrentPageType==3)Container(width: double.infinity,constraints: const BoxConstraints(minHeight: 180,),child:Image.asset('assets/images/shouyibj.png',fit: BoxFit.cover,) ,),
               if(CurrentPageType==1)Positioned(
                 bottom: - (85 / 2),
                 child: Container(
@@ -445,7 +444,7 @@ class AmountPageState extends State<AmountPage>{
                     width: 85,
                     height: 85,
                   ),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(50)),
                     boxShadow: [
                       BoxShadow(
@@ -498,7 +497,7 @@ class AmountPageState extends State<AmountPage>{
                       GestureDetector(child: Container(child: Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
                         Text('La币'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: CurrentPageType==1?Colors.white:Colors.white60),),
 
-                        CurrentPageType==1?Container(height: 3,width: 30,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white),):Container()
+                        CurrentPageType==1?Container(height: 3,width: 30,decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white),):Container()
                       ],),height: 32,),onTap: (){
                         setState(() {
                           CurrentPageType=1;
@@ -507,7 +506,7 @@ class AmountPageState extends State<AmountPage>{
                       GestureDetector(child:Container(child: Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
                         Text('贝壳'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: CurrentPageType==2?Colors.white:Colors.white60),),
 
-                        CurrentPageType==2?Container(height: 3,width: 30,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white),):Container()
+                        CurrentPageType==2?Container(height: 3,width: 30,decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white),):Container()
                       ],),height: 32,) ,onTap: (){
                         setState(() {
                           CurrentPageType=2;
@@ -517,7 +516,7 @@ class AmountPageState extends State<AmountPage>{
                       GestureDetector(child: Container(child: Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
                         Text('收益'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: CurrentPageType==3?Colors.white:Colors.white60),),
 
-                        CurrentPageType==3?Container(height: 3,width: 30,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white),):Container()
+                        CurrentPageType==3?Container(height: 3,width: 30,decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white),):Container()
                       ],),height: 32,),onTap: (){
                         setState(() {
                           CurrentPageType=3;
@@ -543,12 +542,12 @@ class AmountPageState extends State<AmountPage>{
               //   mainAxisAlignment:MainAxisAlignment.center,
               //   children: [Container(width: 20,height: 20,color: Colors.red,)],
               // ),),
-              if(CurrentPageType==1)Container(width: double.infinity,alignment: Alignment.center,margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+20),child: Text(Balancequery['laGold']!=null?Balancequery['laGold']:'0.00',style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.w800),),),
-              if(CurrentPageType==2)Container(width: double.infinity,alignment: Alignment.center,margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+20),child: Text(Balancequery['nacre']!=null?Balancequery['nacre']:'0.00',style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.w800),),),
-              if(CurrentPageType==3)Container(width: double.infinity,alignment: Alignment.center,margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+20),child: Text(Balancequery['laJewel']!=null?Balancequery['laJewel']:'0.00',style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.w800),),)
+              if(CurrentPageType==1)Container(width: double.infinity,alignment: Alignment.center,margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+20),child: Text(Balancequery['laGold'] ?? '0.00',style: const TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.w800),),),
+              if(CurrentPageType==2)Container(width: double.infinity,alignment: Alignment.center,margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+20),child: Text(Balancequery['nacre'] ?? '0.00',style: const TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.w800),),),
+              if(CurrentPageType==3)Container(width: double.infinity,alignment: Alignment.center,margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top+20),child: Text(Balancequery['laJewel'] ?? '0.00',style: const TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.w800),),)
             ],),
-            SizedBox(height: 10,),
-            if(CurrentPageType==2||CurrentPageType==1)Expanded(child: Container(padding: EdgeInsets.only(left: 20,right: 20),child:
+            const SizedBox(height: 10,),
+            if(CurrentPageType==2||CurrentPageType==1)Expanded(child: Container(padding: const EdgeInsets.only(left: 20,right: 20),child:
             Column(
               children: [
                 Row(children: [
@@ -557,13 +556,13 @@ class AmountPageState extends State<AmountPage>{
                     width: 15,
                     height: 15,
                   ),
-                  SizedBox(width: 10,),
-                  GestureDetector(child: Text('明细'.tr,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),onTap: (){
+                  const SizedBox(width: 10,),
+                  GestureDetector(child: Text('明细'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w600),),onTap: (){
                     Get.toNamed('/verify/flowing',arguments: CurrentPageType==1?0:1);
                   },)
                 ],),
-                SizedBox(height: 30,),
-                if(Rechargeamountlist.length>0&&CurrentPageType==1)Container(width: double.infinity,alignment:Alignment.center, constraints: BoxConstraints(minHeight: 50),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white,boxShadow: [
+                const SizedBox(height: 30,),
+                if(Rechargeamountlist.isNotEmpty&&CurrentPageType==1)Container(width: double.infinity,alignment:Alignment.center, constraints: const BoxConstraints(minHeight: 50),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white,boxShadow: [
                   BoxShadow(
                     color: Color(0x0D000000),
                     offset: Offset(0, 4),
@@ -571,15 +570,15 @@ class AmountPageState extends State<AmountPage>{
                     spreadRadius: 0,
                   ),
                 ],),
-                  padding:EdgeInsets.only(left: 20,right: 20),child: !Paymentauthority?Column(
+                  padding:const EdgeInsets.only(left: 20,right: 20),child: !Paymentauthority?Column(
                     children: [
                       for(var item in  _products)
-                        if(item.id!='lanla_goldcoin_100.00')Container(margin: EdgeInsets.only(top: 30),width:double.infinity,child:Row(
+                        if(item.id!='lanla_goldcoin_100.00')Container(margin: const EdgeInsets.only(top: 30),width:double.infinity,child:Row(
                           mainAxisAlignment:MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(children: [Image.asset('assets/images/jinbixiang.png',width: 25,height: 25,),SizedBox(width: 10,),
-                              Text(item.description.toString(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Color(0xff666666)),)],),
-                            GestureDetector(child: Container(width: 128,height: 40,decoration: BoxDecoration(color: Color(0xffFF8301),borderRadius: BorderRadius.all(Radius.circular(50)),boxShadow: [
+                            Row(children: [Image.asset('assets/images/jinbixiang.png',width: 25,height: 25,),const SizedBox(width: 10,),
+                              Text(item.description.toString(),style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Color(0xff666666)),)],),
+                            GestureDetector(child: Container(width: 128,height: 40,decoration: const BoxDecoration(color: Color(0xffFF8301),borderRadius: BorderRadius.all(Radius.circular(50)),boxShadow: [
                               BoxShadow(
                                 color: Color(0x0D000000),
                                 offset: Offset(0, 4),
@@ -589,14 +588,14 @@ class AmountPageState extends State<AmountPage>{
                             ],),
                               child: Row(
                                 mainAxisAlignment:MainAxisAlignment.center,
-                                children: [Text('${item.title.split(' ')[0]}',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.white),),SizedBox(width: 10,),Text('USD',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.white),)],
+                                children: [Text(item.title.split(' ')[0],style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.white),),const SizedBox(width: 10,),const Text('USD',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.white),)],
                               ),
                             ),onTap: () async {
                               if (Antishake) {
                                 setState(() {
                                   Antishake=false;
                                 });
-                                Timer.periodic(Duration(milliseconds: 1000), (timer) {
+                                Timer.periodic(const Duration(milliseconds: 1000), (timer) {
                                   Antishake=true;
                                   timer.cancel(); //取消定时器
                                 });
@@ -614,7 +613,7 @@ class AmountPageState extends State<AmountPage>{
                                     // verify the latest status of you your subscription by using server side receipt validation
                                     // and update the UI accordingly. The subscription purchase status shown
                                     // inside the app may not be accurate.
-                                    final GooglePlayPurchaseDetails? oldSubscription = null;
+                                    const GooglePlayPurchaseDetails? oldSubscription = null;
                                     // _getOldSubscription(item, purchases);
 
                                     purchaseParam = GooglePlayPurchaseParam(
@@ -650,12 +649,12 @@ class AmountPageState extends State<AmountPage>{
                           ],
                         ) ,),
                       for(var item in  _products)
-                        if(item.id=='lanla_goldcoin_100.00')Container(margin: EdgeInsets.only(top: 30),width:double.infinity,child:Row(
+                        if(item.id=='lanla_goldcoin_100.00')Container(margin: const EdgeInsets.only(top: 30),width:double.infinity,child:Row(
                           mainAxisAlignment:MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(children: [Image.asset('assets/images/jinbixiang.png',width: 25,height: 25,),SizedBox(width: 10,),
-                              Text(item.description.toString(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Color(0xff666666)),)],),
-                            GestureDetector(child: Container(width: 128,height: 40,decoration: BoxDecoration(color: Color(0xffF7BF36),borderRadius: BorderRadius.all(Radius.circular(50)),boxShadow: [
+                            Row(children: [Image.asset('assets/images/jinbixiang.png',width: 25,height: 25,),const SizedBox(width: 10,),
+                              Text(item.description.toString(),style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Color(0xff666666)),)],),
+                            GestureDetector(child: Container(width: 128,height: 40,decoration: const BoxDecoration(color: Color(0xffF7BF36),borderRadius: BorderRadius.all(Radius.circular(50)),boxShadow: [
                               BoxShadow(
                                 color: Color(0x0D000000),
                                 offset: Offset(0, 4),
@@ -665,14 +664,14 @@ class AmountPageState extends State<AmountPage>{
                             ],),
                               child: Row(
                                 mainAxisAlignment:MainAxisAlignment.center,
-                                children: [Text('${item.title.split(' ')[0]}',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.white),),SizedBox(width: 10,),Text('USD',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.white),)],
+                                children: [Text(item.title.split(' ')[0],style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.white),),const SizedBox(width: 10,),const Text('USD',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15,color: Colors.white),)],
                               ),
                             ),onTap: () async {
                               if (Antishake) {
                                 setState(() {
                                   Antishake=false;
                                 });
-                                Timer.periodic(Duration(milliseconds: 1000), (timer) {
+                                Timer.periodic(const Duration(milliseconds: 1000), (timer) {
                                   Antishake=true;
                                   timer.cancel(); //取消定时器
                                 });
@@ -690,7 +689,7 @@ class AmountPageState extends State<AmountPage>{
                                     // verify the latest status of you your subscription by using server side receipt validation
                                     // and update the UI accordingly. The subscription purchase status shown
                                     // inside the app may not be accurate.
-                                    final GooglePlayPurchaseDetails? oldSubscription = null;
+                                    const GooglePlayPurchaseDetails? oldSubscription = null;
                                     // _getOldSubscription(item, purchases);
 
                                     purchaseParam = GooglePlayPurchaseParam(
@@ -725,9 +724,9 @@ class AmountPageState extends State<AmountPage>{
                             },)
                           ],
                         ) ,),
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
                     ],
-                  ):Text('您没有google支付功能暂时无法充值'.tr,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: Color(0xff999999),height: 1.5),),
+                  ):Text('您没有google支付功能暂时无法充值'.tr,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: Color(0xff999999),height: 1.5),),
                 ),
                 // if(CurrentPageType==2)Container(decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)),color: Colors.white,boxShadow: [
                 //   BoxShadow(
@@ -770,9 +769,9 @@ class AmountPageState extends State<AmountPage>{
                 if(CurrentPageType==2)
                   Expanded(child: Container(width: double.infinity,
                       alignment:Alignment.center,
-                      padding: EdgeInsets.only(left: 15,right: 15),
+                      padding: const EdgeInsets.only(left: 15,right: 15),
                       //constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height-300),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)), color: Colors.white,
+                      decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)), color: Colors.white,
                         boxShadow: [BoxShadow(
                           color: Color(0x0D000000),
                           offset: Offset(0, 4),
@@ -815,23 +814,23 @@ class AmountPageState extends State<AmountPage>{
                       //   ],
                       // ),
                       Column(children: [
-                        SizedBox(height: 30,),
-                        Container(width: double.infinity,child: Text('兑换商城'.tr,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),),
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 30,),
+                        Container(width: double.infinity,child: Text('兑换商城'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),),
+                        const SizedBox(height: 25,),
                         Expanded(child: Container(width: double.infinity,child:
                         ListView(padding: EdgeInsets.zero,children: [
                           for (var i = 0; i < exchange.length; i++)
-                          Container(margin: EdgeInsets.only(bottom: 25),child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
+                          Container(margin: const EdgeInsets.only(bottom: 25),child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
                             Row(children: [
-                              Container(alignment: Alignment.center,decoration: BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.all(Radius.circular(8))),width: 60,height: 60,child: Image.network(exchange[i].image,width: 50,height: 50,),),
-                              SizedBox(width: 10,),
+                              Container(alignment: Alignment.center,decoration: const BoxDecoration(color: Color(0xffF5F5F5),borderRadius: BorderRadius.all(Radius.circular(8))),width: 60,height: 60,child: Image.network(exchange[i].image,width: 50,height: 50,),),
+                              const SizedBox(width: 10,),
                               Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                Text(exchange[i].title,style: TextStyle(fontSize: 13),),
-                                SizedBox(height: 12,),
+                                Text(exchange[i].title,style: const TextStyle(fontSize: 13),),
+                                const SizedBox(height: 12,),
                                 Container(child: Row(children: [
                                   Image.asset('assets/images/beiketwo.png',width: 19,height: 17,),
-                                  SizedBox(width: 5,),
-                                  Container(height: 17,child:Text(exchange[i].price,style: TextStyle(color: Color(0XFFFF789B),fontWeight: FontWeight.w700,fontSize: 18,height: 1),),)
+                                  const SizedBox(width: 5,),
+                                  Container(height: 17,child:Text(exchange[i].price,style: const TextStyle(color: Color(0XFFFF789B),fontWeight: FontWeight.w700,fontSize: 18,height: 1),),)
 
                                 ],),)
 
@@ -840,15 +839,15 @@ class AmountPageState extends State<AmountPage>{
                             // Expanded(child: )
                             Column(crossAxisAlignment:CrossAxisAlignment.end,children: [
                               Row(children: [
-                                Text('剩余'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),
-                                Text(exchange[i].stock.toString(),style: TextStyle(fontSize: 12,color: Color(0xff999999)),),
-                                Text('件'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),
+                                Text('剩余'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),
+                                Text(exchange[i].stock.toString(),style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),
+                                Text('件'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),
                               ],),
-                              SizedBox(height: 12,),
+                              const SizedBox(height: 12,),
                               GestureDetector(child: Container(width: 64,height:27,
                                 alignment: Alignment.center,
-                                decoration: BoxDecoration(color: exchange[i].stock!=0?Color(0XFFFF789B):Color(0XFFD9D9D9),borderRadius: BorderRadius.all(Radius.circular(20))),
-                                child: Text(exchange[i].price!='???'?'兑换'.tr:'敬请期待'.tr,style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,color: Colors.white),),
+                                decoration: BoxDecoration(color: exchange[i].stock!=0?const Color(0XFFFF789B):const Color(0XFFD9D9D9),borderRadius: const BorderRadius.all(Radius.circular(20))),
+                                child: Text(exchange[i].price!='???'?'兑换'.tr:'敬请期待'.tr,style: const TextStyle(fontSize: 10,fontWeight: FontWeight.w700,color: Colors.white),),
                               ),onTap: (){
                                 if(exchange[i].stock!=0){
                                   var newdatalist=exchange.toList();
@@ -856,7 +855,7 @@ class AmountPageState extends State<AmountPage>{
                                   newdatalist.removeAt(i); // 移除指定下标的元素
                                   newdatalist.insert(0, targetElement); // 将元素插入到列表的第一位
                                   Get.to(
-                                      PrizedetailsPage(),arguments:{"data":newdatalist,"beibi":Balancequery['nacre']!=null?Balancequery['nacre']:'0.00'} );
+                                      PrizedetailsPage(),arguments:{"data":newdatalist,"beibi":Balancequery['nacre'] ?? '0.00'} );
                                 }
                               },)
                             ],)
@@ -866,60 +865,60 @@ class AmountPageState extends State<AmountPage>{
                       ],)
                   ),),
                 if(CurrentPageType==2)
-                  SizedBox(height: 30,)
+                  const SizedBox(height: 30,)
               ],
             )
               ,)),
             if(CurrentPageType==3)Expanded(child: Container(
-              padding: EdgeInsets.only(left: 20,right: 20),
+              padding: const EdgeInsets.only(left: 20,right: 20),
               child: Column(
                 children: [
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
                   Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
                     GestureDetector(child: Container(width: 110,height: 30,
-                      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(50))),
-                      child: Row(mainAxisAlignment:MainAxisAlignment.center,children: [Text(dateTime.substring(0,7)),SizedBox(width: 10,),SvgPicture.asset("assets/svg/xiajiantou.svg", color: Colors.black, width: 9, height: 5,)],),
+                      decoration: const BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(50))),
+                      child: Row(mainAxisAlignment:MainAxisAlignment.center,children: [Text(dateTime.substring(0,7)),const SizedBox(width: 10,),SvgPicture.asset("assets/svg/xiajiantou.svg", color: Colors.black, width: 9, height: 5,)],),
                     ),onTap: (){
                       showPickerDateTimeRoundBg(context);
                     },),
                     // Text('合计  33.98',style: TextStyle(color: Color(0xff999999)),)
                   ],),
-                  SizedBox(height: 10,),
-                  Expanded(child:  Container(decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: profitlist.length>0?ListView.builder(
-                        padding: EdgeInsets.all(0),
+                  const SizedBox(height: 10,),
+                  Expanded(child:  Container(decoration: const BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: profitlist.isNotEmpty?ListView.builder(
+                        padding: const EdgeInsets.all(0),
                         controller: _scrollControllerls,
                         itemCount: profitlist.length,
                         itemBuilder: (context, i) {
-                          return GestureDetector(child:Container(padding: EdgeInsets.all(20),decoration: BoxDecoration(
+                          return GestureDetector(child:Container(padding: const EdgeInsets.all(20),decoration: const BoxDecoration(
                               border: Border(bottom: BorderSide(color: Color(0xffF1F1F1)))
                           ),child: Column(
                             crossAxisAlignment:CrossAxisAlignment.start,
                             children: [
-                              Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(profitlist[i].title),Text('${profitlist[i].price} +',style: TextStyle(fontWeight: FontWeight.w600),)],),
-                              SizedBox(height: 8,),
-                              Text(profitlist[i].createdAt,style: TextStyle(fontSize: 12,color: Color(0xff999999)),)
+                              Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(profitlist[i].title),Text('${profitlist[i].price} +',style: const TextStyle(fontWeight: FontWeight.w600),)],),
+                              const SizedBox(height: 8,),
+                              Text(profitlist[i].createdAt,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),)
 
                             ],
                           ),) ,onTap: (){
                             Get.to(GiftDetailsPage(),arguments:profitlist[i].id);
                           },);
                         }):Column(mainAxisAlignment:MainAxisAlignment.center,children: [Container(child: Image.asset('assets/images/xianrenzhang.png',width: 200,height: 200,),width: double.infinity,),
-                      SizedBox(height: 20,),
-                      Container(alignment: Alignment.center,width: 200,child:Text(textAlign: TextAlign.center,'还没有收益哟，快去发布优质作品赢礼物吧'.tr,style: TextStyle(color: Color(0xff999999),height: 1.5),) ,)],),
+                      const SizedBox(height: 20,),
+                      Container(alignment: Alignment.center,width: 200,child:Text(textAlign: TextAlign.center,'还没有收益哟，快去发布优质作品赢礼物吧'.tr,style: const TextStyle(color: Color(0xff999999),height: 1.5),) ,)],),
                   )),
                 ],
               ),
             ),),
-            if(CurrentPageType==3)Container(margin: EdgeInsets.only(top: 20),width: double.infinity,color: Colors.white,child: Container(
+            if(CurrentPageType==3)Container(margin: const EdgeInsets.only(top: 20),width: double.infinity,color: Colors.white,child: Container(
               alignment: Alignment.center,
               width: double.infinity,
-              padding: EdgeInsets.only(top: 10,bottom: 10),
-              decoration: BoxDecoration(color: Balancequery['laJewel']==0?Color(0xffe4e4e4):Colors.black,borderRadius: BorderRadius.all(Radius.circular(50))),
-              child: GestureDetector(child: Text('立即提现'.tr,style: TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600),),onTap: (){
+              padding: const EdgeInsets.only(top: 10,bottom: 10),
+              decoration: BoxDecoration(color: Balancequery['laJewel']==0?const Color(0xffe4e4e4):Colors.black,borderRadius: const BorderRadius.all(Radius.circular(50))),
+              child: GestureDetector(child: Text('立即提现'.tr,style: const TextStyle(color: Colors.white,fontSize: 17,fontWeight: FontWeight.w600),),onTap: (){
                 Cashwithdrawal(context);
               },),
-            ),padding: EdgeInsets.fromLTRB(20, 10, 20, 10),)
+            ),padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),)
             // Image.asset('assets/images/jinbitc.png'),
           ],
         ),
@@ -931,7 +930,7 @@ class AmountPageState extends State<AmountPage>{
     var picker = Picker(
         height: 250,
         squeeze:1.1,
-        cancelTextStyle:TextStyle(color: Color(0xff999999)),
+        cancelTextStyle:const TextStyle(color: Color(0xff999999)),
         backgroundColor: Colors.transparent,
 
         // cancel:GestureDetector(child:Container(child: SvgPicture.asset(
@@ -948,7 +947,7 @@ class AmountPageState extends State<AmountPage>{
         //   width: 22,
         //   height: 22,
         // ), margin: EdgeInsets.only(left: 20,bottom: 15),),
-        headerDecoration: BoxDecoration(
+        headerDecoration: const BoxDecoration(
             border:
             Border(bottom: BorderSide(color: Colors.white, width: 0.5))),
         adapter: DateTimePickerAdapter(
@@ -972,7 +971,7 @@ class AmountPageState extends State<AmountPage>{
         builder: (context, view) {
           return Material(
               color: Colors.white,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
               child: Container(
                 padding: const EdgeInsets.only(top: 5),
@@ -989,8 +988,8 @@ class AmountPageState extends State<AmountPage>{
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.transparent,
-          contentPadding:EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape:RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
+          contentPadding:const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape:const RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
           content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -998,18 +997,18 @@ class AmountPageState extends State<AmountPage>{
                   //color: Colors.transparent,
                   width: 280,
                   height: 280,
-                  padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10))
                   ),
                   child: Column(children: [
-                    SizedBox(height: 40,),
+                    const SizedBox(height: 40,),
                     Image.asset('assets/images/meiyou.png',width: 70,height: 70,),
-                    SizedBox(height: 30,),
-                    Text('提现功能敬请期待'.tr,textAlign: TextAlign.center,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
-                    SizedBox(height: 22,),
-                    Text('快去发布优质作品更容易得到收益哟！'.tr,textAlign: TextAlign.center,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w400),)
+                    const SizedBox(height: 30,),
+                    Text('提现功能敬请期待'.tr,textAlign: TextAlign.center,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w600),),
+                    const SizedBox(height: 22,),
+                    Text('快去发布优质作品更容易得到收益哟！'.tr,textAlign: TextAlign.center,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400),)
                   ],),
                 ),
               ]),
@@ -1026,8 +1025,8 @@ class AmountPageState extends State<AmountPage>{
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.transparent,
-          contentPadding:EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape:RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
+          contentPadding:const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape:const RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
           content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -1040,25 +1039,25 @@ class AmountPageState extends State<AmountPage>{
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width-100,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.all(Radius.circular(10))
                         ),
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                          Text('贝壳的用途'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15),),
-                          SizedBox(height: 5,),
-                          Text('1.'+'贝壳可以被用来给你喜欢的作品送礼物'.tr,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
-                          SizedBox(height: 5,),
-                          Text('2.'+'贝壳可以用于参与LanLa平台不同时段的活动'.tr,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
-                          SizedBox(height: 10,),
-                          Text('怎样获得贝壳'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15),),
-                          SizedBox(height: 5,),
-                          Text('1.'+'可以参与LanLa平台不定期任务所得'.tr,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
-                          SizedBox(height: 5,),
-                          Text('2.'+'每日登陆LanLa可得'.tr,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
-                          SizedBox(height: 5,),
-                          Text('3.'+'他人送礼可得'.tr,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
+                          Text('贝壳的用途'.tr,style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 15),),
+                          const SizedBox(height: 5,),
+                          Text('1.${'贝壳可以被用来给你喜欢的作品送礼物'.tr}',style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
+                          const SizedBox(height: 5,),
+                          Text('2.${'贝壳可以用于参与LanLa平台不同时段的活动'.tr}',style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
+                          const SizedBox(height: 10,),
+                          Text('怎样获得贝壳'.tr,style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 15),),
+                          const SizedBox(height: 5,),
+                          Text('1.${'可以参与LanLa平台不定期任务所得'.tr}',style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
+                          const SizedBox(height: 5,),
+                          Text('2.${'每日登陆LanLa可得'.tr}',style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
+                          const SizedBox(height: 5,),
+                          Text('3.${'他人送礼可得'.tr}',style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 13,color: Color(0xff999999),height: 1.5),),
                         ],),
                       )
                     ],),),

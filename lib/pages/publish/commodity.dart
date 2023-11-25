@@ -1,12 +1,10 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:get/get_utils/get_utils.dart';
 import 'package:lanla_flutter/pages/search/search_details/logic.dart';
 
 class commodityPage extends StatefulWidget{
@@ -24,31 +22,31 @@ class commodityState extends State<commodityPage>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      decoration: BoxDecoration(color: Colors.white),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         children: [
           SizedBox(height: MediaQueryData.fromWindow(window).padding.top+10,),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             height: 42,
             // decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(child: Icon(Icons.arrow_back_ios, size: 22,),onTap: (){
+                GestureDetector(child: const Icon(Icons.arrow_back_ios, size: 22,),onTap: (){
                   Navigator.of(context).pop();
                 },),
-                SizedBox(width: 15,),
+                const SizedBox(width: 15,),
                 Expanded(flex: 1, child:
                 TextField(
                     controller: selectionController,
                     decoration: InputDecoration(
-                      hintStyle: TextStyle(color: Color(0xff999999)),
-                      contentPadding: EdgeInsets.only(top: 0, bottom: 0),
+                      hintStyle: const TextStyle(color: Color(0xff999999)),
+                      contentPadding: const EdgeInsets.only(top: 0, bottom: 0),
                       border: InputBorder.none,
                       hintText: '输入搜索内容'.tr,
-                      fillColor: Color(0xFFF9f9f9),
-                      enabledBorder: OutlineInputBorder(
+                      fillColor: const Color(0xFFF9f9f9),
+                      enabledBorder: const OutlineInputBorder(
                         /*边角*/
                         borderRadius: BorderRadius.all(
                           Radius.circular(20), //边角为5
@@ -58,7 +56,7 @@ class commodityState extends State<commodityPage>{
                           width: 0, //边线宽度为2
                         ),
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         /*边角*/
                         borderRadius: BorderRadius.all(
                           Radius.circular(20), //边角为5
@@ -71,8 +69,8 @@ class commodityState extends State<commodityPage>{
                       ),
                       filled: true,
                       prefixIcon:Padding(
-                        padding: EdgeInsets.only(top: 10,bottom: 10,right: 5),
-                        child:SvgPicture.asset('assets/icons/sousuo.svg',color: Color(0xff999999),),
+                        padding: const EdgeInsets.only(top: 10,bottom: 10,right: 5),
+                        child:SvgPicture.asset('assets/icons/sousuo.svg',color: const Color(0xff999999),),
                       ),
                     ),
                     onChanged: (v){
@@ -90,9 +88,9 @@ class commodityState extends State<commodityPage>{
                 )
 
                   ,),
-                SizedBox(width: 15,),
+                const SizedBox(width: 15,),
                 GestureDetector(
-                  child: Text('搜索'.tr, style: TextStyle(
+                  child: Text('搜索'.tr, style: const TextStyle(
                       color: Color(0xff666666), fontSize: 15),
                   ),
                   onTap: () {
@@ -105,7 +103,7 @@ class commodityState extends State<commodityPage>{
           // SizedBox(height: 15,),
           Row(children: [
             Expanded(child: Container(height: 105,alignment: Alignment.center,
-              padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+              padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
               child: ListView(
                   shrinkWrap: true,
                   primary:false,
@@ -114,7 +112,7 @@ class commodityState extends State<commodityPage>{
                     for(var i=0;i<10;i++)
                       GestureDetector(child:Container(
                         color: Colors.white,
-                        margin: EdgeInsets.only(right: 20),
+                        margin: const EdgeInsets.only(right: 20),
                         child: Column(
                           children: [
                             Container(
@@ -132,15 +130,15 @@ class commodityState extends State<commodityPage>{
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(height:5,),
-                            Text('口红',style: TextStyle(fontSize: 15,color: Colors.black),)
+                            const SizedBox(height:5,),
+                            const Text('口红',style: TextStyle(fontSize: 15,color: Colors.black),)
                           ],
                         ),
                       ),onTap: (){
                         print('13333333');
                         Get.toNamed('/public/Evaluationdetails');
                       },),
-                    SizedBox(width: 20,)
+                    const SizedBox(width: 20,)
                   ]),
             )),
           ],),
@@ -158,14 +156,14 @@ class commodityState extends State<commodityPage>{
          
           Expanded(child: ListView.builder(shrinkWrap: true,primary:false,padding:EdgeInsets.zero,itemCount: 15,itemBuilder: (context, i) {
             return Column(children: [
-              Container(width: double.infinity,decoration: BoxDecoration(color: Color(0xffF5F5F5)),height: 10,),
-              Container(padding: EdgeInsets.all(20),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                Text('口红笔',style: TextStyle(fontWeight: FontWeight.w600),),
-                SizedBox(height: 15,),
+              Container(width: double.infinity,decoration: const BoxDecoration(color: Color(0xffF5F5F5)),height: 10,),
+              Container(padding: const EdgeInsets.all(20),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
+                const Text('口红笔',style: TextStyle(fontWeight: FontWeight.w600),),
+                const SizedBox(height: 15,),
                 MasonryGridView.count(
                   shrinkWrap: true,
                   padding:EdgeInsets.zero,
-                  physics:  NeverScrollableScrollPhysics(),
+                  physics:  const NeverScrollableScrollPhysics(),
                   // controller:
                   // widget.type == ApiType.myPublish ? null : _controller,
                   //key: PageStorageKey(item.id),
@@ -180,9 +178,9 @@ class commodityState extends State<commodityPage>{
                   itemBuilder: (context, index) {
                     // bool isEnd = widget.type != ApiType.home;
                     //return Container(height:(index % 5 + 1) * 100, child: GestureDetector(onTap: (){Get.toNamed('/setting');},child: Text('第${index}个'),));
-                    return Container(decoration: BoxDecoration(border: Border.all(width: 1,color: Color(0xffE1E1E1))),width: 102,height: 146,child: Column(children: [
+                    return Container(decoration: BoxDecoration(border: Border.all(width: 1,color: const Color(0xffE1E1E1))),width: 102,height: 146,child: Column(children: [
                       Image.asset('assets/images/ceshi.png',width: double.infinity,),
-                      Expanded(child: Container(alignment: Alignment.center,child: Text('1233333'),))
+                      Expanded(child: Container(alignment: Alignment.center,child: const Text('1233333'),))
                     ],),);
                   },
                 )

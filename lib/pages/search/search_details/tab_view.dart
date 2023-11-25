@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -92,18 +91,18 @@ class _SearchTabViewState extends State<SearchTabView>
             child: TabBar(
               tabs: myTabs,
               labelPadding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-              indicatorPadding: EdgeInsets.fromLTRB(0, 0, 0, 8),
+              indicatorPadding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
               isScrollable: true,
               indicatorColor: HexColor('#000000'),
               indicatorWeight: 2,
               indicatorSize: TabBarIndicatorSize.label,
               labelColor: HexColor('#000000'),
-              labelStyle: TextStyle(
+              labelStyle: const TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.w600,
               ),
               unselectedLabelColor: HexColor('#999999'),
-              unselectedLabelStyle: TextStyle(
+              unselectedLabelStyle: const TextStyle(
                 fontSize: 17,
                 //fontFamily: 'PingFang SC-Regular',
               ),
@@ -124,7 +123,7 @@ class _SearchTabViewState extends State<SearchTabView>
                     }),
                     Container(
                       //               //color: Colors.black12,
-                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                         child: GetBuilder<SearchDetailsLogic>(builder: (logic) {
                           return RefreshIndicator(
                               onRefresh: _onRefresh,
@@ -292,7 +291,7 @@ class _SearchTabViewState extends State<SearchTabView>
           ),
         ),
         // 3. 使用 TabBarView
-        body: TabBarView(children: <Widget>[
+        body: const TabBarView(children: <Widget>[
 
           /// 全部订单
           Center(child: Text('全部订222单')),
@@ -366,7 +365,7 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
   SearchDetails status = SearchDetails.init;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -395,10 +394,10 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
         stateUser.keywords, '2', stateUser.page.toString());
 
     // 延迟1秒请求，防止速率过快
-    Future.delayed(Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 1000), () {
       status = SearchDetails.normal;
     });
-    if(SearchUserFromJson(result?.bodyString ?? "").length==0){
+    if(SearchUserFromJson(result?.bodyString ?? "").isEmpty){
       stateUser.page--;
     }
     setState(() {
@@ -426,7 +425,7 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
         itemBuilder: (context, i) {
           return
             GestureDetector(child: Container(
-              margin: EdgeInsets.fromLTRB(0, 25, 0, 25),
+              margin: const EdgeInsets.fromLTRB(0, 25, 0, 25),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment
                     .spaceBetween,
@@ -437,7 +436,7 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius
                             .circular(100),
-                        border: Border.all(width: 1,color: Color(0xfff5f5f5),),
+                        border: Border.all(width: 1,color: const Color(0xfff5f5f5),),
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
@@ -447,7 +446,7 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
                       )
                   ),
 
-                  SizedBox(width: 15,),
+                  const SizedBox(width: 15,),
                   Expanded(
                     flex: 1,
                     child: Column(
@@ -460,7 +459,7 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
                             fontSize: 15,
                             color: HexColor('#000000'),
                           ),),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         Row(
                           children: [
                             Text(
@@ -469,7 +468,7 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
                               color: HexColor(
                                   '#999999'),
                             ),),
-                            SizedBox(width: 5,),
+                            const SizedBox(width: 5,),
                             Text(
                               stateUser.UserContent[i].works
                                   .toString(),
@@ -478,7 +477,7 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
                                 color: HexColor(
                                     '#999999'),
                               ),),
-                            SizedBox(width: 10,),
+                            const SizedBox(width: 10,),
                             SizedBox(
                               width: 1,
                               height: 14,
@@ -488,14 +487,14 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
                                         '#e4e4e4')),
                               ),
                             ),
-                            SizedBox(width: 10,),
+                            const SizedBox(width: 10,),
                             Text(
                               '粉丝'.tr, style: TextStyle(
                               fontSize: 12,
                               color: HexColor(
                                   '#999999'),
                             ),),
-                            SizedBox(width: 5,),
+                            const SizedBox(width: 5,),
                             Text(
                               stateUser.UserContent[i].fans
                                   .toString(),
@@ -509,20 +508,20 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
                       ],
                     ),
                   ),
-                  SizedBox(width: 15,),
+                  const SizedBox(width: 15,),
                   !userControlleruser.getFollow(
                       stateUser.UserContent[i].userId) ?
                   GestureDetector(child: Container(
-                    padding: EdgeInsets.fromLTRB(
+                    padding: const EdgeInsets.fromLTRB(
                         20, 6, 20, 6),
                     child: Text('关注'.tr,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           fontSize: 15),),
                     decoration: BoxDecoration(
                       //     //设置四周圆角 角度
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                           Radius.circular(30.0)),
                       border: Border.all(
                           color: HexColor('#000000'),
@@ -537,7 +536,7 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
                     logicuser.update();
                   },) :
                   GestureDetector(child: Container(
-                    padding: EdgeInsets.fromLTRB(
+                    padding: const EdgeInsets.fromLTRB(
                         20, 6, 20, 6),
                     child: Text('已关注'.tr,
                       style: TextStyle(
@@ -546,7 +545,7 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
                           fontSize: 15),),
                     decoration: BoxDecoration(
                       //     //设置四周圆角 角度
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                           Radius.circular(30.0)),
                       border: Border.all(
                           color: HexColor('#E4E4E4'),
@@ -571,10 +570,10 @@ class UserListState extends State<UserList> with AutomaticKeepAliveClientMixin {
       // decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red),),
       child:Column(
       children: [
-        SizedBox(height: 120,),
+        const SizedBox(height: 120,),
         Image.asset('assets/images/nobeijing.png',width: 200,height: 200,),
-        SizedBox(height: 40,),
-        Text('暂无搜索结果'.tr,style: TextStyle(
+        const SizedBox(height: 40,),
+        Text('暂无搜索结果'.tr,style: const TextStyle(
           fontSize: 16,
           color: Color(0xff999999)
         ),),

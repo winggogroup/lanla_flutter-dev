@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -47,14 +45,6 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
   final _scaffoldkey = GlobalKey<ScaffoldState>();
   final WebSocketes = Get.find<StartDetailLogic>();
 
-  @override
-  void initState() {
-
-    super.initState();
-    // if(Get.arguments["shou"]==1){
-    //
-    // }
-  }
 
   Widget header = DrawerHeader(
     padding: EdgeInsets.zero, /* padding置为0 */
@@ -138,7 +128,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
               //   ),
               // ),
               // const Divider(height: 1.0,color:  Color(0xFFF1F1F1),indent: 20,endIndent: 20,),
-              SizedBox(height: 50,),
+              const SizedBox(height: 50,),
               ///个人资料
               GestureDetector(
                   onTap: () {
@@ -155,7 +145,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('个人资料'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     )
                     // Text('个人资料'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
                   )),
@@ -175,7 +165,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('设置'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     ),
 
                     // Text('设置'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
@@ -196,7 +186,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('达人认证'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     ),
 
                     // Text('设置'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
@@ -219,7 +209,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('礼物墙'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     ),
 
                     // Text('设置'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
@@ -267,7 +257,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('钱包'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     )
                     // Text('钱包'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
                   )),
@@ -288,7 +278,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                       title: Transform(
                         transform: Matrix4.translationValues(19, 0.0, 0.0),
                         child: Text('奖品兑换'.tr,
-                            style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                            style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                       )
                     // Text('钱包'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
                   )),
@@ -311,7 +301,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('任务'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     )
                     // Text('任务'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
                   )),
@@ -350,7 +340,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('填写邀请码'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     )
                   )),
               const Divider(height: 1.0,color:  Color(0xFFF1F1F1),indent: 20,endIndent: 20,),
@@ -370,7 +360,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('关于我们'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     )
                     // Text('关于我们'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
                   )),
@@ -394,7 +384,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('鼓励一下'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     )
                     // Text('鼓励一下'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
                   )),
@@ -414,7 +404,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('意见反馈'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     )
                     // Text('意见反馈'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
                   )),
@@ -434,7 +424,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                     title: Transform(
                       transform: Matrix4.translationValues(19, 0.0, 0.0),
                       child: Text('清理缓存'.tr,
-                          style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                          style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                     )
                     // Text('清理缓存'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
                   )),
@@ -492,7 +482,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                       title: Transform(
                         transform: Matrix4.translationValues(19, 0.0, 0.0),
                         child: Text('退出登录'.tr,
-                            style: TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
+                            style: const TextStyle(fontSize: 15, color: Color(0xff2b2b2b), fontWeight: FontWeight.w400)),
                       )
                     // contentPadding: const EdgeInsets.only(right: 20),
                     // title: Text('退出登录'.tr,style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400,color: Color(0xff2b2b2b)),),
@@ -561,7 +551,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                         right: -22 / 2,
                         child: Container(
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(
                                   Radius.circular(50)),
                               color: Colors.red
@@ -569,7 +559,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                           width: 16,
                           height: 16,
                           child: Text(userLogic.NumberMessages+userLogic.Chatrelated['${userLogic.userId}']['Unreadmessagezs']>99?'99':'${userLogic.NumberMessages+userLogic.Chatrelated['${userLogic.userId}']['Unreadmessagezs']}',
-                            style: TextStyle(color: Colors.white,
+                            style: const TextStyle(color: Colors.white,
                                 fontSize: 8,
                                 height: 1.0),),
                         ),
@@ -580,7 +570,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                         right: -22 / 2,
                         child: Container(
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(
                                   Radius.circular(50)),
                               color: Colors.red
@@ -588,7 +578,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                           width: 16,
                           height: 16,
                           child: Text(userLogic.NumberMessages.toString(),
-                            style: TextStyle(color: Colors.white,
+                            style: const TextStyle(color: Colors.white,
                                 fontSize: 8,
                                 height: 1.0),),
                         ),
@@ -664,7 +654,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
   _userInfoWidget(context) {
     return GetBuilder<UserLogic>(builder: (userLogic) {
       return Container(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
             left: 20, right: 20,top: 25),
         child: Column(
           crossAxisAlignment:CrossAxisAlignment.start,
@@ -689,7 +679,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                 },),
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(left: 10,right: 15),
+                    margin: const EdgeInsets.only(left: 10,right: 15),
                     height: 80,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -699,7 +689,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                             children: [
                               Text(
                                 userLogic.userInfo?.userName.toString() ?? '-',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w600),
@@ -708,43 +698,43 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                         Row(
                             children: [
                               ///认证
-                              if(userLogic.userInfo!=null&&userLogic.userInfo!.labelHighQualityAuthor.icon!='')Container(padding: EdgeInsets.fromLTRB(10, 2, 10, 2),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(26)),color: Color.fromRGBO(245, 255, 210, 1)),child: Row(children: [
+                              if(userLogic.userInfo!=null&&userLogic.userInfo!.labelHighQualityAuthor.icon!='')Container(padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(26)),color: Color.fromRGBO(245, 255, 210, 1)),child: Row(children: [
                                 Image.network(userLogic.userInfo!.labelHighQualityAuthor.icon,width: 13,height: 13,),
-                                SizedBox(width: 5,),
-                                Text(userLogic.userInfo!.labelHighQualityAuthor.desc,style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,height: 1,color:Color.fromRGBO(52, 199, 0, 1)),)
+                                const SizedBox(width: 5,),
+                                Text(userLogic.userInfo!.labelHighQualityAuthor.desc,style: const TextStyle(fontSize: 10,fontWeight: FontWeight.w700,height: 1,color:Color.fromRGBO(52, 199, 0, 1)),)
                               ],),),
-                              if(userLogic.userInfo!=null&&userLogic.userInfo!.labelFamousUser.icon!='')Container(padding: EdgeInsets.fromLTRB(10, 2, 10, 2),decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(26)),color: Color.fromRGBO(255, 251, 210, 1)),child: Row(children: [
+                              if(userLogic.userInfo!=null&&userLogic.userInfo!.labelFamousUser.icon!='')Container(padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(26)),color: Color.fromRGBO(255, 251, 210, 1)),child: Row(children: [
                                 Image.network(userLogic.userInfo!.labelFamousUser.icon,width: 13,height: 13,),
-                                SizedBox(width: 5,),
-                                Text(userLogic.userInfo!.labelFamousUser.desc,style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,height: 1,color: Color.fromRGBO(255, 139, 48, 1)),)
+                                const SizedBox(width: 5,),
+                                Text(userLogic.userInfo!.labelFamousUser.desc,style: const TextStyle(fontSize: 10,fontWeight: FontWeight.w700,height: 1,color: Color.fromRGBO(255, 139, 48, 1)),)
                               ],),),
-                              if(userLogic.userInfo!=null&&(userLogic.userInfo!.labelHighQualityAuthor.icon!='' || userLogic.userInfo!.labelHighQualityAuthor.icon!=''))SizedBox(width: 10,),
+                              if(userLogic.userInfo!=null&&(userLogic.userInfo!.labelHighQualityAuthor.icon!='' || userLogic.userInfo!.labelHighQualityAuthor.icon!=''))const SizedBox(width: 10,),
                               ///等级
-                              if(userLogic.userInfo?.level == 1)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                children: [
+                              if(userLogic.userInfo?.level == 1)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                children: const [
                                   // Image.asset('assets/images/lv1.png',width: 12,height: 12,),SizedBox(width: 4,),
                                   Text('1',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
                               ),),
-                              if(userLogic.userInfo?.level == 2)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                children: [
+                              if(userLogic.userInfo?.level == 2)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                children: const [
                                   // Image.asset('assets/images/lv2.png',width: 12,height: 12,),SizedBox(width: 4,),
                                   Text('2',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
                               ),),
-                              if(userLogic.userInfo?.level == 3)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                children: [
+                              if(userLogic.userInfo?.level == 3)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                children: const [
                                   // Image.asset('assets/images/lv3.png',width: 12,height: 12,),SizedBox(width: 4,),
                                   Text('3',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
                               ),),
-                              if(userLogic.userInfo?.level == 4)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                children: [
+                              if(userLogic.userInfo?.level == 4)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                children: const [
                                   // Image.asset('assets/images/lv4.png',width: 12,height: 12,),SizedBox(width: 4,),
                                   Text('4',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
                               ),),
-                              if(userLogic.userInfo?.level == 5)Container(alignment: Alignment.center,width: 40,height: 18,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
-                                children: [
+                              if(userLogic.userInfo?.level == 5)Container(alignment: Alignment.center,width: 40,height: 18,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                children: const [
                                   // Image.asset('assets/images/lv5.png',width: 12,height: 12,),SizedBox(width: 4,),
                                   Text('5',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
@@ -769,7 +759,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                         Text(
                           maxLines: 2,
                           userLogic.userInfo?.slogan.toString() == '' ? '快来填写你的个人简介吧'.tr:userLogic.userInfo?.slogan.toString() ?? '',
-                          style: TextStyle(
+                          style: const TextStyle(
                             overflow: TextOverflow.ellipsis,
                             fontSize: 13,
                             color: Color(0xff666666),
@@ -826,7 +816,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                 )
               ],
             ),
-            SizedBox(height: 25,),
+            const SizedBox(height: 25,),
             // 下面展示位
             Container(
               decoration: BoxDecoration(
@@ -849,13 +839,13 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                 children: [
                   GestureDetector(child: Container(width: 80,child: Column(
                     children: [
-                      Text(userLogic.userInfo?.concern.toString() ?? '0',style: TextStyle(
+                      Text(userLogic.userInfo?.concern.toString() ?? '0',style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w600,
                         //fontFamily: 'PingFang SC',
                       ),),
-                      SizedBox(height: 5,),
-                      Text('关注'.tr,style: TextStyle(
+                      const SizedBox(height: 5,),
+                      Text('关注'.tr,style: const TextStyle(
                         fontSize: 12,
                         color: Color(0XFF999999),
                         //fontFamily: 'PingFang SC',
@@ -867,7 +857,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                         arguments:userLogic.userId);
                   },),
 
-                  SizedBox(
+                  const SizedBox(
                     width: 1,
                     height: 20,
                     child: DecoratedBox(
@@ -876,13 +866,13 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                   ),
                   GestureDetector(child: Container(width: 80,color: Colors.white,child: Column(
                     children: [
-                      Text(userLogic.userInfo?.fans.toString() ?? '0',style: TextStyle(
+                      Text(userLogic.userInfo?.fans.toString() ?? '0',style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w600,
                         //fontFamily: 'PingFang SC',
                       ),),
-                      SizedBox(height: 5,),
-                      Text('粉丝'.tr,style: TextStyle(
+                      const SizedBox(height: 5,),
+                      Text('粉丝'.tr,style: const TextStyle(
                         fontSize: 12,
                         color: Color(0XFF999999),
                         //fontFamily: 'PingFang SC',
@@ -894,7 +884,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                         //transition: Transition.leftToRight,
                         arguments:userLogic.userId);
                   },),
-                  SizedBox(
+                  const SizedBox(
                     width: 1,
                     height: 20,
                     child: DecoratedBox(
@@ -908,8 +898,8 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                         fontWeight: FontWeight.w600,
                         //fontFamily: 'PingFang SC',
                       ),),
-                      SizedBox(height: 5,),
-                      Text('获赞和收藏'.tr,style: TextStyle(
+                      const SizedBox(height: 5,),
+                      Text('获赞和收藏'.tr,style: const TextStyle(
                         fontSize: 12,
                         color: Color(0XFF999999),
                         //fontFamily: 'PingFang SC',
@@ -930,17 +920,17 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
 
   _infoTag(name, number) {
     return Container(
-      margin: EdgeInsets.only(left: 10, right: 10),
+      margin: const EdgeInsets.only(left: 10, right: 10),
       child: Column(
         children: [
           Text(
             number.toString(),
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white, fontSize: 13, fontWeight: FontWeight.w900),
           ),
           Text(
             name,
-            style: TextStyle(color: Colors.white, fontSize: 13),
+            style: const TextStyle(color: Colors.white, fontSize: 13),
           ),
         ],
       ),
@@ -1004,7 +994,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                   Container(
                     child:
                     Text('${(logic.progress * 100).toStringAsFixed(0)}%',
-                        style: TextStyle(fontSize: 16,
+                        style: const TextStyle(fontSize: 16,
                             color: Colors.white)),
                     width: 55,
                     height: 55,
@@ -1054,8 +1044,8 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
         return AlertDialog(
           backgroundColor: Colors.white,
           elevation: 0,
-          contentPadding:EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape:RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
+          contentPadding:const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape:const RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
           content: StatefulBuilder(
 
             builder: (BuildContext context, StateSetter setState) {
@@ -1068,12 +1058,12 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                       height: 66,
 
                       // padding: EdgeInsets.symmetric(vertical: 25, horizontal: 0),
-                      alignment: Alignment(0,0),
+                      alignment: const Alignment(0,0),
                       child: Text('赞和收藏'.tr),
                     ),
                     // Divider(height: 1.0,color: Color(0xffe4e4e4),),
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                      margin: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                       //decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red)),
                       // padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                       child: Row(
@@ -1082,8 +1072,8 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                           Row(
                             children: [
                               Image.asset('assets/images/xiaoxi.png',width: 30,height: 30,),
-                              SizedBox(width: 10,),
-                              Text('发布作品数'.tr,style: TextStyle(fontSize: 15,color: Color(0xff999999)),)
+                              const SizedBox(width: 10,),
+                              Text('发布作品数'.tr,style: const TextStyle(fontSize: 15,color: Color(0xff999999)),)
                             ],
                           ),
                           Text(userLogic.userInfo?.works.toString() ?? 0.toString())
@@ -1091,7 +1081,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       //decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red)),
                       // padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                       child: Row(
@@ -1100,8 +1090,8 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                           Row(
                             children: [
                               Image.asset('assets/images/dianzan.png',width: 30,height: 30,),
-                              SizedBox(width: 10,),
-                              Text('获得点赞数'.tr,style: TextStyle(fontSize: 15,color: Color(0xff999999)),)
+                              const SizedBox(width: 10,),
+                              Text('获得点赞数'.tr,style: const TextStyle(fontSize: 15,color: Color(0xff999999)),)
                             ],
                           ),
                           Text(userLogic.userInfo?.getLike.toString() ?? 0.toString())
@@ -1109,7 +1099,7 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       //decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.red)),
                       // padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                       child: Row(
@@ -1118,22 +1108,22 @@ class MeState extends  State<MePage> with AutomaticKeepAliveClientMixin{
                           Row(
                             children: [
                               Image.asset('assets/images/shoucang.png',width: 30,height: 30,),
-                              SizedBox(width: 10,),
-                              Text('获得收藏数'.tr,style: TextStyle(fontSize: 15,color: Color(0xff999999)),)
+                              const SizedBox(width: 10,),
+                              Text('获得收藏数'.tr,style: const TextStyle(fontSize: 15,color: Color(0xff999999)),)
                             ],
                           ),
                           Text(userLogic.userInfo?.getCollect.toString() ?? 0.toString())
                         ],
                       ),
                     ),
-                    SizedBox(height: 40,),
+                    const SizedBox(height: 40,),
                     GestureDetector(child:Container(
                       decoration: BoxDecoration(
                         color:  Colors.black,
                         borderRadius: BorderRadius.circular(65),
                       ),
-                      padding: EdgeInsets.fromLTRB(40, 15, 40, 15),
-                      child: Text("我知道了".tr,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),),
+                      padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
+                      child: Text("我知道了".tr,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w600),),
                     ) ,onTap: (){
                       Navigator.pop(context);
                     },)

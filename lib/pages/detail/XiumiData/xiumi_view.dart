@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_sound/flutter_sound.dart';
-import 'package:flutter_sound/public/flutter_sound_player.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lanla_flutter/common/Starrating.dart';
@@ -60,7 +59,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
   List<String> imageList = [];
   ContentProvider contentProvider = Get.put<ContentProvider>(ContentProvider());
   FlutterSoundPlayer playerModule = FlutterSoundPlayer();
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   ///播放
   bool Startplaying=false;
   ///暂停
@@ -110,7 +109,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
     var res= await contentProvider.contentGiftDetail(Receivinggiftspage,widget.dataSource.id);
     if(res.statusCode==200){
       var st =(getGiftAnalysisFromJson(res?.bodyString ?? ""));
-      if(st.length>0){
+      if(st.isNotEmpty){
         setState(() {
           Receivinggiftspage++;
           Receivinggiftsdata.addAll(st);
@@ -310,11 +309,11 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                           height: 12,
                           child: SvgPicture.asset(
                             "assets/icons/publish/position.svg",
-                            color: Color(0xff999999),
+                            color: const Color(0xff999999),
                           ),
                         ),
-                        SizedBox(width: 5,),
-                        GestureDetector(child: Container(child: Text(dataSource!.placeName,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),constraints: BoxConstraints(maxWidth: 160,),),onTap:(){
+                        const SizedBox(width: 5,),
+                        GestureDetector(child: Container(child: Text(dataSource!.placeName,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),constraints: const BoxConstraints(maxWidth: 160,),),onTap:(){
                           Get.toNamed('/public/geographical',arguments: dataSource!.placeId);
                         },)
                       ],
@@ -336,13 +335,13 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                       ? Colors.white
                       : Colors.white,
                   //设置四周圆角 角度
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
                   //设置四周边框
                   border: Border.all(
                       width: 1,
                       color: userLogic.getFollow(dataSource!.userId)
-                          ? Color(0xfff1f1f1)
-                          : Color(0xff000000)),
+                          ? const Color(0xfff1f1f1)
+                          : const Color(0xff000000)),
                 ),
                 padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
                 child: GestureDetector(
@@ -361,7 +360,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
             ):Center(
               child: Container(
                 margin: const EdgeInsets.only(left: 10),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.transparent,
                   //设置四周圆角 角度
                   borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -507,15 +506,15 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                                 final pictureUrl = element.attributes['src'];
                                 if (pictureUrl != null) {
 
-                                    return Container(padding:EdgeInsets.only(top: 10,bottom: 10),width: double.infinity,alignment:Alignment.center,child: Container(
+                                    return Container(padding:const EdgeInsets.only(top: 10,bottom: 10),width: double.infinity,alignment:Alignment.center,child: Container(
                                       width: element.attributes['style']!.contains('width:50%;')?MediaQuery.of(context).size.width*0.5:double.infinity,
                                       child: CachedNetworkImage(
                                         imageUrl: pictureUrl,
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) => Container(
                                           width: MediaQuery.of(context).size.width,
-                                          constraints: BoxConstraints(minHeight: 100),
-                                          child: Center(
+                                          constraints: const BoxConstraints(minHeight: 100),
+                                          child: const Center(
                                             child: CircularProgressIndicator(
                                               color: Color(0xffD1FF34),
                                               strokeWidth: 4,
@@ -530,7 +529,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                               if(element.localName == 'span'&&element.attributes['style']!.contains('color: rgb(95, 156, 239);')){
 
                                 if (element.text.startsWith("https")) {
-                                  return GestureDetector(child: Text(element.text,style: TextStyle(color:Color.fromRGBO(95, 156, 239,1) ),),onTap: () async {
+                                  return GestureDetector(child: Text(element.text,style: const TextStyle(color:Color.fromRGBO(95, 156, 239,1) ),),onTap: () async {
                                     await launchUrl(
                                       Uri.parse(element.text),
                                       mode: LaunchMode.externalApplication,
@@ -608,7 +607,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                   ),
                   if(dataSource!=null)TopicFormat(dataSource!.topics),
                   ///图文绑定礼物的位置
-                  if(dataSource!=null && dataSource.goodsList.length>0)SizedBox(height: 15,),
+                  if(dataSource!=null && dataSource.goodsList.length>0)const SizedBox(height: 15,),
                   if(dataSource!=null && dataSource.goodsList.length>0)Container(height: 60,width: double.infinity,
                     child: ListView(
                         shrinkWrap: true,
@@ -616,7 +615,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                         scrollDirection: Axis.horizontal,
                         children:[
                           for(var i=0;i<dataSource.goodsList.length;i++)
-                            GestureDetector(child:Container(margin: EdgeInsets.only(left: 10),height: 60,padding: EdgeInsets.all(10),decoration: BoxDecoration(
+                            GestureDetector(child:Container(margin: const EdgeInsets.only(left: 10),height: 60,padding: const EdgeInsets.all(10),decoration: const BoxDecoration(
                               color: Color(0xffFAFAFA),
                               borderRadius: BorderRadius.all(Radius.circular(5)),
                             ),child: Row(children: [
@@ -628,7 +627,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                                 //padding: EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    border: Border.all(width: 0.5,color: Color(0xfff5f5f5))
+                                    border: Border.all(width: 0.5,color: const Color(0xfff5f5f5))
                                 ),
                                 child: Image.network(
                                   dataSource.goodsList[i].thumbnail,
@@ -637,12 +636,12 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                                   height: 40,
                                 ),
                               ),
-                              SizedBox(width: 8,),
+                              const SizedBox(width: 8,),
                               Column(crossAxisAlignment:CrossAxisAlignment.start,mainAxisAlignment:MainAxisAlignment.center,children: [
-                                Container(constraints: BoxConstraints(maxWidth: 250,),child:
+                                Container(constraints: const BoxConstraints(maxWidth: 250,),child:
                                 Text(dataSource.goodsList[i].title,overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,style: TextStyle(fontSize: 14),),),
-                                SizedBox(height: 5,),
+                                  maxLines: 1,style: const TextStyle(fontSize: 14),),),
+                                const SizedBox(height: 5,),
                                 XMStartRatingtwo(rating: double.parse(dataSource.goodsList[i].score) ,showtext:true)
                               ],)
                             ],),),onTap: (){
@@ -654,7 +653,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                             },)
                         ]),
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   if(dataSource!=null)Padding(
                     padding: const EdgeInsets.only(top: 10, right: 20),
                     child: Row(
@@ -712,7 +711,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                                     "assets/svg/buxihuan.svg",
                                   ),
                                 ),
-                                SizedBox(width: 0,),
+                                const SizedBox(width: 0,),
                                 // Text(
                                 //   '举报'.tr,
                                 //   style: const TextStyle(
@@ -738,7 +737,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          dataSource!.comments.toString() + ' ' + '条评论'.tr,
+                          '${dataSource!.comments} ${'条评论'.tr}',
                           style: TextStyle(
                               color: HexColor('727272'), fontSize: 14),
                         ),
@@ -751,7 +750,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: 0),
+                    padding: const EdgeInsets.only(bottom: 0),
                     child: Container(),
                   ),
                   //CommentWidget.ListRender(state.commentList),
@@ -759,7 +758,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
               ),
             ),
             // 评论
-            if(dataSource!=null)CommentWidget(dataSource!.id,'',[],[],updateCommentCallbak: () {
+            if(dataSource!=null)CommentWidget(dataSource!.id,'',const [],const [],updateCommentCallbak: () {
               updateCommentTotal();
             })
           ],
@@ -798,7 +797,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                 },
                 child: Container(
                   height: 44,
-                  margin: EdgeInsets.only(left: 20,right: 20),
+                  margin: const EdgeInsets.only(left: 20,right: 20),
                   padding: const EdgeInsets.fromLTRB(15, 3, 15, 3),
                   decoration: BoxDecoration(
                     color: HexColor('#F5F5F5'),
@@ -808,7 +807,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                   child: Row(
                     children: [
                       SvgPicture.asset('assets/svg/bi.svg',width: 18,height: 18,),
-                      SizedBox(width: 8,),
+                      const SizedBox(width: 8,),
                       Text(
                         '${'说点什么'.tr}...',
                         style: const TextStyle(
@@ -849,7 +848,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                       setState(() {});
                       eventBus.fire(UpdateHomeItemList(status, widget.dataSource!.id));
                     },
-                    child:Container(color: Colors.transparent,margin:EdgeInsets.only(left: 20),child:Column(
+                    child:Container(color: Colors.transparent,margin:const EdgeInsets.only(left: 20),child:Column(
                       mainAxisAlignment:MainAxisAlignment.center,
                       children: [
                         userLogic.getLike(widget.dataSource!.id)
@@ -899,7 +898,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                       setState(() {});
                     },
                     child: Container(
-                      color: Colors.transparent,margin:EdgeInsets.only(left: 20),child:Column(
+                      color: Colors.transparent,margin:const EdgeInsets.only(left: 20),child:Column(
                       mainAxisAlignment:MainAxisAlignment.center,
                       children: [
                         userLogic.getCollect(widget.dataSource!.id)
@@ -946,7 +945,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                             updateCommentTotal();
                           });
                     },
-                    child:Container(color: Colors.transparent,margin:EdgeInsets.only(left: 0),child:Column(
+                    child:Container(color: Colors.transparent,margin:const EdgeInsets.only(left: 0),child:Column(
                       mainAxisAlignment:MainAxisAlignment.center,
                       children: [
                         Image.asset(
@@ -980,7 +979,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                         Get.toNamed('/public/loginmethod');
                         return;
                       }
-                      if(Giftlist.length>0){
+                      if(Giftlist.isNotEmpty){
                         giftshowBottomSheet(context);
                       }
                     },
@@ -1034,11 +1033,11 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                 return Container(
 
                   height: MediaQuery.of(context).size.height/2 + 40,
-                  decoration: new BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
-                      borderRadius: new BorderRadius.only(
-                          topLeft: const Radius.circular(10.0),
-                          topRight: const Radius.circular(10.0))
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.0),
+                          topRight: Radius.circular(10.0))
                   ),
                   child:
                   // Column(
@@ -1057,18 +1056,18 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                   //   ],
                   // )
                   Column(children: [
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Container(
                       width: 25,
                       height: 3,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10),),
                           color: Color(0xffe4e4e4)
                       ),
                     ),
-                    SizedBox(height: 15,),
-                    Container(padding: EdgeInsets.only(left: 20,right: 20),alignment: Alignment.centerRight,child:Text('礼物'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),) ,),
-                    SizedBox(height: 22,),
+                    const SizedBox(height: 15,),
+                    Container(padding: const EdgeInsets.only(left: 20,right: 20),alignment: Alignment.centerRight,child:Text('礼物'.tr,style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 16),) ,),
+                    const SizedBox(height: 22,),
                     Container(child: CarouselSlider(
                       options: CarouselOptions(
                           height: 200,
@@ -1084,7 +1083,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                       // carouselController: _controller,
                       items: Giftlist
                           .map((item) => Container(
-                        padding: EdgeInsets.only(left: 12,right: 12),
+                        padding: const EdgeInsets.only(left: 12,right: 12),
                         width: double.infinity,
                         child: Wrap(
                             alignment: WrapAlignment.spaceBetween,
@@ -1093,9 +1092,9 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                               for(var i=0;i<item.length;i++)
                                 GestureDetector(child:Container(decoration:BoxDecoration(
                                     border: Border.all(width: 1,color: giftItem.id==item[i].id?Colors.black:Colors.white),
-                                    borderRadius: BorderRadius.all(Radius.circular(10.0))
+                                    borderRadius: const BorderRadius.all(Radius.circular(10.0))
                                 ),width: (MediaQuery.of(context).size.width - 54) / 4,height: 100,
-                                  padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                  padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                                   child: Column(
                                     mainAxisAlignment:MainAxisAlignment.spaceBetween,
                                     children: [
@@ -1103,8 +1102,8 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                                       Image.network(item[i].imagePath,width: 50,height: 50,),
                                       Row(children: [
                                         Image.asset(item[i].type==1?'assets/images/jinbi.png':'assets/images/beike.png',width: 15,height: 15,),
-                                        SizedBox(width: 5,),
-                                        Text(item[i].price.toString(),style: TextStyle(fontSize: 12),)
+                                        const SizedBox(width: 5,),
+                                        Text(item[i].price.toString(),style: const TextStyle(fontSize: 12),)
                                       ],)
                                     ],),
                                 ),onTap: (){
@@ -1128,7 +1127,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                           child: Container(
                             width: 5.0,
                             height: 5.0,
-                            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
+                            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: (Theme.of(context).brightness == Brightness.dark
@@ -1139,13 +1138,13 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                         );
                       }).toList(),
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     Container(child: Row(
                       mainAxisAlignment:MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(child:
-                        Container(padding: EdgeInsets.fromLTRB(30, 8, 30, 8),
-                          child: Text('赠送'.tr,style: TextStyle(color: Colors.white),),decoration: BoxDecoration(
+                        Container(padding: const EdgeInsets.fromLTRB(30, 8, 30, 8),
+                          child: Text('赠送'.tr,style: const TextStyle(color: Colors.white),),decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(50.0)),color: Colors.black,
                           ),),onTap: () async {
                           if(jieliu){
@@ -1181,7 +1180,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                               shoulilist();
                               songift(context,givingifts.body['imagePath']);
                               Timer.periodic(
-                                  Duration(milliseconds: 2000),(timer){
+                                  const Duration(milliseconds: 2000),(timer){
                                 Navigator.pop(context);
                                 timer.cancel();//取消定时器
                               }
@@ -1194,16 +1193,16 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                           }
 
                         },),
-                        Container(decoration: BoxDecoration(
+                        Container(decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(50.0)),color: Color(0xfff5f5f5),
-                        ),padding: EdgeInsets.fromLTRB(15, 0, 15, 0),height: 35,child: Row(children: [
+                        ),padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),height: 35,child: Row(children: [
                           Image.asset(giftItem.type==1?'assets/images/jinbi.png':'assets/images/beike.png',width: 15,height: 15,),
-                          SizedBox(width: 5,),
+                          const SizedBox(width: 5,),
                           Container(child: Text(giftItem.type==1?Balancequery['laGold'].toString():Balancequery['nacre'].toString(),style: TextStyle(
-                              color: giftItem.type==1?Color(0xffFFA800):Color(0xffFFA8C7),fontWeight: FontWeight.w600
+                              color: giftItem.type==1?const Color(0xffFFA800):const Color(0xffFFA8C7),fontWeight: FontWeight.w600
                           ),),),
-                          SizedBox(width: 10,),
-                          GestureDetector(child:Text(giftItem.type==1?'充值la币'.tr:'贝壳'.tr,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w600),),onTap: (){
+                          const SizedBox(width: 10,),
+                          GestureDetector(child:Text(giftItem.type==1?'充值la币'.tr:'贝壳'.tr,style: const TextStyle(fontSize: 12,fontWeight: FontWeight.w600),),onTap: (){
                             Navigator.pop(context);
                             if(giftItem.type==1){
                               Get.to(AmountPage(),arguments: 1);
@@ -1211,7 +1210,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                               Get.to(AmountPage(),arguments: 2);
                             }
                           },),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                           SvgPicture.asset(
                             "assets/icons/publish/arrow.svg",
                             width: 10,
@@ -1219,8 +1218,8 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                           ),
                         ],)),
                       ],
-                    ),padding: EdgeInsets.only(left: 20,right: 20)),
-                    SizedBox(height: 20,),
+                    ),padding: const EdgeInsets.only(left: 20,right: 20)),
+                    const SizedBox(height: 20,),
                   ]),
 
                 );
@@ -1293,7 +1292,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                 Container(
                   width:  MediaQuery.of(context).size.width,
                   //height: height,
-                  child: Center(
+                  child: const Center(
                     child: CircularProgressIndicator(
                       color: Color(0xffD1FF34),
                       strokeWidth: 4,
@@ -1322,7 +1321,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
 
   // 更新当前图片评论数
   updateCommentTotal() async {
-    Future.delayed(Duration(seconds: 1), () async {
+    Future.delayed(const Duration(seconds: 1), () async {
       HomeDetails? newData = await contentProvider.Detail(dataSource!.id);
       setState(() {
         dataSource!.comments = newData!.comments;
@@ -1340,8 +1339,8 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
 
         return AlertDialog(
           backgroundColor: Colors.transparent,
-          contentPadding:EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape:RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
+          contentPadding:const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape:const RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
           content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -1350,15 +1349,15 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
 
                   width: 270,
                   height: 270,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10))
                   ),
                   child: Column(children: [
-                    SizedBox(height: 40,),
+                    const SizedBox(height: 40,),
                     Image.network(image,width: 150,height: 150,),
-                    SizedBox(height: 22,),
-                    Text('赠送成功'.tr,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
+                    const SizedBox(height: 22,),
+                    Text('赠送成功'.tr,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w600),)
                   ],),
                 ),
               ]),
@@ -1379,8 +1378,8 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
 
         return AlertDialog(
           backgroundColor: Colors.transparent,
-          contentPadding:EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape:RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
+          contentPadding:const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape:const RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
           content: StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
               Future<void> _updateList() async {
@@ -1391,7 +1390,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                   var res= await contentProvider.contentGiftDetail(Receivinggiftspage,widget.dataSource.id);
                   if(res.statusCode==200){
                     var st =(getGiftAnalysisFromJson(res?.bodyString ?? ""));
-                    if(st.length>0){
+                    if(st.isNotEmpty){
                       setState(() {
                         Receivinggiftspage++;
                         Receivinggiftsdata.addAll(st);
@@ -1422,8 +1421,8 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                       //   maxHeight: 436,
                       // ),
                       height: 436,
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
                           color: Colors.white, borderRadius:BorderRadius.all(Radius.circular(20))
                       ),
                       // decoration: BoxDecoration(
@@ -1437,28 +1436,28 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                           GestureDetector(child: Container(alignment: Alignment.centerRight,child: SvgPicture.asset("assets/svg/cha.svg", color: Colors.black, width:12, height: 12,),),onTap: (){
                             Navigator.pop(context);
                           },),
-                          SizedBox(height: 5,),
-                          Text('收到'.tr,style: TextStyle(fontWeight: FontWeight.w700),),
-                          SizedBox(height: 5,),
+                          const SizedBox(height: 5,),
+                          Text('收到'.tr,style: const TextStyle(fontWeight: FontWeight.w700),),
+                          const SizedBox(height: 5,),
                           Expanded(child:
 
-                          Receivinggiftsdata.length>0?ListView(controller: _scrollController,physics: BouncingScrollPhysics(),children: [
+                          Receivinggiftsdata.isNotEmpty?ListView(controller: _scrollController,physics: const BouncingScrollPhysics(),children: [
                             for(var i=0;i<Receivinggiftsdata.length;i++)
-                              Container(margin: EdgeInsets.only(top: 20),child:  Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
+                              Container(margin: const EdgeInsets.only(top: 20),child:  Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
                                 //Image.network('',width: 40,height: 40,),
                                 Row(children: [
-                                  Container(clipBehavior: Clip.hardEdge,width: 40,height: 40,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))),child: Image.network(Receivinggiftsdata[i].headimg,fit: BoxFit.cover,),),
-                                  SizedBox(width: 10,),
+                                  Container(clipBehavior: Clip.hardEdge,width: 40,height: 40,decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50))),child: Image.network(Receivinggiftsdata[i].headimg,fit: BoxFit.cover,),),
+                                  const SizedBox(width: 10,),
                                   Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                    Text(Receivinggiftsdata[i].nickname,style: TextStyle(),),
-                                    SizedBox(height: 5,),
+                                    Text(Receivinggiftsdata[i].nickname,style: const TextStyle(),),
+                                    const SizedBox(height: 5,),
                                     Row(children: [
                                       if (Receivinggiftsdata[i].sex == 1)
                                         Container(
                                           alignment: Alignment.center,
                                           width: 24,
                                           height: 16,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                               borderRadius:
                                               BorderRadius.all(
                                                   Radius.circular(
@@ -1478,7 +1477,7 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                                           alignment: Alignment.center,
                                           width: 24,
                                           height: 16,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                               borderRadius:
                                               BorderRadius.all(
                                                   Radius.circular(
@@ -1493,29 +1492,29 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                                                 height: 10.0),
                                           ),
                                         ),
-                                      SizedBox(width: 5,),
-                                      if(Receivinggiftsdata[i].level == 1)Container(alignment: Alignment.center,width: 50,height: 16,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      const SizedBox(width: 5,),
+                                      if(Receivinggiftsdata[i].level == 1)Container(alignment: Alignment.center,width: 50,height: 16,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
                                         children: [
-                                          Image.asset('assets/images/lv1.png',width: 10,height: 10,),SizedBox(width: 4,),Text('1',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
+                                          Image.asset('assets/images/lv1.png',width: 10,height: 10,),const SizedBox(width: 4,),const Text('1',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),const Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
                                       ),),
-                                      if(Receivinggiftsdata[i].level == 2)Container(alignment: Alignment.center,width: 50,height: 16,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      if(Receivinggiftsdata[i].level == 2)Container(alignment: Alignment.center,width: 50,height: 16,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
                                         children: [
-                                          Image.asset('assets/images/lv2.png',width: 10,height: 10,),SizedBox(width: 4,),Text('2',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
+                                          Image.asset('assets/images/lv2.png',width: 10,height: 10,),const SizedBox(width: 4,),const Text('2',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),const Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
                                       ),),
-                                      if(Receivinggiftsdata[i].level == 3)Container(alignment: Alignment.center,width: 50,height: 16,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      if(Receivinggiftsdata[i].level == 3)Container(alignment: Alignment.center,width: 50,height: 16,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
                                         children: [
-                                          Image.asset('assets/images/lv3.png',width: 10,height: 10,),SizedBox(width: 4,),Text('3',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
+                                          Image.asset('assets/images/lv3.png',width: 10,height: 10,),const SizedBox(width: 4,),const Text('3',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),const Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
 
                                       ),),
-                                      if(Receivinggiftsdata[i].level == 4)Container(alignment: Alignment.center,width: 50,height: 16,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      if(Receivinggiftsdata[i].level == 4)Container(alignment: Alignment.center,width: 50,height: 16,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
                                         children: [
-                                          Image.asset('assets/images/lv4.png',width: 10,height: 10,),SizedBox(width: 4,),Text('4',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
+                                          Image.asset('assets/images/lv4.png',width: 10,height: 10,),const SizedBox(width: 4,),const Text('4',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),const Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
                                       ),),
-                                      if(Receivinggiftsdata[i].level == 5)Container(alignment: Alignment.center,width: 50,height: 16,decoration:BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
+                                      if(Receivinggiftsdata[i].level == 5)Container(alignment: Alignment.center,width: 50,height: 16,decoration:const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),color: Color(0xfff5f5f5)),child: Row(mainAxisAlignment:MainAxisAlignment.center,
                                         children: [
-                                          Image.asset('assets/images/lv5.png',width: 10,height: 10,),SizedBox(width: 4,),Text('5',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
+                                          Image.asset('assets/images/lv5.png',width: 10,height: 10,),const SizedBox(width: 4,),const Text('5',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),),const Text('Lv',style: TextStyle(fontSize: 10,fontWeight: FontWeight.w700,fontFamily: 'Baloo Bhai 2',color: Color(0xffd9d9d9)),)],
                                       ),),
 
                                     ],)
@@ -1523,21 +1522,21 @@ class xiumidetailsState extends State<xiumidetailsPage> with WidgetsBindingObser
                                 ],),
                                 Row(
                                   children: [
-                                    Text(Receivinggiftsdata[i].giftCount.toString(),style: TextStyle(fontFamily: 'Droid Arabic Kufi',fontSize: 15),),
-                                    SizedBox(width: 6,),
-                                    Text('x',style: TextStyle(fontFamily: 'Droid Arabic Kufi',fontSize: 15,fontWeight: FontWeight.w700),),
-                                    SizedBox(width: 6,),
+                                    Text(Receivinggiftsdata[i].giftCount.toString(),style: const TextStyle(fontFamily: 'Droid Arabic Kufi',fontSize: 15),),
+                                    const SizedBox(width: 6,),
+                                    const Text('x',style: TextStyle(fontFamily: 'Droid Arabic Kufi',fontSize: 15,fontWeight: FontWeight.w700),),
+                                    const SizedBox(width: 6,),
                                     Image.network(Receivinggiftsdata[i].imagePath,width: 38,height: 38,)
                                   ],
                                 )
                               ],),),
                           ],):Column(children: [
-                            SizedBox(height: 45,),
+                            const SizedBox(height: 45,),
                             Image.asset('assets/images/nodatashuju.png',width: 148,height: 148,),
-                            SizedBox(height: 30,),
-                            Text('暂无好友送礼'.tr,style: TextStyle(fontSize: 12),),
-                            SizedBox(height: 15,),
-                            Text('快去给她的作品进行打赏吧'.tr,style: TextStyle(fontSize: 12)),
+                            const SizedBox(height: 30,),
+                            Text('暂无好友送礼'.tr,style: const TextStyle(fontSize: 12),),
+                            const SizedBox(height: 15,),
+                            Text('快去给她的作品进行打赏吧'.tr,style: const TextStyle(fontSize: 12)),
                           ],)
                           )
                         ],
@@ -1678,7 +1677,7 @@ class XMStartRatingtwo extends StatelessWidget {
   final double spacing; // 星星间的间隙
   final bool showtext; // 星星间的间隙
   // 自定义构造函数
-  XMStartRatingtwo({
+  const XMStartRatingtwo({
     required this.rating,
     required this.showtext,
     this.totalRating = 5,
@@ -1696,8 +1695,8 @@ class XMStartRatingtwo extends StatelessWidget {
       child: Row(
         //mainAxisSize: MainAxisSize.min,
         children: [
-          if(this.showtext)Text("${this.rating}",style: TextStyle(fontSize: 12,fontWeight: FontWeight.w600,color: Color(0xff9BE400),height: 1.2),),
-          if(this.showtext)SizedBox(width: 5,),
+          if(showtext)Text("${rating}",style: const TextStyle(fontSize: 12,fontWeight: FontWeight.w600,color: Color(0xff9BE400),height: 1.2),),
+          if(showtext)const SizedBox(width: 5,),
           Stack(
             children: [
               getUnSelectStarWidget(),
@@ -1712,22 +1711,22 @@ class XMStartRatingtwo extends StatelessWidget {
 
   // 获取背景：未填充的星星
   List<Widget> _getUnSelectStars() {
-    return List<Widget>.generate(this.count, (index) {
-      return Icon(Icons.star_outline_rounded,size: size,color: Color(0xffD9D9D9),);
+    return List<Widget>.generate(count, (index) {
+      return Icon(Icons.star_outline_rounded,size: size,color: const Color(0xffD9D9D9),);
     });
   }
 
   // 填充星星
   List<Widget> _getSelectStars() {
-    return List<Widget>.generate(this.count, (index) {
-      return Icon(Icons.star, size: size, color: Color(0xFF9BE400),);
+    return List<Widget>.generate(count, (index) {
+      return Icon(Icons.star, size: size, color: const Color(0xFF9BE400),);
     });
   }
 
   // 获取背景星星的组件
   Widget getUnSelectStarWidget() {
     return  Wrap(
-      spacing: this.spacing,
+      spacing: spacing,
       alignment: WrapAlignment.spaceBetween,
       children: _getUnSelectStars(),
     );
@@ -1736,18 +1735,18 @@ class XMStartRatingtwo extends StatelessWidget {
   // 获取针对整个选中的星星裁剪的组件
   Widget getSelectStarWidget() {
     // 应该展示几个星星 --- 例如：4.6个星星
-    final double showStarCount = this.count * (this.rating/this.totalRating);
+    final double showStarCount = count * (rating/totalRating);
     final int fillStarCount = showStarCount.floor();// 满星的数量
 
     final double halfStarCount = showStarCount - fillStarCount; // 半星的数量
     // 最终需要裁剪的宽度
-    final double clipWith = fillStarCount*(this.size + this.spacing) + halfStarCount*this.size;
+    final double clipWith = fillStarCount*(size + spacing) + halfStarCount*size;
     return ClipRect(
       clipper: XMStarClippertwo(clipWith),
       child: Container(
         child: Wrap(
           textDirection: TextDirection.ltr,
-          spacing: this.spacing,
+          spacing: spacing,
           //alignment: WrapAlignment.center,
           children: _getSelectStars(),
         ),

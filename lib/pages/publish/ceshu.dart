@@ -55,7 +55,7 @@ class _KeyboardScrollDemoState extends State<KeyboardScrollDemo>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Keyboard Scroll Demo'),
+        title: const Text('Flutter Keyboard Scroll Demo'),
       ),
       body: Container(color: Colors.white, child:
       // KeyboardActions(config: KeyboardActionsConfig(
@@ -72,13 +72,13 @@ class _KeyboardScrollDemoState extends State<KeyboardScrollDemo>
         SingleChildScrollView(
         controller: _scrollController,
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
 
               TextField(
                 controller: _textController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter some text',
                 ),
               ),
@@ -88,17 +88,17 @@ class _KeyboardScrollDemoState extends State<KeyboardScrollDemo>
               //     hintText: 'Enter some more text',
               //   ),
               // ),
-              GestureDetector(child: Text('12222'),onTap: (){
+              GestureDetector(child: const Text('12222'),onTap: (){
                 final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
                 if (keyboardHeight == 0) return; // Keyboard closed
                 _scrollController.animateTo(
                   _scrollController.position.maxScrollExtent,
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   curve: Curves.easeOut,
                 );
               },),
-              SizedBox(height: 800,),
-              Text('1223333333'),
+              const SizedBox(height: 800,),
+              const Text('1223333333'),
               // Add more text fields as needed
             ],
           ),

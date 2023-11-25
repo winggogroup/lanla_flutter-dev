@@ -37,7 +37,7 @@ class MessageState extends State<MessagePage> {
   final WebSocketes = Get.find<StartDetailLogic>();
 
   final userLogicone = Get.find<UserLogic>(); // 基础数据
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   NewConcernStatus status = NewConcernStatus.init;
   bool oneData = false; // 是否首次请求过-用于展示等待页面
   void initState() {
@@ -67,7 +67,7 @@ class MessageState extends State<MessagePage> {
 
 
     // 延迟1秒请求，防止速率过快
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       status = NewConcernStatus.normal;
     });
     if (result.statusCode == 200) {
@@ -133,10 +133,10 @@ class MessageState extends State<MessagePage> {
             children: [
               Container(
                 height: 50,
-                alignment: FractionalOffset(0.5, 0.5),
+                alignment: const FractionalOffset(0.5, 0.5),
                 decoration: BoxDecoration( // 边色与边宽度
                   // color: Colors.white,
-                  color: Color(0xffffffff),
+                  color: const Color(0xffffffff),
                   boxShadow: [
                     BoxShadow(
                       // blurRadius: 5, //阴影范围
@@ -145,11 +145,11 @@ class MessageState extends State<MessagePage> {
                     ),
                   ],),
                 child: ConstrainedBox(
-                  constraints: BoxConstraints.expand(),
+                  constraints: const BoxConstraints.expand(),
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Text('我的消息'.tr, style: TextStyle(
+                      Text('我的消息'.tr, style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
                       )),
@@ -159,7 +159,7 @@ class MessageState extends State<MessagePage> {
                           onTap: () {
                             Get.back();
                           },
-                          child: Center(
+                          child: const Center(
                             child: Icon(
                               Icons.arrow_back_ios,
                               color: Colors.black,
@@ -173,7 +173,7 @@ class MessageState extends State<MessagePage> {
                 ),
               ),
               Divider(height: 1.0, color: Colors.grey.shade200,),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Expanded(child:
               RefreshIndicator(onRefresh: _onRefresh,
                   child:ListView(
@@ -191,8 +191,8 @@ class MessageState extends State<MessagePage> {
                                     Container(
                                       width: 55,
                                       height: 55,
-                                      alignment: FractionalOffset(1, 0),
-                                      decoration: BoxDecoration(
+                                      alignment: const FractionalOffset(1, 0),
+                                      decoration: const BoxDecoration(
                                         //color: Colors.red,
                                         image: DecorationImage(
                                           image: AssetImage(
@@ -203,7 +203,7 @@ class MessageState extends State<MessagePage> {
                                       child: state.likeComment>0?Container(
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                                 Radius.circular(50)),
                                             color: Colors.red,
                                             border: Border.all(color: Colors.white,width: 2)
@@ -211,13 +211,13 @@ class MessageState extends State<MessagePage> {
                                         width: 20,
                                         height: 20,
                                         child: Text(state.likeComment.toString(),
-                                          style: TextStyle(color: Colors.white,
+                                          style: const TextStyle(color: Colors.white,
                                               fontSize: 8,
                                               height: 1.0),),
                                       ):Container(),
                                     ),
-                                    SizedBox(height: 12,),
-                                    Text('评论和@'.tr, style: TextStyle(
+                                    const SizedBox(height: 12,),
+                                    Text('评论和@'.tr, style: const TextStyle(
                                         fontSize: 13,
                                         color: Color(0xff000000),
                                     ))
@@ -235,8 +235,8 @@ class MessageState extends State<MessagePage> {
                                     Container(
                                       width: 55,
                                       height: 55,
-                                      alignment: FractionalOffset(1, 0),
-                                      decoration: BoxDecoration(
+                                      alignment: const FractionalOffset(1, 0),
+                                      decoration: const BoxDecoration(
                                         //color: Colors.red,
                                         image: DecorationImage(
                                           image: AssetImage(
@@ -247,7 +247,7 @@ class MessageState extends State<MessagePage> {
                                       child: state.concern>0?Container(
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                                 Radius.circular(50)),
                                             color: Colors.red,
                                             border: Border.all(color: Colors.white,width: 2)
@@ -255,13 +255,13 @@ class MessageState extends State<MessagePage> {
                                         width: 20,
                                         height:20,
                                         child: Text(state.concern.toString(),
-                                          style: TextStyle(color: Colors.white,
+                                          style: const TextStyle(color: Colors.white,
                                               fontSize: 8,
                                               height: 1.0),),
                                       ):Container(),
                                     ),
-                                    SizedBox(height: 12),
-                                    Text('新增关注'.tr, style: TextStyle(
+                                    const SizedBox(height: 12),
+                                    Text('新增关注'.tr, style: const TextStyle(
                                         fontSize: 13,
                                         color: Color(0xff000000),
                                     ),)
@@ -281,8 +281,8 @@ class MessageState extends State<MessagePage> {
                                     Container(
                                       width: 55,
                                       height: 55,
-                                      alignment: FractionalOffset(1, 0),
-                                      decoration: BoxDecoration(
+                                      alignment: const FractionalOffset(1, 0),
+                                      decoration: const BoxDecoration(
                                         //color: Colors.red,
                                         image: DecorationImage(
                                           image: AssetImage('assets/images/zan@.png'),
@@ -292,7 +292,7 @@ class MessageState extends State<MessagePage> {
                                       child: state.likeCollect>0?Container(
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                                 Radius.circular(50)),
                                             color: Colors.red,
                                             border: Border.all(color: Colors.white,width: 2)
@@ -300,13 +300,13 @@ class MessageState extends State<MessagePage> {
                                         width: 20,
                                         height: 20,
                                         child: Text(state.likeCollect.toString(),
-                                          style: TextStyle(color: Colors.white,
+                                          style: const TextStyle(color: Colors.white,
                                               fontSize: 8,
                                               height: 1.0),),
                                       ):Container(),
                                     ),
-                                    SizedBox(height: 12,),
-                                    Text('赞和收藏'.tr, style: TextStyle(
+                                    const SizedBox(height: 12,),
+                                    Text('赞和收藏'.tr, style: const TextStyle(
                                         fontSize: 13,
                                         color: Color(0xff000000),
                                     ))
@@ -320,7 +320,7 @@ class MessageState extends State<MessagePage> {
                             ],
                           );
                         }),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         // Container(
                         //   padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                         //   decoration: BoxDecoration(border: Border.all(color: Colors.red,width: 1)),
@@ -330,9 +330,9 @@ class MessageState extends State<MessagePage> {
                         Column(children: [
                           GetBuilder<MessageLogic>(builder: (logic) {
                             return GestureDetector(child: Container(
-                              padding: EdgeInsets.fromLTRB(0, 25, 0, 25),
-                              margin: EdgeInsets.only(left: 15,right: 15),
-                              decoration: BoxDecoration(border: Border(
+                              padding: const EdgeInsets.fromLTRB(0, 25, 0, 25),
+                              margin: const EdgeInsets.only(left: 15,right: 15),
+                              decoration: const BoxDecoration(border: Border(
                                   bottom: BorderSide(
                                       width: 1, color: Color(0xffF1F1F1)))),
                               child: Row(
@@ -360,7 +360,7 @@ class MessageState extends State<MessagePage> {
                                     Positioned(top: -5,right: -5,child: state.systemnum>0?Container(
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(50)),
                                           color: Colors.red,
                                           border: Border.all(color: Colors.white,width: 2)
@@ -368,12 +368,12 @@ class MessageState extends State<MessagePage> {
                                       width: 20,
                                       height: 20,
                                       child: Text(state.systemnum.toString(),
-                                        style: TextStyle(color: Colors.white,
+                                        style: const TextStyle(color: Colors.white,
                                             fontSize: 8,
                                             height: 1.0),),
                                     ):Container())
                                   ],),
-                                  if(state.System.length>0) SizedBox(width: 15,),
+                                  if(state.System.length>0) const SizedBox(width: 15,),
                                   if(state.System.length>0) Expanded(
                                     flex: 1,
                                     child: Column(
@@ -387,22 +387,22 @@ class MessageState extends State<MessagePage> {
                                             Expanded(child: Text(
                                               state.System[0].title,
                                               overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600,
                                               ),)),
-                                            SizedBox(width: 18,),
+                                            const SizedBox(width: 18,),
                                             Text(state.System[0].createdAt,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 12,
                                                   color: Color(0xff999999),
                                               ),),
                                           ],
                                         ),
-                                        SizedBox(height: 10,),
+                                        const SizedBox(height: 10,),
                                         Text(state.System[0].text,
                                           overflow: TextOverflow.ellipsis,
-                                          maxLines: 2, style: TextStyle(
+                                          maxLines: 2, style: const TextStyle(
                                               fontSize: 14,
                                               color: Color(0xff666666),
                                           ),),
@@ -423,9 +423,9 @@ class MessageState extends State<MessagePage> {
                                 //   itemCount: 2,
                                 itemBuilder: (context, i) {
                                   return GestureDetector(child: Container(
-                                    padding: EdgeInsets.fromLTRB(0, 25, 0, 25),
-                                    margin: EdgeInsets.only(left: 15,right: 15),
-                                    decoration: BoxDecoration(border: Border(
+                                    padding: const EdgeInsets.fromLTRB(0, 25, 0, 25),
+                                    margin: const EdgeInsets.only(left: 15,right: 15),
+                                    decoration: const BoxDecoration(border: Border(
                                         bottom: BorderSide(
                                             width: 1, color: Color(0xffF1F1F1)))),
                                     child: Row(
@@ -433,34 +433,34 @@ class MessageState extends State<MessagePage> {
                                         GestureDetector(child: Container(
                                           width: 45,
                                           height: 45,
-                                          alignment: FractionalOffset(1, 0),
+                                          alignment: const FractionalOffset(1, 0),
                                           decoration: BoxDecoration(
                                             //color: Colors.red,
                                               image: DecorationImage(
                                                 image: NetworkImage(userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]['Avatar']),
                                                 fit: BoxFit.fill, // 完全填充
                                               ),
-                                              borderRadius: BorderRadius.all(Radius.circular(100))
+                                              borderRadius: const BorderRadius.all(Radius.circular(100))
                                           ),
                                           child: userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]['Messagesnum']!=null&&userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]['Messagesnum']>0?Container(
                                             alignment: Alignment.center,
                                             decoration: BoxDecoration(
                                                 color: Colors.red,
-                                                borderRadius: BorderRadius.all(
+                                                borderRadius: const BorderRadius.all(
                                                     Radius.circular(50)),
                                                 border: Border.all(color: Colors.white,width: 2)
                                             ),
                                             width: 20,
                                             height: 20,
                                             child: Text(userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]['Messagesnum'].toString(),
-                                              style: TextStyle(color: Colors.white,
+                                              style: const TextStyle(color: Colors.white,
                                                   fontSize: 8,
                                                   height: 1.0),),
                                           ):Container(),
                                         ),onTap: (){
                                           Get.toNamed('/public/user', arguments: userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]['Uid']);
                                         },),
-                                        SizedBox(width: 15,),
+                                        const SizedBox(width: 15,),
                                         Expanded(
                                           flex: 1,
                                           child: Column(
@@ -474,34 +474,34 @@ class MessageState extends State<MessagePage> {
                                                   Expanded(child: Text(
                                                     userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]['Name'],
                                                     overflow: TextOverflow.ellipsis,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 15,
                                                         fontWeight: FontWeight.w600,
                                                     ),)),
-                                                  SizedBox(width: 10,),
+                                                  const SizedBox(width: 10,),
                                                   Text(messageTime(userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]["Message"]["Times"]).toString(),
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 12,
                                                         color: Color(0xff999999),
                                                     ),),
                                                 ],
                                               ),
-                                              SizedBox(height: 10,),
+                                              const SizedBox(height: 10,),
                                               if(userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]["Message"]['MessageType']==1)Text(userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]["Message"]["message"],
                                                 overflow: TextOverflow.ellipsis,
-                                                maxLines: 2, style: TextStyle(
+                                                maxLines: 2, style: const TextStyle(
                                                     fontSize: 14,
                                                     color: Color(0xff666666),
                                                 ),),
                                               if(userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]["Message"]['MessageType']==2)Text('视频'.tr,
                                                 overflow: TextOverflow.ellipsis,
-                                                maxLines: 2, style: TextStyle(
+                                                maxLines: 2, style: const TextStyle(
                                                     fontSize: 14,
                                                     color: Color(0xff666666),
                                                 ),),
                                               if(userLogicone.Chatrelated['${userLogicone.userId}']['Chatlist'][i]["Message"]['MessageType']==3)Text('图片'.tr,
                                                 overflow: TextOverflow.ellipsis,
-                                                maxLines: 2, style: TextStyle(
+                                                maxLines: 2, style: const TextStyle(
                                                     fontSize: 14,
                                                     color: Color(0xff666666),
                                                 ),),
@@ -535,7 +535,7 @@ class MessageState extends State<MessagePage> {
 
   static String messageTime(timeStamp){
     // 当前时间
-    int time = (new DateTime.now().millisecondsSinceEpoch / 1000).round();
+    int time = (DateTime.now().millisecondsSinceEpoch / 1000).round();
     // 对比
     num _distance = time - timeStamp;
     if(_distance <= 180){
@@ -543,15 +543,15 @@ class MessageState extends State<MessagePage> {
       return '刚刚'.tr;
     }else if(_distance <= 3600){
       print('前分钟');
-      return '前'.tr+'${(_distance / 60).floor()}'+'分钟'.tr;
+      return '${'前'.tr}${(_distance / 60).floor()}${'分钟'.tr}';
     }else if(_distance <= 43200){
       print('前小时');
-      return '前'.tr+'${(_distance / 60 / 60).floor()}'+'小时'.tr;
+      return '${'前'.tr}${(_distance / 60 / 60).floor()}${'小时'.tr}';
     }else if(DateTime.fromMillisecondsSinceEpoch(time*1000).year == DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).year){
       //return '${CustomStamp_str(Timestamp: timeStamp, Date: 'MM/DD hh:mm', toInt: false)}';
-      return DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).hour.toString()+':'+DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).minute.toString()+' '+DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).day.toString()+'/'+DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).month.toString();
+      return '${DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).hour}:${DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).minute} ${DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).day}/${DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).month}';
     }else{
-      return DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).hour.toString()+':'+DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).minute.toString()+' '+DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).day .toString()+'/'+DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).month .toString()+'/'+DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).year .toString();
+      return '${DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).hour}:${DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).minute} ${DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).day}/${DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).month}/${DateTime.fromMillisecondsSinceEpoch(timeStamp*1000).year}';
     }
   }
 }

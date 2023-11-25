@@ -1,10 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:lanla_flutter/services/user.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
@@ -28,7 +26,7 @@ class ModifynicknameState extends State<ModifynicknameWidget> {
   @override
   void initState() {
     super.initState();
-    _controller = new TextEditingController(text: userLogic.userName);
+    _controller = TextEditingController(text: userLogic.userName);
   }
   @override
   Widget build(BuildContext context) {
@@ -36,14 +34,14 @@ class ModifynicknameState extends State<ModifynicknameWidget> {
       appBar: AppBar(
         title: Text(
           '修改昵称'.tr,
-          style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
+          style: const TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
         ),
         actions: [
           GestureDetector(child:  Container(
-            margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+            margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[Text('保存'.tr,style: TextStyle(
+                children: <Widget>[Text('保存'.tr,style: const TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
                 ),)],
@@ -51,7 +49,7 @@ class ModifynicknameState extends State<ModifynicknameWidget> {
           ),onTap: () async {
             print(username);
             FocusScope.of(context).unfocus();
-            var isSuccess;
+            Future<bool> isSuccess;
             if(username==''){
               isSuccess =  userProvider.setUserInfo(userLogic.userName, userLogic.slogan, userLogic.userAvatar, userLogic.Sex,userLogic.birthday) ;
             }else{
@@ -71,9 +69,9 @@ class ModifynicknameState extends State<ModifynicknameWidget> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 23,),
+          const SizedBox(height: 23,),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             height: 56,
             child:TextField(
               maxLength: 15,
@@ -81,14 +79,14 @@ class ModifynicknameState extends State<ModifynicknameWidget> {
               // keyboardType: TextInputType.number,
               // cursorColor: Color(0xffffffff),
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                contentPadding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
                 hintText: "请输入你的昵称".tr,
-                hintStyle: TextStyle(color: Color(0xff666666)),
+                hintStyle: const TextStyle(color: Color(0xff666666)),
                 border: InputBorder.none, // 隐藏边框
                 fillColor: Colors.white,
 
                 filled: true,
-                enabledBorder: OutlineInputBorder(
+                enabledBorder: const OutlineInputBorder(
                   /*边角*/
                   borderRadius: BorderRadius.all(
                     Radius.circular(20), //边角为5
@@ -98,7 +96,7 @@ class ModifynicknameState extends State<ModifynicknameWidget> {
                     width: 0.5,
                   ),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.white,
                     width: 0.5,

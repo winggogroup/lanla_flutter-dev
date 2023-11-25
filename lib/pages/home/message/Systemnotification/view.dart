@@ -1,5 +1,4 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,7 @@ class SystemtzPage  extends StatefulWidget{
 enum NewConcernStatus { loading, noData, init, normal, empty }
 class Systemtz extends State<SystemtzPage>{
   NewesProvider provider = Get.find<NewesProvider>();
-  ScrollController _scrollControllerls = ScrollController(); //listview 的控制器
+  final ScrollController _scrollControllerls = ScrollController(); //listview 的控制器
   final userLogic = Get.find<UserLogic>();
   final logictwo = Get.find<MessageLogic>();
   var newslist=[];
@@ -58,7 +57,7 @@ class Systemtz extends State<SystemtzPage>{
 
 
     // 延迟1秒请求，防止速率过快
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       status = NewConcernStatus.normal;
     });
     if (result.statusCode == 200) {
@@ -100,13 +99,13 @@ class Systemtz extends State<SystemtzPage>{
                 height: 22,
               ),
             ),
-            title: Text('系统消息'.tr, style: TextStyle(
+            title: Text('系统消息'.tr, style: const TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w600,
             ),),
           ),
           body: Container(
-            decoration: BoxDecoration(color: Color(0xfff5f5f5)),
+            decoration: const BoxDecoration(color: Color(0xfff5f5f5)),
             child: Column(
               children: [
                 Divider(height: 1.0, color: Colors.grey.shade200,),
@@ -117,31 +116,31 @@ class Systemtz extends State<SystemtzPage>{
                       itemBuilder: (context, i) {
                         return GestureDetector(child: Container(
                             width: double.infinity,
-                            color: Color(0xfff5f5f5),
-                            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                            color: const Color(0xfff5f5f5),
+                            padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                             child: Column(children: [
                               Text(newslist[i].createdAt),
-                              SizedBox(height: 15,),
+                              const SizedBox(height: 15,),
                               //Container(width: double.infinity,),
-                              Container(width: double.infinity,decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(5)),),
+                              Container(width: double.infinity,decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(5)),),
                                 child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
                                   // Container(height: 100,color: Colors.red,),
                                   if(newslist[i].thumbnail!='')Image.network(newslist[i].thumbnail,fit:BoxFit.cover),
-                                  SizedBox(height: 15,),
-                                  Container(padding:EdgeInsets.only(left: 10,right: 10),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                                    Text(newslist[i].title,style: TextStyle(fontWeight: FontWeight.w600),),
-                                    SizedBox(height: 10,),
-                                    Text(newslist[i].text,style: TextStyle(fontSize: 13),),
-                                    SizedBox(height: 10,),
+                                  const SizedBox(height: 15,),
+                                  Container(padding:const EdgeInsets.only(left: 10,right: 10),child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
+                                    Text(newslist[i].title,style: const TextStyle(fontWeight: FontWeight.w600),),
+                                    const SizedBox(height: 10,),
+                                    Text(newslist[i].text,style: const TextStyle(fontSize: 13),),
+                                    const SizedBox(height: 10,),
                                     DottedLineDivider(
-                                      color: Color(0xffE1E1E1),
+                                      color: const Color(0xffE1E1E1),
                                       height: 1.0,
                                       indent: 16.0,
                                       endIndent: 16.0,
                                     ),
-                                    SizedBox(height: 15,),
+                                    const SizedBox(height: 15,),
                                     Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-                                      Text('查看进入'.tr,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),
+                                      Text('查看进入'.tr,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),
                                       Container(
                                         width: 10,
                                         height: 10,
@@ -150,7 +149,7 @@ class Systemtz extends State<SystemtzPage>{
                                         ),
                                       )
                                     ],),
-                                    SizedBox(height: 15,),
+                                    const SizedBox(height: 15,),
                                   ],),)
 
                                 ],),
@@ -203,7 +202,7 @@ class Systemtz extends State<SystemtzPage>{
                                 },
                               );
                               //if(int.parse(data.activity[i].targetId)==1){
-                              Get.toNamed('/public/webview',arguments: BASE_DOMAIN+list[1]+'?token='+userLogic.token+'&uuid='+userLogic.deviceData['uuid']);
+                              Get.toNamed('/public/webview',arguments: '$BASE_DOMAIN${list[1]}?token=${userLogic.token}&uuid='+userLogic.deviceData['uuid']);
                               //}
                             }else if(newslist[i]['target_other']=='/public/Planningpage'){
                               Get.toNamed(newslist[i]['target_other'],arguments:  {

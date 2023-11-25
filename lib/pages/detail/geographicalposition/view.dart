@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -334,11 +332,11 @@ class _geographicalPageState extends State<geographicalPage> {
                 controller:  _controller,
                 children:[
                   Container(width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxHeight: 210,
                       minHeight: 100,
                     ),
-                    color: Color(0xff999999),
+                    color: const Color(0xff999999),
                     // height: 210,
                     child:  Stack(
                       children: [
@@ -350,19 +348,19 @@ class _geographicalPageState extends State<geographicalPage> {
                             crossAxisAlignment:CrossAxisAlignment.start,
                             children: [
                               Container(
-                                child: Text(_dataSource!.name,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: Colors.white),),
+                                child: Text(_dataSource!.name,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: Colors.white),),
                               ),
                               Row(
                                 children: [
                                   for(var i=0;i<_dataSource!.types.length;i++)
                                     Row(
                                       children: [
-                                        Text(_dataSource!.types[i],style: TextStyle(color: Colors.white,fontSize: 12),),
+                                        Text(_dataSource!.types[i],style: const TextStyle(color: Colors.white,fontSize: 12),),
                                         if(i!=_dataSource!.types.length-1)Container(decoration: BoxDecoration(
                                           border: Border.all(width: 0.5,color: Colors.white),
                                         ),
                                           height: 10,
-                                          margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                          margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                         )
                                       ],
                                     )
@@ -375,7 +373,7 @@ class _geographicalPageState extends State<geographicalPage> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     color: Colors.white,
                     child: Column(
                       children: [
@@ -389,7 +387,7 @@ class _geographicalPageState extends State<geographicalPage> {
                                 color: Colors.black,
                               ),
                             ),
-                            SizedBox(width: 13,),
+                            const SizedBox(width: 13,),
                             // Expanded(
                             //     child: _dataSource!.weekdayText.length>0?
                             //     Text(_dataSource!.weekdayText[0]!=null?_dataSource!.weekdayText[0]:''
@@ -398,22 +396,18 @@ class _geographicalPageState extends State<geographicalPage> {
                             //         +_dataSource!.weekdayText[3]!=null?_dataSource!.weekdayText[3]:''
                             //         +_dataSource!.weekdayText[4]!=null?_dataSource!.weekdayText[4]:''):Container()),
                             Expanded(
-                                child: _dataSource!.weekdayText.length>0?
-                                Text(_dataSource!.weekdayText[0]
-                                    +','+_dataSource!.weekdayText[1]
-                                    +','+_dataSource!.weekdayText[2]
-                                    +','+_dataSource!.weekdayText[3]
-                                    +','+_dataSource!.weekdayText[4],overflow: TextOverflow.ellipsis, ):Container()),
-                            SizedBox(width: 19,),
+                                child: _dataSource!.weekdayText.isNotEmpty?
+                                Text('${_dataSource!.weekdayText[0]},${_dataSource!.weekdayText[1]},${_dataSource!.weekdayText[2]},${_dataSource!.weekdayText[3]},${_dataSource!.weekdayText[4]}',overflow: TextOverflow.ellipsis, ):Container()),
+                            const SizedBox(width: 19,),
                             GestureDetector(child:Row(
                               children: [
-                                Text('详情'.tr,style: TextStyle(color: Color(0xff999999),fontSize: 12),),
+                                Text('详情'.tr,style: const TextStyle(color: Color(0xff999999),fontSize: 12),),
                                 Container(
                                   width: 15,
                                   height: 15,
                                   child: SvgPicture.asset(
                                     "assets/svg/xiaojt.svg",
-                                    color: Color(0xffd9d9d9),
+                                    color: const Color(0xffd9d9d9),
                                   ),
                                 ),
 
@@ -424,7 +418,7 @@ class _geographicalPageState extends State<geographicalPage> {
 
                           ],
                         ),
-                        SizedBox(height: 24,),
+                        const SizedBox(height: 24,),
                         Row(
                           children: [
                             Container(
@@ -435,30 +429,30 @@ class _geographicalPageState extends State<geographicalPage> {
                                 color: Colors.black,
                               ),
                             ),
-                            SizedBox(width: 13,),
+                            const SizedBox(width: 13,),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment:CrossAxisAlignment.start,
                                 mainAxisAlignment:MainAxisAlignment.center,
                                 children: [
-                                  Text(_dataSource!.vicinity,style: TextStyle(
+                                  Text(_dataSource!.vicinity,style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600
                                   ),),
-                                  if(_dataSource?.distant!='')SizedBox(height: 5,),
-                                  if(_dataSource?.distant!='')Text(_dataSource!.distant,style: TextStyle(
+                                  if(_dataSource?.distant!='')const SizedBox(height: 5,),
+                                  if(_dataSource?.distant!='')Text(_dataSource!.distant,style: const TextStyle(
                                       fontSize: 12,
                                       color: Color(0xff999999)
                                   )),
                                 ],
                               ),
                             ),
-                            SizedBox(width: 13,),
+                            const SizedBox(width: 13,),
                             GestureDetector(child:Image.asset('assets/images/dingwei.png',width: 24,height: 24,),onTap: (){
                               print('sdjaksd');
                               Get.to(MapSample(),arguments: {'lat':_dataSource!.lat,'lng':_dataSource!.lng});
                             },),
-                            SizedBox(width: 13,),
+                            const SizedBox(width: 13,),
                             if(_dataSource!.phone!='')GestureDetector(child: Image.asset('assets/images/dianhuaxiao.png',width: 24,height: 24,),onTap: (){
                               _makePhoneCall(_dataSource!.phone);
                             },)
@@ -467,11 +461,11 @@ class _geographicalPageState extends State<geographicalPage> {
                       ],
                     ),
                   ),
-                  Divider(height: 1.0,color: Color(0xffe4e4e4),),
-                  SizedBox(height: 15,),
+                  const Divider(height: 1.0,color: Color(0xffe4e4e4),),
+                  const SizedBox(height: 15,),
                   Row(
                     children: [
-                      SizedBox(width: 20,),
+                      const SizedBox(width: 20,),
                       GestureDetector(child: Text('最新'.tr,style: TextStyle(
                           fontSize: 14,
                           fontWeight:
@@ -479,7 +473,7 @@ class _geographicalPageState extends State<geographicalPage> {
                           color: pageType == 1 ? Colors.black : Colors.black38)),onTap: (){
                         _setPageType(1);
                       },),
-                      SizedBox(width: 15,),
+                      const SizedBox(width: 15,),
                       GestureDetector(child:Text('最热'.tr,style: TextStyle(
                           fontSize: 15,
                           fontWeight:
@@ -489,10 +483,10 @@ class _geographicalPageState extends State<geographicalPage> {
                       },),
                     ],
                   ),
-                  SizedBox(height: 15,),
+                  const SizedBox(height: 15,),
                   MasonryGridView.count(
                     shrinkWrap: true,
-                    physics: new NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     crossAxisCount: 2,
                     mainAxisSpacing: 0,
                     // 上下间隔
@@ -521,7 +515,7 @@ class _geographicalPageState extends State<geographicalPage> {
                   ),
 
                 ]):Container(
-              padding: EdgeInsets.only(top: 80),
+              padding: const EdgeInsets.only(top: 80),
               child: SpinKitCircle(
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
@@ -552,16 +546,16 @@ class _geographicalPageState extends State<geographicalPage> {
             right: 0,
             left: 0,
             child: _dataSource!=null&&_dataSource?.type!=1?Container(
-              padding: EdgeInsets.only(top: 16,bottom: 16),
+              padding: const EdgeInsets.only(top: 16,bottom: 16),
               color: Colors.white,
               child: Row(
                 mainAxisAlignment:MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(child: Row(
                     children: [
-                      SvgPicture.asset('assets/svg/xiangqu.svg',width: 19,height: 17,color: _dataSource?.type==2?Color(0xff999999):Colors.black,),
-                      SizedBox(width: 10,),
-                      Text(_dataSource?.type==2?'已想去'.tr:'想去'.tr,style: TextStyle(color: _dataSource?.type==2?Color(0xff999999):Colors.black),),
+                      SvgPicture.asset('assets/svg/xiangqu.svg',width: 19,height: 17,color: _dataSource?.type==2?const Color(0xff999999):Colors.black,),
+                      const SizedBox(width: 10,),
+                      Text(_dataSource?.type==2?'已想去'.tr:'想去'.tr,style: TextStyle(color: _dataSource?.type==2?const Color(0xff999999):Colors.black),),
                     ],
                   ),onTap: () async {
                     if(_dataSource?.type!=2&&delay){
@@ -575,7 +569,7 @@ class _geographicalPageState extends State<geographicalPage> {
                           Collectpopup=true;
                           _dataSource!.addressGradeId=result.body['addressGradeId'];
                           Timer.periodic(
-                              Duration(milliseconds: 2000),(timer){
+                              const Duration(milliseconds: 2000),(timer){
                             setState(() {
                               Collectpopup=false;
                             });
@@ -604,7 +598,7 @@ class _geographicalPageState extends State<geographicalPage> {
                   GestureDetector(child:Row(
                     children: [
                       SvgPicture.asset('assets/svg/daka.svg',width: 17,height: 17,color: Colors.black,),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Text('打卡去过'.tr),
 
                     ],
@@ -614,7 +608,7 @@ class _geographicalPageState extends State<geographicalPage> {
                 ],
               ),
             ):Container(
-              padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+              padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
               color: Colors.white,
               child: Row(
                   mainAxisAlignment:MainAxisAlignment.spaceBetween,
@@ -624,12 +618,12 @@ class _geographicalPageState extends State<geographicalPage> {
                       if(_dataSource?.grade==3)Image.asset('assets/images/buhao.png',width: 22,height: 22,),
                       if(_dataSource?.grade==2)Image.asset('assets/images/yiban.png',width: 22,height: 22,),
                       if(_dataSource?.grade==1)Image.asset('assets/images/tuijian.png',width: 22,height: 22,),
-                      SizedBox(width: 5,),
+                      const SizedBox(width: 5,),
                       if(_dataSource?.grade==3)Text('不好'.tr),
                       if(_dataSource?.grade==2)Text('一般'.tr),
                       if(_dataSource?.grade==1)Text('推荐'.tr),
-                      SizedBox(width: 5,),
-                      Text('2022-11-25',textAlign: TextAlign.center,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),
+                      const SizedBox(width: 5,),
+                      const Text('2022-11-25',textAlign: TextAlign.center,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),
                     ],
                   ) ,onTap: (){
                     print('8877663322');
@@ -637,12 +631,12 @@ class _geographicalPageState extends State<geographicalPage> {
                     evaluateBottomSheet(context,Get.arguments);
                   },),
                   GestureDetector(child: Container(
-                    padding: EdgeInsets.fromLTRB(30, 12, 30, 12),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.fromLTRB(30, 12, 30, 12),
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(40)),
                       color: Colors.black,
                     ),
-                    child: Text('发布作品'.tr,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),
+                    child: Text('发布作品'.tr,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w600),
                     ),
                   ),onTap: (){
                     _publish();
@@ -660,8 +654,8 @@ class _geographicalPageState extends State<geographicalPage> {
             left: 20,
             child: Container(
 
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
@@ -672,13 +666,13 @@ class _geographicalPageState extends State<geographicalPage> {
                     children: [
                       // Container(width: 40,height: 40,color: Colors.red,),
                       Image.network(fit: BoxFit.cover, _dataSource!.imagePath,width: 40,height: 40,),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Container(child:Column(
                         crossAxisAlignment:CrossAxisAlignment.start,
                         mainAxisAlignment:MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('收藏成功'.tr,style: TextStyle(color: Colors.white)),
-                          Text('请到个人收藏夹查看'.tr,style: TextStyle(color: Colors.white,fontSize: 12))
+                          Text('收藏成功'.tr,style: const TextStyle(color: Colors.white)),
+                          Text('请到个人收藏夹查看'.tr,style: const TextStyle(color: Colors.white,fontSize: 12))
                         ],
                       ) ,height: 40,)
 
@@ -686,9 +680,9 @@ class _geographicalPageState extends State<geographicalPage> {
                   ),
                   GestureDetector(child: Row(
                     children: [
-                      Text('点击查看'.tr,style: TextStyle(color: Colors.white,fontSize: 12),),
-                      SizedBox(width: 10,),
-                      Icon(
+                      Text('点击查看'.tr,style: const TextStyle(color: Colors.white,fontSize: 12),),
+                      const SizedBox(width: 10,),
+                      const Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.white,
                         size: 10,
@@ -725,7 +719,7 @@ class _geographicalPageState extends State<geographicalPage> {
               Get.back();
               final AssetEntity? result = await CameraPicker.pickFromCamera(
                 context,
-                pickerConfig: CameraPickerConfig(
+                pickerConfig: const CameraPickerConfig(
                     textDelegate: ArabCameraPickerTextDelegate(),
                     enableRecording: true,
                     shouldAutoPreviewVideo: true),
@@ -746,7 +740,7 @@ class _geographicalPageState extends State<geographicalPage> {
                 children: [
                   Text(
                     '拍摄'.tr,
-                    style: TextStyle(fontSize: 17),
+                    style: const TextStyle(fontSize: 17),
                   ),
                 ],
               ),
@@ -777,7 +771,7 @@ class _geographicalPageState extends State<geographicalPage> {
               color: Colors.white,
               child: Text(
                 '从相册选择'.tr,
-                style: TextStyle(fontSize: 17),
+                style: const TextStyle(fontSize: 17),
               ),
             ),
           ),
@@ -799,7 +793,7 @@ class _geographicalPageState extends State<geographicalPage> {
               child: Center(
                 child: Text(
                   '取消'.tr,
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ),
             ),
@@ -820,36 +814,36 @@ class _geographicalPageState extends State<geographicalPage> {
           //构建弹框中的内容
           return Container(
               height: _dataSource!.text!=''?MediaQuery.of(context).size.height - 250:MediaQuery.of(context).size.height - 350,
-              decoration: new BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: new BorderRadius.only(
-                      topLeft: const Radius.circular(10.0),
-                      topRight: const Radius.circular(10.0))
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0))
               ),
               child: Column(
                 children: [
-                  SizedBox(height: 8,),
+                  const SizedBox(height: 8,),
                   Container(
                     width: 25,
                     height: 3,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10),),
                       color: Color(0xffe4e4e4)
                     ),
                   ),
-                  SizedBox(height: 30,),
-                  Container(margin: EdgeInsets.only(left: 20,right: 20),width:double.infinity,child: Text('开放时间'.tr,style: TextStyle(fontWeight: FontWeight.w600),),),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 30,),
+                  Container(margin: const EdgeInsets.only(left: 20,right: 20),width:double.infinity,child: Text('开放时间'.tr,style: const TextStyle(fontWeight: FontWeight.w600),),),
+                  const SizedBox(height: 10,),
                   for(var item in _dataSource!.weekdayText)
-                    Container(margin: EdgeInsets.only(left: 20,right: 20,bottom: 10),width:double.infinity,child: Text(item,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),),
-                  SizedBox(height: 30,),
-                  if(_dataSource!.phone!='')Container(margin: EdgeInsets.only(left: 20,right: 20),width:double.infinity,child: Text('联系电话'.tr,style: TextStyle(fontWeight: FontWeight.w600),),),
-                  SizedBox(height: 10,),
-                  if(_dataSource!.phone!='')Container(margin: EdgeInsets.only(left: 20,right: 20,),width:double.infinity,child: Text(_dataSource!.phone,style: TextStyle(fontSize: 12,color: Color(0xff999999)),),),
-                  SizedBox(height: 30,),
-                  if(_dataSource!.text!='')Container(margin: EdgeInsets.only(left: 20,right: 20),width:double.infinity,child: Text('简介'.tr,style: TextStyle(fontWeight: FontWeight.w600),),),
-                  SizedBox(height: 10,),
-                  if(_dataSource!.text!='')Container(margin: EdgeInsets.only(left: 20,right: 20,),width:double.infinity,child: Text(_dataSource!.text,style: TextStyle(fontSize: 12,color: Color(0xff999999),height: 1.6,), maxLines: 5,overflow: TextOverflow.ellipsis,),),
+                    Container(margin: const EdgeInsets.only(left: 20,right: 20,bottom: 10),width:double.infinity,child: Text(item,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),),
+                  const SizedBox(height: 30,),
+                  if(_dataSource!.phone!='')Container(margin: const EdgeInsets.only(left: 20,right: 20),width:double.infinity,child: Text('联系电话'.tr,style: const TextStyle(fontWeight: FontWeight.w600),),),
+                  const SizedBox(height: 10,),
+                  if(_dataSource!.phone!='')Container(margin: const EdgeInsets.only(left: 20,right: 20,),width:double.infinity,child: Text(_dataSource!.phone,style: const TextStyle(fontSize: 12,color: Color(0xff999999)),),),
+                  const SizedBox(height: 30,),
+                  if(_dataSource!.text!='')Container(margin: const EdgeInsets.only(left: 20,right: 20),width:double.infinity,child: Text('简介'.tr,style: const TextStyle(fontWeight: FontWeight.w600),),),
+                  const SizedBox(height: 10,),
+                  if(_dataSource!.text!='')Container(margin: const EdgeInsets.only(left: 20,right: 20,),width:double.infinity,child: Text(_dataSource!.text,style: const TextStyle(fontSize: 12,color: Color(0xff999999),height: 1.6,), maxLines: 5,overflow: TextOverflow.ellipsis,),),
                 ],
               )
 
@@ -875,28 +869,28 @@ class _geographicalPageState extends State<geographicalPage> {
                   constraints: BoxConstraints(
                     maxHeight: MediaQuery.of(context).size.height - 450,
                   ),
-                  decoration: new BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
-                      borderRadius: new BorderRadius.only(
-                          topLeft: const Radius.circular(10.0),
-                          topRight: const Radius.circular(10.0))
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.0),
+                          topRight: Radius.circular(10.0))
                   ),
                   child: Column(
                     children: [
-                      SizedBox(height: 8,),
+                      const SizedBox(height: 8,),
                       Container(
                         width: 25,
                         height: 3,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(10),),
                             color: Color(0xffe4e4e4)
                         ),
                       ),
-                      SizedBox(height: 25,),
-                      Text('表达一下你的态度'.tr,style: TextStyle(fontWeight: FontWeight.w600),),
-                      SizedBox(height: 25,),
-                      Divider(height: 1.0,color: Color(0xfff5f5f5),),
-                      SizedBox(height: 25,),
+                      const SizedBox(height: 25,),
+                      Text('表达一下你的态度'.tr,style: const TextStyle(fontWeight: FontWeight.w600),),
+                      const SizedBox(height: 25,),
+                      const Divider(height: 1.0,color: Color(0xfff5f5f5),),
+                      const SizedBox(height: 25,),
                       Row(
                         mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                         children: [
@@ -904,10 +898,10 @@ class _geographicalPageState extends State<geographicalPage> {
                             children: [
                               Container(decoration: BoxDecoration(
                                 border: Border.all(width: 3,color: attitude==1?Colors.black:Colors.white),
-                                borderRadius: BorderRadius.all(Radius.circular(50)),
+                                borderRadius: const BorderRadius.all(Radius.circular(50)),
                               ),child:Image.asset('assets/images/tuijian.png',width: 50,height: 50,),),
 
-                              SizedBox(height: 15,),
+                              const SizedBox(height: 15,),
                               Text('推荐'.tr)
                             ],
                           ) ,onTap: (){
@@ -920,9 +914,9 @@ class _geographicalPageState extends State<geographicalPage> {
                             children: [
                               Container(decoration: BoxDecoration(
                                 border: Border.all(width: 3,color: attitude==2?Colors.black:Colors.white),
-                                borderRadius: BorderRadius.all(Radius.circular(50)),
+                                borderRadius: const BorderRadius.all(Radius.circular(50)),
                               ),child:Image.asset('assets/images/yiban.png',width: 50,height: 50,),),
-                              SizedBox(height: 15,),
+                              const SizedBox(height: 15,),
                               Text('一般'.tr)
                             ],
                           ) ,onTap: (){
@@ -934,9 +928,9 @@ class _geographicalPageState extends State<geographicalPage> {
                             children: [
                               Container(decoration: BoxDecoration(
                                 border: Border.all(width: 3,color: attitude==3?Colors.black:Colors.white),
-                                borderRadius: BorderRadius.all(Radius.circular(50)),
+                                borderRadius: const BorderRadius.all(Radius.circular(50)),
                               ),child:Image.asset('assets/images/buhao.png',width: 50,height: 50,),),
-                              SizedBox(height: 15,),
+                              const SizedBox(height: 15,),
                               Text('不好'.tr)
                             ],
                           ) ,onTap: (){
@@ -946,33 +940,33 @@ class _geographicalPageState extends State<geographicalPage> {
                           },)
                         ],
                       ),
-                      if(attitude!=0||_dataSource?.type==1)SizedBox(height: 25,),
+                      if(attitude!=0||_dataSource?.type==1)const SizedBox(height: 25,),
                       if(attitude!=0&&_dataSource?.type!=1)Row(
                         mainAxisAlignment:MainAxisAlignment.spaceEvenly,
                         children: [
                           GestureDetector(child:Container(
                             alignment: Alignment.center,//设置控件内容的位置
                             width: 150,
-                            padding: EdgeInsets.only(top: 15,bottom: 15),
+                            padding: const EdgeInsets.only(top: 15,bottom: 15),
                             decoration: BoxDecoration(
                                 border: Border.all(width: 1,color: Colors.black),
                                 color: Colors.black,
-                                borderRadius: BorderRadius.all(Radius.circular(50),)
+                                borderRadius: const BorderRadius.all(Radius.circular(50),)
                             ),
-                            child: Text('发布作品'.tr,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,),),
+                            child: Text('发布作品'.tr,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w600,),),
                           ),onTap: (){
                             _publish();
                           },),
                           GestureDetector(child: Container(
                             alignment: Alignment.center,//设置控件内容的位置
                             width: 150,
-                            padding: EdgeInsets.only(top: 15,bottom: 15),
+                            padding: const EdgeInsets.only(top: 15,bottom: 15),
                             decoration: BoxDecoration(
                                 border: Border.all(width: 1,color: Colors.black),
                                 color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(50),)
+                                borderRadius: const BorderRadius.all(Radius.circular(50),)
                             ),
-                            child: Text('完成'.tr,style: TextStyle(fontWeight: FontWeight.w600),),
+                            child: Text('完成'.tr,style: const TextStyle(fontWeight: FontWeight.w600),),
                           ),onTap: () async {
                             if(attitude!=0&&delay){
 
@@ -1000,13 +994,13 @@ class _geographicalPageState extends State<geographicalPage> {
                           GestureDetector(child: Container(
                             alignment: Alignment.center,//设置控件内容的位置
                             width: 150,
-                            padding: EdgeInsets.only(top: 15,bottom: 15),
+                            padding: const EdgeInsets.only(top: 15,bottom: 15),
                             decoration: BoxDecoration(
                                 border: Border.all(width: 1,color: Colors.black),
                                 color: Colors.black,
-                                borderRadius: BorderRadius.all(Radius.circular(50),)
+                                borderRadius: const BorderRadius.all(Radius.circular(50),)
                             ),
-                            child: Text('完成'.tr,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,),),
+                            child: Text('完成'.tr,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w600,),),
                           ),onTap: () async {
                             if(attitude!=0&&delay){
 
@@ -1029,13 +1023,13 @@ class _geographicalPageState extends State<geographicalPage> {
                           GestureDetector(child: Container(
                             alignment: Alignment.center,//设置控件内容的位置
                             width: 150,
-                            padding: EdgeInsets.only(top: 15,bottom: 15),
+                            padding: const EdgeInsets.only(top: 15,bottom: 15),
                             decoration: BoxDecoration(
                                 border: Border.all(width: 1,color: Colors.black),
                                 color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(50),)
+                                borderRadius: const BorderRadius.all(Radius.circular(50),)
                             ),
-                            child: Text('删除态度'.tr,style: TextStyle(fontWeight: FontWeight.w600),),
+                            child: Text('删除态度'.tr,style: const TextStyle(fontWeight: FontWeight.w600),),
                           ),onTap: () async {
                             if(_dataSource?.type==1&&delay){
                               delay=false;

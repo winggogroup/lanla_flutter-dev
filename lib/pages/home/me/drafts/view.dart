@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,7 +34,7 @@ class draftsState extends State<draftsWidget> {
       appBar: AppBar(
         title: Text(
           '草稿箱'.tr,
-          style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
+          style: const TextStyle(fontSize: 17,fontWeight: FontWeight.w600,),
         ),
       ),
       body:
@@ -44,8 +42,8 @@ class draftsState extends State<draftsWidget> {
         crossAxisAlignment:CrossAxisAlignment.start,
         children: [
           Expanded(child: ListView(children: [
-            SizedBox(height: 15,),
-            Container(padding:EdgeInsets.only(left: 20,right: 20),child:Text('草稿在应用卸载后会被删除，请及时发布'.tr,style: TextStyle(color: Color(0xff999999),fontSize: 12),), ),
+            const SizedBox(height: 15,),
+            Container(padding:const EdgeInsets.only(left: 20,right: 20),child:Text('草稿在应用卸载后会被删除，请及时发布'.tr,style: const TextStyle(color: Color(0xff999999),fontSize: 12),), ),
 
             Container(width: double.infinity,child: ListView(scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -53,7 +51,7 @@ class draftsState extends State<draftsWidget> {
                 children:[
                   MasonryGridView.count(
                     shrinkWrap: true,
-                    physics: new NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     // controller:
                     // widget.type == ApiType.myPublish ? null : _controller,
                     //key: PageStorageKey(item.id),
@@ -71,12 +69,12 @@ class draftsState extends State<draftsWidget> {
                         GestureDetector(child: Stack(children: [
                           Container(
                             //margin: const EdgeInsets.fromLTRB(2, 2, 2, 2),
-                              padding:EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              padding:const EdgeInsets.fromLTRB(0, 0, 0, 10),
 
                               // padding: EdgeInsets.all(2),
                               decoration: BoxDecoration(color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                                border: new Border.all(width: 0.2, color: Color.fromRGBO(0, 0, 1, 0.2)),
+                                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                border: Border.all(width: 0.2, color: const Color.fromRGBO(0, 0, 1, 0.2)),
                               ),
                               width: double.infinity,
                               child: Column(children: [
@@ -85,7 +83,7 @@ class draftsState extends State<draftsWidget> {
                                     //超出部分，可裁剪
                                     width: double.infinity,
                                     clipBehavior: Clip.hardEdge,
-                                    constraints: BoxConstraints(maxHeight: 250),
+                                    constraints: const BoxConstraints(maxHeight: 250),
                                     //height: (context.width / 2 - 6) * data.attaImageScale>260?260:(context.width / 2 - 6) * data.attaImageScale,
                                     decoration:const BoxDecoration(
                                         borderRadius: BorderRadius.only(topLeft: Radius.circular(8),topRight: Radius.circular(8))
@@ -137,7 +135,7 @@ class draftsState extends State<draftsWidget> {
                                           ],
                                         ),
                                       ),
-                                      Text('${DateTime.fromMillisecondsSinceEpoch(draftsdata[index]['id']).day}-${DateTime.fromMillisecondsSinceEpoch(draftsdata[index]['id']).month}-${DateTime.fromMillisecondsSinceEpoch(draftsdata[index]['id']).year}',style: TextStyle(fontWeight: FontWeight.w300,fontSize: 12,color: Color(0xff999999)),)
+                                      Text('${DateTime.fromMillisecondsSinceEpoch(draftsdata[index]['id']).day}-${DateTime.fromMillisecondsSinceEpoch(draftsdata[index]['id']).month}-${DateTime.fromMillisecondsSinceEpoch(draftsdata[index]['id']).year}',style: const TextStyle(fontWeight: FontWeight.w300,fontSize: 12,color: Color(0xff999999)),)
                                     ],
                                   ),
                                 )

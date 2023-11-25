@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_picker/flutter_picker.dart';
@@ -11,7 +10,6 @@ import 'package:lanla_flutter/pages/detail/FlowDetails/ListDetails.dart';
 import 'package:lanla_flutter/pages/home/start/detail_view/loading_widget.dart';
 import 'package:lanla_flutter/services/GiftDetails.dart';
 import 'package:lanla_flutter/ulits/hex_color.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -44,18 +42,18 @@ class _GiftDetailsState extends State<GiftDetailsPage>  {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-        decoration: BoxDecoration(color:Color(0xffffffff)),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+        decoration: const BoxDecoration(color:Color(0xffffffff)),
         child:Column(children: [
-          SizedBox(height: 50,),
+          const SizedBox(height: 50,),
           Container(width: 100,height: 100,alignment: Alignment.center,decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: Color(0xffF5F5F5),
+            color: const Color(0xffF5F5F5),
           ),child:Image.network(Details["giftPath"],width: 70,height: 70,),),
 
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-            Text('被赠礼的作品'.tr,style: TextStyle(fontSize: 15,color: Color(0xff999999)),),
+            Text('被赠礼的作品'.tr,style: const TextStyle(fontSize: 15,color: Color(0xff999999)),),
             Container(
               width: 55,
               height: 55,
@@ -68,38 +66,38 @@ class _GiftDetailsState extends State<GiftDetailsPage>  {
             )
 
           ],),
-          SizedBox(height: 20,),
-          Divider(height: 1.0,color: Color(0xffF1F1F1),),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
+          const Divider(height: 1.0,color: Color(0xffF1F1F1),),
+          const SizedBox(height: 20,),
           Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-            Text('赠礼人'.tr,style: TextStyle(fontSize: 15,color: Color(0xff999999)),),
+            Text('赠礼人'.tr,style: const TextStyle(fontSize: 15,color: Color(0xff999999)),),
             Text(Details["nickname"])
           ],),
-          SizedBox(height: 20,),
-          Divider(height: 1.0,color: Color(0xffF1F1F1),),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
+          const Divider(height: 1.0,color: Color(0xffF1F1F1),),
+          const SizedBox(height: 20,),
           Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-            Text('赠礼时间'.tr,style: TextStyle(fontSize: 15,color: Color(0xff999999)),),
+            Text('赠礼时间'.tr,style: const TextStyle(fontSize: 15,color: Color(0xff999999)),),
             Text(Details["createdAt"])
           ],),
-          SizedBox(height: 20,),
-          Divider(height: 1.0,color: Color(0xffF1F1F1),),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
+          const Divider(height: 1.0,color: Color(0xffF1F1F1),),
+          const SizedBox(height: 20,),
           Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [
-            Text('礼物收益'.tr,style: TextStyle(fontSize: 15,color: Color(0xff999999)),),
+            Text('礼物收益'.tr,style: const TextStyle(fontSize: 15,color: Color(0xff999999)),),
             Text('${Details["price"]} +')
           ],),
-          SizedBox(height: 20,),
-          Divider(height: 1.0,color: Color(0xffF1F1F1),),
+          const SizedBox(height: 20,),
+          const Divider(height: 1.0,color: Color(0xffF1F1F1),),
         ],),
       ),
       appBar: AppBar(
         elevation: 0, //消除阴影
-        title: Text('礼物明细'.tr,style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600),),
+        title: Text('礼物明细'.tr,style: const TextStyle(fontSize: 17,fontWeight: FontWeight.w600),),
         backgroundColor: Colors.white,//设置背景颜色为白色
         leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             tooltip: "Search",
             onPressed: () {
               //print('menu Pressed');

@@ -6,7 +6,7 @@ class CardStack extends StatefulWidget {
 }
 
 class _CardStackState extends State<CardStack> {
-  TCardController _controller = TCardController();
+  final TCardController _controller = TCardController();
   List<String> cardData = [
     "Card 1",
     "Card 2",
@@ -19,7 +19,7 @@ class _CardStackState extends State<CardStack> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Card Stack'),
+        title: const Text('Card Stack'),
       ),
       body: Container(
         color: Colors.cyan,
@@ -43,19 +43,19 @@ class _CardStackState extends State<CardStack> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(data, style: TextStyle(fontSize: 24.0)),
-                    SizedBox(height: 16.0),
+                    Text(data, style: const TextStyle(fontSize: 24.0)),
+                    const SizedBox(height: 16.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          icon: Icon(Icons.thumb_down),
+                          icon: const Icon(Icons.thumb_down),
                           onPressed: () {
                             _controller.forward(direction: SwipDirection.Left);
                           },
                         ),
                         IconButton(
-                          icon: Icon(Icons.thumb_up),
+                          icon: const Icon(Icons.thumb_up),
                           onPressed: () {
                             _controller.forward(direction: SwipDirection.Right);
                           },

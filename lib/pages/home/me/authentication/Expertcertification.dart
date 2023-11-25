@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lanla_flutter/common/controller/UserLogic.dart';
@@ -43,13 +42,13 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        decoration: new BoxDecoration(color:Color(0xffFFFFFF)),
+        decoration: const BoxDecoration(color:Color(0xffFFFFFF)),
         child: ListView(
           //crossAxisAlignment:CrossAxisAlignment.start,
           children: [
             Container(
               height: 1.0,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xfff1f1f1),
                 boxShadow: [
                   BoxShadow(
@@ -61,27 +60,27 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
                 ],
               ),
             ),
-            SizedBox(height: 20,),
-            Container(width: double.infinity,margin: EdgeInsets.only(left: 20,right: 20),child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text('申请条件'.tr,style: TextStyle(fontWeight: FontWeight.w700),),GestureDetector(child: Image.asset('assets/images/wenhaots.png',width: 25,height: 25,),onTap: (){
+            const SizedBox(height: 20,),
+            Container(width: double.infinity,margin: const EdgeInsets.only(left: 20,right: 20),child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text('申请条件'.tr,style: const TextStyle(fontWeight: FontWeight.w700),),GestureDetector(child: Image.asset('assets/images/wenhaots.png',width: 25,height: 25,),onTap: (){
               ExplanationPopup(context);
             },)],),),
-            SizedBox(height: 30,),
-            Container(width: double.infinity,margin: EdgeInsets.only(left: 20,right: 20),child: Row(children: [
+            const SizedBox(height: 30,),
+            Container(width: double.infinity,margin: const EdgeInsets.only(left: 20,right: 20),child: Row(children: [
               // Container(alignment: Alignment.center,width: 20,height: 20,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50)),border: Border.all(width: 2,color: Colors.black)),child: Text('1',style: TextStyle(height: 1.5,fontWeight: FontWeight.w600,fontSize: 12),),),
               // SizedBox(width: 10,),
-              Text(conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['title'],style: TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),
+              Text(conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['title'],style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),
             ],),),
-            SizedBox(height: 10,),
-            Container(width: double.infinity,margin: EdgeInsets.only(left: 20,right: 20),child: Text(conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['desc'],style: TextStyle(fontSize: 15,),),),
-            SizedBox(height: 10,),
-            Container(width: double.infinity,margin: EdgeInsets.only(left: 20,right: 20),height:30,child: Stack(children: [Positioned(right: 0,child: Container(child: Column(children: [
+            const SizedBox(height: 10,),
+            Container(width: double.infinity,margin: const EdgeInsets.only(left: 20,right: 20),child: Text(conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['desc'],style: const TextStyle(fontSize: 15,),),),
+            const SizedBox(height: 10,),
+            Container(width: double.infinity,margin: const EdgeInsets.only(left: 20,right: 20),height:30,child: Stack(children: [Positioned(right: 0,child: Container(child: Column(children: [
               Container(
-                padding: EdgeInsets.only(left: 11,right: 11,top: 2,bottom: 2),
+                padding: const EdgeInsets.only(left: 11,right: 11,top: 2,bottom: 2),
                 decoration: BoxDecoration(
-                  border: Border.all(width: 1,color: Color.fromRGBO(225, 225, 225, 1)),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  border: Border.all(width: 1,color: const Color.fromRGBO(225, 225, 225, 1)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                 ),
-                child: Text('${conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['current_point']}/${conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['target_point']}',style: TextStyle(fontSize: 10),),
+                child: Text('${conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['current_point']}/${conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['target_point']}',style: const TextStyle(fontSize: 10),),
               ),
               Stack(clipBehavior: Clip.none,children: [
                 Container(width: 9,height: 7,),
@@ -92,9 +91,9 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
             Container(
               height: 6, // 进度条高度
               width: double.infinity,
-              margin: EdgeInsets.only(left: 20,right: 20),
+              margin: const EdgeInsets.only(left: 20,right: 20),
               decoration: BoxDecoration(
-                color: Color(0xffF5F5F5),
+                color: const Color(0xffF5F5F5),
                 borderRadius: BorderRadius.circular(5), // 圆角边框
               ),
               child: LayoutBuilder(builder:
@@ -109,7 +108,7 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
                       widthFactor: conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['target_point']!=0?conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['current_point']/conditiondata['label_famous_user']['second_page_config']['condition_desc'][0]['target_point']:0.0,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color(0xffD1FF34), // 进度条颜色
+                          color: const Color(0xffD1FF34), // 进度条颜色
                           borderRadius:
                           BorderRadius.circular(
                               5), // 圆角边框
@@ -120,7 +119,7 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
                 );
               }),
             ),
-            SizedBox(height: 25,),
+            const SizedBox(height: 25,),
             // Container(
             //   height: 1.0,
             //   margin: EdgeInsets.only(left: 20,right: 20),
@@ -137,23 +136,23 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
             //   ),
             // ),
             ///第二个
-            SizedBox(height: 30,),
-            Container(width: double.infinity,margin: EdgeInsets.only(left: 20,right: 20),child: Row(children: [
+            const SizedBox(height: 30,),
+            Container(width: double.infinity,margin: const EdgeInsets.only(left: 20,right: 20),child: Row(children: [
               // Container(alignment: Alignment.center,width: 20,height: 20,decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(50)),border: Border.all(width: 2,color: Colors.black)),child: Text('2',style: TextStyle(height: 1.5,fontWeight: FontWeight.w600,fontSize: 12),),),
               // SizedBox(width: 10,),
-              Text(conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['title'],style: TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),
+              Text(conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['title'],style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w700),),
             ],),),
-            SizedBox(height: 10,),
-            Container(width: double.infinity,margin: EdgeInsets.only(left: 20,right: 20),child: Text(conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['desc'],style: TextStyle(fontSize: 15,),),),
-            SizedBox(height: 10,),
-            Container(width: double.infinity,margin: EdgeInsets.only(left: 20,right: 20),height:30,child: Stack(children: [Positioned(right: 0,child: Container(child: Column(children: [
+            const SizedBox(height: 10,),
+            Container(width: double.infinity,margin: const EdgeInsets.only(left: 20,right: 20),child: Text(conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['desc'],style: const TextStyle(fontSize: 15,),),),
+            const SizedBox(height: 10,),
+            Container(width: double.infinity,margin: const EdgeInsets.only(left: 20,right: 20),height:30,child: Stack(children: [Positioned(right: 0,child: Container(child: Column(children: [
               Container(
-                padding: EdgeInsets.only(left: 11,right: 11,top: 2,bottom: 2),
+                padding: const EdgeInsets.only(left: 11,right: 11,top: 2,bottom: 2),
                 decoration: BoxDecoration(
-                  border: Border.all(width: 1,color: Color.fromRGBO(225, 225, 225, 1)),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  border: Border.all(width: 1,color: const Color.fromRGBO(225, 225, 225, 1)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
                 ),
-                child: Text('${conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['current_point']}/${ conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['target_point']}',style: TextStyle(fontSize: 10),),
+                child: Text('${conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['current_point']}/${ conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['target_point']}',style: const TextStyle(fontSize: 10),),
               ),
               Stack(clipBehavior: Clip.none,children: [
                 Container(width: 9,height: 7,),
@@ -164,9 +163,9 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
             Container(
               height: 6, // 进度条高度
               width: double.infinity,
-              margin: EdgeInsets.only(left: 20,right: 20),
+              margin: const EdgeInsets.only(left: 20,right: 20),
               decoration: BoxDecoration(
-                color: Color(0xffF5F5F5),
+                color: const Color(0xffF5F5F5),
                 borderRadius: BorderRadius.circular(5), // 圆角边框
               ),
               child: LayoutBuilder(builder:
@@ -181,7 +180,7 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
                       widthFactor: conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['target_point']!=0?conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['current_point']/conditiondata['label_famous_user']['second_page_config']['condition_desc'][1]['target_point']:0.0,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color(0xffD1FF34), // 进度条颜色
+                          color: const Color(0xffD1FF34), // 进度条颜色
                           borderRadius:
                           BorderRadius.circular(
                               5), // 圆角边框
@@ -224,12 +223,12 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
         ),
       ),
       bottomNavigationBar: Container(
-        color: Color(0xffffffff),
-        padding: EdgeInsets.all(50),
+        color: const Color(0xffffffff),
+        padding: const EdgeInsets.all(50),
         child: ElevatedButton(
           style: ButtonStyle(
             elevation: MaterialStateProperty.all<double?>(0),
-            backgroundColor: MaterialStateProperty.all(!conditiondata['label_famous_user']['second_page_config']['button_disabled']?Color.fromRGBO(219, 255, 0, 1):Color.fromRGBO(245, 245, 245, 1)),
+            backgroundColor: MaterialStateProperty.all(!conditiondata['label_famous_user']['second_page_config']['button_disabled']?const Color.fromRGBO(219, 255, 0, 1):const Color.fromRGBO(245, 245, 245, 1)),
           ),
           onPressed: ()  async {
               if(!conditiondata['label_famous_user']['second_page_config']['button_disabled']){
@@ -240,7 +239,7 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
           child: Text(!conditiondata['label_famous_user']['second_page_config']['button_disabled']?'立刻申请'.tr:'申请条件未达成'.tr,style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w700,
-            color: !conditiondata['label_famous_user']['second_page_config']['button_disabled']?Color.fromRGBO(0, 0, 0, 1):Color.fromRGBO(153, 153, 153, 1),
+            color: !conditiondata['label_famous_user']['second_page_config']['button_disabled']?const Color.fromRGBO(0, 0, 0, 1):const Color.fromRGBO(153, 153, 153, 1),
           ),textAlign: TextAlign.center,),
         ),
       ),
@@ -254,8 +253,8 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.transparent,
-          contentPadding:EdgeInsets.fromLTRB(0, 0, 0, 0),
-          shape:RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
+          contentPadding:const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          shape:const RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
           content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -268,11 +267,11 @@ class ExpertcertificationState extends State<ExpertcertificationPage>{
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width-100,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.all(Radius.circular(10))
                         ),
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         child:
                         // Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
                         //   Text('贝壳的用途'.tr,style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15),),

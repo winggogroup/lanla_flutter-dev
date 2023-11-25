@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lanla_flutter/pages/home/start/detail_view/view.dart';
@@ -17,7 +16,7 @@ class _ConnectionTopicPageState extends State<ConnectionTopicPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("话题".tr, style: TextStyle(
+        title: Text("话题".tr, style: const TextStyle(
             fontSize: 20)),
       ),
       body: Center(

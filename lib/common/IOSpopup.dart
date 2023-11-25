@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:zmreader/common/index.dart';
@@ -43,7 +42,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     }
     var cancelContainer = Container(
         height: itemHeight,
-        margin: EdgeInsets.only(left: 10, right: 10),
+        margin: const EdgeInsets.only(left: 10, right: 10),
         decoration: BoxDecoration(
           color: Colors.white, // 底色
           borderRadius: BorderRadius.circular(circular),
@@ -55,7 +54,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
             },
             child: Text(
               "取消".tr,
-              style: TextStyle(
+              style: const TextStyle(
                   fontFamily: 'Robot',
                   fontWeight: FontWeight.normal,
                   decoration: TextDecoration.none,
@@ -67,10 +66,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     var listview = ListView.builder(
         shrinkWrap: true,
         itemCount: itemCount,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (BuildContext context, int index) {
           if (index == itemCount - 1) {
-            return new Container(
+            return Container(
               child: cancelContainer,
               margin: const EdgeInsets.only(top: 10),
             );
@@ -102,7 +101,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     var text = widget.list[index];
     var contentText = Text(
       text,
-      style: TextStyle(
+      style: const TextStyle(
           fontWeight: FontWeight.normal,
           decoration: TextDecoration.none,
           color: Color(0xFF333333),
@@ -117,33 +116,31 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
       child: contentText,
     );
     var onTap2 = () {
-      if (onItemClickListener != null) {
-        onItemClickListener(index);
-      }
+      onItemClickListener(index);
     };
     if(listLength==1){
       decoration = BoxDecoration(
           color: Colors.white, // 底色
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(width: 0.5, color: Color(0xffe5e5e5))
+          border: Border.all(width: 0.5, color: const Color(0xffe5e5e5))
       );
     }else if(listLength>1){
       if (index == 0) {
         decoration = BoxDecoration(
           color: Colors.white, // 底色
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-          border:Border.all(width: 0.5, color: Color(0xffe5e5e5)),
+          border:Border.all(width: 0.5, color: const Color(0xffe5e5e5)),
         );
       } else if (index == listLength - 1) {
         decoration = BoxDecoration(
           color: Colors.white, // 底色
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
-          border: Border.all(width: 0.5, color: Color(0xffe5e5e5)),
+          border: Border.all(width: 0.5, color: const Color(0xffe5e5e5)),
         );
       } else {
-        decoration = BoxDecoration(
+        decoration = const BoxDecoration(
           color: Colors.white, // 底色
           border: Border(
               left: BorderSide(color: Colors.white, width: 0.5),
@@ -155,7 +152,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     itemContainer = Container(
 
         height: itemHeight,
-        margin: EdgeInsets.only(left: 10, right: 10),
+        margin: const EdgeInsets.only(left: 10, right: 10),
         decoration: decoration,
         child: center);
 

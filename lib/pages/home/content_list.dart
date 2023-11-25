@@ -11,6 +11,6 @@ class ContentList extends StatelessWidget{
   }
   @override
   Widget build(BuildContext context) {
-    return Container(height:height.toDouble(), child:Text('text'));
+    return Container(height:height.toDouble(), child:const Text('text'));
   }
 }

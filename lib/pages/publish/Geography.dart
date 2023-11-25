@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:keyboard_actions/keyboard_actions_config.dart';
 import 'package:lanla_flutter/common/widgets/button_black.dart';
 import 'package:lanla_flutter/models/positionlist.dart';
 import 'package:lanla_flutter/models/topic.dart';
@@ -162,7 +160,7 @@ class _GeographylistState extends State<GeographylistPage> {
                                     BorderRadius.all(Radius.circular(30.0)),
                                     borderSide: BorderSide.none),
                                 hintText: '输入搜索内容'.tr,
-                                fillColor: Color(0x07000000),
+                                fillColor: const Color(0x07000000),
                                 filled: true,
                                 prefixIcon: Padding(
                                   padding: const EdgeInsets.only(
@@ -182,8 +180,8 @@ class _GeographylistState extends State<GeographylistPage> {
                               }),
                         )),
                     GestureDetector(child: Container(
-                      margin: EdgeInsets.only(left: 15),
-                      child: Text('搜索'.tr,style: TextStyle(
+                      margin: const EdgeInsets.only(left: 15),
+                      child: Text('搜索'.tr,style: const TextStyle(
                           fontSize: 15,color: Color(0xff666666)
                       ),),
                     ),onTap: (){
@@ -235,14 +233,14 @@ class _GeographylistState extends State<GeographylistPage> {
     return SingleChildScrollView(
       child: Container(
         // color: Colors.red,
-        padding: EdgeInsets.fromLTRB(15, 8, 15, 0),
+        padding: const EdgeInsets.fromLTRB(15, 8, 15, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _positionList.length>0?Container(
+            _positionList.isNotEmpty?Container(
               padding: const EdgeInsets.only(bottom: 10),
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   border: Border(bottom:BorderSide(width: 1,color: Color(0xfff1f1f1)))
               ),
               //margin: const EdgeInsets.only(bottom: 15),
@@ -251,7 +249,7 @@ class _GeographylistState extends State<GeographylistPage> {
                 style:
                 const TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
               ),
-            ):Container(alignment: Alignment.center,child: Text("没有更多数据".tr,style: TextStyle(color: Color(0xff999999),fontSize: 16),),width: double.infinity,),
+            ):Container(alignment: Alignment.center,child: Text("没有更多数据".tr,style: const TextStyle(color: Color(0xff999999),fontSize: 16),),width: double.infinity,),
             ..._positionList.map((e) => _listItemWidget(e)).toList(),
           ],
         ),
@@ -263,14 +261,14 @@ class _GeographylistState extends State<GeographylistPage> {
     return SingleChildScrollView(
       child: Container(
         // color: Colors.red,
-        padding: EdgeInsets.fromLTRB(15, 8, 15, 0),
+        padding: const EdgeInsets.fromLTRB(15, 8, 15, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _searchList.length>0?Container(
+            _searchList.isNotEmpty?Container(
               padding: const EdgeInsets.only(bottom: 10),
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   border: Border(bottom:BorderSide(width: 1,color: Color(0xfff1f1f1)))
               ),
               //margin: const EdgeInsets.only(bottom: 15),
@@ -279,8 +277,8 @@ class _GeographylistState extends State<GeographylistPage> {
                 style:
                 const TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
               ),
-            ):Container(alignment: Alignment.center,child: Text("没有更多数据".tr,style: TextStyle(color: Color(0xff999999),fontSize: 16),),width: double.infinity,),
-            if(_searchList.length>0)..._searchList.map((e) => _listItemWidget(e)).toList(),
+            ):Container(alignment: Alignment.center,child: Text("没有更多数据".tr,style: const TextStyle(color: Color(0xff999999),fontSize: 16),),width: double.infinity,),
+            if(_searchList.isNotEmpty)..._searchList.map((e) => _listItemWidget(e)).toList(),
           ],
         ),
       ),
@@ -307,7 +305,7 @@ class _GeographylistState extends State<GeographylistPage> {
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 5,),
+                const SizedBox(height: 5,),
                 Text(
                   item.vicinity,
                   // overflow: TextOverflow.ellipsis,
@@ -318,7 +316,7 @@ class _GeographylistState extends State<GeographylistPage> {
 
           ///对钩
           _selectList["placeId"]==item.placeId?Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
             width: 20,
             height: 20,
             child: SvgPicture.asset(
@@ -326,13 +324,13 @@ class _GeographylistState extends State<GeographylistPage> {
               color: Colors.black,
             ),
           ):Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
             width: 20,
             height: 20,
           )
         ],
-      ),padding: EdgeInsets.fromLTRB(8, 15, 8, 15),
-        decoration: BoxDecoration(
+      ),padding: const EdgeInsets.fromLTRB(8, 15, 8, 15),
+        decoration: const BoxDecoration(
           border: Border(bottom:BorderSide(width: 1,color: Color(0xfff1f1f1)))
         ),
       ),

@@ -24,7 +24,7 @@ class PictureLogic extends GetxController {
     dataSource = data;
     print('设置默认值');
     print(dataSource?.imagesPath);
-    Future.delayed(Duration(milliseconds: 200)).then((e){
+    Future.delayed(const Duration(milliseconds: 200)).then((e){
       update();
     });
   }

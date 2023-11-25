@@ -140,13 +140,13 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
 
     Directory dir = await getTemporaryDirectory();
     print('临时目录 : ${dir.path}');
-    print('临时wh : ${_mPath}');
+    print('临时wh : $_mPath');
     File file = File("${dir.path}/1111${ext[Codec.aacADTS.index]}");
     print(file.existsSync());
 
     AliOssClient.init(
       //tokenGetter: _tokenGetterMethod,
-      stsUrl: BASE_DOMAIN+'sts/stsAvg',
+      stsUrl: '${BASE_DOMAIN}sts/stsAvg',
       ossEndpoint: "oss-accelerate.aliyuncs.com",
       bucketName: "dayuhaichuang",
     );
@@ -214,7 +214,7 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
             width: double.infinity,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Color(0xFFFAF0E6),
+              color: const Color(0xFFFAF0E6),
               border: Border.all(
                 color: Colors.indigo,
                 width: 3,
@@ -227,7 +227,7 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
                 //disabledColor: Colors.grey,
                 child: Text(_mRecorder!.isRecording ? 'Stop' : 'Record'),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Text(_mRecorder!.isRecording
@@ -242,7 +242,7 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
             width: double.infinity,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Color(0xFFFAF0E6),
+              color: const Color(0xFFFAF0E6),
               border: Border.all(
                 color: Colors.indigo,
                 width: 3,
@@ -255,7 +255,7 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
                 //disabledColor: Colors.grey,
                 child: Text(_mPlayer!.isPlaying ? 'Stop' : 'Play'),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Text(_mPlayer!.isPlaying

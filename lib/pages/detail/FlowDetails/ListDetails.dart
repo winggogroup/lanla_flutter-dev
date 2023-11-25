@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +46,7 @@ class _ListDetailsState extends State<ListDetailsPage> {
   int page=1;
   String dateTime= DateTime.now().toString().substring(0,19);
   var Antishake=true;
-  ScrollController _scrollControllerls = ScrollController(); //listview 的控制器
+  final ScrollController _scrollControllerls = ScrollController(); //listview 的控制器
   void onGooglePayResult(paymentResult) {
     debugPrint(paymentResult.toString());
   }
@@ -92,12 +91,12 @@ class _ListDetailsState extends State<ListDetailsPage> {
      });
      var result =await provider.detailedlist(widget.pagetype,dateTime,page);
      // 延迟1秒请求，防止速率过快
-     Future.delayed(Duration(milliseconds: 1000), () {
+     Future.delayed(const Duration(milliseconds: 1000), () {
        setState(() {
          Antishake=true;
        });
      });
-     if(result.statusCode==200 && FlowDetailsFromJson(result.bodyString!).length>0){
+     if(result.statusCode==200 && FlowDetailsFromJson(result.bodyString!).isNotEmpty){
        setState(() {
          FlowList.addAll(FlowDetailsFromJson(result.bodyString!));
        });
@@ -122,22 +121,22 @@ class _ListDetailsState extends State<ListDetailsPage> {
           controller: _scrollControllerls,
             itemCount: FlowList.length,
             itemBuilder: (context, i) {
-              return i==0?Container(decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1 ,color: Color(0xffF1F1F1) ),)),padding: EdgeInsets.only(left: 20,right: 20,top: 15,bottom: 15),
+              return i==0?Container(decoration: const BoxDecoration(border: Border(bottom: BorderSide(width: 1 ,color: Color(0xffF1F1F1) ),)),padding: const EdgeInsets.only(left: 20,right: 20,top: 15,bottom: 15),
                 child:
                 Row(children: [
                   GestureDetector(child: Container(width: 110,height: 30,
-                    decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(50))),
-                    child: Row(mainAxisAlignment:MainAxisAlignment.center,children: [Text(dateTime.substring(0,7)),SizedBox(width: 10,),SvgPicture.asset("assets/svg/xiajiantou.svg", color: Colors.black, width: 9, height: 5,)],),
+                    decoration: const BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Row(mainAxisAlignment:MainAxisAlignment.center,children: [Text(dateTime.substring(0,7)),const SizedBox(width: 10,),SvgPicture.asset("assets/svg/xiajiantou.svg", color: Colors.black, width: 9, height: 5,)],),
                   ),onTap: (){
                     showPickerDateTimeRoundBg(context);
                   },),],)
               ):
-              Container(margin: EdgeInsets.only(left: 20,right: 20,top: 20,),padding:EdgeInsets.only(bottom: 20),decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1 ,color: Color(0xffF1F1F1) ),)),
+              Container(margin: const EdgeInsets.only(left: 20,right: 20,top: 20,),padding:const EdgeInsets.only(bottom: 20),decoration: const BoxDecoration(border: Border(bottom: BorderSide(width: 1 ,color: Color(0xffF1F1F1) ),)),
                 child: Column(crossAxisAlignment:CrossAxisAlignment.start,children: [
-                  Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(FlowList[i].title,),Text(FlowList[i].type==1?'${FlowList[i].price} +':'${FlowList[i].price} -',style: TextStyle(fontWeight: FontWeight.w500),)],),
-                  SizedBox(height: 10,),
+                  Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,children: [Text(FlowList[i].title,),Text(FlowList[i].type==1?'${FlowList[i].price} +':'${FlowList[i].price} -',style: const TextStyle(fontWeight: FontWeight.w500),)],),
+                  const SizedBox(height: 10,),
 
-                  Text(FlowList[i].createdAt.toString(),style: TextStyle(fontSize: 12,color: Color(0xff999999)),)
+                  Text(FlowList[i].createdAt.toString(),style: const TextStyle(fontSize: 12,color: Color(0xff999999)),)
                   //Row(children: [Text('15:22',style: TextStyle(fontSize: 12,color: Color(0xff999999)),),SizedBox(width: 10,),Text('15:22',style: TextStyle(fontSize: 12,color: Color(0xff999999)),)],)
                 ],),
               );
@@ -173,7 +172,7 @@ class _ListDetailsState extends State<ListDetailsPage> {
     var picker = Picker(
         height: 250,
         squeeze:1.1,
-        cancelTextStyle:TextStyle(color: Color(0xff999999)),
+        cancelTextStyle:const TextStyle(color: Color(0xff999999)),
         backgroundColor: Colors.transparent,
 
         // cancel:GestureDetector(child:Container(child: SvgPicture.asset(
@@ -190,7 +189,7 @@ class _ListDetailsState extends State<ListDetailsPage> {
         //   width: 22,
         //   height: 22,
         // ), margin: EdgeInsets.only(left: 20,bottom: 15),),
-        headerDecoration: BoxDecoration(
+        headerDecoration: const BoxDecoration(
             border:
             Border(bottom: BorderSide(color: Colors.white, width: 0.5))),
         adapter: DateTimePickerAdapter(
@@ -217,7 +216,7 @@ class _ListDetailsState extends State<ListDetailsPage> {
         builder: (context, view) {
           return Material(
               color: Colors.white,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
               child: Container(
                 padding: const EdgeInsets.only(top: 5),

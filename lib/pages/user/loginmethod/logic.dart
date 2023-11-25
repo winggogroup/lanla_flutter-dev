@@ -5,7 +5,6 @@ import 'package:adjust_sdk/adjust.dart';
 import 'package:adjust_sdk/adjust_config.dart';
 import 'package:adjust_sdk/adjust_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -74,7 +73,7 @@ class LoginmethodLogic extends GetxController {
         if (user != null) {
           String? idToken = await user.getIdToken();
           // 将idToken发送给后端进行验证和处理
-          print('谷歌数据${idToken}');
+          print('谷歌数据$idToken');
         var result = await provider.Googlelogin(information?.id,information?.displayName,information?.photoUrl,information?.email,information?.serverAuthCode,userLogic.sourcePlatform,idToken);
 
 
@@ -235,7 +234,7 @@ class LoginmethodLogic extends GetxController {
       if (user != null) {
         String? idToken = await user.getIdToken();
         // 将idToken发送给后端进行验证和处理
-        print('苹果数据${idToken}');
+        print('苹果数据$idToken');
 
       AppLog('sgin_res',event: 'apple',data: information.user?.uid??'');
       FirebaseAnalytics.instance.logEvent(
@@ -315,7 +314,7 @@ class LoginmethodLogic extends GetxController {
          Toast.toast(context, msg: "填写成功".tr, position: ToastPostion.bottom);
        }
 
-       Timer.periodic(Duration(milliseconds: 1000),(timer){
+       Timer.periodic(const Duration(milliseconds: 1000),(timer){
          antishake=true;
          timer.cancel();//取消定时器
        });
@@ -329,7 +328,7 @@ class LoginmethodLogic extends GetxController {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
-          return new LoadingDialog(text: '',
+          return LoadingDialog(text: '',
           );
         });
   }

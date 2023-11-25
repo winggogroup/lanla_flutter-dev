@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -26,7 +25,7 @@ class CommentChildView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 5),
+      padding: const EdgeInsets.only(top: 5),
       child: ListView.builder(
           shrinkWrap: true, //范围内进行包裹（内容多高ListView就多高）
           physics: const NeverScrollableScrollPhysics(), //禁止滚动
@@ -40,12 +39,12 @@ class CommentChildView extends StatelessWidget {
             }
             //print(logic.parentDataSource[parentIndex].children[index].text);
             return _bulid(
-                this.id,
+                id,
                 logic.parentDataSource[parentIndex].children[index],
                 logic.parentDataSource[parentIndex].id,
                 parentIndex,
                 index,context);
-            return Text('s');
+            return const Text('s');
           }),
     );
   }
@@ -57,7 +56,7 @@ class CommentChildView extends StatelessWidget {
         onTap: () async {
           if(antishake){
             antishake=false;
-            print('总数${count},当前${nowChild}');
+            print('总数$count,当前$nowChild');
 
             /// 请求子评论
             int page = (((nowChild - 1) / 10) + 1).truncate();
@@ -74,10 +73,10 @@ class CommentChildView extends StatelessWidget {
 
         },
         child: Padding(
-          padding: EdgeInsets.only(right: 60),
+          padding: const EdgeInsets.only(right: 60),
           child: Text(
             '加载更多评论'.tr,
-            style: TextStyle(color: Colors.blueGrey),
+            style: const TextStyle(color: Colors.blueGrey),
           ),
         ),
       );
@@ -89,7 +88,7 @@ class CommentChildView extends StatelessWidget {
   _bulid(int contentId, CommentChild data, int parentId, int parentIndex,
       int index,context) {
     return Container(
-        margin: EdgeInsets.only(right: 30),
+        margin: const EdgeInsets.only(right: 30),
         child: (Column(children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +103,7 @@ class CommentChildView extends StatelessWidget {
                 child: Container(
                   width: 26,
                   height: 26,
-                  margin: EdgeInsets.only(top: 5),
+                  margin: const EdgeInsets.only(top: 5),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(26),
                     color: Colors.black12,
@@ -117,13 +116,13 @@ class CommentChildView extends StatelessWidget {
               // 内容部分
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(right: 10, left: 15),
+                  padding: const EdgeInsets.only(right: 10, left: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         data.userName,
-                        style: TextStyle(fontSize: 12, color: Colors.black26),
+                        style: const TextStyle(fontSize: 12, color: Colors.black26),
                       ),
                       GestureDetector(
                         /// 回复子评论
@@ -163,26 +162,24 @@ class CommentChildView extends StatelessWidget {
                         },
                         child:
                         Padding(
-                            padding: EdgeInsets.only(top: 5),
+                            padding: const EdgeInsets.only(top: 5),
                             child: Text.rich(TextSpan(children: [
                               if(data.targetUserName != '')TextSpan(text: '回复'.tr),
-                              if(data.targetUserName != '')TextSpan(text: ' '),
+                              if(data.targetUserName != '')const TextSpan(text: ' '),
                               data.targetUserName == ''
-                                  ? TextSpan(text: '')
+                                  ? const TextSpan(text: '')
                                   : TextSpan(
                                       text: data.targetUserName,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.blueGrey,
                                           fontWeight: FontWeight.w600),
                                     ),
-                              TextSpan(text: ' '),
+                              const TextSpan(text: ' '),
                               TextSpan(text: data.text),
-                              TextSpan(text: ' '),
+                              const TextSpan(text: ' '),
                               TextSpan(
-                                style: TextStyle(color: Colors.black12),
-                                text: data.createdAt.month.toString() +
-                                    '-' +
-                                    data.createdAt.day.toString(),
+                                style: const TextStyle(color: Colors.black12),
+                                text: '${data.createdAt.month}-${data.createdAt.day}',
                               ),
                             ]))),
                       ),
@@ -212,7 +209,7 @@ class CommentChildView extends StatelessWidget {
                 },
                 child: Container(
                   width: 30,
-                  padding: EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(left: 15),
                   child: Column(
                     children: [
                       Container(
@@ -226,7 +223,7 @@ class CommentChildView extends StatelessWidget {
                       ),
                       Text(
                         data.likes.toString(),
-                        style: TextStyle(fontSize: 12, color: Colors.black45),
+                        style: const TextStyle(fontSize: 12, color: Colors.black45),
                       ),
                     ],
                   ),
@@ -234,7 +231,7 @@ class CommentChildView extends StatelessWidget {
               )
             ],
           ),
-          Padding(padding: EdgeInsets.only(top: 4, bottom: 4))
+          const Padding(padding: EdgeInsets.only(top: 4, bottom: 4))
         ])));
   }
 }
